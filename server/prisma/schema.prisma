@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int @id @default(autoincrement())
+  name          String
+  email         String
+  password      String
+  cvFiles       String[]
+  applications  Application[]
+  spontaneous   Spontaneous[]
+}
+
+enum jobType {
+  FULLTIME
+  PART_TIME
+  FREELANCE
+  UNSPECIFIED
+}
+
+enum jobModality {
+  REMOTE
+  ONSITE
+  HYBRID
+  UNSPECIFIED
+}
+
+enum status {
+  PENDING
+  SUBMITTED
+  INTERVIEW_SCHEDULED
+  HIRED
+  REJECTED
+}
+
+model Application {
+  id              Int @id @default(autoincrement())
+  user            User @relation(fields: [userId], references: [id])
+  userId          Int
+  jobName         String
+  company         String 
+  jobType         jobType @default(UNSPECIFIED)
+  jobModality     jobModality @default(UNSPECIFIED)
+  location        String?
+  date            DateTime @default(now())
+  expectedIncome  Int?
+  currency        String?
+  status          status @default(PENDING)
+  links           String[]
+  feedback        String?
+  comments        String?
+}
+
+model Spontaneous {
+  id              Int @id @default(autoincrement())
+  user            User @relation(fields: [userId], references: [id])
+  userId          Int
+  message         String
+  receiver        String?
+  company         String?
+  date            DateTime?
+  links           String[]
+}
