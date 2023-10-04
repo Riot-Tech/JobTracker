@@ -1,0 +1,11 @@
+{ //Esta configuración define algunas opciones comunes de TypeScript. Luego agregaremos mas.
+    "compilerOptions": {
+      "target": "ES6",
+      "module": "CommonJS",
+      "outDir": "./dist",
+      "strict": true,
+      "esModuleInterop": true // permite importar módulos CommonJS de forma más natural en TypeScript.
+    },
+    "include": ["**/*.ts", "src/app/app.js"],
+    "exclude": ["node_modules"]
+  }

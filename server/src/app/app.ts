@@ -1,20 +1,20 @@
-const express = require('express')
-const cookieParser = require('cookie-parser')
-const bodyParser = require('body-parser')
-const morgan = require('morgan')
-const routes = require('../routes/index.js')
-require('../DataBases/db.js')
+import express, { Application, Request, Response, NextFunction } from 'express';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+import morgan from 'morgan';
+import routes from '../routes'; 
+import '../DataBases/db';
 
-const server = express()
+const server: Application = express();
 
-server.name = 'API'
+//server.name = 'API';
 
 // Middlewares
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }))
 server.use(bodyParser.json({ limit: '50mb' }))
 server.use(cookieParser())
 server.use(morgan('dev'))
-server.use((req, res, next) => {
+server.use((req: Request, res: Response, next: NextFunction) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
   res.header('Access-Control-Allow-Credentials', 'true')
   res.header(
@@ -27,11 +27,11 @@ server.use((req, res, next) => {
 server.use('/', routes)
 
 // Error catching endware.
-server.use((err, req, res, next) => {
+server.use((err: any, req: Request, res: Response, next: NextFunction) => {
   const status = err.status || 500
   const message = err.message || err
   console.error(err)
   res.status(status).send(message)
 })
 
-module.exports = server
+export default server
