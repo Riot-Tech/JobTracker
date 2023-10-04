@@ -3,7 +3,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import routes from '../routes'; 
-import '../DataBases/db';
+/* import '../DataBases/db'; */
 
 const server: Application = express();
 
