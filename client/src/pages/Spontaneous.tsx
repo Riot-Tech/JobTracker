@@ -1,7 +1,7 @@
 export default function Spontaneous() {
     return (
         <div>
-            <h1>Spontaneousssss</h1>
+            <h1>Spontaneous Applications</h1>
         </div>
     )
 }

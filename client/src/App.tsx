@@ -6,8 +6,8 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={RootRouter} />
       <h1>Hello World!</h1>
+      <RouterProvider router={RootRouter} />
     </>
   )
 }
