@@ -1,3 +1,1 @@
-import  getUserByIdHandler  from '../handlers/getUserByIdHandler'
-
-export {getUserByIdHandler}
+export {getUserByIdHandler}  from './getUserByIdHandler'
