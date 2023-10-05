@@ -1,0 +1,1 @@
+export { exampleSlice } from './example.slice';
