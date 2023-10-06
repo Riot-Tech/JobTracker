@@ -1,0 +1,1 @@
+export { signUpHandler } from './signUphandler'
