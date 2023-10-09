@@ -14,7 +14,7 @@ import Spontaneous from './Spontaneous';
 const Root = () => {
     return (
       <>
-        <div style={{display: 'flex', flexDirection: 'column'}}>
+        <div className='flex flex-col'>
           <Link to="/">Profile</Link>
           <Link to="/signup">SignUp</Link>
           <Link to="/login">Login</Link>
@@ -24,14 +24,14 @@ const Root = () => {
         <div>
           <Outlet />
         </div>
-      </>
+      </> 
     )
 }
 
 export const RootRouter = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Root />}>
-      <Route index element={<Profile />} />
+      <Route path='/profile' element={<Profile />} />
       <Route path='/signup' element={<SignUp />} />
       <Route path='/login' element={<Login />} />
       <Route path='/applications' element={<Applications />} />
