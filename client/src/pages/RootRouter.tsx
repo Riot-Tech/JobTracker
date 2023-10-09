@@ -30,7 +30,7 @@ const Root = () => {
 
 export const RootRouter = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<Root />}>
+    <Route path='/' /* element={<Root />} */>
       <Route path='/profile' element={<Profile />} />
       <Route path='/signup' element={<SignUp />} />
       <Route path='/login' element={<Login />} />
