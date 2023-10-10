@@ -1,21 +1,21 @@
 import { PrismaClient } from "@prisma/client";
+import { Application } from "../types";
 
 const prisma = new PrismaClient();
 
-type User = {
-    id: number;
-    name: string;
-    email: string;
-    password: string;
-};
-
-export const postApplicationHelper = async (user: User) => {
-    const res = await prisma.user.create({
+export const postApplicationHelper = async (application: Application) => {
+    const res = await prisma.application.create({
         data: {
-            id: user.id,
-            name: user.name,
-            email: user.email,
-            password: user.password
+            id: application.id,
+            jobName: application.jobName,
+            company: application.company,
+            jobType: application.jobType,
+            jobModality: application.jobModality,
+            location: application.location,
+            expectedIncome: application.expectedIncome,
+            currency: application.currency,
+            feedback: application.feedback,
+            comments: application.comments,
         }
     })
 
@@ -24,5 +24,5 @@ export const postApplicationHelper = async (user: User) => {
         return res;
     };
 
-    throw new Error('Error creating the user')
+    throw new Error('Error creating the application')
 }
