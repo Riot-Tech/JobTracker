@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { postSpontaneusHandler } from "../handlers";
+import { postSpontaneousHandler } from "../handlers";
 
 const spontaneusRouter = Router();
 
-spontaneusRouter.post('/', postSpontaneusHandler);
+spontaneusRouter.post('/', postSpontaneousHandler);
 
 
 export default spontaneusRouter;
