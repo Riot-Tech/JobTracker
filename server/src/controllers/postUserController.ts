@@ -1,5 +1,5 @@
 import { postUserHelper } from "../helpers"
-import { User } from "../types"
+import { User } from "@prisma/client"
 
 
 export const postUserController = async (user: User) => {

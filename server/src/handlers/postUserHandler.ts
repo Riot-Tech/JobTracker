@@ -12,5 +12,4 @@ export const postUserHandler = async (req: Request, res: Response) => { //seteam
         if(error instanceof Error)
             res.status(400).json(error.message);
     };
-
 };
