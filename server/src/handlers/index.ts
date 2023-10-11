@@ -4,5 +4,7 @@ export { getUserByIdHandler }  from './getUserByIdHandler';
 export { postUserHandler } from './postUserHandler';
 export { postSpontaneousHandler } from './postSpontaneousHandler'
 export { postApplicationHandler } from './postApplicationHandler';
-export { getApplicationHandler } from './getApplicationHandler';
+export { getApplicationsHandler } from './getApplicationsHandler';
+export { updateApplicationHandler } from './updateApplicationHandler';
+
 
