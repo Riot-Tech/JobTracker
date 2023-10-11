@@ -1,5 +1,5 @@
 import image from "../assets/job tracker log in.png";
-import { useState, ChangeEvent, MouseEventHandler } from "react";
+import { useState, ChangeEvent } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { createUser } from "../redux/slices/auth.slice";
@@ -32,11 +32,11 @@ export default function Login() {
       let response = await axios.post("http://localhost:3001/login", input);
       if (response.status === 200) {
         dispatch(createUser(response.data.user));
-        alert("entre!");
         navigate(`/${PrivateRoutes.HOME}`, {replace: true})
-        console.log(response);
       }
-    } catch (error) {}
+    } catch (error) {
+        console.log(error)
+    }
   };
 
   return (

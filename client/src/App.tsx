@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Navigate, Route, RouterProvider, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { RootRouter } from "./pages/RootRouter";
 import { PrivateRoutes, PublicRoutes } from "./models/routes";
 import Profile from "./pages/Profile";
@@ -16,7 +16,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate to={PrivateRoutes.HOME} />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route path={PublicRoutes.SIGNUP} element={<SignUp />} />
           <Route path={PublicRoutes.LOGIN} element={<Login />} />
           <Route path="*" element={<>ERROR 404 NOT FOUND</>} />
 

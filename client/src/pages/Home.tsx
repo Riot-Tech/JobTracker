@@ -2,20 +2,14 @@ import { useDispatch } from "react-redux";
 import { resetUser } from "../redux/slices/auth.slice";
 import { useNavigate } from "react-router-dom";
 import { PublicRoutes } from "../models/routes";
+import Logout from "../components/Logout";
 
-function Home() { //rfce
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-
-    const logOut = ()=>{
-        dispatch(resetUser())
-        navigate(`/${PublicRoutes.LOGIN}` , {replace: true})
-    }
-
+function Home() {
+  //rfce
   return (
     <div>
-      Home
-      <button onClick={logOut}>Log out</button>
+        {/* ACA DEBERIA IR UNA SIDE BAR !!!!!!!!!!!!!!!!!!!!!!!! */}
+      <Logout />
     </div>
   );
 }

@@ -4,7 +4,6 @@ import * as bcrypt from "bcrypt";
 import * as jwt from 'jsonwebtoken';
 import * as dotenv from 'dotenv'
 
-
 dotenv.config()
 
 const prisma = new PrismaClient();
@@ -25,7 +24,7 @@ export const authenticationHandler = async (req: Request, res: Response) => {
 
     if (bcrypt.compareSync(password, user.password)) { //si son iguales
       const token = jwt.sign(user, key as string, { expiresIn: "3h" });
-      return res.status(200).json({ message: "Login success", token: token });
+      return res.status(200).json({ message: "Login success", user:{id: user.id, email: user.email, name: user.name, enabled: user.enabled, token: token} });
     } else {
       return res.status(400).json({ message: "Invalid credentials" });
     }
