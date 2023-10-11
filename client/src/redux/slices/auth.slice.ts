@@ -11,21 +11,25 @@ export const EmptyUserState: UserInfo = {
     email:''
 }
 
-const addToLocalStorage = () => {
-
+const addToLocalStorage = (user: UserInfo) => { 
+    localStorage.setItem('user', JSON.stringify({...user}))
 }
 
 export const userSlice = createSlice({
     name: 'user',
-    initialState: EmptyUserState,
+    initialState: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') as string) : EmptyUserState, //PERSISTENCIA
     reducers:{
        createUser: (state, action) => {
+        addToLocalStorage(action.payload)
         return action.payload
        },
        updateUser: (state, action) => {
         return ({...state, ...action.payload})
        },
-       resetUser: () => EmptyUserState
+       resetUser: () => {
+           localStorage.removeItem('user')
+           return EmptyUserState
+       }
     }
 })
 
