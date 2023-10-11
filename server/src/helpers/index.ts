@@ -1,5 +1,5 @@
 export { postUserHelper } from "./postUserHelper";
 export { getUserByIdHelper } from "./getUserByIdHelper";
 export { postApplicationHelper } from "./postApplicationHelper";
-export { getApplicationHelper } from "./getApplicationHelper";
+export { getApplicationsHelper } from "./getApplicationsHelper";
 export { postSpontaneousHelper } from "./postSpontaneousHelper";

@@ -1,5 +1,5 @@
 export { getUserByIdController } from './getUserByIdController';
 export { postUserController } from './postUserController';
 export { postApplicationController } from './postApplicationController';
-export { getApplicationController } from './getApplicationController';
+export { getApplicationsController } from './getApplicationsController';
 export { postSpontaneousController } from './postSpontaneousController'

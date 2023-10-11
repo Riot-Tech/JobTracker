@@ -1,10 +1,10 @@
 import { Router, Request, Response } from "express";
-import { postApplicationHandler, getApplicationHandler } from "../handlers";
+import { postApplicationHandler, getApplicationsHandler } from "../handlers";
 
 
 const applicationRouter: Router = Router();
 
-applicationRouter.get("/", getApplicationHandler);
+applicationRouter.get("/", getApplicationsHandler);
 applicationRouter.post("/", postApplicationHandler);
 
 export default applicationRouter
