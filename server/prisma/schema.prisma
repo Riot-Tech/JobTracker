@@ -69,7 +69,7 @@ model Spontaneous {
   message         String
   receiver        String?
   company         String?
-  date            DateTime?
+  date            DateTime @default(now())
   enabled         Boolean @default(true)
   links           Link[]
 }
@@ -85,4 +85,5 @@ model Link {
   name            String
   url             String
   enabled         Boolean @default(true)
+  isCv            Boolean @default(false)
 }
