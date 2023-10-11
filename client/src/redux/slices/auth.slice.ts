@@ -1,14 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { UserInfo } from '../../models/interfaces';
 
-interface UserInfo{
-    id: number,
-    email: string,
-    name: string
-}
 export const EmptyUserState: UserInfo = {
     id: 0,
     name:'',
-    email:''
+    email:'',
+    token: ''
 }
 
 const addToLocalStorage = (user: UserInfo) => { 
@@ -24,6 +21,7 @@ export const userSlice = createSlice({
         return action.payload
        },
        updateUser: (state, action) => {
+        
         return ({...state, ...action.payload})
        },
        resetUser: () => {
