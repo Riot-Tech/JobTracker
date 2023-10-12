@@ -6,6 +6,6 @@ const applicationRouter: Router = Router();
 
 applicationRouter.get("/", getApplicationsHandler);
 applicationRouter.post("/", postApplicationHandler);
-applicationRouter.patch("/", updateApplicationHandler)
+applicationRouter.patch("/:id", updateApplicationHandler);
 
 export default applicationRouter

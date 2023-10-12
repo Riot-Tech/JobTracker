@@ -8,3 +8,4 @@ export { getApplicationsHandler } from './getApplicationsHandler';
 export { updateApplicationHandler } from './updateApplicationHandler';
 
 
+
