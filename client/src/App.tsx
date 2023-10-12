@@ -12,7 +12,6 @@ import Home from "./pages/Home";
 
 function App() {
   return (
-    <>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate to={PrivateRoutes.HOME} />} />
@@ -28,9 +27,8 @@ function App() {
           </Route>
 
         </Routes>
+        {/* <RouterProvider router={RootRouter} /> */}
       </BrowserRouter>
-      {/* <RouterProvider router={RootRouter} /> */}
-    </>
   );
 }
 
