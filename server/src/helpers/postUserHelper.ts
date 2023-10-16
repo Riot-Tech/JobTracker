@@ -6,7 +6,6 @@ import * as bcrypt from "bcrypt";
 
 export const postUserHelper = async (user: User) => {
     const { email, name, password } = user
-    //espacio a borrar
     // Hashea la contraseña
     let salt = bcrypt.genSaltSync(10);
     let hash = bcrypt.hashSync(password, salt);
