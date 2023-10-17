@@ -1,8 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-export const disableApplicationHelper = async (id: number) => {
-    const res = await prisma.application.update({
+export const disableSpontaneousHelper = async (id: number) => {
+    const res = await prisma.spontaneous.update({
         where:{
             id: id
         },
@@ -14,5 +14,5 @@ export const disableApplicationHelper = async (id: number) => {
         return res;
     };
 
-    throw new Error('Error updating the application')
+    throw new Error('Error updating the spontaneous application')
 }

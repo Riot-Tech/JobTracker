@@ -3,5 +3,7 @@ export { getUserByIdHelper } from "./getUserByIdHelper";
 export { postApplicationHelper } from "./postApplicationHelper";
 export { getApplicationsHelper } from "./getApplicationsHelper";
 export { postSpontaneousHelper } from "./postSpontaneousHelper";
+export { disableSpontaneousHelper } from "./disableSpontaneousHelper";
+export { updateSpontaneousHelper } from "./updateSpontaneousHelper";
 export { updateApplicationHelper } from "./updateApplicationHelper";
 export { disableApplicationHelper } from "./disableApplicationHelper";
