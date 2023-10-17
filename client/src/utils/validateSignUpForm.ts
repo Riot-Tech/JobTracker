@@ -7,17 +7,10 @@ export const validateSignUpForm = (input: input) =>{
     const { email, password, name } = input as {email: string, password: string, name: string}
 
     const schema = z.object({
-        name: z.string().min(3, "At least three letters").max(50, '50 characters max').optional().or(z.string().refine((val) => val !== '', {
-          message: 'Mandatory field'
-        })),
-        email: z.string().email("Invalid email").min(1, "Email required").optional().or(z.string().refine((val) => val !== '', {
-          message: 'Mandatory field'
-        })),
-        password: z.string().min(3, "At least three characters").optional().or(z.string().refine((val) => val !== '', {
-          message: 'Mandatory field'
-        }))
+        name: z.string().min(3,"At least three letters").max(50, '50 characters max'),
+        email: z.string().email("Invalid email").min(1, "Email required"),
+        password: z.string().min(3, "At least three characters")
       });
-      
       try {
         schema.parse({
           name,
