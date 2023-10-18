@@ -22,7 +22,7 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
     if (modalIsOpen) {
       const timeoutId = setTimeout(() => {
         setModalIsOpen(false);
-      }, 1000); // Ocultar el modal después de 5 segundos (5000 ms)
+      }, 1200); // Ocultar el modal después de 5 segundos (5000 ms)
 
       // Limpia el temporizador si el componente se desmonta antes de que se oculte el modal
       return () => clearTimeout(timeoutId);
@@ -62,8 +62,7 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
       console.log(error)
     }
   }
-  console.log(errors)
-  console.log(hasErrors(errors))
+
   return (
     <div className="absolute top-[48%] left-[60%] transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[600px] z-10 bg-slate-200 p-4 rounded-s-xl rounded-t-xl text-black shadow-lg">
       {modalIsOpen && <SignUpSuccess />}

@@ -40,7 +40,7 @@ export const authenticationHandler = async (req: Request, res: Response) => {
       });
   
       if (!user) {
-        return res.status(400).json({ error: "User doesn't exist" });
+        return res.status(400).json({ message: "User doesn't exist" });
       }
   
       if (bcrypt.compareSync(password, user.password)) { //si son iguales
