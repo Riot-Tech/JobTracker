@@ -9,10 +9,10 @@ export const getUserByIdHandler = async (req: Request, res: Response) => { //set
         const user = await getUserByIdController(userId);
         res.status(200).json(user);
     } catch (error) {
-        if(error instanceof Error)
-            res.status(400).json(error)
+        if(error instanceof Error){
+        res.status(400).json({ error: error.message })
+        }
     }
-
 }
 
 

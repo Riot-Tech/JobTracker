@@ -9,7 +9,9 @@ export const disableApplicationHandler = async (req: Request, res: Response) => 
         const disableApplication = await disableApplicationController(idApplication)
         res.status(200).json(disableApplication);
     } catch (error) {
-        res.status(400).json({error})
+        if(error instanceof Error){
+        res.status(400).json({ error: error.message })
+        }
     }
 
 }

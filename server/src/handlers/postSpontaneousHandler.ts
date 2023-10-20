@@ -9,8 +9,8 @@ export const postSpontaneousHandler = async (req: Request, res: Response) => { /
         const spontaneous = await postSpontaneousController(newSponteaneus);
         res.status(200).json(spontaneous);
     } catch (error) {
-        if(error instanceof Error)
-            res.status(400).json(error.message);
-    };
-
+        if(error instanceof Error){
+        res.status(400).json({ error: error.message })
+        }
+    }
 };

@@ -9,7 +9,8 @@ export const postUserHandler = async (req: Request, res: Response) => { //seteam
         const user = await postUserController(newUser);
         res.status(200).json(user);
     } catch (error) {
-        if(error instanceof Error)
-            res.status(400).json(error.message);
+        if(error instanceof Error){
+        res.status(400).json({ error: error.message })
+        }
     };
 };
