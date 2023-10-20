@@ -4,7 +4,7 @@ import { Application, jobModality, jobType } from "@prisma/client"
 
 
 export const postApplicationController = async (application: Application) => {
-    if (isNaN(application.userId)) {
+    if (typeof application.userId !== 'number') {
         throw new Error('Wrong userId type')
     };
     if (typeof application.jobName !== 'string') {
