@@ -9,7 +9,8 @@ export const disableSpontaneousHandler = async (req: Request, res: Response) => 
         const disableSpontaneous = await disableSpontaneousController(idSpontaneous)
         res.status(200).json(disableSpontaneous);
     } catch (error) {
-        res.status(400).json({error})
+        if(error instanceof Error){
+        res.status(400).json({ error: error.message })
+        }
     }
-
 }

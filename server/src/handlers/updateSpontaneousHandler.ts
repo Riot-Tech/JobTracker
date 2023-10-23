@@ -9,6 +9,8 @@ export const updateSpontaneousHandler = async (req: Request, res: Response) => {
         const updateSpontaneous = await updateSpontaneousController(spontaneous);
         res.status(200).json(updateSpontaneous);
     } catch (error) {
-        res.status(400).json({error})
+        if(error instanceof Error){
+        res.status(400).json({ error: error.message })
+        }
     }
 }

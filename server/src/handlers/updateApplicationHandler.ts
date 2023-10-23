@@ -9,6 +9,8 @@ export const updateApplicationHandler = async (req: Request, res: Response) => {
         const updateApplication = await updateApplicationController(application);
         res.status(200).json(updateApplication);
     } catch (error) {
-        res.status(400).json({error})
+        if(error instanceof Error){
+        res.status(400).json({ error: error.message })
+        }
     }
 }

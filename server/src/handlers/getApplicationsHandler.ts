@@ -8,7 +8,8 @@ export const getApplicationsHandler = async (req: Request, res: Response) => { /
         const allApplications = await getApplicationsController();
         res.status(200).json(allApplications);
     } catch (error) {
-        res.status(400).json({error})
+        if(error instanceof Error){
+        res.status(400).json({ error: error.message })
+        }
     }
-
 }
