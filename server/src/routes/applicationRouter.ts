@@ -1,11 +1,12 @@
-import { Router, Request, Response } from "express";
-import { postApplicationHandler, getApplicationsHandler, updateApplicationHandler } from "../handlers";
+import { Router } from "express";
+import { postApplicationHandler, getApplicationsHandler, updateApplicationHandler, disableApplicationHandler } from "../handlers";
 
 
 const applicationRouter: Router = Router();
 
 applicationRouter.get("/", getApplicationsHandler);
 applicationRouter.post("/", postApplicationHandler);
-applicationRouter.patch("/:id", updateApplicationHandler);
+applicationRouter.patch("/", updateApplicationHandler);
+applicationRouter.patch("/:id", disableApplicationHandler);
 
 export default applicationRouter
