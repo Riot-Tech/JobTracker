@@ -1,7 +1,6 @@
-
 function ErrorModalLogIn({ close, error }: { close: (value: boolean) => void, error: string }) {
   return (
-    <div className="fixed inset-0 z-10 flex backdrop-brightness-90 flex-col items-center justify-center backdrop-blur-sm">
+    <div className="fixed inset-0 z-20 flex backdrop-brightness-90 flex-col items-center justify-center backdrop-blur-sm">
     <div className=" w-3/12 right-1/2 border-2 border-red-400 top-1/4 max-h-80 bg-white justify-center flex flex-col items-center rounded-xl px-8 py-10 text-gray-800 shadow-lg">
       <svg width="90px" height="90px" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#f50505">
         <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>

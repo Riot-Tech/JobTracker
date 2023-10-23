@@ -7,14 +7,19 @@ import axios from "axios";
 import { validateSignUpForm } from "../utils/validateSignUpForm";
 import { URL } from "../utils/url";
 import { hasErrors } from "../utils/utilities";
-import GoogleLogin from "react-google-login";
 import GoogleButton from "./GoogleButton";
 import SignUpSuccess from "../modals/SignUpSuccess";
+import ErrorModalLogIn from "../modals/ErrorModalLogIn";
+
 /* absolute top-[48%] left-[60%] transform -translate-x-1/2 -translate-y-1/2 */
+
 function SignUp({ close }: { close: (value: boolean) => void }) {
 
-  const [input, setInput] = useState<input>({name:"", email: "", password: ""});
+  const [input, setInput] = useState<input>({name:"", email: "", password: ""})
   const [errors, setErrors] = useState<input>({name:"", email:'', password:''})
+
+  const [errorModal, setErrorModal] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -58,12 +63,20 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
           setErrors({name:"", email: "", password: ""})
         } 
       }
-    } catch (error) {
-      console.log(error)
+    } catch (error: any) {
+      setErrorModal(true)
+      setErrorMessage(error.response.data.message)
     }
   }
 
+  const closeModal = (value: boolean) => {
+    setErrorModal(value)
+    setErrorMessage('')
+  }
+
   return (
+  <>
+      {errorModal && <ErrorModalLogIn close={ closeModal } error={ errorMessage } />}
     <div className="absolute top-[48%] left-[60%] transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[600px] z-10 bg-slate-200 p-4 rounded-s-xl rounded-t-xl text-black shadow-lg">
       {modalIsOpen && <SignUpSuccess />}
       <div className='flex justify-between mb-2'>
@@ -110,6 +123,7 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
         </div>
       </form>
     </div>
+  </>
   );
 }
 

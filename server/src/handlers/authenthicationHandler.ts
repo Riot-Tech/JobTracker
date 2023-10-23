@@ -31,7 +31,6 @@ export const authenticationHandler = async (req: Request, res: Response) => {
         return res.status(200).json({...user, token, password:''})
       }
       const token = jwt.sign(user, key as string, { expiresIn: "3h" });
-<<<<<<< HEAD
       return res.status(200).json({...user, token, password:''})
     }else{
       const user = await prisma.user.findFirst({
@@ -50,12 +49,6 @@ export const authenticationHandler = async (req: Request, res: Response) => {
       } else {
         return res.status(400).json({ message: "Invalid credentials" });
       }
-=======
-      console.log(token)
-      return res.status(200).json({ message: "Login success", user:{id: user.id, email: user.email, name: user.name, enabled: user.enabled, token: token} });
-    } else {
-      return res.status(400).json({ message: "Invalid credentials" });
->>>>>>> e8839841669ff4f81e2fe9c4338d3fbb381f0aae
     }
   } catch (error) {
     return res

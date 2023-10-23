@@ -51,7 +51,6 @@ export default function Login() {
     } catch (error: any) {
       setErrorModal(true)
       setErrorMessage(error.response.data.message)
-      console.log( errorMessage )
     }
   };
 
