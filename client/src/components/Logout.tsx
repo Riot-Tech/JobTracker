@@ -6,6 +6,7 @@ import { PublicRoutes } from "../models/routes";
 function Logout() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const logOut = () => {
     dispatch(resetUser());
     navigate(`/${PublicRoutes.LOGIN}`, { replace: true });

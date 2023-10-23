@@ -8,3 +8,15 @@ export interface UserInfo{
 export interface AppStore {
     user: UserInfo
 }
+
+export interface LoginForm {
+    email: string,
+    password: string
+}
+
+export interface input {
+    name?: string,
+    email: string;
+    password: string;
+  }
+  
