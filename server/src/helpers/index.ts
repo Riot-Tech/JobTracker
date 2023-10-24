@@ -7,3 +7,4 @@ export { disableSpontaneousHelper } from "./disableSpontaneousHelper";
 export { updateSpontaneousHelper } from "./updateSpontaneousHelper";
 export { updateApplicationHelper } from "./updateApplicationHelper";
 export { disableApplicationHelper } from "./disableApplicationHelper";
+export { postLinkHelper } from "./postLinkHelper";

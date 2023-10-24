@@ -7,4 +7,5 @@ export { disableApplicationController } from './disableApplicationController';
 export { postSpontaneousController } from './postSpontaneousController';
 export { updateSpontaneousController } from './updateSpontaneousController';
 export { disableSpontaneousController } from './disableSpontaneousController';
+export { postLinkController } from './postLinkController';
 

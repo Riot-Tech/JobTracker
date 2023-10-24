@@ -9,6 +9,7 @@ export { postApplicationHandler } from './postApplicationHandler';
 export { getApplicationsHandler } from './getApplicationsHandler';
 export { updateApplicationHandler } from './updateApplicationHandler';
 export { disableApplicationHandler } from './disableApplicationHandler';
+export { postLinkHandler } from './postLinkHandler';
 
 
 
