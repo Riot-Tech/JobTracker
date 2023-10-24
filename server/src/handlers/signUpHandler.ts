@@ -1,13 +1,12 @@
+import * as dotenv from 'dotenv'
+import * as bcrypt from "bcrypt";
 import { Router, Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
-import * as bcrypt from "bcrypt";
-import { Resend } from 'resend';
-import * as dotenv from 'dotenv'
+import { transporter } from "../utils/mailer";
 
 dotenv.config()
 const key = process.env.RESEND_KEY
 const prisma = new PrismaClient();
-const resend = new Resend(key);
 
 export const signUpHandler = async (req: Request, res: Response) => {
   const { name, email, password } = req.body;
@@ -25,17 +24,20 @@ export const signUpHandler = async (req: Request, res: Response) => {
           password: hash,
         },
       });
-  
-      resend.emails.send({
-        from: 'jobTracker@resend.dev',
+      
+      await transporter.sendMail({
+        from: '"JobTracker 👻" <JobTracker@gmail.com>',
         to: email,
-        subject: 'JobTracker',
-        html: '<p>Thank you for suscribing to <strong>Job Tracker</strong>!</p>'
+        subject: "Account created",
+        html: "<b>Congratulations! Your account was successfully created.</b>",
       });
+
       return res.status(200).json(newUser);
     }
-    return res.status(400).send({ message: "User already exists" })
+    return res.status(400).json({ message: "User already exists" })
   } catch (error) {
-        console.log(error)
+    return res
+      .status(400)
+      .json({ message: "Error during sign up, try again later" });
   }
 };
