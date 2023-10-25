@@ -1,11 +1,9 @@
-import { useDispatch } from "react-redux";
-import { resetUser } from "../redux/slices/auth.slice";
-import { useNavigate } from "react-router-dom";
-import { PublicRoutes } from "../models/routes";
 import SideBar from "../components/SideBar";
 import NavBar from "../components/NavBar";
+import { useState } from "react";
 
 function Home() {
+  
   return (
     <div className="flex">
       <div className="w-[12%] h-[100vh] flex flex-col">
@@ -13,10 +11,10 @@ function Home() {
       </div>
 
       <div className="w-[88%] h-[100vh]">
-        <div className="flex h-[10%] w-full">
+        
           <NavBar/>
-        </div>
-        <div className="h-[90%] bg-white w-full">
+        
+        <div className="h-[90%] w-full bg-white dark:bg-gray-400">
           <h1>Sector variable</h1>
         </div>
       </div>

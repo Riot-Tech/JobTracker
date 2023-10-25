@@ -13,7 +13,7 @@ function Logout() {
   };
   return (
     <div>
-      <button className="bg-transparent text-gray-600 hover: border-gray-600" onClick={logOut}>Log out</button>
+      <button className="bg-transparent text-gray-600 hover: border-gray-600 dark:text-gray-300" onClick={logOut}>Log out</button>
     </div>
   );
 }
