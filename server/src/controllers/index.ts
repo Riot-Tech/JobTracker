@@ -1,11 +1,29 @@
-export { getUserByIdController } from './getUserByIdController';
-export { postUserController } from './postUserController';
-export { postApplicationController } from './postApplicationController';
-export { getApplicationsController } from './getApplicationsController';
-export { updateApplicationController } from './updateApplicationController';
-export { disableApplicationController } from './disableApplicationController';
-export { postSpontaneousController } from './postSpontaneousController';
-export { updateSpontaneousController } from './updateSpontaneousController';
-export { disableSpontaneousController } from './disableSpontaneousController';
-export { postLinkController } from './postLinkController';
+
+//User
+export { getUserByIdController } from './UserControllers/getUserByIdController';
+export { postUserController } from './UserControllers/postUserController';
+export { updateUserController } from './UserControllers/updateUserController';
+
+//Application
+export { postApplicationController } from './ApplicationControllers/postApplicationController';
+export { getApplicationsController } from './ApplicationControllers/getApplicationsController';
+export { getApplicationByIdController } from './ApplicationControllers/getApplicationByIdController';
+export { updateApplicationController } from './ApplicationControllers/updateApplicationController';
+export { disableApplicationController } from './ApplicationControllers/disableApplicationController';
+
+//Spontaneous
+export { getSpontaneousController } from './SpontaneousControllers/getSpontaneousController'
+export { getSpontaneousByIdController } from './SpontaneousControllers/getSpontaneousByIdController'
+export { postSpontaneousController } from './SpontaneousControllers/postSpontaneousController';
+export { updateSpontaneousController } from './SpontaneousControllers/updateSpontaneousController';
+export { disableSpontaneousController } from './SpontaneousControllers/disableSpontaneousController';
+
+//Links
+export { getLinksController } from './LinkControllers/getLinksController';
+export { postLinkController } from './LinkControllers/postLinkController';
+export { disableLinkController } from './LinkControllers/disableLinkController';
+export { updateLinkController } from './LinkControllers/updateLinkController';
+
+
+
 
