@@ -1,13 +1,13 @@
 import { Router } from "express";
-import { postLinkHandler } from "../handlers";
+import { getLinksHandler, postLinkHandler, disableLinkHandler, updateLinkHandler } from "../handlers";
 
 
 const linkRouter: Router = Router();
 
-// filesRouter.get("/", getFilesHandler);
+linkRouter.get("/", getLinksHandler);
 linkRouter.post("/", postLinkHandler);
-// linkRouter.patch("/", updateApplicationHandler);
-// linkRouter.patch("/:id", disableLinkHandler);
+linkRouter.patch("/", updateLinkHandler);
+linkRouter.patch("/:id", disableLinkHandler);
 
 
 export default linkRouter
