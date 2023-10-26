@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv'
 import * as bcrypt from "bcrypt";
 import { Router, Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
-import { transporter } from "../utils/mailer";
+import { transporter } from "../../utils/mailer";
 
 dotenv.config()
 const key = process.env.RESEND_KEY
