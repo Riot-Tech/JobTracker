@@ -8,6 +8,7 @@ export const updateSpontaneousController = async (spontaneous: Spontaneous) => {
     if (spontaneous.message !== undefined && typeof spontaneous.message !== 'string') throw new Error('Wrong message type');
     if (spontaneous.receiver !== undefined && typeof spontaneous.receiver !== 'string') throw new Error('Wrong receiver type');
     if (spontaneous.company !== undefined && typeof spontaneous.company !== 'string') throw new Error('Wrong company type');
-    const updateSpontaneous = await updateSpontaneousHelper(spontaneous);
-    return updateSpontaneous;
+    const updatedSpontaneous = await updateSpontaneousHelper(spontaneous);
+    if (updatedSpontaneous) return updatedSpontaneous;
+    throw Error('Updated spontaneous application not found at updateSpontaneousController');
 }
