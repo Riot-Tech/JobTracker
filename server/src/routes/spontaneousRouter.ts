@@ -1,9 +1,10 @@
 import { Router } from "express";
-import { postSpontaneousHandler, updateSpontaneousHandler, disableSpontaneousHandler } from "../handlers";
+import { postSpontaneousHandler, updateSpontaneousHandler, disableSpontaneousHandler, getSpontaneousHandler, getSpontaneousByIdHandler } from "../handlers";
 
 const spontaneusRouter = Router();
 
-// spontaneusRouter.get("/", getSpontaneousHandler);
+spontaneusRouter.get("/", getSpontaneousHandler);
+spontaneusRouter.get("/:id", getSpontaneousByIdHandler);
 spontaneusRouter.post('/', postSpontaneousHandler);
 spontaneusRouter.patch('/', updateSpontaneousHandler);
 spontaneusRouter.patch('/:id', disableSpontaneousHandler);
