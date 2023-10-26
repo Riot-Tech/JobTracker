@@ -21,3 +21,11 @@
 //     feedback: string;
 //     comments: string;
 // };
+
+export type linkCondition = {
+    userId: number | null;
+    appId: number | null;
+    spontId: number | null;
+    name: string | null;
+    url: string | null;
+}
