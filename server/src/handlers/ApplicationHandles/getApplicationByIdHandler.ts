@@ -5,7 +5,7 @@ import { getApplicationByIdController } from "../../controllers";
 
 export const getApplicationByIdHandler = async (req: Request, res: Response) => { //seteamos de tipo any de forma provisoria
     try {
-        const id = +req.body;
+        const id = +req.params;
         if(id){
             const application = await getApplicationByIdController(id);
             return res.status(200).json(application);

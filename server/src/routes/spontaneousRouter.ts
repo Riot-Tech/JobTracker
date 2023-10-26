@@ -3,7 +3,7 @@ import { postSpontaneousHandler, updateSpontaneousHandler, disableSpontaneousHan
 
 const spontaneusRouter = Router();
 
-spontaneusRouter.get("/", getSpontaneousHandler);
+spontaneusRouter.get("/:id", getSpontaneousHandler);
 spontaneusRouter.get("/:id", getSpontaneousByIdHandler);
 spontaneusRouter.post('/', postSpontaneousHandler);
 spontaneusRouter.patch('/', updateSpontaneousHandler);

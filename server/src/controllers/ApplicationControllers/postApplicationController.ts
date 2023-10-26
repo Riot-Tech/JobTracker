@@ -16,5 +16,6 @@ export const postApplicationController = async (application: Application) => {
     if (typeof application.comments !== 'string') throw new Error('Wrong company type');
 
     const newApplication = await postApplicationHelper(application);
-    return newApplication;
+    if (newApplication) return newApplication;
+    throw Error ('New application not found at postApplicationController');
 }
