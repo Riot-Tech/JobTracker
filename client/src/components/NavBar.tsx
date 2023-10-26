@@ -30,14 +30,13 @@ function NavBar() {
   return (
     <div className="flex h-[10%] w-full">
         <SearchBar/>
-        <div className="flex justify-evenly items-center w-[30%] bg-gray-200 dark:bg-gray-500">
-         <div className="flex">
-          <BsFillPersonFill className='text-2xl text-gray-700 mr-1 dark:text-black' />
-          <h2 className="text-gray-800">{activeUser.name}</h2>
-         </div>
-          {darkTheme ? <BsLightbulb onClick={handleTheme} className='text-4xl text-black hover: cursor-pointer'/> : <BsFillLightbulbFill onClick={handleTheme} className='text-4xl text-black hover: cursor-pointer' />}
+        <div className="flex justify-evenly items-center w-[30%] bg-gray-200 p-10 dark:bg-gray-500">
+          <div className="flex">
+            <BsFillPersonFill className='text-2xl text-gray-700 mr-1 dark:text-black' />
+            <h2 className="text-gray-800">{activeUser.name}</h2>
+          </div>
+            {darkTheme ? <BsLightbulb onClick={handleTheme} className='text-4xl text-black hover: cursor-pointer'/> : <BsFillLightbulbFill onClick={handleTheme} className='text-4xl text-black hover: cursor-pointer' />}
         </div>
-        
     </div>
   )
 }
