@@ -20,7 +20,7 @@ export { updateSpontaneousHelper } from "./SpontaneousHelpers/updateSpontaneousH
 
 //Link
 export { getLinksHelper } from "./LinkHelpers/getLinksHelper";
-export { postLinkHelper } from "./LinkHelpers/postLinkHelper";
+export { postLinksHelper } from "./LinkHelpers/postLinksHelper";
 export { disableLinkHelper } from "./LinkHelpers/disableLinkHelper";
 export { updateLinkHelper } from "./LinkHelpers/updateLinkHelper";
 

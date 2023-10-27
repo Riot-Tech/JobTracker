@@ -20,7 +20,7 @@ export { disableSpontaneousController } from './SpontaneousControllers/disableSp
 
 //Links
 export { getLinksController } from './LinkControllers/getLinksController';
-export { postLinkController } from './LinkControllers/postLinkController';
+export { postLinksController } from './LinkControllers/postLinksController';
 export { disableLinkController } from './LinkControllers/disableLinkController';
 export { updateLinkController } from './LinkControllers/updateLinkController';
 
