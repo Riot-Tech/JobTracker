@@ -2,6 +2,8 @@ import { disableLinkHelper } from "../../helpers"
 
 
 export const disableLinkController = async (id: number) => {
-    const disableLink = await disableLinkHelper(id)
-    return disableLink
+    if (typeof id !== 'number') throw new Error('Wrong ID type');
+    const disabledLink = await disableLinkHelper(id);
+    if (disabledLink) return disabledLink;
+    throw Error('Link not found at disableLinkController');
 }

@@ -5,8 +5,30 @@ export interface UserInfo{
     token: string
 }
 
+export interface Application{
+    id: number,
+    userId: number,
+    jobName: string,
+    company: string,
+    location?: string,
+    date: string,
+    jobType: string,
+    jobModality: string,
+    expectedIncome: number,
+    currency: string,
+    status: string,
+    feedback: string,
+    comments: string,
+    enabled: boolean,
+}
+
+export interface ApplicationInfo {
+    applications: Application[];
+  }
+
 export interface AppStore {
-    user: UserInfo
+    user: UserInfo,
+    applications: ApplicationInfo
 }
 
 export interface LoginForm {

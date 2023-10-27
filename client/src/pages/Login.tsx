@@ -61,15 +61,15 @@ export default function Login() {
   }
 
   return (
-    <div className="flex min-w-full w-auto h-[100vh] z-0">
+    <div className={`flex min-w-full w-auto h-[100vh] z-0`}>
       {errorModal && <ErrorModalLogIn close={ closeModal } error={ errorMessage } />}
       <div className="w-[50%] h-full bg-white">
         <img
-          className="flex flex-col w-[100%] h-[100%] justify-center"
+          className="flex flex-col w-[100%] h-[100%] justify-center p-40"
           src={image}
         />
       </div>
-      <div className="w-[50%] h-full text-white bg-black p-20 px-30 flex flex-col justify-evenly">
+      <div className="w-[50%] h-full text-white bg-black p-36 px-30 flex flex-col justify-evenly">
         <h1 className="font-bold">Welcome Back! 👋</h1>
 
         <GoogleButton />
@@ -102,10 +102,14 @@ export default function Login() {
           >
           Log in
         </button>
-        <div className="flex">
+        <div className="flex relative">
           <h2>Don't have an account?</h2>
+        {signUpModal ? 
+        <div className="relative z-10">
           <h2 onClick={()=>{setSignUpModal(true)}} className="ml-1 underline hover:cursor-pointer">Create free account</h2>
-        { signUpModal && <SignUp close={ closeModal }/> }
+          <SignUp close={ closeModal }/>
+        </div>
+        : <h2 onClick={()=>{setSignUpModal(true)}} className="ml-1 underline hover:cursor-pointer">Create free account</h2> }
         </div>
       </div>
     </div>
