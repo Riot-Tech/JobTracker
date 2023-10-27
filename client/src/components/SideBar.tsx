@@ -1,4 +1,5 @@
 import Logout from "./Logout"
+import { Link } from "react-router-dom"
 
 function SideBar() {
   return (
@@ -39,7 +40,9 @@ function SideBar() {
 <path d="M19.77 14.25H15.73C13.72 14.25 12.75 13.32 12.75 11.4V4.6C12.75 2.68 13.73 1.75 15.73 1.75H19.77C21.78 1.75 22.75 2.68 22.75 4.6V11.4C22.75 13.32 21.77 14.25 19.77 14.25ZM15.73 3.25C14.46 3.25 14.25 3.59 14.25 4.6V11.4C14.25 12.41 14.46 12.75 15.73 12.75H19.77C21.04 12.75 21.25 12.41 21.25 11.4V4.6C21.25 3.59 21.04 3.25 19.77 3.25H15.73Z" fill="#808080"/>
 <path d="M19.77 23.25H15.73C13.72 23.25 12.75 22.32 12.75 20.4V18.6C12.75 16.68 13.73 15.75 15.73 15.75H19.77C21.78 15.75 22.75 16.68 22.75 18.6V20.4C22.75 22.32 21.77 23.25 19.77 23.25ZM15.73 17.25C14.46 17.25 14.25 17.59 14.25 18.6V20.4C14.25 21.41 14.46 21.75 15.73 21.75H19.77C21.04 21.75 21.25 21.41 21.25 20.4V18.6C21.25 17.59 21.04 17.25 19.77 17.25H15.73Z" fill="#808080"/>
 </svg>
-          <h2 className="ml-2 text-gray-500 group-hover:text-gray-800 dark:text-gray-300">Application</h2>
+          <Link to='/applications'>
+            <h2 className="ml-2 text-gray-500 group-hover:text-gray-800 dark:text-gray-300">Application</h2>
+          </Link>
         </div>
 
           <div className="flex items-center m-5 group hover:bg-slate-400 cursor-pointer p-2 rounded-xl">

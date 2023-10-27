@@ -22,9 +22,10 @@ export interface Application{
     enabled: boolean,
 }
 
-export interface ApplicationInfo {
+/* export interface ApplicationInfo {
     applications: Application[];
-  }
+} */
+export interface ApplicationInfo extends Array<Application> {}
 
 export interface AppStore {
     user: UserInfo,
