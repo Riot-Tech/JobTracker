@@ -9,12 +9,10 @@ import { URL } from "../utils/url";
 import { hasErrors } from "../utils/utilities";
 import GoogleButton from "./GoogleButton";
 import SignUpSuccess from "../modals/SignUpSuccess";
-import ErrorModalLogIn from "../modals/ErrorModalLogIn";
-
-/* absolute top-[48%] left-[60%] transform -translate-x-1/2 -translate-y-1/2 */
+import ErrorModalSignUp from "../modals/ErrorModalSignUp";
 
 function SignUp({ close }: { close: (value: boolean) => void }) {
-
+  
   const [input, setInput] = useState<input>({name:"", email: "", password: ""})
   const [errors, setErrors] = useState<input>({name:"", email:'', password:''})
 
@@ -22,7 +20,7 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
   const [errorMessage, setErrorMessage] = useState('')
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
+  
   useEffect(() => {
     if (modalIsOpen) {
       const timeoutId = setTimeout(() => {
@@ -39,12 +37,12 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
       ...input,
       [event.target.name]: event.target.value,
     });
-  
+    
     const newErrors = validateSignUpForm({
       ...input,
       [event.target.name]: event.target.value,
     });
-
+    
     setErrors({
       ...errors,
       [event.target.name]: newErrors[event.target.name],
@@ -53,7 +51,7 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>)=>{
     event.preventDefault()
-
+    
     try {
       if(!hasErrors(errors)){
         const response = await axios.post(`${URL}/signUp`, input)
@@ -68,17 +66,19 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
       setErrorMessage(error.response.data.message)
     }
   }
-
+  
   const closeModal = (value: boolean) => {
     setErrorModal(value)
     setErrorMessage('')
   }
-
+  
+  /* absolute top-[48%] left-[60%] transform -translate-x-1/2 -translate-y-1/2 */
+  /* fixed inset-0 flex items-center justify-center z-50 backdrop-blur-lg */
   return (
-  <>
-      {errorModal && <ErrorModalLogIn close={ closeModal } error={ errorMessage } />}
-    <div className="absolute top-[48%] left-[60%] transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[600px] z-10 bg-slate-200 p-4 rounded-s-xl rounded-t-xl text-black shadow-lg">
+    <>
+      {errorModal && <ErrorModalSignUp close={ closeModal } error={ errorMessage } />}
       {modalIsOpen && <SignUpSuccess />}
+    <div className="absolute top-[-500px] w-[300px] h-[600px] z-10 bg-slate-200 p-4 rounded-lg text-black shadow-lg backdrop-blur-lg">
       <div className='flex justify-between mb-2'>
         <h1 className='font-semibold'>SIGN UP</h1>
         <AiOutlineClose className='flex justify-items-start text-2xl hover: cursor-pointer' onClick={()=> close(false)} />

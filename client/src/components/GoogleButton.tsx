@@ -38,6 +38,7 @@ function GoogleButton() {
     };
     gapi.load("client:auth2", start);
   }, []);
+  
   return (
     <GoogleLogin
       className="w-full"
