@@ -17,5 +17,5 @@ export const postApplicationController = async (application: Application) => {
 
     const newApplication = await postApplicationHelper(application);
     if (newApplication) return newApplication;
-    throw Error ('New application not found at postApplicationController');
+    throw Error ('Application not found at postApplicationController');
 }

@@ -8,5 +8,5 @@ export const updateUserController = async (user: User) => {
     if (typeof user.password !== 'string')  throw new Error('Wrong password type');
     const updatedUser = await updateUserHelper(user);
     if (updatedUser) return updatedUser;
-    throw Error ('Updated user not found at postUserController');
+    throw Error ('User not found at postUserController');
 }

@@ -19,5 +19,5 @@ export const updateApplicationController = async (application: Application) => {
     const updateApplication = await updateApplicationHelper(application);
 
     if (updateApplication) return updateApplication;
-    throw Error('Update application not found at updateApplicationController');
+    throw Error('Application not found at updateApplicationController');
 } 
