@@ -1,9 +1,10 @@
-import { postApplicationHelper } from "../../helpers";
-import { Application, jobModality, jobType } from "@prisma/client";
+import { postApplicationHelper, postLinksHelper } from "../../helpers";
+import { Application, Link, jobModality, jobType } from "@prisma/client";
 
 
 
-export const postApplicationController = async (application: Application) => {
+export const postApplicationController = async (application: Application, links: Link[]) => {
+    // VALIDAR LA APPLICATION
     if (typeof application.userId !== 'number') throw new Error('Wrong userId type');
     if (typeof application.jobName !== 'string') throw new Error('Wrong jobName type');
     if (typeof application.company !== 'string') throw new Error('Wrong company type');
@@ -15,7 +16,31 @@ export const postApplicationController = async (application: Application) => {
     if (typeof application.feedback !== 'string') throw new Error('Wrong feedback type');
     if (typeof application.comments !== 'string') throw new Error('Wrong company type');
 
+    let newLinks = null;
+
+    // SI HAY LINKS, VALIDARLOS
+    if (links.length) {
+        links.forEach(link => {
+            if (link.appId) {
+                if (typeof link.appId !== 'number') throw new Error('Wrong appId type');
+                if (link.spontId) throw new Error("Link cannot have two different id's (appId & spontId)");
+                if (link.userId) throw new Error ("Link cannot have two different id's (appId & userId)");
+            } else throw new Error('No valid appId found');
+            if (typeof link.name !== 'string') throw new Error('Wrong name type');
+            if (typeof link.url !== 'string') throw new Error('Wrong url type');
+        });
+        newLinks = await postLinksHelper(links);
+    }
     const newApplication = await postApplicationHelper(application);
-    if (newApplication) return newApplication;
+
+    if (newApplication) {
+        if (newLinks) {
+            return {
+                application: newApplication,
+                links: newLinks
+            }
+        } else return newApplication;
+    }
+
     throw Error ('Application not found at postApplicationController');
 }
