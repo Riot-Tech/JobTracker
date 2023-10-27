@@ -10,5 +10,5 @@ export const postLinkController = async (link: Link) => {
     if (typeof link.url !== 'string') throw new Error('Wrong url type');
     const newLink = await postLinkHelper(link);
     if (newLink) return newLink;
-    throw Error('New link not found at postLinkController');
+    throw Error('Link not found at postLinkController');
 }

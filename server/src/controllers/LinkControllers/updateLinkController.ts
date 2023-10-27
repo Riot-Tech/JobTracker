@@ -10,5 +10,5 @@ export const updateLinkController = async (link: Link) => {
     if (typeof link.url !== 'string') throw new Error('Wrong url type');
     const updatedLink = await updateLinkHelper(link);
     if (updatedLink) return updatedLink;
-    throw Error('Updated link not found at updateLinkController');
+    throw Error('Link not found at updateLinkController');
 }

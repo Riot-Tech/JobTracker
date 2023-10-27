@@ -9,5 +9,5 @@ export const postSpontaneousController = async (spontaneous: Spontaneous) => {
     if (typeof spontaneous.company !== 'string')  throw new Error('Wrong company type') ;
     const newSpontaneous = await postSpontaneousHelper(spontaneous);
     if (newSpontaneous) return newSpontaneous;
-    throw Error('New spontaneous application not found at postSpontaneousController');
+    throw Error('Spontaneous application not found at postSpontaneousController');
 };
