@@ -17,5 +17,5 @@ export const getApplicationByIdHelper = async (id: number) => {
         return res;
     };
 
-    throw new Error('Applications not found')
+    return([])
 }

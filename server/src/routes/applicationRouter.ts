@@ -4,7 +4,7 @@ import { postApplicationHandler, getApplicationsHandler, updateApplicationHandle
 
 const applicationRouter: Router = Router();
 
-applicationRouter.get("/", getApplicationsHandler);
+/* applicationRouter.get("/:id", getApplicationsHandler); */
 applicationRouter.get("/:id", getApplicationByIdHandler);
 applicationRouter.post("/", postApplicationHandler);
 applicationRouter.patch("/", updateApplicationHandler);

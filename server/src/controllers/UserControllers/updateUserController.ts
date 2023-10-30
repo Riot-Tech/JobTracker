@@ -3,6 +3,10 @@ import { updateUserHelper } from "../../helpers";
 
 
 export const updateUserController = async (user: User) => {
-    const updateUser = await updateUserHelper(user);
-    return updateUser;
+    if (typeof user.name !== 'string')  throw new Error('Wrong name type');
+    if (typeof user.email !== 'string')  throw new Error('Wrong email type');
+    if (typeof user.password !== 'string')  throw new Error('Wrong password type');
+    const updatedUser = await updateUserHelper(user);
+    if (updatedUser) return updatedUser;
+    throw Error ('User not found at postUserController');
 }

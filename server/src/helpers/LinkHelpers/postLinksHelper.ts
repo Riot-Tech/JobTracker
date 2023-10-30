@@ -1,10 +1,10 @@
 import { PrismaClient, Link } from "@prisma/client";
 const prisma = new PrismaClient();
 
-export const postLinkHelper = async (link: Link) => {
+export const postLinksHelper = async (links: Link[]) => {
     
-    const res = await prisma.link.create({
-        data: link
+    const res = await prisma.link.createMany({
+        data: links
     })
 
     await prisma.$disconnect();

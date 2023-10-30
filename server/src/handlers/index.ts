@@ -11,22 +11,22 @@ export { postUserHandler } from './UserHandlers/postUserHandler';
 export { updateUserHandler } from './UserHandlers/updateUserHandler';
 
 //Spontaneous
-export { getSpontaneousHandler } from './SpontaneousHandles/getSpontaneousHandler';
-export { getSpontaneousByIdHandler } from './SpontaneousHandles/getSpontaneousByIdHandler';
-export { postSpontaneousHandler } from './SpontaneousHandles/postSpontaneousHandler';
-export { updateSpontaneousHandler } from './SpontaneousHandles/updateSpontaneousHandler';
-export { disableSpontaneousHandler } from './SpontaneousHandles/disableSpontaneousHandler';
+export { getSpontaneousHandler } from './SpontaneousHandlers/getSpontaneousHandler';
+export { getSpontaneousByIdHandler } from './SpontaneousHandlers/getSpontaneousByIdHandler';
+export { postSpontaneousHandler } from './SpontaneousHandlers/postSpontaneousHandler';
+export { updateSpontaneousHandler } from './SpontaneousHandlers/updateSpontaneousHandler';
+export { disableSpontaneousHandler } from './SpontaneousHandlers/disableSpontaneousHandler';
 
 //Application
-export { postApplicationHandler } from './ApplicationHandles/postApplicationHandler';
-export { getApplicationsHandler } from './ApplicationHandles/getApplicationsHandler';
-export { getApplicationByIdHandler } from './ApplicationHandles/getApplicationByIdHandler';
-export { updateApplicationHandler } from './ApplicationHandles/updateApplicationHandler';
-export { disableApplicationHandler } from './ApplicationHandles/disableApplicationHandler';
+export { postApplicationHandler } from './ApplicationHandlers/postApplicationHandler';
+export { getApplicationsHandler } from './ApplicationHandlers/getApplicationsHandler';
+export { getApplicationByIdHandler } from './ApplicationHandlers/getApplicationByIdHandler';
+export { updateApplicationHandler } from './ApplicationHandlers/updateApplicationHandler';
+export { disableApplicationHandler } from './ApplicationHandlers/disableApplicationHandler';
 
 //Links
 export { getLinksHandler } from './LinkHandlers/getLinksHandler'
-export { postLinkHandler } from './LinkHandlers/postLinkHandler';
+export { postLinksHandler } from './LinkHandlers/postLinksHandler';
 export { disableLinkHandler } from './LinkHandlers/disableLinkHandler';
 export { updateLinkHandler } from './LinkHandlers/updateLinkHandler';
 

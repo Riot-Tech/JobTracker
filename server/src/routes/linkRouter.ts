@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { getLinksHandler, postLinkHandler, disableLinkHandler, updateLinkHandler } from "../handlers";
+import { getLinksHandler, postLinksHandler, disableLinkHandler, updateLinkHandler } from "../handlers";
 
 
 const linkRouter: Router = Router();
 
 linkRouter.get("/", getLinksHandler);
-linkRouter.post("/", postLinkHandler);
+linkRouter.post("/", postLinksHandler);
 linkRouter.patch("/", updateLinkHandler);
 linkRouter.patch("/:id", disableLinkHandler);
 
