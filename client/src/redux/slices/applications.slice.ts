@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ApplicationInfo, Application } from '../../models/interfaces';
+import { createSlice } from '@reduxjs/toolkit';
+import { ApplicationInfo } from '../../models/interfaces';
 
 const EmptyApplication: ApplicationInfo = []
 
