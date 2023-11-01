@@ -34,11 +34,11 @@ export default function Applications() {
   console.log(applications)
   return (
     <div className="flex">
-      <div className="w-[12%] h-[100vh] flex flex-col">
+      
         <SideBar />
-      </div>
+      
 
-      <div className="w-[88%] h-[100vh]">
+      <div className="w-full h-[100vh]">
         <NavBar />
 
         <div className="relative h-[90%] w-full bg-custom-backLight dark:bg-custom-backDark flex flex-col">
