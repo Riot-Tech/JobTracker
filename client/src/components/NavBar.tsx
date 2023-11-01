@@ -28,7 +28,7 @@ function NavBar() {
   }
   
   return (
-    <div className="flex h-[10%] w-full">
+    <div className="flex h-[10%] w-[full]">
         <SearchBar/>
         <div className="flex justify-evenly items-center w-[30%] bg-gray-200 p-10 dark:bg-gray-500">
           <div className="flex">

@@ -22,13 +22,24 @@ export interface Application{
     enabled: boolean,
 }
 
-export interface ApplicationInfo {
-    applications: Application[];
-  }
+export interface Spontaneous{
+    id: number,
+    userId: number,
+    message: string,
+    receiver: string,
+    company: string,
+    date: string,
+    enabled: boolean,
+}
+
+
+export interface SpontaneousInfo extends Array<Spontaneous> {}
+export interface ApplicationInfo extends Array<Application> {}
 
 export interface AppStore {
     user: UserInfo,
-    applications: ApplicationInfo
+    applications: ApplicationInfo,
+    spontaneous: SpontaneousInfo
 }
 
 export interface LoginForm {
