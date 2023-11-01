@@ -11,7 +11,7 @@ import {
 } from "../utils/svg";
 
 function SideBar() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -51,7 +51,7 @@ function SideBar() {
             </h2>
           </div>
         ) : (
-          <div className="flex items-center justify-center hover:bg-slate-400 cursor-pointer p-1 rounded-xl">
+          <div className="flex items-center justify-center hover:bg-slate-400 cursor-pointer p-2 rounded-xl">
             <ProfileLogo />
           </div>
         )}
@@ -64,7 +64,7 @@ function SideBar() {
             </h2>
           </div>
         ) : (
-          <div className="flex items-center justify-center hover:bg-slate-400 cursor-pointer p-1 rounded-xl">
+          <div className="flex items-center justify-center hover:bg-slate-400 cursor-pointer p-2 rounded-xl">
             <CvFilesLogo />
           </div>
         )}
@@ -74,12 +74,12 @@ function SideBar() {
             <ApplicationsLogo />
             <Link to="/applications">
               <h2 className="ml-2 text-gray-500 group-hover:text-gray-800 dark:text-gray-300">
-                Application
+                Applications
               </h2>
             </Link>
           </div>
         ) : (
-          <div className="flex items-center justify-center hover:bg-slate-400 cursor-pointer p-1 rounded-xl">
+          <div className="flex items-center justify-center hover:bg-slate-400 cursor-pointer p-2 rounded-xl">
             <Link to="/applications">
               <ApplicationsLogo />
             </Link>
@@ -96,7 +96,7 @@ function SideBar() {
             </Link>
           </div>
         ) : (
-          <div className="flex items-center justify-center hover:bg-slate-400 cursor-pointer p-1 rounded-xl">
+          <div className="flex items-center justify-center hover:bg-slate-400 cursor-pointer p-2 rounded-xl">
             <Link to="/spontaneous">
               <SpontaneousLogo />
             </Link>

@@ -39,10 +39,85 @@ export const ApplicationsLogo = ()=>{
 export const SpontaneousLogo = ()=>{
     return(
         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M21 5.75H3C2.59 5.75 2.25 5.41 2.25 5C2.25 4.59 2.59 4.25 3 4.25H21C21.41 4.25 21.75 4.59 21.75 5C21.75 5.41 21.41 5.75 21 5.75Z" fill="#808080"/>
-              <path d="M12.47 10.75H3C2.59 10.75 2.25 10.41 2.25 10C2.25 9.59 2.59 9.25 3 9.25H12.47C12.88 9.25 13.22 9.59 13.22 10C13.22 10.41 12.89 10.75 12.47 10.75Z" fill="#808080"/>
-              <path d="M21 15.75H3C2.59 15.75 2.25 15.41 2.25 15C2.25 14.59 2.59 14.25 3 14.25H21C21.41 14.25 21.75 14.59 21.75 15C21.75 15.41 21.41 15.75 21 15.75Z" fill="#808080"/>
-              <path d="M12.47 20.75H3C2.59 20.75 2.25 20.41 2.25 20C2.25 19.59 2.59 19.25 3 19.25H12.47C12.88 19.25 13.22 19.59 13.22 20C13.22 20.41 12.89 20.75 12.47 20.75Z" fill="#808080"/>
-            </svg>
+            <path d="M21 5.75H3C2.59 5.75 2.25 5.41 2.25 5C2.25 4.59 2.59 4.25 3 4.25H21C21.41 4.25 21.75 4.59 21.75 5C21.75 5.41 21.41 5.75 21 5.75Z" fill="#808080"/>
+            <path d="M12.47 10.75H3C2.59 10.75 2.25 10.41 2.25 10C2.25 9.59 2.59 9.25 3 9.25H12.47C12.88 9.25 13.22 9.59 13.22 10C13.22 10.41 12.89 10.75 12.47 10.75Z" fill="#808080"/>
+            <path d="M21 15.75H3C2.59 15.75 2.25 15.41 2.25 15C2.25 14.59 2.59 14.25 3 14.25H21C21.41 14.25 21.75 14.59 21.75 15C21.75 15.41 21.41 15.75 21 15.75Z" fill="#808080"/>
+            <path d="M12.47 20.75H3C2.59 20.75 2.25 20.41 2.25 20C2.25 19.59 2.59 19.25 3 19.25H12.47C12.88 19.25 13.22 19.59 13.22 20C13.22 20.41 12.89 20.75 12.47 20.75Z" fill="#808080"/>
+        </svg>
     )
 }
+
+export const LinkIcon = ()=>{
+    return(
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M31.6549 16.8275C31.6549 8.63847 25.0164 2 16.8275 2C8.63847 2 2 8.63847 2 16.8275C2 25.0164 8.63847 31.6549 16.8275 31.6549" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18.3101 2.07324C18.3101 2.07324 22.7584 7.93101 22.7584 16.8274" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15.3447 31.5818C15.3447 31.5818 10.8964 25.7239 10.8964 16.8274C10.8964 7.93101 15.3447 2.07324 15.3447 2.07324" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2.93365 22.0171H16.8275" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2.93365 11.6379H30.7214" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M31.4754 25.6015C32.2076 26.0518 32.1625 27.148 31.4084 27.2336L27.6028 27.6649L25.8958 31.0934C25.5576 31.7728 24.5121 31.4403 24.3393 30.5982L22.478 21.5297C22.3319 20.818 22.9716 20.3701 23.5903 20.7508L31.4754 25.6015Z" stroke="#4C4C4C" stroke-width="3"/>
+        </svg>
+
+    )
+}
+
+export const LocationIcon = () =>{
+    return(
+        <svg width="34" height="42" viewBox="0 0 34 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 17C32 25.2843 17 39.5 17 39.5C17 39.5 2 25.2843 2 17C2 8.71573 8.71572 2 17 2C25.2843 2 32 8.71573 32 17Z" stroke="#4C4C4C" stroke-width="3"/>
+            <path d="M17 18.875C18.0356 18.875 18.875 18.0356 18.875 17C18.875 15.9645 18.0356 15.125 17 15.125C15.9644 15.125 15.125 15.9645 15.125 17C15.125 18.0356 15.9644 18.875 17 18.875Z" fill="#4C4C4C" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    )
+}
+
+export const MessageIcon = () =>{
+    return(
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.7074 17.0916H25.4759" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8.7074 10.3843H18.7685" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 30.9919V5.3537C2 3.5015 3.5015 2 5.3537 2H28.8296C30.6818 2 32.1833 3.5015 32.1833 5.3537V22.1222C32.1833 23.9744 30.6818 25.4759 28.8296 25.4759H10.3193C9.30047 25.4759 8.33692 25.939 7.70047 26.7345L3.79175 31.6204C3.19762 32.3631 2 31.943 2 30.9919Z" stroke="#4C4C4C" stroke-width="3"/>
+        </svg>
+    )
+}
+
+export const EditIcon = () =>{
+    return(
+        <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 27H14.5H27" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14.8081 5.92838L18.7366 2L25.6111 8.87465L21.6828 12.803M14.8081 5.92838L7.02117 13.7153C6.76071 13.9758 6.61438 14.3291 6.61438 14.6974V20.9967H12.9138C13.2821 20.9967 13.6353 20.8505 13.8959 20.5899L21.6828 12.803M14.8081 5.92838L21.6828 12.803" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    )
+}
+
+export const TickIcon = () =>{
+    return(
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.375 15.125L17 20.75L32 5.75" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M32 17C32 25.2843 25.2843 32 17 32C8.71572 32 2 25.2843 2 17C2 8.71572 8.71572 2 17 2C18.7762 2 20.4802 2.3087 22.0614 2.87536" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+    )
+}
+
+export const DateIcon = () =>{
+    return(
+        <svg width="34" height="36" viewBox="0 0 34 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 5.33333V2M22 5.33333V8.66667M22 5.33333H14.5M2 15.3333V30.3333C2 32.1743 3.49238 33.6667 5.33333 33.6667H28.6667C30.5077 33.6667 32 32.1743 32 30.3333V15.3333H2Z" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 15.3333V8.66659C2 6.82564 3.49238 5.33325 5.33333 5.33325H8.66667" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8.66663 2V8.66667" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M32 15.3333V8.66659C32 6.82564 30.5077 5.33325 28.6667 5.33325H27.8334" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    )
+}
+
+export const FeedbackIcon = () =>{
+    return(
+        <svg width="34" height="36" viewBox="0 0 34 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 5.33333V2M22 5.33333V8.66667M22 5.33333H14.5M2 15.3333V30.3333C2 32.1743 3.49238 33.6667 5.33333 33.6667H28.6667C30.5077 33.6667 32 32.1743 32 30.3333V15.3333H2Z" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 15.3333V8.66659C2 6.82564 3.49238 5.33325 5.33333 5.33325H8.66667" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8.66663 2V8.66667" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M32 15.3333V8.66659C32 6.82564 30.5077 5.33325 28.6667 5.33325H27.8334" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    )
+}
+
