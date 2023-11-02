@@ -5,7 +5,7 @@ import { disableApplicationController } from "../../controllers";
 
 export const disableApplicationHandler = async (req: Request, res: Response) => { //seteamos de tipo any de forma provisoria
     try {
-        const id = +req.params;
+        const id = +req.params.id;
         if(id){
             const disableApplication = await disableApplicationController(id)
             return res.status(200).json(disableApplication);
