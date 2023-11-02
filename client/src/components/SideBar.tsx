@@ -19,11 +19,11 @@ function SideBar() {
 
   return (
     <div
-      className={`w-[12%] ${
+      className={`w-[16%] ${
         !isOpen && "w-[5%]"
       } h-[100vh] flex flex-col bg-gray-300 dark:bg-gray-600`}
     >
-      <div className={`h-[15%] mt-10`}>
+      <div className={`h-[15%] mt-8`}>
         <div className="flex flex-col items-center">
           <button
             className={`mb-4 ${!isOpen && "text-xs w-auto"}`}
@@ -87,14 +87,14 @@ function SideBar() {
         )}
 
         {isOpen ? (
-          <div className="flex items-center m-5 group hover:bg-slate-400 cursor-pointer p-2 rounded-xl">
-            <Link to="/spontaneous">
-              <SpontaneousLogo />
-              <h2 className="ml-2 text-gray-500 group-hover:text-gray-800 dark:text-gray-300">
-                Spontaneous
-              </h2>
-            </Link>
-          </div>
+          <Link to="/spontaneous">
+            <div className="flex items-center m-5 group hover:bg-slate-400 cursor-pointer p-2 rounded-xl">
+                <SpontaneousLogo />
+                <h2 className="ml-2 text-gray-500 group-hover:text-gray-800 dark:text-gray-300">
+                  Spontaneous
+                </h2>
+            </div>
+          </Link>
         ) : (
           <div className="flex items-center justify-center hover:bg-slate-400 cursor-pointer p-2 rounded-xl">
             <Link to="/spontaneous">
