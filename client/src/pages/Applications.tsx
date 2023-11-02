@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-import ApplicationForm from "../components/ApplicationForm";
-
-export default function Applications() {
-    return (
-        <>
-            <ApplicationForm />
-            {/* <button onClick={ApplicationForm}>Create Application</button> */}
-        </>
-    )
-}
-=======
 import { useSelector } from "react-redux";
 import NavBar from "../components/NavBar";
 import SideBar from "../components/SideBar";
@@ -20,6 +8,7 @@ import { AppStore, Application } from "../models/interfaces";
 import { URL } from "../utils/url";
 import { useDispatch } from "react-redux";
 import { GoDotFill } from 'react-icons/go'
+import ApplicationForm from "../components/ApplicationForm";
 
 export default function Applications() {
   const dispatch = useDispatch()
@@ -46,7 +35,7 @@ export default function Applications() {
   console.log(applications)
   return (
     <div className="flex">
-      
+        <ApplicationForm/>
         <SideBar />
       
 
@@ -102,4 +91,3 @@ export default function Applications() {
     </div>
   );
 }
->>>>>>> fd7b4724b631e632946f5ab32369a5cf826356bd

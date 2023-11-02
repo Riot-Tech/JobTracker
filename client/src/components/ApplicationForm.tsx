@@ -1,6 +1,6 @@
 import { useState } from "react"
+import { validateApplicationForm } from "../utils/validateAppForm";
 
-// poner a los inputs type(checkbox, etc.), value(con el nombre que tiene en el back) 
 export default function ApplicationForm() {
 
     const [form, setForm] = useState({
@@ -10,7 +10,7 @@ export default function ApplicationForm() {
         jobModality: '',
         location: '',
         date: '',
-        expectedIncome: '',
+        expectedIncome: 0,
         currency: '',
         status: '',
         feedback: '',
@@ -42,12 +42,18 @@ export default function ApplicationForm() {
               [property]: value,
             }),
           );
-        };
+        setErrors( 
+            validateApplicationForm({
+                ...form,
+                [property]: value
+            })
+        );
+    };
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
         // let value = e.target.value;
-        console.log(form)
+            // console.log(form)
     }
 
     return (
@@ -63,6 +69,7 @@ export default function ApplicationForm() {
                             value={form.company}
                             onChange={handleChange}
                         />
+                        {errors.company && <span className="text-red" > {errors.company}</span>}
                         <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
                             <path d="M2 27H14.5H27" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M14.8081 5.92838L18.7366 2L25.6111 8.87465L21.6828 12.803M14.8081 5.92838L7.02117 13.7153C6.76071 13.9758 6.61438 14.3291 6.61438 14.6974V20.9967H12.9138C13.2821 20.9967 13.6353 20.8505 13.8959 20.5899L21.6828 12.803M14.8081 5.92838L21.6828 12.803" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
@@ -77,6 +84,7 @@ export default function ApplicationForm() {
                             value={form.jobName}
                             onChange={handleChange}
                         />
+                        {errors.jobName && <span className="text-red" > {errors.jobName}</span>}
                         <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
                             <path d="M2 27H14.5H27" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M14.8081 5.92838L18.7366 2L25.6111 8.87465L21.6828 12.803M14.8081 5.92838L7.02117 13.7153C6.76071 13.9758 6.61438 14.3291 6.61438 14.6974V20.9967H12.9138C13.2821 20.9967 13.6353 20.8505 13.8959 20.5899L21.6828 12.803M14.8081 5.92838L21.6828 12.803" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
@@ -158,6 +166,7 @@ export default function ApplicationForm() {
                             value={form.location}
                             onChange={handleChange}
                         />
+                        {errors.location && <span className="text-red" > {errors.location}</span>}
                     </div>
                     <div className="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
@@ -190,6 +199,7 @@ export default function ApplicationForm() {
                             value={form.currency}
                             onChange={handleChange}
                         />
+                        {errors.currency && <span className="text-red" > {errors.currency}</span>}
                     </div>
                     <div className="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="34" height="31" viewBox="0 0 34 31" fill="none">
@@ -200,11 +210,12 @@ export default function ApplicationForm() {
                         <input
                             name="expectedIncome"
                             className="w-[30%] flex flex-col p-2 border rounded ml-4 text-black"
-                            type="text"
+                            type="number"
                             placeholder="Expected Income"
                             value={form.expectedIncome}
                             onChange={handleChange}
                         />
+                        {errors.expectedIncome && <span className="text-red" > {errors.expectedIncome   }</span>}
                     </div>
                     <div className="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
@@ -256,8 +267,9 @@ export default function ApplicationForm() {
                     <textarea
                         name="feedback"
                         value={form.feedback}
-                        className=" h-[180px] mt-3 text-black"
+                        className=" h-[180px] mt-3 text-black p-2"
                         onChange={handleChange}
+                        placeholder="Any feedback from the company (e.g., interview experience, comments, or follow-up notes)"
                     />
                 </div>
                 <div className="flex flex-col mt-3">
@@ -273,8 +285,9 @@ export default function ApplicationForm() {
                     <textarea
                         name="comments"
                         value={form.comments}
-                        className=" h-[180px] mt-3 text-black"
+                        className=" h-[180px] mt-3 text-black p-2"
                         onChange={handleChange}
+                        placeholder="Feel free to write any comments you'd like here."
                     />
                 </div>
             </div>
