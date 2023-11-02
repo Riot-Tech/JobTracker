@@ -12,7 +12,7 @@ export const postSpontaneousController = async (spontaneous: Spontaneous, links:
     let newLinks = null;
 
     // SI HAY LINKS, VALIDARLOS
-    if (links.length) {
+    if (links && links.length) {
         links.forEach(link => {
             if (link.spontId) {
                 if (typeof link.spontId !== 'number') throw new Error('Wrong spontId type');

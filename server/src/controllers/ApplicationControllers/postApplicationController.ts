@@ -19,7 +19,7 @@ export const postApplicationController = async (application: Application, links:
     let newLinks = null;
 
     // SI HAY LINKS, VALIDARLOS
-    if (links.length) {
+    if (links && links.length) {
         links.forEach(link => {
             if (link.appId) {
                 if (typeof link.appId !== 'number') throw new Error('Wrong appId type');
