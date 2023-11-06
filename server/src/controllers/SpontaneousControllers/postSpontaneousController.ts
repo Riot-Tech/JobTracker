@@ -8,6 +8,9 @@ export const postSpontaneousController = async (spontaneous: Spontaneous, links:
     if (typeof spontaneous.message !== 'string')  throw new Error('Wrong message type');
     if (typeof spontaneous.receiver !== 'string')  throw new Error('Wrong receiver type');
     if (typeof spontaneous.company !== 'string')  throw new Error('Wrong company type');
+    if (typeof spontaneous.location !== 'string')  throw new Error('Wrong location type');
+    if (typeof spontaneous.feedback !== 'string')  throw new Error('Wrong feedback type');
+
     
     const newSpontaneous = await postSpontaneousHelper(spontaneous);
 
