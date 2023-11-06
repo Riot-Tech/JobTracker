@@ -16,22 +16,31 @@ export const postApplicationController = async (application: Application, links:
     if (typeof application.feedback !== 'string') throw new Error('Wrong feedback type');
     if (typeof application.comments !== 'string') throw new Error('Wrong company type');
 
-    let newLinks = null;
+    const newApplication = await postApplicationHelper(application);
 
+    const { id } = newApplication;
+
+    const applicationLinks = links.map((link) => {
+        return {
+            ...link,
+            appId: id
+        }
+    });
+
+    let newLinks = null;
     // SI HAY LINKS, VALIDARLOS
-    if (links && links.length) {
-        links.forEach(link => {
+    if (applicationLinks.length) {
+        applicationLinks.forEach(link => {
             if (link.appId) {
                 if (typeof link.appId !== 'number') throw new Error('Wrong appId type');
                 if (link.spontId) throw new Error("Link cannot have two different id's (appId & spontId)");
-                if (link.userId) throw new Error ("Link cannot have two different id's (appId & userId)");
+                if (link.userId) throw new Error("Link cannot have two different id's (appId & userId)");
             } else throw new Error('No valid appId found');
             if (typeof link.name !== 'string') throw new Error('Wrong name type');
             if (typeof link.url !== 'string') throw new Error('Wrong url type');
         });
-        newLinks = await postLinksHelper(links);
+        newLinks = await postLinksHelper(applicationLinks);
     }
-    const newApplication = await postApplicationHelper(application);
 
     if (newApplication) {
         if (newLinks) {
@@ -42,5 +51,5 @@ export const postApplicationController = async (application: Application, links:
         } else return newApplication;
     }
 
-    throw Error ('Application not found at postApplicationController');
+    throw Error('Application not found at postApplicationController');
 }
