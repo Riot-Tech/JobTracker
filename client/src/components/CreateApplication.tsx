@@ -1,7 +1,15 @@
 import { useState } from "react"
 import { validateApplicationForm } from "../utils/validateAppForm";
+import { useDispatch } from "react-redux";
+import { URL } from "../utils/url";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { AppStore } from "../models/interfaces";
 
-export default function ApplicationForm() {
+export default function CreateApplication() {
+
+    const dispatch = useDispatch();
+    const activeUser = useSelector((store: AppStore) => store.user);
 
     const [form, setForm] = useState({
         jobName: '',
@@ -33,13 +41,14 @@ export default function ApplicationForm() {
         links: '',
     })
 
-    const handleChange = (e: any) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         let property = e.target.name;
         let value = e.target.value;
         setForm(
             (prevForm) => ({
               ...prevForm,
               [property]: value,
+              userId: activeUser.id
             }),
           );
         setErrors( 
@@ -50,10 +59,15 @@ export default function ApplicationForm() {
         );
     };
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // let value = e.target.value;
-            // console.log(form)
+        console.log(form)
+        try {
+            // let { data } = await axios.post(`${URL}/application`, form);
+            // console.log(data)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (

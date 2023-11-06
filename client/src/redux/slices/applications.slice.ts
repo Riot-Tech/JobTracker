@@ -9,10 +9,14 @@ export const applicationsSlice = createSlice({
     reducers:{
        getApplications: (state, action)=>{
             return action.payload   
+       },
+       createApplication: (state, action) => {
+        const newApplication = action.payload;
+        state.push(newApplication); 
        }
     }
 })
 
-export const { getApplications } = applicationsSlice.actions;
+export const { getApplications, createApplication } = applicationsSlice.actions;
 
 export default applicationsSlice.reducer
