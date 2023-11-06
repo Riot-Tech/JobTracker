@@ -8,23 +8,37 @@ export const postSpontaneousController = async (spontaneous: Spontaneous, links:
     if (typeof spontaneous.message !== 'string')  throw new Error('Wrong message type');
     if (typeof spontaneous.receiver !== 'string')  throw new Error('Wrong receiver type');
     if (typeof spontaneous.company !== 'string')  throw new Error('Wrong company type');
+    if (typeof spontaneous.location !== 'string')  throw new Error('Wrong location type');
+    if (typeof spontaneous.feedback !== 'string')  throw new Error('Wrong feedback type');
+
+    
+    const newSpontaneous = await postSpontaneousHelper(spontaneous);
+
+    const { id } = newSpontaneous;
+    
+    const spontaneousLinks = links.map((link) => {
+        return {
+            ...link,
+            spontId: id
+        }
+    });
 
     let newLinks = null;
-
     // SI HAY LINKS, VALIDARLOS
-    if (links && links.length) {
-        links.forEach(link => {
+    if (spontaneousLinks.length) {
+        spontaneousLinks.forEach(link => {
             if (link.spontId) {
                 if (typeof link.spontId !== 'number') throw new Error('Wrong spontId type');
-                if (link.appId) throw new Error("Link cannot have two different id's (appId & spontId)");
-                if (link.userId) throw new Error ("Link cannot have two different id's (spontId & userId)");
+                if (link.appId) throw new Error("Link cannot have two different id's (spontId & appId)");
+                if (link.userId) throw new Error("Link cannot have two different id's (spontId & userId)");
             } else throw new Error('No valid spontId found');
             if (typeof link.name !== 'string') throw new Error('Wrong name type');
             if (typeof link.url !== 'string') throw new Error('Wrong url type');
         });
-        newLinks = await postLinksHelper(links);
+        newLinks = await postLinksHelper(spontaneousLinks);
     }
-    const newSpontaneous = await postSpontaneousHelper(spontaneous);
+
+    
     if (newSpontaneous) {
         if (newLinks) {
             return {
