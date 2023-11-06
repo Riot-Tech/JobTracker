@@ -15,6 +15,7 @@ model User {
   name          String
   email         String @unique
   password      String
+  profilePicture String?
   enabled       Boolean @default(true)
   files         Link[]
   applications  Application[]
@@ -69,6 +70,8 @@ model Spontaneous {
   message         String
   receiver        String?
   company         String?
+  location        String?
+  feedback        String?
   date            DateTime @default(now())
   enabled         Boolean @default(true)
   links           Link[]
@@ -82,7 +85,7 @@ model Link {
   appId           Int?
   spontaneous     Spontaneous? @relation(fields: [spontId], references: [id])
   spontId         Int?
-  name            String
+  name            String?
   url             String
   enabled         Boolean @default(true)
   isCv            Boolean @default(false)
