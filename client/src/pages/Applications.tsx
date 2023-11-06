@@ -8,6 +8,7 @@ import { AppStore, Application } from "../models/interfaces";
 import { URL } from "../utils/url";
 import { useDispatch } from "react-redux";
 import { GoDotFill } from 'react-icons/go'
+import ApplicationForm from "../components/ApplicationForm";
 
 export default function Applications() {
   const dispatch = useDispatch()
@@ -34,7 +35,7 @@ export default function Applications() {
   console.log(applications)
   return (
     <div className="flex">
-      
+        <ApplicationForm/>
         <SideBar />
       
 
