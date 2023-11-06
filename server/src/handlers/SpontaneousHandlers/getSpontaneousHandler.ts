@@ -5,9 +5,9 @@ import { getSpontaneousController } from "../../controllers";
 
 export const getSpontaneousHandler = async (req: Request, res: Response) => { //seteamos de tipo any de forma provisoria
     try {
-        const id = +req.params;
+        const id = req.query.id;
         if(id){
-            const allSpontaneous = await getSpontaneousController(id);
+            const allSpontaneous = await getSpontaneousController(+id);
             return res.status(200).json(allSpontaneous);
         }
         throw Error('ID not found');

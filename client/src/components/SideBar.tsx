@@ -9,21 +9,23 @@ import {
   ProfileLogo,
   SpontaneousLogo,
 } from "../utils/svg";
+import { useLocation } from 'react-router-dom';
 
 function SideBar() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const location = useLocation();
 
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
-
+  
   return (
     <div
-      className={`w-[12%] ${
+      className={`w-[16%] ${
         !isOpen && "w-[5%]"
       } h-[100vh] flex flex-col bg-gray-300 dark:bg-gray-600`}
     >
-      <div className={`h-[15%] mt-10`}>
+      <div className={`h-[15%] mt-8`}>
         <div className="flex flex-col items-center">
           <button
             className={`mb-4 ${!isOpen && "text-xs w-auto"}`}
@@ -43,7 +45,7 @@ function SideBar() {
 
       <div className={`h-[55%] ${ !isOpen && 'flex flex-col  items-center justify-evenly'}`}>
         {isOpen ? (
-          <div className="flex items-center m-5 group hover:bg-slate-400 cursor-pointer p-2 rounded-xl">
+          <div className={`flex items-center m-5 group hover:bg-slate-400 cursor-pointer p-2 rounded-xl`}>
             <ProfileLogo />
 
             <h2 className="ml-2 text-gray-500 group-hover:text-gray-800 dark:text-gray-300">
@@ -51,35 +53,35 @@ function SideBar() {
             </h2>
           </div>
         ) : (
-          <div className="flex items-center justify-center hover:bg-slate-400 cursor-pointer p-1 rounded-xl">
+          <div className={`flex items-center justify-center hover:bg-slate-400 cursor-pointer p-2 rounded-xl`}>
             <ProfileLogo />
           </div>
         )}
 
         {isOpen ? (
-          <div className="flex items-center m-5 group hover:bg-slate-400 cursor-pointer p-2 rounded-xl">
+          <div className={`flex items-center m-5 group hover:bg-slate-400 cursor-pointer p-2 rounded-xl`}>
             <CvFilesLogo />
             <h2 className="ml-2 text-gray-500 group-hover:text-gray-800 dark:text-gray-300">
               CV Files
             </h2>
           </div>
         ) : (
-          <div className="flex items-center justify-center hover:bg-slate-400 cursor-pointer p-1 rounded-xl">
+          <div className={`flex items-center justify-center hover:bg-slate-400 cursor-pointer p-2 rounded-xl`}>
             <CvFilesLogo />
           </div>
         )}
 
         {isOpen ? (
-          <div className="flex items-center m-5 group hover:bg-slate-400 cursor-pointer p-2 rounded-xl">
+          <div className={`flex items-center m-5 group hover:bg-slate-400 cursor-pointer p-2 rounded-xl ${location.pathname=== '/applications' && 'bg-slate-400'}`}>
             <ApplicationsLogo />
             <Link to="/applications">
               <h2 className="ml-2 text-gray-500 group-hover:text-gray-800 dark:text-gray-300">
-                Application
+                Applications
               </h2>
             </Link>
           </div>
         ) : (
-          <div className="flex items-center justify-center hover:bg-slate-400 cursor-pointer p-1 rounded-xl">
+          <div className={`flex items-center justify-center hover:bg-slate-400 cursor-pointer p-2 rounded-xl ${location.pathname=== '/applications' && 'bg-slate-400'}`}>
             <Link to="/applications">
               <ApplicationsLogo />
             </Link>
@@ -87,16 +89,16 @@ function SideBar() {
         )}
 
         {isOpen ? (
-          <div className="flex items-center m-5 group hover:bg-slate-400 cursor-pointer p-2 rounded-xl">
-            <Link to="/spontaneous">
-              <SpontaneousLogo />
-              <h2 className="ml-2 text-gray-500 group-hover:text-gray-800 dark:text-gray-300">
-                Spontaneous
-              </h2>
-            </Link>
-          </div>
+          <Link to="/spontaneous">
+            <div className={`flex items-center m-5 group hover:bg-slate-400 cursor-pointer p-2 rounded-xl ${location.pathname=== '/spontaneous' && 'bg-slate-400'}`}>
+                <SpontaneousLogo />
+                <h2 className="ml-2 text-gray-500 group-hover:text-gray-800 dark:text-gray-300">
+                  Spontaneous
+                </h2>
+            </div>
+          </Link>
         ) : (
-          <div className="flex items-center justify-center hover:bg-slate-400 cursor-pointer p-1 rounded-xl">
+          <div className={`flex items-center justify-center hover:bg-slate-400 cursor-pointer p-2 rounded-xl ${location.pathname === '/spontaneous' && 'bg-slate-400'}`}>
             <Link to="/spontaneous">
               <SpontaneousLogo />
             </Link>

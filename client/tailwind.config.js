@@ -8,7 +8,8 @@ export default {
           appCardsDark: "#61677A",
           appCardsLight:'#D8D9DA',
           backDark: "#272829",
-          backLight: "#FFF6E0",
+          backLight: "#FFFF",
+          modalSpontaneousLight: '#ECD7D7'
         },
       },
     },
