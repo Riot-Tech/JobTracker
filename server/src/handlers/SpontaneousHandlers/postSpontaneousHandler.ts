@@ -5,6 +5,7 @@ import { postSpontaneousController } from "../../controllers";
 
 export const postSpontaneousHandler = async (req: Request, res: Response) => { //seteamos de tipo any de forma provisoria
     try {
+        console.log(req.body)
         const newSponteaneus = req.body;
         const {links} = newSponteaneus;
         const spontaneous = await postSpontaneousController(newSponteaneus, links);

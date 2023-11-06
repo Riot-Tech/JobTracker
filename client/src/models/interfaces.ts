@@ -49,7 +49,17 @@ export interface LoginForm {
 
 export interface input {
     name?: string,
-    email: string;
-    password: string;
+    email: string,
+    password: string,
   }
   
+export type inputSpontaneous = {
+    company: string,
+    date: string,
+    message: string,
+    feedback: string,
+    link: string,
+    location: string,
+    receiver: string,
+    [key: string]: string,
+  };
