@@ -13,6 +13,7 @@ CREATE TABLE "User" (
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "profilePicture" TEXT,
     "enabled" BOOLEAN NOT NULL DEFAULT true,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
@@ -45,7 +46,9 @@ CREATE TABLE "Spontaneous" (
     "message" TEXT NOT NULL,
     "receiver" TEXT,
     "company" TEXT,
-    "date" TIMESTAMP(3),
+    "location" TEXT,
+    "feedback" TEXT,
+    "date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "enabled" BOOLEAN NOT NULL DEFAULT true,
 
     CONSTRAINT "Spontaneous_pkey" PRIMARY KEY ("id")
@@ -57,9 +60,10 @@ CREATE TABLE "Link" (
     "userId" INTEGER,
     "appId" INTEGER,
     "spontId" INTEGER,
-    "name" TEXT NOT NULL,
+    "name" TEXT,
     "url" TEXT NOT NULL,
     "enabled" BOOLEAN NOT NULL DEFAULT true,
+    "isCv" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "Link_pkey" PRIMARY KEY ("id")
 );
