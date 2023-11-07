@@ -20,7 +20,7 @@ export const postApplicationController = async (application: Application, links:
 
     const { id } = newApplication;
 
-    const applicationLinks = links.map((link) => {
+    const applicationLinks = links?.map((link) => {
         return {
             ...link,
             appId: id
@@ -29,7 +29,7 @@ export const postApplicationController = async (application: Application, links:
 
     let newLinks = null;
     // SI HAY LINKS, VALIDARLOS
-    if (applicationLinks.length) {
+    if (applicationLinks?.length) {
         applicationLinks.forEach(link => {
             if (link.appId) {
                 if (typeof link.appId !== 'number') throw new Error('Wrong appId type');
