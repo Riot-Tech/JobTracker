@@ -1,15 +1,13 @@
 import { Application } from "../models/interfaces";
 
 export const validateApplicationForm = (form: Pick<Application,
-    "jobName" | "company" | "jobType" | "jobModality" | "location" |
-    "date" | "expectedIncome" | "currency" | "status" | "feedback" | "comments">) => {
+    "jobName" | "company" | "jobType" | "jobModality" | "location" | "expectedIncome" | "currency" | "status" | "feedback" | "comments">) => {
     const updatedErrors = {
         jobName: '',
         company: '',
         jobType: '',
         jobModality: '',
         location: '',
-        date: '',
         expectedIncome: '',
         currency: '',
         status: '',

@@ -5,6 +5,7 @@ import { URL } from "../utils/url";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { AppStore } from "../models/interfaces";
+import Applications from "../pages/Applications";
 
 export default function CreateApplication() {
 
@@ -17,13 +18,15 @@ export default function CreateApplication() {
         jobType: '',
         jobModality: '',
         location: '',
-        date: '',
         expectedIncome: 0,
         currency: '',
         status: '',
         feedback: '',
         comments: '',
-        links: '',
+        links: [
+            {   name: '',
+                url: '' }
+        ],
     });
 
     const [errors, setErrors] = useState({
@@ -32,7 +35,6 @@ export default function CreateApplication() {
         jobType: '',
         jobModality: '',
         location: '',
-        date: '',
         expectedIncome: '',
         currency: '',
         status: '',
@@ -44,27 +46,48 @@ export default function CreateApplication() {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
         let property = e.target.name;
         let value = e.target.value;
-        setForm(
-            (prevForm) => ({
-              ...prevForm,
-              [property]: value,
-              userId: activeUser.id
-            }),
-          );
-        setErrors( 
-            validateApplicationForm({
-                ...form,
-                [property]: value
-            })
-        );
+        if (property === 'expectedIncome') {
+            let expectedIncomeValue = parseInt(value);
+            setForm(
+                (prevForm) => ({
+                    ...prevForm,
+                    [property]: expectedIncomeValue,
+                }),
+            );
+            
+        }
+        else if (property === 'links') {
+           
+        
+              setForm((prevForm) => ({
+                ...prevForm,
+                links: [{
+                    name: value, 
+                    url: value}], 
+              }));
+        } else {
+            setForm(
+                (prevForm) => ({
+                    ...prevForm,
+                    [property]: value,
+                    userId: activeUser.id
+                }),
+            );
+            setErrors(
+                validateApplicationForm({
+                    ...form,
+                    [property]: value
+                })
+            );
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log(form)
         try {
-            // let { data } = await axios.post(`${URL}/application`, form);
-            // console.log(data)
+            console.log(form)
+            let  { data }  = await axios.post(`${URL}/application`, (activeUser.id, form));
+            console.log(data)
         } catch (error) {
             console.log(error)
         }
@@ -106,7 +129,7 @@ export default function CreateApplication() {
                     </div>
                 </div>
                 <div className="flex flex-col gap-4 h-[80%]">
-                    <div className="flex items-center">
+                    {/* <div className="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="34" height="36" viewBox="0 0 34 36" fill="none">
                             <path d="M22 5.33333V2M22 5.33333V8.66667M22 5.33333H14.5M2 15.3333V30.3333C2 32.1743 3.49238 33.6667 5.33333 33.6667H28.6667C30.5077 33.6667 32 32.1743 32 30.3333V15.3333H2Z" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M2 15.3334V8.66671C2 6.82576 3.49238 5.33337 5.33333 5.33337H8.66667" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
@@ -121,7 +144,7 @@ export default function CreateApplication() {
                             value={form.date}
                             onChange={handleChange}
                         />
-                    </div>
+                    </div> */}
                     <div className="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="34" height="37" viewBox="0 0 34 37" fill="none">
                             <path d="M25.3333 20.3332H17V11.9999" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
@@ -196,7 +219,7 @@ export default function CreateApplication() {
                             className="w-[50%] p-2 h-7 border rounded ml-4 text-black"
                             type="text"
                             placeholder="Link"
-                            value={form.links}
+                            value={form.links[0].url}
                             onChange={handleChange}
                         />
                     </div>
@@ -229,7 +252,7 @@ export default function CreateApplication() {
                             value={form.expectedIncome}
                             onChange={handleChange}
                         />
-                        {errors.expectedIncome && <span className="text-red" > {errors.expectedIncome   }</span>}
+                        {errors.expectedIncome && <span className="text-red" > {errors.expectedIncome}</span>}
                     </div>
                     <div className="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
@@ -259,10 +282,10 @@ export default function CreateApplication() {
             <div className="w-[50%] m-10">
                 <div className="flex flex-col">
                     <div className="pr-0 ">
-                        <button 
+                        <button
                             className=" flex items-center justify-around w-40 h-52px  bg-red-800"
                             type="submit"
-                            >
+                        >
                             {<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
                                 <path d="M11.375 15.125L17 20.75L32 5.75" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                                 <path d="M32 17C32 25.2843 25.2843 32 17 32C8.71572 32 2 25.2843 2 17C2 8.71572 8.71572 2 17 2C18.7762 2 20.4802 2.3087 22.0614 2.87536" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
