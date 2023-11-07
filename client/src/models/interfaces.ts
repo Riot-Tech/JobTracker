@@ -54,11 +54,11 @@ export interface input {
   }
   
 export type inputSpontaneous = {
-    company: string,
-    date: string,
+    company: string,/* 
+    date: string, */
     message: string,
     feedback: string,
-    link: string,
+    links: string,
     location: string,
     receiver: string,
     [key: string]: string,

@@ -13,23 +13,23 @@ type CloseFunction = () => void;
 
 function CreateSpontaneous({ close }: { close: CloseFunction }) {
     const activeUser = useSelector((store: AppStore) => store.user);
-    console.log(activeUser.id)
+    
     const dispatch = useDispatch()
+    
     const [ input, setInput ]= useState({
         company:'',
-        date:'',
         message:'',
         feedback:'',
-        link:'',
+        links:'',
         location:'',
         receiver:''
     })
-    const [ errors, setErrors]= useState<inputSpontaneous>({
+
+    const [ errors, setErrors]= useState({
         company:'',
-        date:'',
         message:'',
         feedback:'',
-        link:'',
+        links:'',
         location:'',
         receiver:''
     })
@@ -50,7 +50,7 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
     const handleSubmit = async ()=>{
         try {
             if(!hasErrorsSpontaneous(errors)){
-                let response = await axios.post(`${URL}/spontaneous`, {...input, userID: activeUser.id})
+                let response = await axios.post(`${URL}/spontaneous`, {...input, userId: activeUser.id, links:[{name: activeUser.name, url: input.links}]})
                 if(response.status === 200){
                  //una vez que se guardo en la bdd, modal de confirmacion, se deberia mostrar la espontanea cuando cerramos el modal
                  alert('mande')
@@ -83,7 +83,7 @@ console.log(hasErrorsSpontaneous(errors)) */
                 <div className='w-[50%] flex flex-col items-start'>
                     <div className='flex items-center my-2'>
                         <DateIcon/>
-                        <input onChange={handleChange} name='date' className='ml-2 text-black p-2 rounded-xl' type='date'/>
+                        <input onChange={handleChange} /* name='date' */ className='ml-2 text-black p-2 rounded-xl' type='date'/>
                     </div>
                     <div className='flex items-center my-2'>
                         <RecieverIcon/>
@@ -91,7 +91,7 @@ console.log(hasErrorsSpontaneous(errors)) */
                     </div>
                     <div className='flex items-center my-2'>
                         <LinkIcon/>
-                        <input type='url' onChange={handleChange} name='link' className={`ml-2 p-2 bg-transparent border-b-2 border-black ${errors.link.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='link'/>
+                        <input type='url' onChange={handleChange} name='links' className={`ml-2 p-2 bg-transparent border-b-2 border-black ${errors.links.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='link'/>
                     </div>
                     <div className='flex my-2'>
                         <LocationIcon/>
