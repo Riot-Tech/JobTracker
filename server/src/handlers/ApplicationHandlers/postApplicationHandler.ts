@@ -5,8 +5,7 @@ import { postApplicationController } from "../../controllers";
 
 export const postApplicationHandler = async (req: Request, res: Response) => { //seteamos de tipo any de forma provisoria
     try {
-        const newApplication = req.body;
-        const {links} = newApplication;
+        const { links, ...newApplication } = req.body;
         const application = await postApplicationController(newApplication, links);
         res.status(200).json(application);
     } catch (error) {
