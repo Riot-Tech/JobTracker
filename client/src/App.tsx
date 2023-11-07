@@ -8,6 +8,7 @@ import Applications from "./pages/Applications";
 import Login from "./pages/Login";
 import { AuthGuard } from "./guard/auth.guard";
 import Home from "./pages/Home";
+import Files from "./pages/Files";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path={PrivateRoutes.PROFILE} element={<Profile />} />
             <Route path={PrivateRoutes.APPLICATIONS} element={<Applications />} />
             <Route path={PrivateRoutes.SPONTANEOUS} element={<Spontaneous />} />
+            <Route path={PrivateRoutes.FILES} element={<Files />} />
           </Route>
 
         </Routes>

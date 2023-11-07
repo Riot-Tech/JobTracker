@@ -16,7 +16,7 @@ export const postSpontaneousController = async (spontaneous: Spontaneous, links:
 
     const { id } = newSpontaneous;
     
-    const spontaneousLinks = links.map((link) => {
+    const spontaneousLinks = links?.map((link) => {
         return {
             ...link,
             spontId: id
