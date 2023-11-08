@@ -23,7 +23,7 @@ function SideBar() {
     <div
       className={`w-[16%] ${
         !isOpen && "w-[5%]"
-      } h-[100vh] flex flex-col bg-gray-300 dark:bg-gray-600`}
+      } min-h-[100%] flex flex-col bg-gray-300 dark:bg-gray-600`}
     >
       <div className={`h-[15%] mt-8`}>
         <div className="flex flex-col items-center">
@@ -45,7 +45,7 @@ function SideBar() {
 
       <div className={`h-[55%] ${ !isOpen && 'flex flex-col justify-evenly'}`}>
         {isOpen ? (
-          <div className={`flex items-center my-5 group hover:bg-slate-400 cursor-pointer p-2`}>
+          <div className={`flex items-center my-5 group hover:bg-slate-400 cursor-pointer p-4`}>
             <ProfileLogo />
 
             <h2 className="ml-2 text-gray-500 group-hover:text-gray-800 dark:text-gray-300">
@@ -60,7 +60,7 @@ function SideBar() {
 
         {isOpen ? (
           <Link to="/files">
-            <div className={`flex items-center my-5 group hover:bg-slate-400 cursor-pointer p-2 ${location.pathname=== '/files' && 'bg-slate-400 border-r-4 border-red-800'}`}>
+            <div className={`flex items-center my-5 group hover:bg-slate-400 cursor-pointer p-4 ${location.pathname=== '/files' && 'bg-slate-400 border-r-4 border-red-800'}`}>
               <CvFilesLogo />
               <h2 className={`ml-2 text-gray-500 group-hover:text-gray-800 dark:text-gray-300`}>
                 CV Files
@@ -77,7 +77,7 @@ function SideBar() {
 
         {isOpen ? (
           <Link to="/applications">
-            <div className={`flex items-center my-5 group hover:bg-slate-400 cursor-pointer p-2 ${location.pathname=== '/applications' && 'bg-slate-400 border-r-4 border-red-800'}`}>
+            <div className={`flex items-center my-5 group hover:bg-slate-400 cursor-pointer p-4 ${location.pathname=== '/applications' && 'bg-slate-400 border-r-4 border-red-800'}`}>
               <ApplicationsLogo />
                 <h2 className="ml-2 text-gray-500 group-hover:text-gray-800 dark:text-gray-300">
                   Applications
@@ -94,7 +94,7 @@ function SideBar() {
 
         {isOpen ? (
           <Link to="/spontaneous">
-            <div className={`flex items-center my-5 group hover:bg-slate-400 cursor-pointer p-2 ${location.pathname=== '/spontaneous' && 'bg-slate-400 border-r-4 border-red-800'}`}>
+            <div className={`flex items-center my-5 group hover:bg-slate-400 cursor-pointer p-4 ${location.pathname=== '/spontaneous' && 'bg-slate-400 border-r-4 border-red-800'}`}>
                 <SpontaneousLogo />
                 <h2 className="ml-2 text-gray-500 group-hover:text-gray-800 dark:text-gray-300">
                   Spontaneous

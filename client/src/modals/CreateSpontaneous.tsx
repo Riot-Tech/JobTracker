@@ -8,6 +8,7 @@ import { URL } from '../utils/url';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { addSpontaneous } from '../redux/slices/spontaneous.slice';
 
 type CloseFunction = () => void;
 
@@ -52,8 +53,16 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
             if(!hasErrorsSpontaneous(errors)){
                 let response = await axios.post(`${URL}/spontaneous`, {...input, userId: activeUser.id, links:[{name: activeUser.name, url: input.links}]})
                 if(response.status === 200){
+                    
                  //una vez que se guardo en la bdd, modal de confirmacion, se deberia mostrar la espontanea cuando cerramos el modal
-                 alert('mande')
+                    let { data } = await axios.get(`${URL}/spontaneous/?id=${activeUser.id}`);
+                    if (data.length) {
+                      dispatch(addSpontaneous(data)); //lleno el estado global de spontaneous, que ahora que lo pienso podria no ser global, y luego me lo traigo y las renderizo
+                      return;
+                    }
+            
+                    return;
+                  
                 }
              }
         } catch (error) {
@@ -81,10 +90,10 @@ console.log(hasErrorsSpontaneous(errors)) */
             </div>
             <div className='h-[60%] flex py-4'>
                 <div className='w-[50%] flex flex-col items-start'>
-                    <div className='flex items-center my-2'>
+                    {/* <div className='flex items-center my-2'>
                         <DateIcon/>
-                        <input onChange={handleChange} /* name='date' */ className='ml-2 text-black p-2 rounded-xl' type='date'/>
-                    </div>
+                        <input onChange={handleChange} name='date' className='ml-2 text-black p-2 rounded-xl' type='date'/>
+                    </div> */}
                     <div className='flex items-center my-2'>
                         <RecieverIcon/>
                         <input onChange={handleChange} name='receiver' className={`ml-2 p-2 bg-transparent border-b-2 border-black ${errors.receiver.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='receiver'/>
