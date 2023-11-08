@@ -7,12 +7,12 @@ export const spontaneousSlice = createSlice({
     name: 'spontaneous',
     initialState: EmptySpontaneous,
     reducers:{
-       getSpontaneous: (state, action)=>{
+       addSpontaneous: (state, action)=>{
             return action.payload   
-       }
+       },
     }
 })
 
-export const { getSpontaneous } = spontaneousSlice.actions;
+export const { addSpontaneous } = spontaneousSlice.actions;
 
 export default spontaneousSlice.reducer
