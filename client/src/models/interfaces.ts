@@ -63,3 +63,15 @@ export type inputSpontaneous = {
     receiver: string,
     [key: string]: string,
   };
+
+export type Spont = {
+    id?: number,
+    userId?: number,
+    date?: string,
+    company?: string,
+    message?: string,
+    feedback?: string,
+    links?: string,
+    location?: string,
+    receiver?: string,
+  };

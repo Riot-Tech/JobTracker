@@ -2,6 +2,7 @@ import { useState } from "react";
 import Logout from "./Logout";
 import { Link } from "react-router-dom";
 import { VscMenu } from "react-icons/vsc";
+import { GrClose } from "react-icons/gr";
 import {
   ApplicationsLogo,
   CvFilesLogo,
@@ -28,10 +29,10 @@ function SideBar() {
       <div className={`h-[15%] mt-8`}>
         <div className="flex flex-col items-center">
           <button
-            className={`mb-4 ${!isOpen && "text-xs w-auto"}`}
+            className={`mb-4 bg-transparent ${!isOpen && "text-xs w-auto"}`}
             onClick={handleClick}
           >
-            <VscMenu />
+            { !isOpen? <VscMenu className='text-black text-2xl' /> : <GrClose className='flex justify-end' />}
           </button>
           <JobTrackerLogo />
         </div>

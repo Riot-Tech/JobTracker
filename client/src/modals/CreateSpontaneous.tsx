@@ -14,6 +14,7 @@ type CloseFunction = () => void;
 
 function CreateSpontaneous({ close }: { close: CloseFunction }) {
     const activeUser = useSelector((store: AppStore) => store.user);
+    const [ confirmed, setConfirmed ]= useState(false)
     
     const dispatch = useDispatch()
     
@@ -57,6 +58,7 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
                  //una vez que se guardo en la bdd, modal de confirmacion, se deberia mostrar la espontanea cuando cerramos el modal
                     let { data } = await axios.get(`${URL}/spontaneous/?id=${activeUser.id}`);
                     if (data.length) {
+                      setConfirmed(true)
                       dispatch(addSpontaneous(data)); //lleno el estado global de spontaneous, que ahora que lo pienso podria no ser global, y luego me lo traigo y las renderizo
                       return;
                     }
@@ -71,9 +73,9 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
         }
     }
 
-/* console.log(input)
+console.log(input)
 console.log('errors', errors)
-console.log(hasErrorsSpontaneous(errors)) */
+console.log(hasErrorsSpontaneous(errors))
 
   return (
     <div className="fixed inset-0 z-20 flex backdrop-brightness-90 flex-col items-center justify-center backdrop-blur-sm">
@@ -83,7 +85,7 @@ console.log(hasErrorsSpontaneous(errors)) */
                 <div className='flex items-center'>
                     <input type='text' onChange={handleChange} name='company' className={`mr-1 p-1 bg-transparent border-b-2 border-black ${errors.company.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='Company Name'/>
                 </div>
-                <button onClick={handleSubmit} className='flex items-center bg-red-500'>
+                <button onClick={handleSubmit} className={`flex items-center bg-red-500 ${confirmed && 'bg-green-400 ring ring-green-400'}`}>
                     <TickIcon/>
                     <h2 className='ml-1 text-white'>Confirm</h2>
                 </button>

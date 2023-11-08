@@ -8,7 +8,7 @@ export const spontaneousSlice = createSlice({
     initialState: EmptySpontaneous,
     reducers:{
        addSpontaneous: (state, action)=>{
-            return action.payload   
+            return action.payload.reverse()   
        },
     }
 })
