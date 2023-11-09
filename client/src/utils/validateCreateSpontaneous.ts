@@ -13,7 +13,7 @@ export const validateCreateSpontaneous = (input: inputSpontaneous) => {
     /* date: z
       .string()
       .refine((date)=> new Date(date).toString() !== 'Invalid Date',{message: 'Date required'}), */
-    feedback: z.string().min(1,'At least one character'),
+    feedback: z.string().max(500),
     links: z.string().min(1,'At least one character'),
     location: z.string().min(1,'At least one character'),
     receiver: z.string().min(1,'At least one character')
