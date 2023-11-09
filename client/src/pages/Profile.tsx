@@ -65,42 +65,42 @@ export default function Profile() {
                         <div className='relative  mt-8 justify-center flex'>
                             <div className='flex justify-center'>
 
-                                <div className="relative w-[18%] mr-[10%]">
+                                <div className="relative w-[16%] mr-[10%]">
                                     <img
                                         src={hexagon}
                                         alt="Descripción de la imagen"
                                         className="w-full h-auto"
                                     />
                                     <div className="absolute inset-0 flex items-center justify-center z-10">
-                                        <p className="text-8xl font-bold absolute transform -translate-y-1/2 top-[37%]">5</p>
+                                        <p className="text-8xl font-bold absolute transform -translate-y-1/2 top-[33%]">5</p>
                                     </div>
                                     <div className='flex justify-center'>
                                         <h1 className='font-bold text-4xl mt-4'>File</h1>
                                     </div>
                                 </div>
 
-                                <div className="relative w-[18%] mr-[10%]">
+                                <div className="relative w-[16%] mr-[10%]">
                                     <img
                                         src={hexagon}
                                         alt="Descripción de la imagen"
                                         className="w-full h-auto"
                                     />
                                     <div className="absolute inset-0 flex items-center justify-center z-10">
-                                        <p className="text-8xl font-bold absolute transform -translate-y-1/2 top-[37%]">15</p>
+                                        <p className="text-8xl font-bold absolute transform -translate-y-1/2 top-[33%]">15</p>
                                     </div>
                                     <div className='flex justify-center'>
                                         <h1 className='font-bold text-4xl mt-4'>Applications</h1>
                                     </div>
                                 </div>
                                 
-                                <div className="relative w-[18%]">
+                                <div className="relative w-[16%]">
                                     <img
                                         src={hexagon}
                                         alt="Descripción de la imagen"
                                         className="w-full h-auto"
                                     />
                                     <div className="absolute inset-0 flex justify-center z-10">
-                                        <p className="text-8xl font-bold absolute transform -translate-y-1/2 top-[37%]">9</p>
+                                        <p className="text-8xl font-bold absolute transform -translate-y-1/2 top-[33%]">9</p>
                                     </div>
                                     <div className='flex justify-center'>
                                         <h1 className='font-bold text-4xl mt-4'>Spontaneous</h1>
