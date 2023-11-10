@@ -24,8 +24,7 @@ export default function Profile() {
                     <div className="absolute top-6 left-4 bg-red-700 p-3 w-[95%] h-[8%] flex justify-between items-center rounded-lg">
                         <h3 className="text-white text-2xl font-bold">Profile</h3>
                     </div>
-
-                    <div className='absolute flex h-[35%] w-[70%] left-32  top-32  justify-center items-center bg-custom-modalSpontaneousLight shadow-lg rounded-xl'>
+                    <div className='flex h-[35%] w-[70%] ml-[14%] mt-40 justify-center items-center bg-custom-modalSpontaneousLight shadow-lg rounded-xl'>
                         {/* <div className='flex h-full'>
                             <div className='flex max-w-[100%] justify-center items-center bg-white shadow-lg rounded-full ml-[20%] m-[5%]'>
                                 <h1>imagenfff</h1>
@@ -62,7 +61,6 @@ export default function Profile() {
                             </div>
                         </div>
                     </div>
-
                     <div className='absolute bottom-9 left-[13%] h-[40%] w-[72%] flex justify-center'>
                         <div className='relative  mt-8 justify-center flex'>
                             <div className='flex justify-center'>
