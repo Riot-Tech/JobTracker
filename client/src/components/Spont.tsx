@@ -18,8 +18,10 @@ function Spont({props}:{props: Spont}) {
     <div className="flex flex-col my-4 p-5 rounded-xl h-100 w-full shadow-lg" >
     <div className="relative flex justify-between my-2">
       <h1 className="text-black text-xl">{company}</h1>
-      <h2 onClick={()=>{setViewMore(!viewMore)}}className="text-black hover:cursor-pointer hover: text-underline">{viewMore? 'View less' : 'View more'}</h2>
-      <BsTrash onclick={handleDelete} className='bg-red-500 p-1 rounded-[50%] text-4xl m-[-2%] hover:cursor-pointer ' />
+      <div className='relative flex justify-between'>
+        <h2 onClick={()=>{setViewMore(!viewMore)}}className="text-black hover:cursor-pointer hover: text-underline">{viewMore? 'View less' : 'View more'}</h2>
+        <BsTrash onclick={handleDelete} className='absolute bg-red-400 p-1 rounded-[50%] text-4xl left-20 bottom-4 hover:cursor-pointer ' />
+      </div>  
     </div>
     <div className="bg-red-100 dark:bg-custom-appCardsDark p-2 rounded-lg max-h-auto">
       { viewMore && 
