@@ -8,17 +8,22 @@ import { AppStore, Application } from "../models/interfaces";
 import { URL } from "../utils/url";
 import { useDispatch } from "react-redux";
 import { GoDotFill } from 'react-icons/go'
-import CreateApplication from "../components/CreateApplication";
+import CreateApplication from "../modals/CreateApplication";
 
 export default function Applications() {
   const dispatch = useDispatch()
+  const [ modalOpen, setModalOpen]= useState<boolean>(false)
   const activeUser = useSelector((store: AppStore) => store.user);
   const applications = useSelector((store: AppStore) => store.applications)
+
+  const handleClick = () => {
+    setModalOpen(!modalOpen)
+  }
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let { data } = await axios.get(`${URL}/application/${activeUser.id}`);
+        let { data } = await axios.get(`${URL}/application//?id=${activeUser.id}`);
 
         if (data.length) {
           dispatch(getApplications(data)); //lleno el estado global de aplications, que ahora que lo pienso podria no ser global, y luego me lo traigo y las renderizo
@@ -35,8 +40,8 @@ export default function Applications() {
   console.log(applications)
   return (
     <div className="flex">
-        <CreateApplication/>
         <SideBar />
+        { modalOpen && <CreateApplication close={handleClick}/> }
       
 
       <div className="w-full h-[100vh]">
@@ -56,7 +61,10 @@ export default function Applications() {
                 </svg>
               </div>
 
-              <button className="bg-white text-black dark:bg-black dark:text-white pl-14">
+              <button 
+              className="bg-white text-black dark:bg-black dark:text-white pl-14"
+                  onClick={handleClick}
+                  >
                 Create new
               </button>
             </div>
