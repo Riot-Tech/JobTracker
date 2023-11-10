@@ -12,7 +12,7 @@ import { addSpontaneous } from '../redux/slices/spontaneous.slice';
 
 type CloseFunction = () => void;
 
-function CreateSpontaneous({ close }: { close: CloseFunction }) {
+function EditSpontaneous({ close }: { close: CloseFunction }) {
     const activeUser = useSelector((store: AppStore) => store.user);
     const [ confirmed, setConfirmed ]= useState(false)
     
@@ -79,13 +79,13 @@ console.log(hasErrorsSpontaneous(errors))
 
   return (
     <div className="fixed inset-0 z-20 flex backdrop-brightness-90 flex-col items-center justify-center backdrop-blur-sm">
-        <AiOutlineClose onClick={close} className='text-4xl text-white bg-black rounded-2xl p-1 mb-4 hover: cursor-pointer hover:bg-gray-600'/>
+        <AiOutlineClose onClick={close} className='text-4xl bg-black rounded-2xl p-1 mb-4 hover: cursor-pointer hover:bg-gray-600'/>
         <div className='h-[80vh] w-[80vw] bg-custom-modalSpontaneousLight rounded-xl text-black flex flex-col p-10 dark:text-white'>
             <div className='h-[10%] flex justify-between'>
                 <div className='flex items-center'>
                     <input type='text' onChange={handleChange} name='company' className={`mr-1 p-1 bg-transparent border-b-2 border-black ${errors.company.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='Company Name'/>
                 </div>
-                <button onClick={handleSubmit} className={`flex items-center ${confirmed ? 'bg-green-400 ring ring-green-400' : 'bg-red-500'}`}>
+                <button onClick={handleSubmit} className={`flex items-center bg-red-500 ${confirmed && 'bg-green-400 ring ring-green-400'}`}>
                     <TickIcon/>
                     <h2 className='ml-1 text-white'>Confirm</h2>
                 </button>
@@ -140,4 +140,4 @@ console.log(hasErrorsSpontaneous(errors))
   )
 }
 
-export default CreateSpontaneous
+export default EditSpontaneous

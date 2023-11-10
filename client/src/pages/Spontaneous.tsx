@@ -70,13 +70,6 @@ export default function Spontaneous() {
                   }
                 })}
               </div>
-
-              <button
-                className="bg-white text-black dark:bg-black dark:text-white pl-14"
-                onClick={handleClick}
-              >
-                Create new
-              </button>
             </div>
           </div>
         </div>
