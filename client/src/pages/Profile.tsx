@@ -16,6 +16,7 @@ export default function Profile() {
     const applications = useSelector((store: AppStore) => store.applications)
     const spontaneous = useSelector((store: AppStore) => store.spontaneous)
     // const links = useSelector((store: AppStore) => store.user)
+    // Hay que actualizar en Sigup para que pueda importar los links personales al proflie view
     
     
 
