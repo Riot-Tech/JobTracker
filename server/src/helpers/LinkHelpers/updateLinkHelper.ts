@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 
 export const updateLinkHelper = async (links: Link[]) => {
     let res = null; // Declarar res una vez afuera del bucle
-
+    
     for (const link of links) {
         if (link.appId) {
             res = await prisma.link.update({
@@ -17,9 +17,10 @@ export const updateLinkHelper = async (links: Link[]) => {
             });
         } else if (link.spontId) {
             res = await prisma.link.update({
-                where: { id: link.spontId },
-                data: { name: link.name, url: link.url },
+                where: { id: link.id },
+                data:  { name: link.name, url: link.url },
             });
+            console.log(res)
         }
     }
    

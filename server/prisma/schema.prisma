@@ -84,7 +84,7 @@ model Link {
   application     Application? @relation(fields: [appId], references: [id])
   appId           Int?
   spontaneous     Spontaneous? @relation(fields: [spontId], references: [id])
-  spontId         Int?
+  spontId         Int
   name            String?
   url             String
   enabled         Boolean @default(true)

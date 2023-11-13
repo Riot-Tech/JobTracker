@@ -5,7 +5,6 @@ import { disableSpontaneousController } from "../../controllers";
 
 export const disableSpontaneousHandler = async (req: Request, res: Response) => { //seteamos de tipo any de forma provisoria
     try {
-        console.log(req.params.id)
         const id = +req.params.id;
         if(id){
             const disableSpontaneous = await disableSpontaneousController(id)
