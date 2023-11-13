@@ -13,7 +13,12 @@ import hexagon from "../assets/hexagon.png";
 export default function Profile() {
 
     const user = useSelector((store: AppStore) => store.user)
-
+    const applications = useSelector((store: AppStore) => store.applications)
+    const spontaneous = useSelector((store: AppStore) => store.spontaneous)
+    // const links = useSelector((store: AppStore) => store.user)
+    // Hay que actualizar en Sigup para que pueda importar los links personales al proflie view
+    // Esto se va a descontrolaaaaaaar!!
+    
 
     return (
         <div className="flex">
@@ -21,10 +26,10 @@ export default function Profile() {
             <div className="w-full h-[100vh]">
                 <NavBar />
                 <div className="relative h-[90%] w-full bg-custom-backLight dark:bg-custom-backDark flex flex-col">
-                    <div className="absolute top-6 left-4 bg-red-700 p-3 w-[95%] h-[8%] flex justify-between items-center rounded-lg">
+                    <div className="absolute top-6 left-4 bg-red-900 p-3 w-[95%] h-[8%] flex justify-between items-center rounded-lg">
                         <h3 className="text-white text-2xl font-bold">Profile</h3>
                     </div>
-                    <div className='flex h-[35%] w-[70%] ml-[14%] mt-40 justify-center items-center bg-custom-modalSpontaneousLight shadow-lg rounded-xl'>
+                    <div className=' rounded-[42px] flex h-[35%] w-[65%] ml-[17%] mt-[9%] justify-center items-center bg-custom-modalSpontaneousLight shadow-lg'>
                         {/* <div className='flex h-full'>
                             <div className='flex max-w-[100%] justify-center items-center bg-white shadow-lg rounded-full ml-[20%] m-[5%]'>
                                 <h1>imagenfff</h1>
@@ -62,10 +67,10 @@ export default function Profile() {
                         </div>
                     </div>
                     <div className='absolute bottom-9 left-[13%] h-[40%] w-[72%] flex justify-center'>
-                        <div className='relative  mt-8 justify-center flex'>
+                        <div className='relative  mt-12 justify-center flex'>
                             <div className='flex justify-center'>
 
-                                <div className="relative w-[16%] mr-[10%]">
+                                <div className="relative w-[15%] mr-[10%]">
                                     <img
                                         src={hexagon}
                                         alt="Descripción de la imagen"
@@ -79,28 +84,28 @@ export default function Profile() {
                                     </div>
                                 </div>
 
-                                <div className="relative w-[16%] mr-[10%]">
+                                <div className="relative w-[15%] mr-[10%]">
                                     <img
                                         src={hexagon}
                                         alt="Descripción de la imagen"
                                         className="w-full h-auto"
                                     />
                                     <div className="absolute inset-0 flex items-center justify-center z-10">
-                                        <p className="text-8xl font-bold absolute transform -translate-y-1/2 top-[33%]">15</p>
+                                        <p className="text-8xl font-bold absolute transform -translate-y-1/2 top-[33%]">{applications.length}</p>
                                     </div>
                                     <div className='flex justify-center'>
                                         <h1 className='font-bold text-4xl mt-4'>Applications</h1>
                                     </div>
                                 </div>
                                 
-                                <div className="relative w-[16%]">
+                                <div className="relative w-[15%]">
                                     <img
                                         src={hexagon}
                                         alt="Descripción de la imagen"
                                         className="w-full h-auto"
                                     />
                                     <div className="absolute inset-0 flex justify-center z-10">
-                                        <p className="text-8xl font-bold absolute transform -translate-y-1/2 top-[33%]">9</p>
+                                        <p className="text-8xl font-bold absolute transform -translate-y-1/2 top-[33%]">{spontaneous.length}</p>
                                     </div>
                                     <div className='flex justify-center'>
                                         <h1 className='font-bold text-4xl mt-4'>Spontaneous</h1>
