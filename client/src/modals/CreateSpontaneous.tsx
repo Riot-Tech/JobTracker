@@ -53,9 +53,8 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
         try {
             if(!hasErrorsSpontaneous(errors)){
                 let response = await axios.post(`${URL}/spontaneous`, {...input, userId: activeUser.id, links:[{name: activeUser.name, url: input.links}]})
-                if(response.status === 200){
-                    
-                 //una vez que se guardo en la bdd, modal de confirmacion, se deberia mostrar la espontanea cuando cerramos el modal
+                
+                if(response.status === 200){ //una vez que se guardo en la bdd, modal de confirmacion, se deberia mostrar la espontanea cuando cerramos el modal
                     let { data } = await axios.get(`${URL}/spontaneous/?id=${activeUser.id}`);
                     if (data.length) {
                       setConfirmed(true)
@@ -73,9 +72,9 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
         }
     }
 
-console.log(input)
+/* console.log(input)
 console.log('errors', errors)
-console.log(hasErrorsSpontaneous(errors))
+console.log(hasErrorsSpontaneous(errors)) */
 
   return (
     <div className="fixed inset-0 z-20 flex backdrop-brightness-90 flex-col items-center justify-center backdrop-blur-sm">

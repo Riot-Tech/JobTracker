@@ -17,13 +17,12 @@ function Spont({props}:{props: Spont}) {
     const [ viewMore, setViewMore ] = useState(false)
     const activeUser = useSelector((store: AppStore) => store.user);
     const dispatch = useDispatch()
-    const {company, message, receiver, location, date, feedback, id} = props
 
-    console.log(id)
+    const {company, message, receiver, location, date, feedback, id, links} = props
 
     const handleDelete = async ()=> {
       try {
-        let response = await axios.patch(`${URL}/spontaneous/${id}`)
+        let response = await axios.patch(`${URL}/spontaneous/${id}`, {company, message, receiver, location, date, feedback, id, links})
 
         if(response.status === 200){
           let { data } = await axios.get(`${URL}/spontaneous/?id=${activeUser.id}`);
@@ -51,7 +50,7 @@ function Spont({props}:{props: Spont}) {
           <div className='hover:cursor-pointer' onClick={()=>{setModalOpen(!modalOpen)}} >
             <EditIcon/>
           </div>
-          { modalOpen && <EditSpontaneous /*   */ close={()=>{setModalOpen(!modalOpen)}}/> }
+          { modalOpen && <EditSpontaneous props={props} close={()=>{setModalOpen(!modalOpen)}}/> }
           <h2 onClick={()=>{setViewMore(!viewMore)}}className="text-black hover:cursor-pointer hover: text-underline">{viewMore? 'View less' : 'View more'}</h2>
         </div>
         <div>

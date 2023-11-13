@@ -2,7 +2,7 @@ import React, { useEffect, useState, ChangeEvent } from 'react'
 import { DateIcon, EditIcon, FeedbackIcon, LinkIcon, LocationIcon, MessageIcon, RecieverIcon, TickIcon } from '../utils/svg'
 import { AiOutlineClose } from 'react-icons/ai'
 import { validateCreateSpontaneous } from '../utils/validateCreateSpontaneous';
-import { AppStore, inputSpontaneous } from '../models/interfaces';
+import { AppStore, Spont, inputSpontaneous } from '../models/interfaces';
 import { hasErrorsSpontaneous } from '../utils/utilities';
 import { URL } from '../utils/url';
 import axios from 'axios';
@@ -12,19 +12,22 @@ import { addSpontaneous } from '../redux/slices/spontaneous.slice';
 
 type CloseFunction = () => void;
 
-function EditSpontaneous({ close }: { close: CloseFunction }) {
+function EditSpontaneous({ close,  props }: { close: CloseFunction, props: Spont }) {
     const activeUser = useSelector((store: AppStore) => store.user);
     const [ confirmed, setConfirmed ]= useState(false)
     
     const dispatch = useDispatch()
     
+    //SOLICITO LA INFO DE LA ESPONTEA O LA PASO POR PROPS DESDE SPONT, Y RELLENO LOS INPUT CON ESOS VALORES
+    const {company, message, receiver, location, date, feedback, id, links} = props
+    
     const [ input, setInput ]= useState({
-        company:'',
-        message:'',
-        feedback:'',
-        links:'',
-        location:'',
-        receiver:''
+        company: company || '',
+        message: message ||'',
+        feedback: feedback ||'',
+        links: (links && links[0].url) ||'',
+        location: location ||'',
+        receiver: receiver ||''
     })
 
     const [ errors, setErrors]= useState({
@@ -52,7 +55,7 @@ function EditSpontaneous({ close }: { close: CloseFunction }) {
     const handleSubmit = async ()=>{
         try {
             if(!hasErrorsSpontaneous(errors)){
-                let response = await axios.post(`${URL}/spontaneous`, {...input, userId: activeUser.id, links:[{name: activeUser.name, url: input.links}]})
+                let response = await axios.patch(`${URL}/spontaneous`, {...input, id: id, userId: activeUser.id, links:[{id: links && links[0]?.id,name: activeUser.name, url: input.links}]})
                 if(response.status === 200){
                     
                  //una vez que se guardo en la bdd, modal de confirmacion, se deberia mostrar la espontanea cuando cerramos el modal
@@ -73,19 +76,15 @@ function EditSpontaneous({ close }: { close: CloseFunction }) {
         }
     }
 
-console.log(input)
-console.log('errors', errors)
-console.log(hasErrorsSpontaneous(errors))
-
   return (
     <div className="fixed inset-0 z-20 flex backdrop-brightness-90 flex-col items-center justify-center backdrop-blur-sm">
-        <AiOutlineClose onClick={close} className='text-4xl bg-black rounded-2xl p-1 mb-4 hover: cursor-pointer hover:bg-gray-600'/>
+        <AiOutlineClose onClick={close} className='text-4xl text-white bg-black rounded-2xl p-1 mb-4 hover: cursor-pointer hover:bg-gray-600'/>
         <div className='h-[80vh] w-[80vw] bg-custom-modalSpontaneousLight rounded-xl text-black flex flex-col p-10 dark:text-white'>
             <div className='h-[10%] flex justify-between'>
                 <div className='flex items-center'>
-                    <input type='text' onChange={handleChange} name='company' className={`mr-1 p-1 bg-transparent border-b-2 border-black ${errors.company.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='Company Name'/>
+                    <input type='text' onChange={handleChange} value={input.company} name='company' className={`mr-1 p-1 bg-transparent border-b-2 border-black ${errors.company.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='Company Name'/>
                 </div>
-                <button onClick={handleSubmit} className={`flex items-center bg-red-500 ${confirmed && 'bg-green-400 ring ring-green-400'}`}>
+                <button onClick={handleSubmit} className={`flex items-center ${confirmed ? 'bg-green-400 ring ring-green-400' : 'bg-red-400'}`}>
                     <TickIcon/>
                     <h2 className='ml-1 text-white'>Confirm</h2>
                 </button>
@@ -98,15 +97,15 @@ console.log(hasErrorsSpontaneous(errors))
                     </div> */}
                     <div className='flex items-center my-2'>
                         <RecieverIcon/>
-                        <input onChange={handleChange} name='receiver' className={`ml-2 p-2 bg-transparent border-b-2 border-black ${errors.receiver.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='receiver'/>
+                        <input value={input.receiver} onChange={handleChange} name='receiver' className={`ml-2 p-2 bg-transparent border-b-2 border-black ${errors.receiver.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='receiver'/>
                     </div>
                     <div className='flex items-center my-2'>
                         <LinkIcon/>
-                        <input type='url' onChange={handleChange} name='links' className={`ml-2 p-2 bg-transparent border-b-2 border-black ${errors.links.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='link'/>
+                        <input value={input.links} type='url' onChange={handleChange} name='links' className={`ml-2 p-2 bg-transparent border-b-2 border-black ${errors.links.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='link'/>
                     </div>
                     <div className='flex my-2'>
                         <LocationIcon/>
-                        <select name='location' onChange={handleChange} className='ml-2 rounded-lg'>
+                        <select name='location' value={input.location} onChange={handleChange} className='ml-2 rounded-lg'>
                             <option>USA</option>
                             <option>LATAM</option>
                             <option>EUROPE</option>
@@ -123,7 +122,7 @@ console.log(hasErrorsSpontaneous(errors))
                             <h2 className='ml-1'>Feedback</h2>
                         </div>
                     </div>
-                    <textarea onChange={handleChange} name='feedback' className={`w-full h-[80%] p-2 ${errors.feedback.length && 'bg-red-300 border-2 border-red-700 rounded-md'}`}/>
+                    <textarea value={input.feedback} onChange={handleChange} name='feedback' className={`w-full h-[80%] p-2 ${errors.feedback.length && 'bg-red-300 border-2 border-red-700 rounded-md'}`}/>
                 </div>
             </div>
             <div className='h-[30%] mt-5'>
@@ -133,7 +132,7 @@ console.log(hasErrorsSpontaneous(errors))
                         <h2 className='ml-5'>Message</h2>
                     </div>
                 </div>
-                <textarea onChange={handleChange} name='message' className={`w-full h-[70%] p-2 ${errors.message.length && 'bg-red-300 border-2 border-red-700 rounded-md'}`}/>
+                <textarea value={input.message} onChange={handleChange} name='message' className={`w-full h-[70%] p-2 ${errors.message.length && 'bg-red-300 border-2 border-red-700 rounded-md'}`}/>
             </div>
         </div>
     </div>

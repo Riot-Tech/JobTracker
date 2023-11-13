@@ -6,7 +6,7 @@ import { CreateNewIcon } from "../utils/svg";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { URL } from "../utils/url";
-import { AppStore } from "../models/interfaces";
+import { AppStore, Spontaneous } from "../models/interfaces";
 import { addSpontaneous } from "../redux/slices/spontaneous.slice";
 import Spont from "../components/Spont";
 
@@ -15,7 +15,7 @@ export default function Spontaneous() {
     const activeUser = useSelector((store: AppStore) => store.user);
     const spontaneous = useSelector((store: AppStore) => store.spontaneous);
     const dispatch = useDispatch()
-
+    
     const handleClick = () => {
       setModalOpen(!modalOpen)
     }
@@ -62,7 +62,7 @@ export default function Spontaneous() {
                 </div>
               </div>
               <div className="absolute top-40 left-4 flex flex-col max-h-[80%] overflow-y-scroll w-[95%] px-20 pb-5">
-                { spontaneous.map((spont)=>{
+                { spontaneous.map((spont: Spontaneous)=>{
                   if(spont.enabled){
                     return(
                       <Spont props={spont}/>
