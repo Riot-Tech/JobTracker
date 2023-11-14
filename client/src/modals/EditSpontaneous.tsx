@@ -9,6 +9,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { addSpontaneous } from '../redux/slices/spontaneous.slice';
+import { IoAlertCircle } from 'react-icons/io5';
 
 type CloseFunction = () => void;
 
@@ -103,15 +104,16 @@ function EditSpontaneous({ close,  props }: { close: CloseFunction, props: Spont
                         <LinkIcon/>
                         <input value={input.links} type='url' onChange={handleChange} name='links' className={`ml-2 p-2 bg-transparent border-b-2 border-black ${errors.links.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='link'/>
                     </div>
-                    <div className='flex my-2'>
+                    <div className='flex my-2 items-center'>
                         <LocationIcon/>
-                        <select name='location' value={input.location} onChange={handleChange} className='ml-2 rounded-lg'>
+                        <select name='location' value={input.location} onChange={handleChange} className='ml-2 rounded-lg p-3'>
                             <option>USA</option>
                             <option>LATAM</option>
                             <option>EUROPE</option>
                             <option>ASIA</option>
                             <option>AFRICA</option>
                         </select>
+                        { errors.location && <IoAlertCircle className='items-center text-3xl text-red-600 ml-1' /> }
                     </div>
                     
                 </div>

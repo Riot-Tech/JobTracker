@@ -46,7 +46,7 @@ function SideBar() {
       <div className={`h-[55%] ${!isOpen && 'flex flex-col justify-evenly'}`}>
         {isOpen ? (
           <Link to="/profile">
-            <div className={`flex items-center my-5 group hover:bg-slate-400 cursor-pointer p-2 ${location.pathname === '/profile' && 'bg-slate-400 border-r-4 border-red-800'}`}>
+            <div className={`flex items-center my-5 group hover:bg-slate-400 cursor-pointer p-4 ${location.pathname === '/profile' && 'bg-slate-400 border-r-4 border-red-800'}`}>
               <ProfileLogo />
 
               <h2 className="ml-2 text-gray-500 group-hover:text-gray-800 dark:text-gray-300">

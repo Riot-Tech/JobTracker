@@ -50,7 +50,7 @@ export interface ApplicationInfo extends Array<Application> {}
 export interface AppStore {
     user: UserInfo,
     applications: ApplicationInfo,
-    spontaneous: any
+    spontaneous: Spontaneous[]
 }
 
 export interface LoginForm {
