@@ -6,7 +6,7 @@ export const getApplicationByIdHelper = async (id: number) => {
         where:{
             id: id,
             enabled: true
-        },
+        }
     })
 
     await prisma.$disconnect();

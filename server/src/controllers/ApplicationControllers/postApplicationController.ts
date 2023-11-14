@@ -5,7 +5,6 @@ import { Application, jobModality, jobType } from "@prisma/client";
 
 export const postApplicationController = async (application: Application) => {
     // VALIDAR LA APPLICATION
-    console.log("controller->", application)
     if (typeof application.userId !== 'number') throw new Error('Wrong userId type');
     if (typeof application.jobName !== 'string') throw new Error('Wrong jobName type');
     if (typeof application.company !== 'string') throw new Error('Wrong company type');

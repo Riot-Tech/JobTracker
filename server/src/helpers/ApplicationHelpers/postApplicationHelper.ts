@@ -2,7 +2,6 @@ import { PrismaClient, Application } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export const postApplicationHelper = async (application: Application) => {
-    console.log("helper", application)
     const res = await prisma.application.create({
         data: application
     })
