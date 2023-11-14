@@ -6,7 +6,7 @@ export const getSpontaneousHelper = async (id: number) => {
         where:{
             userId: id,
             enabled: true
-        }
+        },
     })
 
     await prisma.$disconnect();

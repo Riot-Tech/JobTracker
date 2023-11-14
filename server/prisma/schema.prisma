@@ -82,8 +82,8 @@ model Spontaneous {
 
 model File {
   id              Int @id @default(autoincrement())
-  user            User @relation(fields: [userId], references: [id])
-  userId          Int
+  user            User? @relation(fields: [userId], references: [id])
+  userId          Int?
   name            String?
   url             String
   enabled         Boolean @default(true)

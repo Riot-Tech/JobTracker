@@ -1,18 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {  SpontaneousInfo } from '../../models/interfaces';
+import {  Spontaneous } from '../../models/interfaces';
 
-const EmptySpontaneous: SpontaneousInfo = []
+const EmptySpontaneous: Spontaneous[] = []
 
 export const spontaneousSlice = createSlice({
     name: 'spontaneous',
     initialState: EmptySpontaneous,
     reducers:{
-       getSpontaneous: (state, action)=>{
-            return action.payload   
-       }
+       addSpontaneous: (state, action)=>{
+            state = action.payload
+            return state 
+       },
     }
 })
 
-export const { getSpontaneous } = spontaneousSlice.actions;
+export const { addSpontaneous } = spontaneousSlice.actions;
 
 export default spontaneousSlice.reducer

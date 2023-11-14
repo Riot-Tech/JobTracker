@@ -1,9 +1,9 @@
-import { postApplicationHelper, postLinksHelper } from "../../helpers";
-import { Application, Link, jobModality, jobType } from "@prisma/client";
+import { postApplicationHelper } from "../../helpers";
+import { Application, jobModality, jobType } from "@prisma/client";
 
 
 
-export const postApplicationController = async (application: Application, links: Link[]) => {
+export const postApplicationController = async (application: Application) => {
     // VALIDAR LA APPLICATION
     if (typeof application.userId !== 'number') throw new Error('Wrong userId type');
     if (typeof application.jobName !== 'string') throw new Error('Wrong jobName type');
@@ -15,41 +15,13 @@ export const postApplicationController = async (application: Application, links:
     if (typeof application.currency !== 'string') throw new Error('Wrong currency type');
     if (typeof application.feedback !== 'string') throw new Error('Wrong feedback type');
     if (typeof application.comments !== 'string') throw new Error('Wrong company type');
+    if (typeof application.link !== 'string')  throw new Error('Wrong link type');
+
 
     const newApplication = await postApplicationHelper(application);
 
-    const { id } = newApplication;
-
-    const applicationLinks = links?.map((link) => {
-        return {
-            ...link,
-            appId: id
-        }
-    });
-
-    let newLinks = null;
-    // SI HAY LINKS, VALIDARLOS
-    if (applicationLinks?.length) {
-        applicationLinks.forEach(link => {
-            if (link.appId) {
-                if (typeof link.appId !== 'number') throw new Error('Wrong appId type');
-                if (link.spontId) throw new Error("Link cannot have two different id's (appId & spontId)");
-                if (link.userId) throw new Error("Link cannot have two different id's (appId & userId)");
-            } else throw new Error('No valid appId found');
-            if (typeof link.name !== 'string') throw new Error('Wrong name type');
-            if (typeof link.url !== 'string') throw new Error('Wrong url type');
-        });
-        newLinks = await postLinksHelper(applicationLinks);
-    }
-
-    if (newApplication) {
-        if (newLinks) {
-            return {
-                application: newApplication,
-                links: newLinks
-            }
-        } else return newApplication;
-    }
+    if(newApplication) return newApplication
+    
 
     throw Error('Application not found at postApplicationController');
 }

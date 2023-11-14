@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { resetUser } from "../redux/slices/auth.slice";
 import { PublicRoutes } from "../models/routes";
+import { BiLogOut } from 'react-icons/bi'
 
 function Logout() {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ function Logout() {
   };
   return (
     <div>
-      <button className="bg-transparent text-gray-600 hover: border-gray-600 dark:text-gray-300" onClick={logOut}>Log out</button>
+      <BiLogOut className="flex items-center justify-center bg-transparent text-gray-600 text-5xl hover:cursor-pointer border-gray-600 dark:text-gray-300 pr:2" onClick={logOut}/>
     </div>
   );
 }

@@ -10,11 +10,11 @@ export const validateCreateSpontaneous = (input: inputSpontaneous) => {
       .string()
       .min(1,"Company name required"),
     message: z.string().min(1,'Message Required').max(500),
-    date: z
+    link: z.string(),
+    /* date: z
       .string()
-      .refine((date)=> new Date(date).toString() !== 'Invalid Date',{message: 'Date required'}),
-    feedback: z.string().min(1,'At least one character'),
-    link: z.string().min(1,'At least one character'),
+      .refine((date)=> new Date(date).toString() !== 'Invalid Date',{message: 'Date required'}), */
+    feedback: z.string().max(500),
     location: z.string().min(1,'At least one character'),
     receiver: z.string().min(1,'At least one character')
   });
@@ -23,18 +23,18 @@ export const validateCreateSpontaneous = (input: inputSpontaneous) => {
     schema.parse({
       company,
       message,
-      date,
-      feedback,
       link,
+      /* date, */
+      feedback,
       location,
       receiver
     });
     return {
-        company:'',
-        date:'',
+        company:'',/* 
+        date:'', */
         message:'',
-        feedback:'',
         link:'',
+        feedback:'',
         location:'',
         receiver:''
     }; // No hay errores
@@ -42,10 +42,10 @@ export const validateCreateSpontaneous = (input: inputSpontaneous) => {
     if (typeof error === "object") {
       const errors: inputSpontaneous = {
         company:'',
-        message:'',
-        date:'',
-        feedback:'',
         link:'',
+        message:'',/* 
+        date:'', */
+        feedback:'',
         location:'',
         receiver:''
       };
@@ -62,8 +62,8 @@ export const validateCreateSpontaneous = (input: inputSpontaneous) => {
 
     return {
         company:'',
-        message:'',
-        date:'',
+        message:'',/* 
+        date:'', */
         feedback:'',
         link:'',
         location:'',
