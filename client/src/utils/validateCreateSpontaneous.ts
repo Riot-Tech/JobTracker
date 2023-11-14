@@ -4,13 +4,13 @@ import { inputSpontaneous } from "../models/interfaces";
 const locations = [ 'USA', 'LATAM', 'EUROPE', 'ASIA' ]
 
 export const validateCreateSpontaneous = (input: inputSpontaneous) => {
-  const { company, date, message, feedback, links, location, receiver } = input 
+  const { company, date, message, feedback, link, location, receiver } = input 
   const schema = z.object({
     company: z
       .string()
       .min(1,"Company name required"),
     message: z.string().min(1,'Message Required').max(500),
-    links: z.string(),
+    link: z.string(),
     /* date: z
       .string()
       .refine((date)=> new Date(date).toString() !== 'Invalid Date',{message: 'Date required'}), */
@@ -23,7 +23,7 @@ export const validateCreateSpontaneous = (input: inputSpontaneous) => {
     schema.parse({
       company,
       message,
-      links,
+      link,
       /* date, */
       feedback,
       location,
@@ -33,7 +33,7 @@ export const validateCreateSpontaneous = (input: inputSpontaneous) => {
         company:'',/* 
         date:'', */
         message:'',
-        links:'',
+        link:'',
         feedback:'',
         location:'',
         receiver:''
@@ -42,7 +42,7 @@ export const validateCreateSpontaneous = (input: inputSpontaneous) => {
     if (typeof error === "object") {
       const errors: inputSpontaneous = {
         company:'',
-        links:'',
+        link:'',
         message:'',/* 
         date:'', */
         feedback:'',
@@ -65,7 +65,7 @@ export const validateCreateSpontaneous = (input: inputSpontaneous) => {
         message:'',/* 
         date:'', */
         feedback:'',
-        links:'',
+        link:'',
         location:'',
         receiver:''
     };

@@ -27,12 +27,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
         status: '',
         feedback: '',
         comments: '',
-        links: [
-            {
-                name: '',
-                url: ''
-            }
-        ],
+        link: ''
     });
 
     const [errors, setErrors] = useState({
@@ -46,7 +41,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
         status: '',
         feedback: '',
         comments: '',
-        links: '',
+        link: '',
     })
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -61,17 +56,6 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                 }),
             );
 
-        }
-        else if (property === 'links') {
-
-
-            setForm((prevForm) => ({
-                ...prevForm,
-                links: [{
-                    name: value,
-                    url: value
-                }],
-            }));
         } else {
             setForm(
                 (prevForm) => ({
@@ -112,7 +96,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                     <div className="h-[30%] bg-red divide-black mt-20">
                         <div className="flex items-center divide-black">
                             <input
-                                className="w-[45%] h-[95px] p-2 border rounded mr-4 text-black"
+                                className="w-[45%] h-[95px] p-2 border text-3xl font-semibold rounded mr-4 text-black"
                                 name="company"
                                 type="text"
                                 placeholder="Company Name"
@@ -228,11 +212,11 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M31.4754 25.6015C32.2076 26.0518 32.1625 27.148 31.4084 27.2336L27.6028 27.6649L25.8958 31.0934C25.5576 31.7728 24.5121 31.4403 24.3393 30.5982L22.478 21.5297C22.3319 20.818 22.9716 20.3701 23.5903 20.7508L31.4754 25.6015Z" stroke="#4C4C4C" stroke-width="3" />
                             </svg>
                             <input
-                                name="links"
+                                name="link"
                                 className="w-[50%] p-2 h-[45px] border rounded ml-4 text-black"
                                 type="text"
                                 placeholder="Link"
-                                value={form.links[0].url}
+                                value={form.link}
                                 onChange={handleChange}
                             />
                         </div>

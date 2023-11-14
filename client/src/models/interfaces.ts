@@ -71,7 +71,7 @@ export type inputSpontaneous = {
     feedback: string,
     location: string,
     receiver: string,
-    links: string,
+    link: string,
     [key: string]: string,
   };
 

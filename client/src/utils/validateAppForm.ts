@@ -13,7 +13,7 @@ export const validateApplicationForm = (form: Pick<Application,
         status: '',
         feedback: '',
         comments: '',
-        links: '',
+        link: '',
     };
     if (form.jobName && !/^[a-zA-Z0-9\s]+$/.test(form.jobName)) {
         updatedErrors.jobName = 'Sólo puede contener letras y/o números'

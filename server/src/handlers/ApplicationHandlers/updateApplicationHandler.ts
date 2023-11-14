@@ -6,7 +6,7 @@ import { updateApplicationController } from "../../controllers";
 export const updateApplicationHandler = async (req: Request, res: Response) => { //seteamos de tipo any de forma provisoria
     try {
         const {links, ...application} = req.body;
-        const updateApplication = await updateApplicationController(application, links);
+        const updateApplication = await updateApplicationController(application);
         res.status(200).json(updateApplication);
     } catch (error) {
         if(error instanceof Error){
