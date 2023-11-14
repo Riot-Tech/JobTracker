@@ -2,7 +2,7 @@ import { PrismaClient, Link } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export const postLinksHelper = async (links: Link[]) => {
-    
+    console.log("Llegue al helper con:", links)
     const res = await prisma.link.createMany({
         data: links
     })
