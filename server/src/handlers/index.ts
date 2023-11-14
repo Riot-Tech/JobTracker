@@ -25,10 +25,10 @@ export { updateApplicationHandler } from './ApplicationHandlers/updateApplicatio
 export { disableApplicationHandler } from './ApplicationHandlers/disableApplicationHandler';
 
 //Links
-export { getLinksHandler } from './LinkHandlers/getLinksHandler'
-export { postLinksHandler } from './LinkHandlers/postLinksHandler';
-export { disableLinkHandler } from './LinkHandlers/disableLinkHandler';
-export { updateLinkHandler } from './LinkHandlers/updateLinkHandler';
+// export { getLinksHandler } from './LinkHandlers/getLinksHandler'
+// export { postLinksHandler } from './LinkHandlers/postLinksHandler';
+// export { disableLinkHandler } from './LinkHandlers/disableLinkHandler';
+// export { updateLinkHandler } from './LinkHandlers/updateLinkHandler';
 
 
 
