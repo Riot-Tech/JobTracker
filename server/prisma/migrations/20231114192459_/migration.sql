@@ -13,6 +13,9 @@ CREATE TABLE "User" (
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "linkedIn" TEXT,
+    "gitHub" TEXT,
+    "portfolio" TEXT,
     "profilePicture" TEXT,
     "enabled" BOOLEAN NOT NULL DEFAULT true,
 
@@ -35,6 +38,7 @@ CREATE TABLE "Application" (
     "feedback" TEXT,
     "comments" TEXT,
     "enabled" BOOLEAN NOT NULL DEFAULT true,
+    "link" TEXT,
 
     CONSTRAINT "Application_pkey" PRIMARY KEY ("id")
 );
@@ -50,22 +54,21 @@ CREATE TABLE "Spontaneous" (
     "feedback" TEXT,
     "date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "enabled" BOOLEAN NOT NULL DEFAULT true,
+    "link" TEXT,
 
     CONSTRAINT "Spontaneous_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "Link" (
+CREATE TABLE "File" (
     "id" SERIAL NOT NULL,
     "userId" INTEGER,
-    "appId" INTEGER,
-    "spontId" INTEGER,
     "name" TEXT,
     "url" TEXT NOT NULL,
     "enabled" BOOLEAN NOT NULL DEFAULT true,
     "isCv" BOOLEAN NOT NULL DEFAULT false,
 
-    CONSTRAINT "Link_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "File_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -78,10 +81,4 @@ ALTER TABLE "Application" ADD CONSTRAINT "Application_userId_fkey" FOREIGN KEY (
 ALTER TABLE "Spontaneous" ADD CONSTRAINT "Spontaneous_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Link" ADD CONSTRAINT "Link_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Link" ADD CONSTRAINT "Link_appId_fkey" FOREIGN KEY ("appId") REFERENCES "Application"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Link" ADD CONSTRAINT "Link_spontId_fkey" FOREIGN KEY ("spontId") REFERENCES "Spontaneous"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "File" ADD CONSTRAINT "File_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;

@@ -1,8 +1,8 @@
-import React, { useEffect, useState, ChangeEvent } from 'react'
-import { DateIcon, EditIcon, FeedbackIcon, LinkIcon, LocationIcon, MessageIcon, RecieverIcon, TickIcon } from '../utils/svg'
+import { useState, ChangeEvent } from 'react'
+import { FeedbackIcon, LinkIcon, LocationIcon, MessageIcon, RecieverIcon, TickIcon } from '../utils/svg'
 import { AiOutlineClose } from 'react-icons/ai'
 import { validateCreateSpontaneous } from '../utils/validateCreateSpontaneous';
-import { AppStore, Spont, inputSpontaneous } from '../models/interfaces';
+import { AppStore, Spont } from '../models/interfaces';
 import { hasErrorsSpontaneous } from '../utils/utilities';
 import { URL } from '../utils/url';
 import axios from 'axios';
@@ -20,13 +20,13 @@ function EditSpontaneous({ close,  props }: { close: CloseFunction, props: Spont
     const dispatch = useDispatch()
     
     //SOLICITO LA INFO DE LA ESPONTEA O LA PASO POR PROPS DESDE SPONT, Y RELLENO LOS INPUT CON ESOS VALORES
-    const {company, message, receiver, location, date, feedback, id, links} = props
+    const {company, message, receiver, location, feedback, id, link} = props
     
     const [ input, setInput ]= useState({
         company: company || '',
         message: message ||'',
         feedback: feedback ||'',
-        links: (links && links[0].url) ||'',
+        link: link ||'',
         location: location ||'',
         receiver: receiver ||''
     })
@@ -35,7 +35,7 @@ function EditSpontaneous({ close,  props }: { close: CloseFunction, props: Spont
         company:'',
         message:'',
         feedback:'',
-        links:'',
+        link:'',
         location:'',
         receiver:''
     })
@@ -56,7 +56,7 @@ function EditSpontaneous({ close,  props }: { close: CloseFunction, props: Spont
     const handleSubmit = async ()=>{
         try {
             if(!hasErrorsSpontaneous(errors)){
-                let response = await axios.patch(`${URL}/spontaneous`, {...input, id: id, userId: activeUser.id, links:[{id: links && links[0]?.id,name: activeUser.name, url: input.links}]})
+                let response = await axios.patch(`${URL}/spontaneous`, {...input, id: id, userId: activeUser.id})
                 if(response.status === 200){
                     
                  //una vez que se guardo en la bdd, modal de confirmacion, se deberia mostrar la espontanea cuando cerramos el modal
@@ -102,7 +102,7 @@ function EditSpontaneous({ close,  props }: { close: CloseFunction, props: Spont
                     </div>
                     <div className='flex items-center my-2'>
                         <LinkIcon/>
-                        <input value={input.links} type='url' onChange={handleChange} name='links' className={`ml-2 p-2 bg-transparent border-b-2 border-black ${errors.links.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='link'/>
+                        <input value={input.link} name='link' type='url' onChange={handleChange} className={`ml-2 p-2 bg-transparent border-b-2 border-black ${errors.link.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='link'/>
                     </div>
                     <div className='flex my-2 items-center'>
                         <LocationIcon/>

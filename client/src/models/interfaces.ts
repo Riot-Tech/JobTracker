@@ -41,7 +41,8 @@ export interface Spontaneous{
     company: string,
     date: string,
     enabled: boolean,
-    links: Link[]
+    link: string,
+    /* links: Link[] */
 }
 
 
@@ -84,5 +85,6 @@ export type Spont = {
     feedback?: string,
     location?: string,
     receiver?: string,
-    links?: Link[]
+    link?: string,
+    /* links?: Link[] */
   };

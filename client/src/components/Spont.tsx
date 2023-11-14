@@ -18,11 +18,11 @@ function Spont({props}:{props: Spont}) {
     const activeUser = useSelector((store: AppStore) => store.user);
     const dispatch = useDispatch()
 
-    const {company, message, receiver, location, date, feedback, id, links} = props
+    const {company, message, receiver, location, date, feedback, id, link} = props
 
     const handleDelete = async ()=> {
       try {
-        let response = await axios.patch(`${URL}/spontaneous/${id}`, {company, message, receiver, location, date, feedback, id, links})
+        let response = await axios.patch(`${URL}/spontaneous/${id}`, {company, message, receiver, location, date, feedback, id, link})
 
         if(response.status === 200){
           let { data } = await axios.get(`${URL}/spontaneous/?id=${activeUser.id}`);

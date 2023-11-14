@@ -52,7 +52,6 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
 
     const handleSubmit = async ()=>{
         try {
-            console.log(input)
             if(!hasErrorsSpontaneous(errors)){
                 let response = await axios.post(`${URL}/spontaneous`, {...input, userId: activeUser.id})
                 
