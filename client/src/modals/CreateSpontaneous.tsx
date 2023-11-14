@@ -23,7 +23,7 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
         company:'',
         message:'',
         feedback:'',
-        links:'',
+        link:'',
         location:'',
         receiver:''
     })
@@ -32,7 +32,7 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
         company:'',
         message:'',
         feedback:'',
-        links:'',
+        link:'',
         location:'',
         receiver:''
     })
@@ -52,8 +52,9 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
 
     const handleSubmit = async ()=>{
         try {
+            console.log(input)
             if(!hasErrorsSpontaneous(errors)){
-                let response = await axios.post(`${URL}/spontaneous`, {...input, userId: activeUser.id, links:[{name: activeUser.name, url: input.links}]})
+                let response = await axios.post(`${URL}/spontaneous`, {...input, userId: activeUser.id})
                 
                 if(response.status === 200){ //una vez que se guardo en la bdd, modal de confirmacion, se deberia mostrar la espontanea cuando cerramos el modal
                     let { data } = await axios.get(`${URL}/spontaneous/?id=${activeUser.id}`);
@@ -102,7 +103,7 @@ console.log(hasErrorsSpontaneous(errors)) */
                     </div>
                     <div className='flex items-center my-2'>
                         <LinkIcon/>
-                        <input type='url' onChange={handleChange} name='links' className={`ml-2 p-2 bg-transparent border-b-2 border-black ${errors.links.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='link'/>
+                        <input type='url' onChange={handleChange} name='link' className={`ml-2 p-2 bg-transparent border-b-2 border-black ${errors.link.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='link'/>
                     </div>
                     <div className='flex my-2 items-center'>
                         <LocationIcon/>

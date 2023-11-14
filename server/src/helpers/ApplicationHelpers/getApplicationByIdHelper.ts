@@ -6,9 +6,6 @@ export const getApplicationByIdHelper = async (id: number) => {
         where:{
             id: id,
             enabled: true
-        },
-        include:{
-            links: true
         }
     })
 
