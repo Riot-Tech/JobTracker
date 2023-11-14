@@ -22,6 +22,17 @@ export interface Application{
     enabled: boolean,
 }
 
+export interface Link{
+    id?: number,
+    userId?: number,
+    appId?: number,
+    spontId?: number,
+    name?: string,
+    url?: string,
+    enabled?: boolean,
+    isCv?: boolean
+}
+
 export interface Spontaneous{
     id: number,
     userId: number,
@@ -30,16 +41,16 @@ export interface Spontaneous{
     company: string,
     date: string,
     enabled: boolean,
+    links: Link[]
 }
 
 
-export interface SpontaneousInfo extends Array<Spontaneous> {}
 export interface ApplicationInfo extends Array<Application> {}
 
 export interface AppStore {
     user: UserInfo,
     applications: ApplicationInfo,
-    spontaneous: SpontaneousInfo
+    spontaneous: any
 }
 
 export interface LoginForm {
@@ -54,12 +65,24 @@ export interface input {
   }
   
 export type inputSpontaneous = {
-    company: string,
-    date: string,
+    company: string,/* 
+    date: string, */
     message: string,
     feedback: string,
-    link: string,
     location: string,
     receiver: string,
+    links: string,
     [key: string]: string,
+  };
+
+export type Spont = {
+    id?: number,
+    userId?: number,
+    date?: string,
+    company?: string,
+    message?: string,
+    feedback?: string,
+    location?: string,
+    receiver?: string,
+    links?: Link[]
   };

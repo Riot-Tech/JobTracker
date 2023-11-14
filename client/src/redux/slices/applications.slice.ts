@@ -12,7 +12,7 @@ export const applicationsSlice = createSlice({
        },
        createApplication: (state, action) => {
         const newApplication = action.payload;
-        state.push(newApplication); 
+        state.unshift(newApplication); 
        }
     }
 })

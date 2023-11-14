@@ -16,7 +16,7 @@ export const postSpontaneousController = async (spontaneous: Spontaneous, links:
 
     const { id } = newSpontaneous;
     
-    const spontaneousLinks = links.map((link) => {
+    const spontaneousLinks = links?.map((link) => {
         return {
             ...link,
             spontId: id
@@ -25,7 +25,7 @@ export const postSpontaneousController = async (spontaneous: Spontaneous, links:
 
     let newLinks = null;
     // SI HAY LINKS, VALIDARLOS
-    if (spontaneousLinks.length) {
+    if (spontaneousLinks?.length) {
         spontaneousLinks.forEach(link => {
             if (link.spontId) {
                 if (typeof link.spontId !== 'number') throw new Error('Wrong spontId type');

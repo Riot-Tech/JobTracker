@@ -6,6 +6,9 @@ export const getSpontaneousHelper = async (id: number) => {
         where:{
             userId: id,
             enabled: true
+        },
+        include:{
+            links:true
         }
     })
 

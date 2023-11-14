@@ -7,5 +7,6 @@ export const PrivateRoutes = {
     HOME:'home',
     SPONTANEOUS:'spontaneous',
     PROFILE:'profile',
-    APPLICATIONS:'applications'
+    APPLICATIONS:'applications',
+    FILES:'files'
 }

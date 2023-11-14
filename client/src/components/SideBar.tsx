@@ -2,6 +2,7 @@ import { useState } from "react";
 import Logout from "./Logout";
 import { Link } from "react-router-dom";
 import { VscMenu } from "react-icons/vsc";
+import { GrClose } from "react-icons/gr";
 import {
   ApplicationsLogo,
   CvFilesLogo,
@@ -18,20 +19,19 @@ function SideBar() {
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
-  
+
   return (
     <div
-      className={`w-[16%] ${
-        !isOpen && "w-[5%]"
-      } h-[100vh] flex flex-col bg-gray-300 dark:bg-gray-600`}
+      className={`w-[16%] ${!isOpen && "w-[5%]"
+        } min-h-[100%] flex flex-col bg-gray-300 dark:bg-gray-600`}
     >
       <div className={`h-[15%] mt-8`}>
         <div className="flex flex-col items-center">
           <button
-            className={`mb-4 ${!isOpen && "text-xs w-auto"}`}
+            className={`mb-4 bg-transparent ${!isOpen && "text-xs w-auto"}`}
             onClick={handleClick}
           >
-            <VscMenu />
+            { !isOpen? <VscMenu className='text-black text-2xl' /> : <GrClose className='flex justify-end' />}
           </button>
           <JobTrackerLogo />
         </div>
@@ -43,45 +43,53 @@ function SideBar() {
         </h2>
       )}
 
-      <div className={`h-[55%] ${ !isOpen && 'flex flex-col  items-center justify-evenly'}`}>
+      <div className={`h-[55%] ${!isOpen && 'flex flex-col justify-evenly'}`}>
         {isOpen ? (
-          <div className={`flex items-center m-5 group hover:bg-slate-400 cursor-pointer p-2 rounded-xl`}>
-            <ProfileLogo />
+          <Link to="/profile">
+            <div className={`flex items-center my-5 group hover:bg-slate-400 cursor-pointer p-2 ${location.pathname === '/profile' && 'bg-slate-400 border-r-4 border-red-800'}`}>
+              <ProfileLogo />
 
-            <h2 className="ml-2 text-gray-500 group-hover:text-gray-800 dark:text-gray-300">
-              Profile
-            </h2>
-          </div>
+              <h2 className="ml-2 text-gray-500 group-hover:text-gray-800 dark:text-gray-300">
+                Profile
+              </h2>
+            </div>
+          </Link>
         ) : (
-          <div className={`flex items-center justify-center hover:bg-slate-400 cursor-pointer p-2 rounded-xl`}>
-            <ProfileLogo />
-          </div>
+          <Link to="/profile">
+            <div className={`flex items-center justify-center hover:bg-slate-400 cursor-pointer p-2`}>
+              <ProfileLogo />
+            </div>
+          </Link>
         )}
 
         {isOpen ? (
-          <div className={`flex items-center m-5 group hover:bg-slate-400 cursor-pointer p-2 rounded-xl`}>
-            <CvFilesLogo />
-            <h2 className="ml-2 text-gray-500 group-hover:text-gray-800 dark:text-gray-300">
-              CV Files
-            </h2>
-          </div>
+          <Link to="/files">
+            <div className={`flex items-center my-5 group hover:bg-slate-400 cursor-pointer p-4 ${location.pathname === '/files' && 'bg-slate-400 border-r-4 border-red-800'}`}>
+              <CvFilesLogo />
+              <h2 className={`ml-2 text-gray-500 group-hover:text-gray-800 dark:text-gray-300`}>
+                CV Files
+              </h2>
+            </div>
+          </Link>
         ) : (
-          <div className={`flex items-center justify-center hover:bg-slate-400 cursor-pointer p-2 rounded-xl`}>
-            <CvFilesLogo />
-          </div>
+          <Link to="/files">
+            <div className={`flex items-center justify-center hover:bg-slate-400 cursor-pointer p-2`}>
+              <CvFilesLogo />
+            </div>
+          </Link>
         )}
 
         {isOpen ? (
-          <div className={`flex items-center m-5 group hover:bg-slate-400 cursor-pointer p-2 rounded-xl ${location.pathname=== '/applications' && 'bg-slate-400'}`}>
-            <ApplicationsLogo />
-            <Link to="/applications">
+          <Link to="/applications">
+            <div className={`flex items-center my-5 group hover:bg-slate-400 cursor-pointer p-4 ${location.pathname === '/applications' && 'bg-slate-400 border-r-4 border-red-800'}`}>
+              <ApplicationsLogo />
               <h2 className="ml-2 text-gray-500 group-hover:text-gray-800 dark:text-gray-300">
                 Applications
               </h2>
-            </Link>
-          </div>
+            </div>
+          </Link>
         ) : (
-          <div className={`flex items-center justify-center hover:bg-slate-400 cursor-pointer p-2 rounded-xl ${location.pathname=== '/applications' && 'bg-slate-400'}`}>
+          <div className={`flex items-center justify-center hover:bg-slate-400 cursor-pointer p-2 ${location.pathname === '/applications' && 'bg-slate-400 border-r-4 border-red-800'}`}>
             <Link to="/applications">
               <ApplicationsLogo />
             </Link>
@@ -90,15 +98,15 @@ function SideBar() {
 
         {isOpen ? (
           <Link to="/spontaneous">
-            <div className={`flex items-center m-5 group hover:bg-slate-400 cursor-pointer p-2 rounded-xl ${location.pathname=== '/spontaneous' && 'bg-slate-400'}`}>
-                <SpontaneousLogo />
-                <h2 className="ml-2 text-gray-500 group-hover:text-gray-800 dark:text-gray-300">
-                  Spontaneous
-                </h2>
+            <div className={`flex items-center my-5 group hover:bg-slate-400 cursor-pointer p-4 ${location.pathname === '/spontaneous' && 'bg-slate-400 border-r-4 border-red-800'}`}>
+              <SpontaneousLogo />
+              <h2 className="ml-2 text-gray-500 group-hover:text-gray-800 dark:text-gray-300">
+                Spontaneous
+              </h2>
             </div>
           </Link>
         ) : (
-          <div className={`flex items-center justify-center hover:bg-slate-400 cursor-pointer p-2 rounded-xl ${location.pathname === '/spontaneous' && 'bg-slate-400'}`}>
+          <div className={`flex items-center justify-center hover:bg-slate-400 cursor-pointer p-2 ${location.pathname === '/spontaneous' && 'bg-slate-400 border-r-4 border-red-800'}`}>
             <Link to="/spontaneous">
               <SpontaneousLogo />
             </Link>
