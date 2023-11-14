@@ -16,6 +16,8 @@ export const updateApplicationController = async (application: Application) => {
     if (application.currency !== undefined && typeof application.currency !== 'string') throw new Error('Wrong currency type');
     if (application.feedback !== undefined && typeof application.feedback !== 'string') throw new Error('Wrong feedback type');
     if (application.comments !== undefined && typeof application.comments !== 'string') throw new Error('Wrong comments type');
+    if (application.link !== undefined && typeof application.link !== 'string') throw new Error('Wrong link type');
+
     const updateApplication = await updateApplicationHelper(application);
 
     if (updateApplication) return updateApplication;
