@@ -48,10 +48,15 @@ export interface Spontaneous{
 
 export interface ApplicationInfo extends Array<Application> {}
 
+export interface SpontaneousState{
+    EmptySpontaneous: Spontaneous[],
+    EmptyCopySpontaneous: Spontaneous[]
+}
+
 export interface AppStore {
     user: UserInfo,
     applications: ApplicationInfo,
-    spontaneous: Spontaneous[]
+    spontaneous: SpontaneousState
 }
 
 export interface LoginForm {
