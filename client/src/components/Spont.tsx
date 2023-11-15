@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import { AppStore, Spont, inputSpontaneous } from '../models/interfaces';
+import { useState } from 'react'
+import { AppStore, Spont } from '../models/interfaces';
 import { BiWorld } from 'react-icons/bi';
 import { MdDateRange } from 'react-icons/md'
-import { BsFillPersonFill, BsPersonFillUp, BsTrash } from 'react-icons/bs';
+import { BsPersonFillUp, BsTrash } from 'react-icons/bs';
 import { formattedDate } from '../utils/utilities';
 import { EditIcon } from '../utils/svg';
 import EditSpontaneous from '../modals/EditSpontaneous';
@@ -18,11 +18,11 @@ function Spont({props}:{props: Spont}) {
     const activeUser = useSelector((store: AppStore) => store.user);
     const dispatch = useDispatch()
 
-    const {company, message, receiver, location, date, feedback, id, links} = props
+    const {company, message, receiver, location, date, feedback, id, link} = props
 
     const handleDelete = async ()=> {
       try {
-        let response = await axios.patch(`${URL}/spontaneous/${id}`, {company, message, receiver, location, date, feedback, id, links})
+        let response = await axios.patch(`${URL}/spontaneous/${id}`, {company, message, receiver, location, date, feedback, id, link})
 
         if(response.status === 200){
           let { data } = await axios.get(`${URL}/spontaneous/?id=${activeUser.id}`);
@@ -35,10 +35,6 @@ function Spont({props}:{props: Spont}) {
       } catch (error) {
         console.log(error)
       }
-    }
-
-    const handleEdit = ()=> {
-
     }
 
   return (
@@ -75,9 +71,18 @@ function Spont({props}:{props: Spont}) {
         </div>
       </div>
       }
-      <p className={`text-black pt-4 px-5 ${ viewMore ? '' : 'overflow-hidden'}`}>
-        " {message} "
-      </p>
+      <div className='p-2'>
+        <h2 className='mx-5 mb-2 border-b-2 border-gray-500 w-16'>Message</h2>
+        <p className={`text-black px-5 ${ viewMore ? '' : 'overflow-hidden'}`}>
+          " {message} "
+        </p>
+      </div>
+      {viewMore && (
+        <div className='p-2'>
+          <h2 className='mx-5 mb-2 border-b-2 border-gray-500 w-20'>Feedback</h2>
+          <p className='px-5 text-black'>" {feedback} "</p>
+        </div>
+      )}
     </div>
   </div>
   )

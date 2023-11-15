@@ -4,10 +4,9 @@ import SideBar from "../components/SideBar";
 import axios from "axios";
 import { getApplications } from "../redux/slices/applications.slice";
 import { useEffect, useState } from "react";
-import { AppStore, Application } from "../models/interfaces";
+import { AppStore } from "../models/interfaces";
 import { URL } from "../utils/url";
 import { useDispatch } from "react-redux";
-import { GoDotFill } from 'react-icons/go'
 import CreateApplication from "../modals/CreateApplication";
 
 export default function Applications() {

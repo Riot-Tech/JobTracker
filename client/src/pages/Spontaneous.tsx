@@ -45,7 +45,7 @@ export default function Spontaneous() {
             <NavBar />
             { modalOpen && <CreateSpontaneous close={handleClick}/> }
             <div className="relative h-[90%] w-full bg-custom-backLight dark:bg-custom-backDark flex flex-col">
-              <div className="absolute top-6 left-4 bg-red-800 p-3 w-[95%] flex justify-between items-center rounded-lg">
+              <div className="absolute top-6 left-4 bg-red-900 p-3 w-[95%] flex justify-between items-center rounded-lg">
                 <h3 className="text-white text-2xl font-bold">Spontaneous</h3>
     
                 <div className="flex items-center">
