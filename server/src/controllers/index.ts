@@ -18,10 +18,10 @@ export { postSpontaneousController } from './SpontaneousControllers/postSpontane
 export { updateSpontaneousController } from './SpontaneousControllers/updateSpontaneousController';
 export { disableSpontaneousController } from './SpontaneousControllers/disableSpontaneousController';
 
-// //Links
-// export { getLinksController } from './LinkControllers/getLinksController';
-// export { postLinksController } from './LinkControllers/postLinksController';
-// export { disableLinkController } from './LinkControllers/disableLinkController';
+//Files
+export { getLinksController } from './FileControllers/getLinksController';
+export { postFileController } from './FileControllers/postFileController';
+export { disableLinkController } from './FileControllers/disableLinkController';
 // export { updateLinkController } from './LinkControllers/updateLinkController';
 
 
