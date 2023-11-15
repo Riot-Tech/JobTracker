@@ -24,9 +24,9 @@ export { getApplicationByIdHandler } from './ApplicationHandlers/getApplicationB
 export { updateApplicationHandler } from './ApplicationHandlers/updateApplicationHandler';
 export { disableApplicationHandler } from './ApplicationHandlers/disableApplicationHandler';
 
-//Links
+//Files
 // export { getLinksHandler } from './LinkHandlers/getLinksHandler'
-// export { postLinksHandler } from './LinkHandlers/postLinksHandler';
+export { postFileHandler } from './FileHandlers/postFileHandler';
 // export { disableLinkHandler } from './LinkHandlers/disableLinkHandler';
 // export { updateLinkHandler } from './LinkHandlers/updateLinkHandler';
 

@@ -18,10 +18,10 @@ export { postSpontaneousHelper } from "./SpontaneousHelpers/postSpontaneousHelpe
 export { disableSpontaneousHelper } from "./SpontaneousHelpers/disableSpontaneousHelper";
 export { updateSpontaneousHelper } from "./SpontaneousHelpers/updateSpontaneousHelper";
 
-//Link
-// export { getLinksHelper } from "./LinkHelpers/getLinksHelper";
-// export { postLinksHelper } from "./LinkHelpers/postLinksHelper";
-// export { disableLinkHelper } from "./LinkHelpers/disableLinkHelper";
+//File
+export { getLinksHelper } from "./FileHelpers/getLinksHelper";
+export { postFileHelper } from "./FileHelpers/postFileHelper";
+export { disableLinkHelper } from "./FileHelpers/disableLinkHelper";
 // export { updateLinkHelper } from "./LinkHelpers/updateLinkHelper";
 
 

@@ -1,9 +1,9 @@
-import { PrismaClient, Link } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export const disableLinkHelper = async (id: number) => {
     
-    const res = await prisma.link.update({
+    const res = await prisma.file.update({
         where:{
             id: id
         },
