@@ -41,7 +41,8 @@ export interface Spontaneous{
     company: string,
     date: string,
     enabled: boolean,
-    links: Link[]
+    link: string,
+    /* links: Link[] */
 }
 
 
@@ -50,7 +51,7 @@ export interface ApplicationInfo extends Array<Application> {}
 export interface AppStore {
     user: UserInfo,
     applications: ApplicationInfo,
-    spontaneous: any
+    spontaneous: Spontaneous[]
 }
 
 export interface LoginForm {
@@ -84,5 +85,6 @@ export type Spont = {
     feedback?: string,
     location?: string,
     receiver?: string,
-    links?: Link[]
+    link?: string,
+    /* links?: Link[] */
   };

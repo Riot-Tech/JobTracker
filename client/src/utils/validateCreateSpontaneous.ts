@@ -1,16 +1,15 @@
 import { z } from "zod";
 import { inputSpontaneous } from "../models/interfaces";
 
-const locations = [ 'USA', 'LATAM', 'EUROPE', 'ASIA' ]
-
 export const validateCreateSpontaneous = (input: inputSpontaneous) => {
-  const { company, date, message, feedback, link, location, receiver } = input 
+  const { company, message, feedback, link, location, receiver } = input 
+  
   const schema = z.object({
     company: z
       .string()
       .min(1,"Company name required"),
     message: z.string().min(1,'Message Required').max(500),
-    link: z.string(),
+    link: z.string().min(1,'Link required'),
     /* date: z
       .string()
       .refine((date)=> new Date(date).toString() !== 'Invalid Date',{message: 'Date required'}), */
@@ -30,8 +29,8 @@ export const validateCreateSpontaneous = (input: inputSpontaneous) => {
       receiver
     });
     return {
-        company:'',/* 
-        date:'', */
+        company:'',
+        /* date:'', */
         message:'',
         link:'',
         feedback:'',
@@ -43,8 +42,8 @@ export const validateCreateSpontaneous = (input: inputSpontaneous) => {
       const errors: inputSpontaneous = {
         company:'',
         link:'',
-        message:'',/* 
-        date:'', */
+        message:'',
+        /* date:'', */
         feedback:'',
         location:'',
         receiver:''

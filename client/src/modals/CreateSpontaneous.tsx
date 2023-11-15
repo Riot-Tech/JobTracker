@@ -1,8 +1,9 @@
-import React, { useEffect, useState, ChangeEvent } from 'react'
-import { DateIcon, EditIcon, FeedbackIcon, LinkIcon, LocationIcon, MessageIcon, RecieverIcon, TickIcon } from '../utils/svg'
+import { useState, ChangeEvent } from 'react'
+import { FeedbackIcon, LinkIcon, LocationIcon, MessageIcon, RecieverIcon, TickIcon } from '../utils/svg'
 import { AiOutlineClose } from 'react-icons/ai'
+import { IoAlertCircle } from "react-icons/io5";
 import { validateCreateSpontaneous } from '../utils/validateCreateSpontaneous';
-import { AppStore, inputSpontaneous } from '../models/interfaces';
+import { AppStore } from '../models/interfaces';
 import { hasErrorsSpontaneous } from '../utils/utilities';
 import { URL } from '../utils/url';
 import axios from 'axios';
@@ -51,7 +52,6 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
 
     const handleSubmit = async ()=>{
         try {
-            console.log(input)
             if(!hasErrorsSpontaneous(errors)){
                 let response = await axios.post(`${URL}/spontaneous`, {...input, userId: activeUser.id})
                 
@@ -104,15 +104,16 @@ console.log(hasErrorsSpontaneous(errors)) */
                         <LinkIcon/>
                         <input type='url' onChange={handleChange} name='link' className={`ml-2 p-2 bg-transparent border-b-2 border-black ${errors.link.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='link'/>
                     </div>
-                    <div className='flex my-2'>
+                    <div className='flex my-2 items-center'>
                         <LocationIcon/>
-                        <select name='location' onChange={handleChange} className='ml-2 rounded-lg'>
+                        <select name='location' onChange={handleChange} className='ml-2 rounded-lg p-3'>
                             <option>USA</option>
                             <option>LATAM</option>
                             <option>EUROPE</option>
                             <option>ASIA</option>
                             <option>AFRICA</option>
                         </select>
+                        { errors.location && <IoAlertCircle className='items-center text-3xl text-red-600 ml-1' /> }
                     </div>
                     
                 </div>
