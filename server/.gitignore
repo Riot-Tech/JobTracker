@@ -24,3 +24,7 @@ package-lock.json
 *.njsproj
 *.sln
 *.sw?
+
+
+# Para Google Cloud Storage
+jobtracker-404413-962a6bab78a9.json
