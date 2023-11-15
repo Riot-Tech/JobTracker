@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 
 
 export const getLinksHelper = async () => {
-    const res = await prisma.link.findMany({
+    const res = await prisma.file.findMany({
         where:{
             enabled: true
         }
@@ -14,5 +14,5 @@ export const getLinksHelper = async () => {
         return res;
     };
 
-    throw new Error('Error getting all links')
+    throw new Error('Error getting all files')
 }
