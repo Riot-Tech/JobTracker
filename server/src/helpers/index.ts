@@ -19,9 +19,9 @@ export { disableSpontaneousHelper } from "./SpontaneousHelpers/disableSpontaneou
 export { updateSpontaneousHelper } from "./SpontaneousHelpers/updateSpontaneousHelper";
 
 //File
-export { getLinksHelper } from "./FileHelpers/getLinksHelper";
+export { getFilesHelper } from "./FileHelpers/getFilesHelper";
 export { postFileHelper } from "./FileHelpers/postFileHelper";
-export { disableLinkHelper } from "./FileHelpers/disableLinkHelper";
-// export { updateLinkHelper } from "./LinkHelpers/updateLinkHelper";
+export { disableFileHelper } from "./FileHelpers/disableFileHelper";
+export { updateFileHelper } from "./FileHelpers/updateFileHelper";
 
 
