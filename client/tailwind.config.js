@@ -9,7 +9,9 @@ export default {
           appCardsLight:'#D8D9DA',
           backDark: "#272829",
           backLight: "#FFFF",
-          modalSpontaneousLight: '#ECD7D7'
+          modalLight: '#ECD7D7',
+          modalDark: '#5C5470',
+          spontLight: '#F5F7F8'
         },
       },
     },
