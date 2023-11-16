@@ -9,7 +9,7 @@ const key = process.env.RESEND_KEY
 const prisma = new PrismaClient();
 
 export const signUpHandler = async (req: Request, res: Response) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, linkedIn, gitHub, portfolio } = req.body;
   try {
     // Hashea la contraseña
     let salt = bcrypt.genSaltSync(10);
@@ -22,6 +22,9 @@ export const signUpHandler = async (req: Request, res: Response) => {
           name: name,
           email: email,
           password: hash,
+          linkedIn: linkedIn,
+          gitHub: gitHub,
+          portfolio: portfolio
         },
       });
       

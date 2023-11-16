@@ -85,7 +85,7 @@ function EditSpontaneous({ close,  props }: { close: CloseFunction, props: Spont
                 <div className='flex items-center'>
                     <input type='text' onChange={handleChange} value={input.company} name='company' className={`mr-1 p-1 bg-transparent border-b-2 border-black ${errors.company.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='Company Name'/>
                 </div>
-                <button onClick={handleSubmit} className={`flex items-center ${confirmed ? 'bg-green-400 ring ring-green-400' : 'bg-red-400'}`}>
+                <button onClick={handleSubmit} className={`flex items-center ${confirmed ? 'bg-green-400 ring ring-green-400' : 'bg-red-500'}`}>
                     <TickIcon/>
                     <h2 className='ml-1 text-white'>Confirm</h2>
                 </button>
