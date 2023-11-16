@@ -45,17 +45,19 @@ export interface Spontaneous{
     /* links: Link[] */
 }
 
-
-export interface ApplicationInfo extends Array<Application> {}
-
 export interface SpontaneousState{
     EmptySpontaneous: Spontaneous[],
     EmptyCopySpontaneous: Spontaneous[]
 }
 
+export interface ApplicationsState{
+    EmptyApplications: Application[],
+    EmptyCopyApplications: Application[]
+}
+
 export interface AppStore {
     user: UserInfo,
-    applications: ApplicationInfo,
+    applications: ApplicationsState,
     spontaneous: SpontaneousState
 }
 
@@ -68,6 +70,9 @@ export interface input {
     name?: string,
     email: string,
     password: string,
+    linkedIn: string,
+    gitHub: string,
+    portfolio: string
   }
   
 export type inputSpontaneous = {

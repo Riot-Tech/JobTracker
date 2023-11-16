@@ -36,7 +36,7 @@ export default function Applications() {
     };
     fetchData();
   }, []);
-  console.log(applications)
+  
   return (
     <div className="flex">
       <SideBar />
@@ -72,7 +72,7 @@ export default function Applications() {
           </div>
 
           <div className="absolute top-40 left-4 flex flex-col max-h-[80%] overflow-y-scroll w-[95%] px-20 pb-5">
-            {!applications.length ? <h1 className="text-white text-lg">Try adding some applications</h1> : (applications.map((app) => {
+            {!applications.EmptyApplications.length ? <h1 className="text-white text-lg">Try adding some applications</h1> : (applications.EmptyApplications.map((app) => {
               if (app.enabled) return (
                 <div className="bg-custom-appCardsLight p-5 rounded-xl mt-4 mb-4 shadow-lg dark:bg-custom-appCardsDark w-full flex">
                   <div className="flex flex-col flex-grow">
