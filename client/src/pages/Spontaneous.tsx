@@ -14,6 +14,7 @@ export default function Spontaneous() {
     const [ modalOpen, setModalOpen]= useState<boolean>(false)
     const activeUser = useSelector((store: AppStore) => store.user);
     const spontaneous = useSelector((store: AppStore) => store.spontaneous);
+
     const dispatch = useDispatch()
     
     const handleClick = () => {
@@ -61,11 +62,11 @@ export default function Spontaneous() {
                   </button>
                 </div>
               </div>
-              <div className="absolute top-40 left-4 flex flex-col max-h-[80%] overflow-y-scroll w-[95%] px-20 pb-5">
-                { spontaneous.map((spont: Spontaneous)=>{
+              <div className="absolute top-40 left-4 flex flex-col max-h-[80%] overflow-y-scroll w-[95%] p-20 pt-0">
+                { spontaneous.EmptyCopySpontaneous.map((spont)=>{
                   if(spont.enabled){
                     return(
-                      <Spont props={spont}/>
+                      <Spont key={spont.id} props={spont}/>
                     )
                   }
                 })}

@@ -13,8 +13,8 @@ import ErrorModalSignUp from "../modals/ErrorModalSignUp";
 
 function SignUp({ close }: { close: (value: boolean) => void }) {
   
-  const [input, setInput] = useState<input>({name:"", email: "", password: ""})
-  const [errors, setErrors] = useState<input>({name:"", email:'', password:''})
+  const [input, setInput] = useState<input>({name:"", email: "", password: "", linkedIn:"", gitHub:"", portfolio:""})
+  const [errors, setErrors] = useState<input>({name:"", email: "", password: "", linkedIn:"", gitHub:"", portfolio:""})
 
   const [errorModal, setErrorModal] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
@@ -57,8 +57,8 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
         const response = await axios.post(`${URL}/signUp`, input)
         if(response.status === 200){
           setModalIsOpen(true)
-          setInput({name:"", email: "", password: ""})
-          setErrors({name:"", email: "", password: ""})
+          setInput({name:"", email: "", password: "", linkedIn:"", gitHub:"", portfolio:""})
+          setErrors({name:"", email: "", password: "", linkedIn:"", gitHub:"", portfolio:""})
         } 
       }
     } catch (error: any) {
@@ -78,7 +78,7 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
     <>
       {errorModal && <ErrorModalSignUp close={ closeModal } error={ errorMessage } />}
       {modalIsOpen && <SignUpSuccess />}
-    <div className="absolute top-[-500px] w-[300px] h-[600px] z-10 bg-slate-200 p-4 rounded-lg text-black shadow-lg backdrop-blur-lg">
+    <div className="absolute top-[-500px] w-[400px] h-[600px] z-10 bg-slate-200 p-4 rounded-lg text-black shadow-lg backdrop-blur-lg">
       <div className='flex justify-between mb-2'>
         <h1 className='font-semibold'>SIGN UP</h1>
         <AiOutlineClose className='flex justify-items-start text-2xl hover: cursor-pointer' onClick={()=> close(false)} />
@@ -87,36 +87,74 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
       <form onSubmit={handleSubmit} className='mt-4'>
       <GoogleButton/>
       <h1>----- o -----</h1>
-        <div className="flex flex-col my-4">
-          <input
-            className={`shadow-xl p-2 rounded-lg ${errors.name? 'bg-red-300':''}`}
-            name="name"
-            onChange={handleChange}
-            placeholder="Full Name"
-          />
-          <p className="text-red-500 h-1 my-2">{errors.name}</p>
-        </div>
-        <div className="flex flex-col my-4">
-          <input
-            className={`shadow-xl p-2 rounded-lg ${errors.email? 'bg-red-300':''}`}
-            name="email"
-            onChange={handleChange}
-            type="email"
-            placeholder="Email adress"
-          />
-          <p className="text-red-500 h-1 my-2">{errors.email}</p>
-        </div>
+      <div className="flex w-full gap-2 p-2">
+        <div className="w-1/2">
+          <div className="flex flex-col my-4">
+            <input
+              className={`shadow-xl p-2 rounded-lg ${errors.name? 'bg-red-300':''}`}
+              name="name"
+              onChange={handleChange}
+              placeholder="Full Name"
+            />
+            <p className="text-red-500 h-1 my-2">{errors.name}</p>
+          </div>
+          <div className="flex flex-col my-4">
+            <input
+              className={`shadow-xl p-2 rounded-lg ${errors.email? 'bg-red-300':''}`}
+              name="email"
+              onChange={handleChange}
+              type="email"
+              placeholder="Email adress"
+            />
+            <p className="text-red-500 h-1 my-2">{errors.email}</p>
+          </div>
 
-        <div className="flex flex-col my-4">
-          <input
-            className={`shadow-xl p-2 rounded-lg ${errors.password? 'bg-red-300':''}`}
-            type="password"
-            name="password"
-            onChange={handleChange}
-            placeholder="Password"
-          />
-          <p className="text-red-500 h-1 my-2">{errors.password}</p>
-        </div>
+          <div className="flex flex-col my-4">
+            <input
+              className={`shadow-xl p-2 rounded-lg ${errors.password? 'bg-red-300':''}`}
+              type="password"
+              name="password"
+              onChange={handleChange}
+              placeholder="Password"
+            />
+            <p className="text-red-500 h-1 my-2">{errors.password}</p>
+          </div>
+          </div>
+      
+          <div className="w-1/2">
+              <div className="flex flex-col my-4">
+                <input
+                  className={`shadow-xl p-2 rounded-lg ${errors.linkedIn? 'bg-red-300':''}`}
+                  type="password"
+                  name="password"
+                  onChange={handleChange}
+                  placeholder="LinkedIn"
+                />
+                <p className="text-red-500 h-1 my-2">{errors.linkedIn}</p>
+              </div>
+              <div className="flex flex-col my-4">
+                <input
+                  className={`shadow-xl p-2 rounded-lg ${errors.gitHub? 'bg-red-300':''}`}
+                  type="text"
+                  name="gitHub"
+                  onChange={handleChange}
+                  placeholder="Git Hub"
+                />
+                <p className="text-red-500 h-1 my-2">{errors.gitHub}</p>
+              </div>
+              <div className="flex flex-col my-4">
+                <input
+                  className={`shadow-xl p-2 rounded-lg ${errors.portfolio? 'bg-red-300':''}`}
+                  type="password"
+                  name="password"
+                  onChange={handleChange}
+                  placeholder="Portfolio"
+                />
+                <p className="text-red-500 h-1 my-2">{errors.portfolio}</p>
+              </div>
+          </div>
+      </div>
+
         
         <div className='flex justify-center mt-4'>
           <button disabled={hasErrors(errors)} type='submit' className={`items-center bg-red-700 rounded-lg text-white ${ hasErrors(errors) ? 'cursor-not-allowed' :''}`}>Create Account</button>

@@ -11,6 +11,7 @@ function Logout() {
   const logOut = () => {
     dispatch(resetUser());
     navigate(`/${PublicRoutes.LOGIN}`, { replace: true });
+    // limpiar todos las applications, spontaneous, files etc
   };
   return (
     <div>

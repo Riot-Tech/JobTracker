@@ -77,7 +77,7 @@ function Spont({props}:{props: Spont}) {
           " {message} "
         </p>
       </div>
-      {viewMore && (
+      {(viewMore && feedback != '') && (
         <div className='p-2'>
           <h2 className='mx-5 mb-2 border-b-2 border-gray-500 w-20'>Feedback</h2>
           <p className='px-5 text-black'>" {feedback} "</p>
