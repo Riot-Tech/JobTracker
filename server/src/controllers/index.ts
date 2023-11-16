@@ -19,10 +19,10 @@ export { updateSpontaneousController } from './SpontaneousControllers/updateSpon
 export { disableSpontaneousController } from './SpontaneousControllers/disableSpontaneousController';
 
 //Files
-export { getLinksController } from './FileControllers/getLinksController';
+export { getFilesController } from './FileControllers/getFilesController';
 export { postFileController } from './FileControllers/postFileController';
-export { disableLinkController } from './FileControllers/disableLinkController';
-// export { updateLinkController } from './LinkControllers/updateLinkController';
+export { disableFileController } from './FileControllers/disableFileController';
+export { updateFileController } from './FileControllers/updateFileController';
 
 
 
