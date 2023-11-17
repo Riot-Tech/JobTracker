@@ -72,13 +72,20 @@ export interface LoginForm {
 }
 
 export interface input {
-    name?: string,
+    name: string,
     email: string,
     password: string,
     linkedIn: string,
     gitHub: string,
-    portfolio: string
+    portfolio: string,
+    [key: string]: string,
   }
+
+export interface inputLogin {
+    email: string,
+    password: string,
+    [key: string]: string;
+}
   
 export type inputSpontaneous = {
     company: string,/* 

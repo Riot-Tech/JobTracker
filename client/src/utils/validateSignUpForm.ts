@@ -8,8 +8,18 @@ export const validateSignUpForm = (input: input) =>{
         name: z.string().min(3,"At least three letters").max(50, '50 characters max'),
         email: z.string().email("Invalid email").min(1, "Email required"),
         password: z.string().min(3, "At least three characters"),
-        linkedIn: z.string().max(100),
-        gitHub: z.string().max(100),
+        linkedIn: z.string().max(100).refine((value) => {
+          // Asegurarse de que el enlace comienza con 'http'
+          return value.startsWith('http');
+        }, {
+          message: 'Invalid Link',
+        }),
+        gitHub: z.string().max(100).refine((value) => {
+          // Asegurarse de que el enlace comienza con 'http'
+          return value.startsWith('http');
+        }, {
+          message: 'Invalid Link',
+        }),
         portfolio: z.string().max(100).refine((value) => {
           // Asegurarse de que el enlace comienza con 'http'
           return value.startsWith('http');
@@ -26,10 +36,10 @@ export const validateSignUpForm = (input: input) =>{
           gitHub,
           portfolio
         });
-        return {}; // No hay errores
+        return {name:"", email: "", password: "", linkedIn:"", gitHub:"", portfolio:""}; // No hay errores
       } catch (error: unknown) {
         if (typeof error === "object") {
-          const errors = {} as Record<string, string>;
+          const errors: input = {name:"", email: "", password: "", linkedIn:"", gitHub:"", portfolio:""}
     
           const zodError = error as z.ZodError;
           zodError.issues.forEach((issue) => {
@@ -41,6 +51,6 @@ export const validateSignUpForm = (input: input) =>{
           return errors;
         }
     
-        return {} 
+        return {name:"", email: "", password: "", linkedIn:"", gitHub:"", portfolio:""} 
       }
 }

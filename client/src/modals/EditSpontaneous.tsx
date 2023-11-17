@@ -80,7 +80,7 @@ function EditSpontaneous({ close,  props }: { close: CloseFunction, props: Spont
   return (
     <div className="fixed inset-0 z-20 flex backdrop-brightness-90 flex-col items-center justify-center backdrop-blur-sm">
         <AiOutlineClose onClick={close} className='text-4xl text-white bg-black rounded-2xl p-1 mb-4 hover: cursor-pointer hover:bg-gray-600 dark:bg-white dark:text-black dark:hover:bg-gray-400'/>
-        <div className='h-[80vh] w-[80vw] bg-custom-modalDark rounded-xl text-black flex flex-col p-10 dark:text-white'>
+        <div className='h-[80vh] w-[80vw] bg-custom-modalLight dark:bg-custom-modalDark rounded-xl text-black flex flex-col p-10 dark:text-white'>
             <div className='h-[10%] flex justify-between'>
                 <div className='flex items-center'>
                     <input type='text' onChange={handleChange} value={input.company} name='company' className={`mr-1 p-1 bg-transparent border-b-2 border-black ${errors.company.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='Company Name'/>
