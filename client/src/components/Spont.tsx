@@ -38,7 +38,7 @@ function Spont({props}:{props: Spont}) {
     }
 
   return (
-    <div className="flex flex-col my-4 p-5 rounded-xl h-100 w-full shadow-lg" >
+    <div className="flex flex-col my-4 p-5 rounded-xl h-100 w-full shadow-lg hover:shadow-2xl border-2 bg-custom-spontLight dark:bg-gray-400 dark:border-gray-400" >
     <div className="relative flex justify-between my-2">
       <h1 className="text-black text-xl">{company}</h1>
       <div className='relative flex justify-between'>
@@ -50,11 +50,11 @@ function Spont({props}:{props: Spont}) {
           <h2 onClick={()=>{setViewMore(!viewMore)}}className="text-black hover:cursor-pointer hover: text-underline">{viewMore? 'View less' : 'View more'}</h2>
         </div>
         <div>
-          <BsTrash onClick={handleDelete} className='absolute bg-red-400 p-1 rounded-[50%] text-4xl left-28 bottom-4 hover:cursor-pointer ' />
+          <BsTrash onClick={handleDelete} className='absolute p-1 rounded-[50%] text-4xl left-28 bottom-9 hover:cursor-pointer text-red-700'/>
         </div>
       </div>  
     </div>
-    <div className="bg-red-100 dark:bg-custom-appCardsDark p-2 rounded-lg max-h-auto">
+    <div className="bg-gray-200 p-2 rounded-lg max-h-auto dark:bg-gray-500">
       { viewMore && 
       <div className='flex justify-between px-2 border-b-2 border-gray-500'>
         <div className='flex items-center justify-evenly'>

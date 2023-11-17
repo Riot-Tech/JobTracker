@@ -125,8 +125,8 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
               <div className="flex flex-col my-4">
                 <input
                   className={`shadow-xl p-2 rounded-lg ${errors.linkedIn? 'bg-red-300':''}`}
-                  type="password"
-                  name="password"
+                  type="text"
+                  name="linkedIn"
                   onChange={handleChange}
                   placeholder="LinkedIn"
                 />
@@ -145,8 +145,8 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
               <div className="flex flex-col my-4">
                 <input
                   className={`shadow-xl p-2 rounded-lg ${errors.portfolio? 'bg-red-300':''}`}
-                  type="password"
-                  name="password"
+                  type="text"
+                  name="portfolio"
                   onChange={handleChange}
                   placeholder="Portfolio"
                 />
