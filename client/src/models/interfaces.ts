@@ -63,6 +63,7 @@ export interface AppStore {
     user: UserInfo,
     applications: ApplicationsState,
     spontaneous: SpontaneousState
+    sideBarOpen: boolean
 }
 
 export interface LoginForm {
