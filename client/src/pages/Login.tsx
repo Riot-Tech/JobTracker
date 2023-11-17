@@ -6,7 +6,6 @@ import { createUser } from "../redux/slices/auth.slice";
 import { useNavigate } from "react-router-dom";
 import { PrivateRoutes } from "../models/routes";
 import { validateLoginForm } from "../utils/validateLoginForm";
-import { input } from "../models/interfaces";
 import SignUp from "../components/SignUp";
 import { URL } from "../utils/url";
 import GoogleButton from "../components/GoogleButton";
@@ -21,8 +20,8 @@ export default function Login() {
   const [errorModal, setErrorModal] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   
-  const [input, setInput] = useState<input>({email: "", password: ""});
-  const [errors, setErrors] = useState<input>({email:'', password:''})
+  const [input, setInput] = useState({email: "", password: ""});
+  const [errors, setErrors] = useState({email:'', password:''})
   
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInput({
@@ -59,6 +58,7 @@ export default function Login() {
     setErrorModal(value)
     setErrorMessage('')
   }
+  
 
   return (
     <div className={`flex min-w-full w-auto h-[100vh] z-0`}>

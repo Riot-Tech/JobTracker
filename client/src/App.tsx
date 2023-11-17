@@ -1,6 +1,5 @@
 import "./App.css";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { RootRouter } from "./pages/RootRouter";
 import { PrivateRoutes, PublicRoutes } from "./models/routes";
 import Profile from "./pages/Profile";
 import Spontaneous from "./pages/Spontaneous";
@@ -27,7 +26,6 @@ function App() {
           </Route>
 
         </Routes>
-        {/* <RouterProvider router={RootRouter} /> */}
       </BrowserRouter>
   );
 }

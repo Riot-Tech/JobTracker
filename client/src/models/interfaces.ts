@@ -2,7 +2,11 @@ export interface UserInfo{
     id: number,
     email: string,
     name: string,
-    token: string
+    token: string,
+    linkedIn: string,
+    portfolio: string,
+    gitHub: string,
+    profilePicture: string
 }
 
 export interface Application{
@@ -57,6 +61,7 @@ export interface AppStore {
     user: UserInfo,
     applications: ApplicationsState,
     spontaneous: SpontaneousState
+    sideBarOpen: boolean
 }
 
 export interface LoginForm {
@@ -65,13 +70,20 @@ export interface LoginForm {
 }
 
 export interface input {
-    name?: string,
+    name: string,
     email: string,
     password: string,
     linkedIn: string,
     gitHub: string,
-    portfolio: string
+    portfolio: string,
+    [key: string]: string,
   }
+
+export interface inputLogin {
+    email: string,
+    password: string,
+    [key: string]: string;
+}
   
 export type inputSpontaneous = {
     company: string,/* 

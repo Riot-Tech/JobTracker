@@ -45,7 +45,7 @@ export default function Spontaneous() {
           <div className="w-full h-[100vh]">
             <NavBar />
             { modalOpen && <CreateSpontaneous close={handleClick}/> }
-            <div className="relative h-[90%] w-full bg-custom-backLight dark:bg-custom-backDark flex flex-col">
+            <div className="relative flex flex-col h-[90%] w-full bg-custom-backLight dark:bg-custom-backDark">
               <div className="absolute top-6 left-4 bg-red-900 p-3 w-[95%] flex justify-between items-center rounded-lg">
                 <h3 className="text-white text-2xl font-bold">Spontaneous</h3>
     
@@ -55,14 +55,14 @@ export default function Spontaneous() {
                   </div>
     
                   <button 
-                  className="bg-white text-black dark:bg-black dark:text-white pl-14"
+                  className="bg-white text-black pl-14"
                   onClick={handleClick}
                   >
                     Create new
                   </button>
                 </div>
               </div>
-              <div className="absolute top-40 left-4 flex flex-col max-h-[80%] overflow-y-scroll w-[95%] p-20 pt-0">
+              <div className="absolute top-36 left-4 flex flex-col max-h-[70%] overflow-y-scroll w-[95%] p-20 pt-0 py-0">
                 { spontaneous.EmptyCopySpontaneous.map((spont)=>{
                   if(spont.enabled){
                     return(

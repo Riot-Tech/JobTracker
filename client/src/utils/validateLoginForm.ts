@@ -1,36 +1,35 @@
-import { input } from "../models/interfaces";
+import { inputLogin } from "../models/interfaces";
 import { z } from 'zod'
 
-const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])(?!.*\s).{8,}$/;
-
-export const validateLoginForm = (input: input) =>{
-    const { email, password } = input as {email: string, password: string}
+export const validateLoginForm = (input: inputLogin) =>{
+    const { email, password } = input
 
     const schema = z.object({
-        email: z.string().email("El mail no es un correo válido").min(1, "El mail es requerido"),
-        password: z.string()
-          .min(3, "La contraseña debe tener al menos 3 caracteres")
+        email: z.string().email("Invalid mail").min(1, "Mail required"),
+        password: z.string().min(3, "At least three characters")
       });
+
       try {
         schema.parse({
           email,
           password,
         });
-        return {}; // No hay errores
+        return {email: "", password: ""} ; // No hay errores
       } catch (error: unknown) {
         if (typeof error === "object") {
-          const errors = {} as Record<string, string>;
+          const errors: inputLogin = {email: "", password: ""}
     
           const zodError = error as z.ZodError;
+
           zodError.issues.forEach((issue) => {
             if (issue.path) {
-              errors[issue.path.join(".")] = issue.message;
+              errors[issue.path[0]] = issue.message;
             }
           });
     
           return errors;
         }
     
-        return {} 
+        return {email: "", password: ""} 
       }
 }

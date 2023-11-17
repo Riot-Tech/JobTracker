@@ -73,14 +73,10 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
         }
     }
 
-/* console.log(input)
-console.log('errors', errors)
-console.log(hasErrorsSpontaneous(errors)) */
-
   return (
     <div className="fixed inset-0 z-20 flex backdrop-brightness-90 flex-col items-center justify-center backdrop-blur-sm">
-        <AiOutlineClose onClick={close} className='text-4xl text-white bg-black rounded-2xl p-1 mb-4 hover: cursor-pointer hover:bg-gray-600'/>
-        <div className='h-[80vh] w-[80vw] bg-custom-modalSpontaneousLight rounded-xl text-black flex flex-col p-10 dark:text-white'>
+        <AiOutlineClose onClick={close} className='text-4xl text-white bg-black rounded-2xl p-1 mb-4 hover: cursor-pointer hover:bg-gray-600 dark:bg-white dark:text-black dark:hover:bg-gray-400'/>
+        <div className='h-[80vh] w-[80vw] bg-custom-modalLight rounded-xl text-black flex flex-col p-10 dark:text-white dark:bg-custom-modalDark'>
             <div className='h-[10%] flex justify-between'>
                 <div className='flex items-center'>
                     <input type='text' onChange={handleChange} name='company' className={`mr-1 p-1 bg-transparent border-b-2 border-black ${errors.company.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='Company Name'/>
@@ -92,10 +88,6 @@ console.log(hasErrorsSpontaneous(errors)) */
             </div>
             <div className='h-[60%] flex py-4'>
                 <div className='w-[50%] flex flex-col items-start'>
-                    {/* <div className='flex items-center my-2'>
-                        <DateIcon/>
-                        <input onChange={handleChange} name='date' className='ml-2 text-black p-2 rounded-xl' type='date'/>
-                    </div> */}
                     <div className='flex items-center my-2'>
                         <RecieverIcon/>
                         <input onChange={handleChange} name='receiver' className={`ml-2 p-2 bg-transparent border-b-2 border-black ${errors.receiver.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='receiver'/>
@@ -104,7 +96,7 @@ console.log(hasErrorsSpontaneous(errors)) */
                         <LinkIcon/>
                         <input type='url' onChange={handleChange} name='link' className={`ml-2 p-2 bg-transparent border-b-2 border-black ${errors.link.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='link'/>
                     </div>
-                    <div className='flex my-2 items-center'>
+                    <div className='flex my-2 items-center text-black'>
                         <LocationIcon/>
                         <select name='location' onChange={handleChange} className='ml-2 rounded-lg p-3'>
                             <option>USA</option>
@@ -117,7 +109,7 @@ console.log(hasErrorsSpontaneous(errors)) */
                     </div>
                     
                 </div>
-                <div className='w-[50%] flex flex-col'>
+                <div className='w-[50%] flex flex-col dark:text-white'>
                     <div className='flex justify-between m-1'>
                         <div className='flex items-center'>
                             <FeedbackIcon/>
@@ -127,7 +119,7 @@ console.log(hasErrorsSpontaneous(errors)) */
                     <textarea onChange={handleChange} name='feedback' className={`w-full h-[80%] p-2 ${errors.feedback.length && 'bg-red-300 border-2 border-red-700 rounded-md'}`}/>
                 </div>
             </div>
-            <div className='h-[30%] mt-5'>
+            <div className='h-[30%] mt-5 dark:text-white'>
                 <div className='flex justify-between m-2 items-center'>
                     <div className='flex'>
                         <MessageIcon/>
