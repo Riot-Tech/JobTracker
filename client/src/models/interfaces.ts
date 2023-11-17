@@ -2,7 +2,11 @@ export interface UserInfo{
     id: number,
     email: string,
     name: string,
-    token: string
+    token: string,
+    linkedIn: string,
+    portfolio: string,
+    gitHub: string,
+    profilePicture: string
 }
 
 export interface Application{

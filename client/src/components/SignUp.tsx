@@ -71,6 +71,10 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
     setErrorModal(value)
     setErrorMessage('')
   }
+
+  console.log(errors)
+  console.log(hasErrors(errors))
+
   
   /* absolute top-[48%] left-[60%] transform -translate-x-1/2 -translate-y-1/2 */
   /* fixed inset-0 flex items-center justify-center z-50 backdrop-blur-lg */
@@ -125,8 +129,8 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
               <div className="flex flex-col my-4">
                 <input
                   className={`shadow-xl p-2 rounded-lg ${errors.linkedIn? 'bg-red-300':''}`}
-                  type="password"
-                  name="password"
+                  type="text"
+                  name="linkedIn"
                   onChange={handleChange}
                   placeholder="LinkedIn"
                 />
@@ -145,8 +149,8 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
               <div className="flex flex-col my-4">
                 <input
                   className={`shadow-xl p-2 rounded-lg ${errors.portfolio? 'bg-red-300':''}`}
-                  type="password"
-                  name="password"
+                  type="text"
+                  name="portfolio"
                   onChange={handleChange}
                   placeholder="Portfolio"
                 />
