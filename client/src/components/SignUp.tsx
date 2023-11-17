@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect } from 'react'
 import { useState, ChangeEvent } from "react";
 import { AiOutlineClose } from 'react-icons/ai';
-import { input } from "../models/interfaces";
 import axios from "axios";
 import { validateSignUpForm } from "../utils/validateSignUpForm";
 import { URL } from "../utils/url";
@@ -13,8 +12,8 @@ import ErrorModalSignUp from "../modals/ErrorModalSignUp";
 
 function SignUp({ close }: { close: (value: boolean) => void }) {
   
-  const [input, setInput] = useState<input>({name:"", email: "", password: "", linkedIn:"", gitHub:"", portfolio:""})
-  const [errors, setErrors] = useState<input>({name:"", email: "", password: "", linkedIn:"", gitHub:"", portfolio:""})
+  const [input, setInput] = useState({name:"", email: "", password: "", linkedIn:"", gitHub:"", portfolio:""})
+  const [errors, setErrors] = useState({name:"", email: "", password: "", linkedIn:"", gitHub:"", portfolio:""})
 
   const [errorModal, setErrorModal] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
@@ -38,15 +37,13 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
       [event.target.name]: event.target.value,
     });
     
-    const newErrors = validateSignUpForm({
+    setErrors(validateSignUpForm(
+      {
       ...input,
       [event.target.name]: event.target.value,
-    });
-    
-    setErrors({
-      ...errors,
-      [event.target.name]: newErrors[event.target.name],
-    });
+      }
+    ));
+
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>)=>{
@@ -72,12 +69,6 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
     setErrorMessage('')
   }
 
-  console.log(errors)
-  console.log(hasErrors(errors))
-
-  
-  /* absolute top-[48%] left-[60%] transform -translate-x-1/2 -translate-y-1/2 */
-  /* fixed inset-0 flex items-center justify-center z-50 backdrop-blur-lg */
   return (
     <>
       {errorModal && <ErrorModalSignUp close={ closeModal } error={ errorMessage } />}

@@ -1,23 +1,17 @@
 import NavBar from "../components/NavBar";
 import SideBar from "../components/SideBar";
-
-import React, { useEffect, useState, ChangeEvent } from 'react'
 import { EditIcon } from '../utils/svg'
-import { URL } from '../utils/url';
-import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { AppStore } from "../models/interfaces";
 import hexagon from "../assets/hexagon.png";
+import { Link } from "react-router-dom";
 
 
 export default function Profile() {
-
     const user = useSelector((store: AppStore) => store.user)
     const applications = useSelector((store: AppStore) => store.applications)
     const spontaneous = useSelector((store: AppStore) => store.spontaneous)
-    console.log(user)
     
-
     return (
         <div className="flex">
             <SideBar />
@@ -46,13 +40,13 @@ export default function Profile() {
                                     </svg>
                                 </a>
                                 {/* github */}
-                                <a href={user.gitHub} target="_blank">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="51" height="51" viewBox="0 0 51 51" fill="none">
-                                        <path d="M25.2094 48.4189C38.0275 48.4189 48.4189 38.0275 48.4189 25.2094C48.4189 12.3912 38.0275 2 25.2094 2C12.3912 2 2 12.3912 2 25.2094C2 38.0275 12.3912 48.4189 25.2094 48.4189Z" stroke="#4C4C4C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M30.6248 41.4561V37.1322C30.6829 36.4138 30.5833 35.6916 30.3324 35.0136C30.0817 34.3357 29.6855 33.7174 29.1705 33.2C34.029 32.6727 39.135 30.8798 39.135 22.6539C39.1346 20.5503 38.3037 18.5275 36.8141 17.004C37.5194 15.1638 37.4695 13.1296 36.6748 11.3242C36.6748 11.3242 34.8489 10.7969 30.6248 13.554C27.0784 12.6181 23.3403 12.6181 19.7938 13.554C15.5697 10.7969 13.7439 11.3242 13.7439 11.3242C12.9492 13.1296 12.8993 15.1638 13.6046 17.004C12.104 18.5388 11.2721 20.5799 11.2837 22.6989C11.2837 30.8647 16.3898 32.6576 21.2482 33.245C20.7392 33.7573 20.3466 34.3681 20.096 35.038C19.8454 35.7076 19.7425 36.421 19.7938 37.1322V41.4561" stroke="#4C4C4C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M19.794 38.443C15.1521 39.9092 11.2838 38.443 8.96289 33.9232" stroke="#4C4C4C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </a>
+                                <Link to={user.gitHub}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="51" height="51" viewBox="0 0 51 51" fill="none">
+                                            <path d="M25.2094 48.4189C38.0275 48.4189 48.4189 38.0275 48.4189 25.2094C48.4189 12.3912 38.0275 2 25.2094 2C12.3912 2 2 12.3912 2 25.2094C2 38.0275 12.3912 48.4189 25.2094 48.4189Z" stroke="#4C4C4C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M30.6248 41.4561V37.1322C30.6829 36.4138 30.5833 35.6916 30.3324 35.0136C30.0817 34.3357 29.6855 33.7174 29.1705 33.2C34.029 32.6727 39.135 30.8798 39.135 22.6539C39.1346 20.5503 38.3037 18.5275 36.8141 17.004C37.5194 15.1638 37.4695 13.1296 36.6748 11.3242C36.6748 11.3242 34.8489 10.7969 30.6248 13.554C27.0784 12.6181 23.3403 12.6181 19.7938 13.554C15.5697 10.7969 13.7439 11.3242 13.7439 11.3242C12.9492 13.1296 12.8993 15.1638 13.6046 17.004C12.104 18.5388 11.2721 20.5799 11.2837 22.6989C11.2837 30.8647 16.3898 32.6576 21.2482 33.245C20.7392 33.7573 20.3466 34.3681 20.096 35.038C19.8454 35.7076 19.7425 36.421 19.7938 37.1322V41.4561" stroke="#4C4C4C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M19.794 38.443C15.1521 39.9092 11.2838 38.443 8.96289 33.9232" stroke="#4C4C4C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                </Link>
                                 {/* instagram */}
                                 <a href={user.portfolio} target="_blank">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="51" height="51" viewBox="0 0 51 51" fill="none">
