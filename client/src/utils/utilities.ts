@@ -1,4 +1,4 @@
-import { input, inputLogin, inputSpontaneous } from "../models/interfaces"
+import { input, inputLogin, inputSpontaneous, fileErrors } from "../models/interfaces"
 
 export const hasErrors = (errors: input | inputLogin)=>{
    // return Object.values(errors).some((value)=> typeof(value)==='string')
@@ -6,6 +6,10 @@ export const hasErrors = (errors: input | inputLogin)=>{
 }
 
 export const hasErrorsSpontaneous = (errors: inputSpontaneous) =>{
+   return Object.values(errors).some((value)=> value.length>0)
+}
+
+export const hasErrorsFile = (errors: fileErrors) =>{
    return Object.values(errors).some((value)=> value.length>0)
 }
 
