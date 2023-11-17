@@ -2,9 +2,10 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 
-export const getFilesHelper = async () => {
+export const getFilesHelper = async (id: number) => {
     const res = await prisma.file.findMany({
         where:{
+            userId: id,
             enabled: true
         }
     })
@@ -14,5 +15,5 @@ export const getFilesHelper = async () => {
         return res;
     };
 
-    throw new Error('Error getting all files')
+    throw new Error('Files not found')
 }
