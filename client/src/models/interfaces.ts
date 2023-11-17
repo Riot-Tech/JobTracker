@@ -22,15 +22,13 @@ export interface Application{
     enabled: boolean,
 }
 
-export interface Link{
-    id?: number,
-    userId?: number,
-    appId?: number,
-    spontId?: number,
-    name?: string,
-    url?: string,
-    enabled?: boolean,
-    isCv?: boolean
+export interface File{
+    id: number,
+    userId: number,
+    name: string,
+    url: string,
+    enabled: boolean,
+    isCv: boolean
 }
 
 export interface Spontaneous{
@@ -84,7 +82,17 @@ export type inputSpontaneous = {
     receiver: string,
     link: string,
     [key: string]: string,
-  };
+};
+
+export type inputFile = {
+    name: string,
+    isCv: boolean,
+}
+
+export type fileErrors = {
+    name: string,
+    file: string,
+}
 
 export type Spont = {
     id?: number,
