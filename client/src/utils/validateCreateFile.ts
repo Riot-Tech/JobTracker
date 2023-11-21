@@ -16,12 +16,12 @@ export function validateFile (file: File | null, errors: fileErrors) {
 export function validateFileInput (input: inputFile, errors: fileErrors) {
     errors = {
         ...errors,
-        name: '',
+        // name: '',
     }
     if (!input.name) {
-        errors.name = 'Required field';
+        // errors.name = 'Required field';
     } else if (input.name.length > 35) {
-        errors.name = 'File name is too long';
+        // errors.name = 'File name is too long';
     };
 
     return errors;
