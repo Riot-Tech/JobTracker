@@ -37,9 +37,6 @@ function CreateFile({ close }: { close: CloseFunction }) {
         let newInput = {...input};
         const name = event.target.name;
 
-        console.log(errors);
-        console.log(input);
-
         if (name === 'isCv') {
             newInput[name] = event.target.checked;
         } else {
