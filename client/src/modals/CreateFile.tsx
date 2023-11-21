@@ -1,7 +1,6 @@
 import { useState, ChangeEvent } from 'react';
 import { TickIcon } from '../utils/svg'
 import { AiOutlineClose } from 'react-icons/ai'
-// import { IoAlertCircle } from "react-icons/io5";
 import { AppStore } from '../models/interfaces';
 import { URL } from '../utils/url';
 import axios from 'axios';
@@ -28,10 +27,12 @@ function CreateFile({ close }: { close: CloseFunction }) {
     });
 
     const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const newfile = e.target.files? e.target.files[0] : null;
-        setFile(newfile);
-        setErrors(validateFile(newfile, errors));
-    }
+        const newFile = e.target.files? e.target.files[0] : null;
+        setFile(newFile);
+        let newErrors = validateFile(newFile, errors);
+        newErrors = validateFileInput(input, newErrors);
+        setErrors(newErrors);
+    };
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         let newInput = {...input};
