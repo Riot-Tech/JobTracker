@@ -84,20 +84,25 @@ function CreateFile({ close }: { close: CloseFunction }) {
 
 
     return (
-        <div>
-            <AiOutlineClose onClick={close} />
-            <input type='text' name='name' value={input.name} onChange={handleChange}/>
-            {errors.name && <p>{errors.name}</p>}
-            <input type="file" onChange={handleFileChange}/>
-            {errors.file && <p>{errors.file}</p>}
-            <label>
-                <input type='checkbox' name='isCv' onChange={handleChange}/>
-                Mark file as CV
-            </label>
+        <div className='fixed inset-0 z-20 flex backdrop-brightness-90 flex-col items-center justify-center backdrop-blur-sm'>
+            <AiOutlineClose onClick={close} className='text-4xl text-white bg-black rounded-2xl p-1 mb-4 hover: cursor-pointer hover:bg-gray-600 dark:bg-white dark:text-black dark:hover:bg-gray-400'/>
+            <div className='h-[50vh] w-[25vw] bg-custom-modalLight rounded-xl text-black flex flex-col p-20 justify-around items-center text-center dark:text-white dark:bg-custom-modalDark'>
+                <input type='text' name='name' value={input.name} onChange={handleChange} placeholder='File Name' className={`mr-1 p-1 bg-transparent border-b-2 border-black ${errors.name && 'bg-black border-2 border-red-700 rounded-md'}`}/>
 
-            <button onClick={handleSubmit}>
-                <TickIcon/>
-            </button>
+                <input id="fileInput" type="file" onChange={handleFileChange} className="hidden"/>
+                <label htmlFor="fileInput" className={`py-2 px-4 bg-red-500 text-white rounded-md cursor-pointer border-transparent border-2 hover:border-2 hover:border-blue-400 ${file ?  'bg-green-500 ring ring-green-400' : 'bg-red-500'}`}>Choose file</label>
+                <label className='w-60 h-15 overflow-hidden'>{(file && file.name) || (errors.file && errors.file)}</label>
+
+                <label>
+                    <input type='checkbox' name='isCv' onChange={handleChange}/>
+                    Mark file as CV
+                </label>
+
+                <button onClick={handleSubmit} className={`flex items-center ${confirmed ? 'bg-green-500 ring ring-green-500' : 'bg-red-500'}`}>
+                    <TickIcon/>
+                    <h2 className='ml-1 text-white'>Confirm</h2>
+                </button>
+            </div>
         </div>
     )
 
