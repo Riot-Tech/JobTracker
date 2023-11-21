@@ -13,7 +13,7 @@ export const postFileController = async (fileData: File, file: UploadedFile) => 
 
     try {
         // Intento subir el archivo a Google Cloud
-        const cloudUrl = await uploadFile(file);
+        const cloudUrl = await uploadFile(file, fileData.userId);
         if (cloudUrl) {
             // Guardo la nueva url en la data del archivo
             fileData.url = cloudUrl;
