@@ -49,7 +49,7 @@ async function findOrCreateBucket(userId: number) {
       return newBucket;
     }
     throw Error("Error creating new bucket (at cloudUtils)");
-    
+
   } catch (error) {
     console.error('Error at findOrCreateBucket', error);
     throw error;
@@ -59,7 +59,7 @@ async function findOrCreateBucket(userId: number) {
 
 
 export async function uploadFile(file: UploadedFile, userId: number) {
-  // Aca podria implementarse una division de la ruta de GCS, usuario por usuario
+  // Busco el nombre de bucket correcto segun el id de usuario
   const bucket = await findOrCreateBucket(userId);
   const bucketName = `${uniqueCode}${userId}`;
 
@@ -86,4 +86,24 @@ export async function uploadFile(file: UploadedFile, userId: number) {
       stream.end(file.buffer);
     } else reject("No file received (at cloudUtils)");
   });
+};
+
+
+export async function checkFileExistence(filename: string, userId: number): Promise<boolean> {
+  try {
+    const bucketName = `${uniqueCode}${userId}`;
+    const [files] = await cloudStorage.bucket(bucketName).getFiles();
+    const fileExists = files.some(file => file.name === filename);
+
+    if (fileExists) {
+      console.log(`File ${filename} already exists in bucket`);
+      return true;
+    }
+    console.log(`File ${filename} does not exist in bucket`);
+    return false;
+
+  } catch (error) {
+    console.error("Error at checkFileExistence", error);
+    throw error;
+  };
 };
