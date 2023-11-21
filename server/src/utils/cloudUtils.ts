@@ -1,15 +1,14 @@
 import { UploadedFile } from '../types';
-import { Storage } from '@google-cloud/storage';
+import { Storage, Bucket } from '@google-cloud/storage';
 import path from 'path';
 
 // Configuraciones de Cloud Storage
 const cloudStorage = new Storage({
     keyFilename: path.join(__dirname, "../../jobtracker-404413-962a6bab78a9.json"),
     projectId: "jobtracker-404413"
-  });
+});
 
-const bucketName = "jt-cv-files";
-const cvFilesBucket = cloudStorage.bucket(bucketName);
+const uniqueCode = 'ljnro1je8kfp23yvwmaq5khzn-user-id-';
 
 
 
@@ -28,14 +27,48 @@ function encodeFileName(filename: string): string {
 
 
 
-export function uploadFile(file: UploadedFile) {
+async function findOrCreateBucket(userId: number) {
+  try {
+    // Busco en GCS un bucket que pertenezca al usuario
+    const bucketName = `${uniqueCode}${userId}`;
+    const [allBuckets] = await cloudStorage.getBuckets();
+    const bucketExists = allBuckets.some((bucket: Bucket) => bucket.id === bucketName);
+
+    
+    // Si existe, devuelvo ese bucket
+    if (bucketExists) {
+      const bucket = cloudStorage.bucket(bucketName);
+      console.log(`Bucket ${bucketName} found in GCS.`);
+      return bucket;
+    }
+    
+    // Si no existe, creo un bucket nuevo y lo devuelvo:
+    const [newBucket] = await cloudStorage.createBucket(bucketName);
+    if (newBucket) {
+      console.log(`Bucket ${bucketName} created successfully.`);
+      return newBucket;
+    }
+    throw Error("Error creating new bucket (at cloudUtils)");
+    
+  } catch (error) {
+    console.error('Error at findOrCreateBucket', error);
+    throw error;
+  };
+};
+
+
+
+export async function uploadFile(file: UploadedFile, userId: number) {
   // Aca podria implementarse una division de la ruta de GCS, usuario por usuario
+  const bucket = await findOrCreateBucket(userId);
+  const bucketName = `${uniqueCode}${userId}`;
 
   return new Promise<string>((resolve, reject) => {
     if (file) {
       // Intento subir el archivo a la nube de GCS, a nuestro bucket
       const encodedFileName = encodeFileName(file.originalname);
-      const newFile = cvFilesBucket.file(file.originalname);
+
+      const newFile = bucket.file(file.originalname);
       const stream = newFile.createWriteStream();
 
       // Si la subida falla, devuelvo el error
