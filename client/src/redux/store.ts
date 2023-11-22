@@ -4,6 +4,7 @@ import { AppStore } from "../models/interfaces";
 import { applicationsSlice } from "./slices/applications.slice";
 import { spontaneousSlice } from "./slices/spontaneous.slice";
 import { sideBarSlice } from "./slices/sideBar.slice";
+import { fileSlice } from "./slices/files.slice";
 
 
 
@@ -12,7 +13,8 @@ export const store = configureStore<AppStore>({
         user: userSlice.reducer,
         applications: applicationsSlice.reducer,
         spontaneous: spontaneousSlice.reducer,
-        sideBarOpen : sideBarSlice.reducer
+        sideBarOpen : sideBarSlice.reducer,
+        file: fileSlice.reducer
     }
 })
 

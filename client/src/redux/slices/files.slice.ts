@@ -5,12 +5,11 @@ const files: File[] = [];
 
 export const fileSlice = createSlice({
     name: "file",
-    initialState: {
-        files
-    },
+    initialState: files
+    ,
     reducers: {
         addFile: (state, action) => {
-            state.files = action.payload;
+            state= action.payload;
             return state;
         },
     },

@@ -60,8 +60,10 @@ export interface ApplicationsState{
 export interface AppStore {
     user: UserInfo,
     applications: ApplicationsState,
-    spontaneous: SpontaneousState
-    sideBarOpen: boolean
+    spontaneous: SpontaneousState,
+    sideBarOpen: boolean,
+    file: File[]
+
 }
 
 export interface LoginForm {

@@ -47,7 +47,7 @@ export default function Login() {
       let response = await axios.post(`${URL}/login`, input);
       if (response.status === 200 && Object.values(errors).length) {
         dispatch(createUser(response.data.user));
-        navigate(`/${PrivateRoutes.HOME}`, { replace: true });
+        navigate(`/${PrivateRoutes.PROFILE}`, { replace: true });
       }
     } catch (error: any) {
       setErrorModal(true)
