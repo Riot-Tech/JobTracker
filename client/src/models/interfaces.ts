@@ -56,11 +56,18 @@ export interface ApplicationsState{
     EmptyCopyApplications: Application[]
 }
 
+export interface FilesState{
+    files: File[],
+    filesCopy: File[]
+}
+
 export interface AppStore {
     user: UserInfo,
     applications: ApplicationsState,
-    spontaneous: SpontaneousState
-    sideBarOpen: boolean
+    spontaneous: SpontaneousState,
+    filesState: FilesState,
+    sideBarOpen: boolean,
+
 }
 
 export interface LoginForm {

@@ -9,9 +9,11 @@ import { hasErrors } from "../utils/utilities";
 import GoogleButton from "./GoogleButton";
 import SignUpSuccess from "../modals/SignUpSuccess";
 import ErrorModalSignUp from "../modals/ErrorModalSignUp";
+import { IoEye, IoEyeOff } from "react-icons/io5";
 
 function SignUp({ close }: { close: (value: boolean) => void }) {
-  
+  const [passwordClear, setPasswordClear] = useState(false)
+
   const [input, setInput] = useState({name:"", email: "", password: "", linkedIn:"", gitHub:"", portfolio:""})
   const [errors, setErrors] = useState({name:"", email: "", password: "", linkedIn:"", gitHub:"", portfolio:""})
 
@@ -69,6 +71,10 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
     setErrorMessage('')
   }
 
+  const handlePassword = () => {
+    setPasswordClear(!passwordClear)
+  }
+
   return (
     <>
       {errorModal && <ErrorModalSignUp close={ closeModal } error={ errorMessage } />}
@@ -81,7 +87,7 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
         <h2 className='text-lg font-semibold border-b-2'>It's easy</h2>
       <form onSubmit={handleSubmit} className='mt-4'>
       <GoogleButton/>
-      <h1>----- o -----</h1>
+      <h1 className="flex justify-center">----- o -----</h1>
       <div className="flex w-full gap-2 p-2">
         <div className="w-1/2">
           <div className="flex flex-col my-4">
@@ -104,14 +110,17 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
             <p className="text-red-500 h-1 my-2">{errors.email}</p>
           </div>
 
-          <div className="flex flex-col my-4">
-            <input
-              className={`shadow-xl p-2 rounded-lg ${errors.password? 'bg-red-300':''}`}
-              type="password"
-              name="password"
-              onChange={handleChange}
-              placeholder="Password"
-            />
+          <div className="relative flex flex-col my-4">
+            <div className="flex justify-between items-center">
+              <input
+                className={`shadow-xl p-2 rounded-lg w-full ${errors.password? 'bg-red-300':''}`}
+                type={`${passwordClear? "text": 'password'}`}
+                name="password"
+                onChange={handleChange}
+                placeholder="Password"
+              />
+              { !passwordClear ?  <IoEyeOff onClick={ handlePassword } className="absolute text-2xl text-black right-2 hover:cursor-pointer" /> : <IoEye onClick={ handlePassword } className="absolute text-2xl text-black right-2 hover:cursor-pointer" /> }
+            </div>
             <p className="text-red-500 h-1 my-2">{errors.password}</p>
           </div>
           </div>
