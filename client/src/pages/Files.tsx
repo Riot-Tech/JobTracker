@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SideBar from "../components/SideBar";
 import NavBar from "../components/NavBar";
-import { CvFileIcon, NewFileIcon, OtherFileIcon } from "../utils/svg";
+import { NewFileIcon, OtherFileIcon } from "../utils/svg";
 import CreateFile from "../modals/CreateFile";
 import axios from "axios";
 import { addFile } from "../redux/slices/files.slice";
@@ -10,13 +10,15 @@ import { AppStore } from "../models/interfaces";
 import { useDispatch } from "react-redux";
 import { URL } from "../utils/url";
 import { LuDownload } from "react-icons/lu";
+import { BsTrash } from "react-icons/bs";
+import EachFile from "../components/EachFile";
 
 function Files() {
   const activeUser = useSelector((store: AppStore) => store.user);
   const {files} = useSelector((store: AppStore) => store.filesState);
   const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-
+  console.log(files)
   const handleClick = () => {
     setModalOpen(!modalOpen);
   };
@@ -30,7 +32,6 @@ function Files() {
           dispatch(addFile(data));
           return;
         }
-
         return;
       } catch (error) {
         console.log(error);
@@ -38,6 +39,24 @@ function Files() {
     };
     fetchData();
   }, []);
+
+  const handleDelete = async (id: number)=> {
+    try {
+      console.log(id)
+      let response = await axios.patch(`${URL}/file/${id}`)
+
+      if(response.status === 200){
+        let { data } = await axios.get(`${URL}/file/?id=${activeUser.id}`);
+        if (data.length) {
+          dispatch(addFile(data)); //lleno el estado global de spontaneous, que ahora que lo pienso podria no ser global, y luego me lo traigo y las renderizo
+          return;
+        }
+        dispatch(addFile(data)) //si borro todas las spontaneas mando un arreglo vacio [] para que este sea el arreglo global
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div className="flex">
@@ -78,37 +97,17 @@ function Files() {
                 {files?.map((file) => {
                   if (file.enabled && file.isCv) {
                     return (
-                      <div className="flex justify-between items-center bg-gray-200 p-5 rounded-lg drop-shadow-xl dark:drop-shadow-white my-4 mx-1">
-                        <div className="flex gap-5 items-center">
-                          <h1 className="text-black">{file.name}</h1>
-                          <a href={`${file.url}`} target="_blank">
-                            <LuDownload className='text-4xl text-black' />
-                          </a>
-                        </div>
-                        <div>
-                          <CvFileIcon/>
-                        </div>
-                      </div>
+                      <EachFile key={file.id} props={file} />
                     );
                   }
                 })}
               </div>
             
-              <div className="w-1/2 flex flex-col max-h-[80%] overflow-y-scroll px-20 pb-5">
+              <div className="w-1/2 flex flex-col max-h-[80%] overflow-y-scroll px-20 py-5 mb-5">
                 {files?.map((file) => {
                   if (file.enabled && !file.isCv) {
                     return (
-                      <div className="flex justify-between items-center bg-gray-200 p-5 rounded-lg dark:border-white my-4 mx-1">
-                        <div className="flex gap-5 items-center">
-                          <h1 className="text-black">{file.name}</h1>
-                          <a href={`${file.url}`} target="_blank">
-                            <LuDownload className='text-4xl text-black' />
-                          </a>
-                        </div>
-                        <div>
-                          <OtherFileIcon/>
-                        </div>
-                      </div>
+                      <EachFile key={file.id} props={file} />
                     );
                   }
                 })}
