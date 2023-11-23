@@ -1,6 +1,5 @@
 import "./App.css";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { RootRouter } from "./pages/RootRouter";
 import { PrivateRoutes, PublicRoutes } from "./models/routes";
 import Profile from "./pages/Profile";
 import Spontaneous from "./pages/Spontaneous";
@@ -14,7 +13,7 @@ function App() {
   return (
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigate to={PrivateRoutes.HOME} />} />
+          <Route path="/" element={<Navigate to={PrivateRoutes.PROFILE} />} />
           <Route path={PublicRoutes.LOGIN} element={<Login />} />
           <Route path="*" element={<>ERROR 404 NOT FOUND</>} />
 
@@ -27,7 +26,6 @@ function App() {
           </Route>
 
         </Routes>
-        {/* <RouterProvider router={RootRouter} /> */}
       </BrowserRouter>
   );
 }

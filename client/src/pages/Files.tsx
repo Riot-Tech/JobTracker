@@ -1,79 +1,128 @@
-import { useState, ChangeEvent } from 'react'
-import SideBar from '../components/SideBar'
-import NavBar from '../components/NavBar'
-import { NewFileIcon } from '../utils/svg'
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import SideBar from "../components/SideBar";
+import NavBar from "../components/NavBar";
+import { CvFileIcon, NewFileIcon, OtherFileIcon } from "../utils/svg";
+import CreateFile from "../modals/CreateFile";
+import axios from "axios";
+import { addFile } from "../redux/slices/files.slice";
+import { useSelector } from "react-redux";
+import { AppStore } from "../models/interfaces";
+import { useDispatch } from "react-redux";
 import { URL } from "../utils/url";
+import { LuDownload } from "react-icons/lu";
 
 function Files() {
-  const [ modalOpen, setModalOpen]= useState<boolean>(false)
-  const handleClick = () => {
-    setModalOpen(!modalOpen)
-  }
-  
-  //////////////////////////////
-  // LO QUE IRIA EN EL MODAL::
-  const [file, setFile] = useState<File | null>(null);
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    let chosenFile = null;
-    if (e.target.files) {
-      chosenFile = e.target.files[0];
-      setFile(chosenFile);
-    } else console.log("No file found");
-  }
+  const activeUser = useSelector((store: AppStore) => store.user);
+  const {files} = useSelector((store: AppStore) => store.filesState);
+  const dispatch = useDispatch();
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
-  const handleUpload = async () => {
-    //Este es un ejemplo de fileData
-    const fileData = {
-      userId: 1, //reemplazar por el id del activeUser
-      name: "myFirstFile", //reemplazar por el name que el usuario quiera poner en el modal
-      url: '', //queda como string vacio, el backend la va a llenar despues
-      isCv: false //el usuario decide ponerlo en true si quiere, sino va en false
-    }
-    
-    if (file) {
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('data', JSON.stringify(fileData));
-      
-      const res = await axios.post(`${URL}/file`, formData);
-      if (res) return console.log(res);
-    }
+  const handleClick = () => {
+    setModalOpen(!modalOpen);
   };
-  // Agregar tambien el input y el button que estan mas abajo
-  //////////////////////////////
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        let { data } = await axios.get(`${URL}/file/?id=${activeUser.id}`);
+
+        if (data.length) {
+          dispatch(addFile(data));
+          return;
+        }
+
+        return;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
-    <div className='flex'>
-        <SideBar/>
-        <div className="w-full h-[100vh]">
-            <NavBar/>
-        {/* { modalOpen && <CreateSpontaneous close={handleClick}/> } */}
-            <div className="relative h-[90%] w-full bg-custom-backLight dark:bg-custom-backDark flex flex-col">
-              <div className="absolute top-6 left-4 bg-red-900 p-3 w-[95%] flex justify-between items-center rounded-lg">
-                <h3 className="text-white text-2xl font-bold">Files</h3>
-    
-                <div className="flex items-center">
-                  <div className="relative left-10">
-                    <NewFileIcon/>
-                  </div>
-    
-                  <button 
-                  className="bg-white text-black dark:bg-black dark:text-white pl-14"
-                  onClick={handleClick}
-                  >
-                    Add new file
-                  </button>
-                </div>
+    <div className="flex">
+      <SideBar />
+      <div className="w-full h-[100vh]">
+        <NavBar />
+        {modalOpen && <CreateFile close={handleClick} />}
+        <div className="relative h-[90%] w-full bg-custom-backLight dark:bg-custom-backDark flex flex-col">
+          <div className="absolute top-6 left-4 bg-red-900 p-3 w-[95%] flex justify-between items-center rounded-lg">
+            <h3 className="text-white text-2xl font-bold">Files</h3>
+
+            <div className="flex items-center">
+              <div className="relative left-10">
+                <NewFileIcon />
               </div>
-    
+
+              <button
+                className="bg-white text-black dark:bg-black dark:text-white pl-14"
+                onClick={handleClick}
+              >
+                Add new file
+              </button>
             </div>
-            {/* estos tambien irian en el modal: */}
-            <input type="file" onChange={handleFileChange}/>
-            <button onClick={handleUpload}>Upload</button>
+          </div>
+
+          <div className="absolute top-28 flex items-start w-full justify-evenly">
+            <div className="bg-red-900 px-7 py-2 rounded-xl text-white text-4xl dark:text-black m-2">
+                  <h2 className="w-18 text-center font-bold">CV files</h2>
+            </div>
+            <div className="bg-red-900 px-7 py-2 rounded-xl text-white text-4xl dark:text-black m-2">
+                  <h2 className="w-18 text-center font-bold">Other files</h2>
+            </div>
+          </div>
+
+          <div className="absolute top-52 flex justify-evenly w-full">
+            
+              <div className="w-1/2 flex flex-col max-h-[80%] overflow-y-scroll px-20 py-5 mb-5">
+                {files?.map((file) => {
+                  if (file.enabled && file.isCv) {
+                    return (
+                      <div className="flex justify-between items-center bg-gray-200 p-5 rounded-lg drop-shadow-xl dark:drop-shadow-white my-4 mx-1">
+                        <div className="flex gap-5 items-center">
+                          <h1 className="text-black">{file.name}</h1>
+                          <a href={`${file.url}`} target="_blank">
+                            <LuDownload className='text-4xl text-black' />
+                          </a>
+                        </div>
+                        <div>
+                          <CvFileIcon/>
+                        </div>
+                      </div>
+                    );
+                  }
+                })}
+              </div>
+            
+              <div className="w-1/2 flex flex-col max-h-[80%] overflow-y-scroll px-20 pb-5">
+                {files?.map((file) => {
+                  if (file.enabled && !file.isCv) {
+                    return (
+                      <div className="flex justify-between items-center bg-gray-200 p-5 rounded-lg dark:border-white my-4 mx-1">
+                        <div className="flex gap-5 items-center">
+                          <h1 className="text-black">{file.name}</h1>
+                          <a href={`${file.url}`} target="_blank">
+                            <LuDownload className='text-4xl text-black' />
+                          </a>
+                        </div>
+                        <div>
+                          <OtherFileIcon/>
+                        </div>
+                      </div>
+                    );
+                  }
+                })}
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
-    </div>
-  )
+            
+          
+      </div>
+  );
 }
 
-export default Files
+export default Files;

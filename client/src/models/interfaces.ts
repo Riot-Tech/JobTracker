@@ -2,7 +2,11 @@ export interface UserInfo {
     id: number,
     email: string,
     name: string,
-    token: string
+    token: string,
+    linkedIn: string,
+    portfolio: string,
+    gitHub: string,
+    profilePicture: string
 }
 
 export interface Application {
@@ -43,16 +47,31 @@ export interface Spontaneous {
     date: string,
     enabled: boolean,
     link: string,
-    /* links: Link[] */
 }
 
+export interface SpontaneousState{
+    EmptySpontaneous: Spontaneous[],
+    EmptyCopySpontaneous: Spontaneous[]
+}
 
 export interface ApplicationInfo extends Array<Application> { }
+export interface ApplicationsState{
+    EmptyApplications: Application[],
+    EmptyCopyApplications: Application[]
+}
+
+export interface FilesState{
+    files: File[],
+    filesCopy: File[]
+}
 
 export interface AppStore {
     user: UserInfo,
-    applications: ApplicationInfo,
-    spontaneous: Spontaneous[]
+    applications: ApplicationsState,
+    spontaneous: SpontaneousState,
+    filesState: FilesState,
+    sideBarOpen: boolean,
+
 }
 
 export interface LoginForm {
@@ -61,11 +80,21 @@ export interface LoginForm {
 }
 
 export interface input {
-    name?: string,
+    name: string,
     email: string,
     password: string,
-}
+    linkedIn: string,
+    gitHub: string,
+    portfolio: string,
+    [key: string]: string,
+  }
 
+export interface inputLogin {
+    email: string,
+    password: string,
+    [key: string]: string;
+}
+  
 export type inputSpontaneous = {
     company: string,/* 
     date: string, */
@@ -77,6 +106,16 @@ export type inputSpontaneous = {
     [key: string]: string,
 };
 
+export type inputFile = {
+    name: string,
+    isCv: boolean,
+}
+
+export type fileErrors = {
+    // name: string,
+    file: string,
+}
+
 export type Spont = {
     id?: number,
     userId?: number,
@@ -87,20 +126,4 @@ export type Spont = {
     location?: string,
     receiver?: string,
     link?: string,
-    /* links?: Link[] */
-};
-
-export interface App {
-    id: number,
-    jobName: string,
-    company: string,
-    location?: string,
-    jobType: string,
-    jobModality: string,
-    expectedIncome: number,
-    currency: string,
-    status: string,
-    feedback: string,
-    comments: string,
-    link: string
-}
+  };

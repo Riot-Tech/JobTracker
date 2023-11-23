@@ -8,7 +8,6 @@ import { AppStore, Application } from "../models/interfaces";
 import { URL } from "../utils/url";
 import { useDispatch } from "react-redux";
 import CreateApplication from "../modals/CreateApplication";
-import EditApplication from "../modals/EditApplication";
 import App from "../components/App";
 
 
@@ -41,6 +40,7 @@ export default function Applications() {
     };
     fetchData();
   }, []);
+  
   return (
     <div className="flex">
       <SideBar />
@@ -74,9 +74,8 @@ export default function Applications() {
             </div>
           </div>
 
-          <div className="top-40 left-4 flex flex-col max-h-[80%] overflow-y-scroll w-[95%] px-20 pb-5 mt-20">
-            {(applications?.map((app: Application) => {
-              console.log(app)
+          <div className="absolute top-40 left-4 flex flex-col max-h-[80%] overflow-y-scroll w-[95%] px-20 pb-5">
+            {!applications.EmptyApplications.length ? <h1 className="text-white text-lg">Try adding some applications</h1> : (applications.EmptyApplications.map((app) => {
               if (app.enabled) return (
                 <App props={app}/>
               );

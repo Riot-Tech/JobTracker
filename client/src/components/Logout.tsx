@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { resetUser } from "../redux/slices/auth.slice";
 import { PublicRoutes } from "../models/routes";
 import { BiLogOut } from 'react-icons/bi'
+import { addSpontaneous } from "../redux/slices/spontaneous.slice";
+import { createApplication } from "../redux/slices/applications.slice";
 
 function Logout() {
   const dispatch = useDispatch();
@@ -11,6 +13,9 @@ function Logout() {
   const logOut = () => {
     dispatch(resetUser());
     navigate(`/${PublicRoutes.LOGIN}`, { replace: true });
+    // limpiar todos las applications, spontaneous, files etc
+    dispatch(addSpontaneous([]))
+    dispatch(createApplication([]))
   };
   return (
     <div>

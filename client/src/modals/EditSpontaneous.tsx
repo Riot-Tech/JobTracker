@@ -79,23 +79,19 @@ function EditSpontaneous({ close,  props }: { close: CloseFunction, props: Spont
 
   return (
     <div className="fixed inset-0 z-20 flex backdrop-brightness-90 flex-col items-center justify-center backdrop-blur-sm">
-        <AiOutlineClose onClick={close} className='text-4xl text-white bg-black rounded-2xl p-1 mb-4 hover: cursor-pointer hover:bg-gray-600'/>
-        <div className='h-[80vh] w-[80vw] bg-custom-modalSpontaneousLight rounded-xl text-black flex flex-col p-10 dark:text-white'>
+        <AiOutlineClose onClick={close} className='text-4xl text-white bg-black rounded-2xl p-1 mb-4 hover: cursor-pointer hover:bg-gray-600 dark:bg-white dark:text-black dark:hover:bg-gray-400'/>
+        <div className='h-[80vh] w-[80vw] bg-custom-modalLight dark:bg-custom-modalDark rounded-xl text-black flex flex-col p-10 dark:text-white'>
             <div className='h-[10%] flex justify-between'>
                 <div className='flex items-center'>
                     <input type='text' onChange={handleChange} value={input.company} name='company' className={`mr-1 p-1 bg-transparent border-b-2 border-black ${errors.company.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='Company Name'/>
                 </div>
-                <button onClick={handleSubmit} className={`flex items-center ${confirmed ? 'bg-green-400 ring ring-green-400' : 'bg-red-400'}`}>
+                <button onClick={handleSubmit} className={`flex items-center p-6 py-8 ${confirmed ? 'bg-green-400 ring ring-green-400' : 'bg-red-500'}`}>
                     <TickIcon/>
                     <h2 className='ml-1 text-white'>Confirm</h2>
                 </button>
             </div>
             <div className='h-[60%] flex py-4'>
                 <div className='w-[50%] flex flex-col items-start'>
-                    {/* <div className='flex items-center my-2'>
-                        <DateIcon/>
-                        <input onChange={handleChange} name='date' className='ml-2 text-black p-2 rounded-xl' type='date'/>
-                    </div> */}
                     <div className='flex items-center my-2'>
                         <RecieverIcon/>
                         <input value={input.receiver} onChange={handleChange} name='receiver' className={`ml-2 p-2 bg-transparent border-b-2 border-black ${errors.receiver.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='receiver'/>
@@ -104,7 +100,7 @@ function EditSpontaneous({ close,  props }: { close: CloseFunction, props: Spont
                         <LinkIcon/>
                         <input value={input.link} name='link' type='url' onChange={handleChange} className={`ml-2 p-2 bg-transparent border-b-2 border-black ${errors.link.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='link'/>
                     </div>
-                    <div className='flex my-2 items-center'>
+                    <div className='flex my-2 items-center text-black'>
                         <LocationIcon/>
                         <select name='location' value={input.location} onChange={handleChange} className='ml-2 rounded-lg p-3'>
                             <option>USA</option>
