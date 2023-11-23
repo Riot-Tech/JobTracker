@@ -4,20 +4,25 @@ import SideBar from "../components/SideBar";
 import axios from "axios";
 import { getApplications } from "../redux/slices/applications.slice";
 import { useEffect, useState } from "react";
-import { AppStore } from "../models/interfaces";
+import { AppStore, Application } from "../models/interfaces";
 import { URL } from "../utils/url";
 import { useDispatch } from "react-redux";
 import CreateApplication from "../modals/CreateApplication";
+import EditApplication from "../modals/EditApplication";
+import App from "../components/App";
+
 
 export default function Applications() {
   const dispatch = useDispatch()
   const [modalOpen, setModalOpen] = useState<boolean>(false)
+
   const activeUser = useSelector((store: AppStore) => store.user);
   const applications = useSelector((store: AppStore) => store.applications)
 
-  const handleClick = () => {
+  const handleNew = () => {
     setModalOpen(!modalOpen)
   }
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,16 +41,14 @@ export default function Applications() {
     };
     fetchData();
   }, []);
-  console.log(applications)
   return (
     <div className="flex">
       <SideBar />
-      {modalOpen && <CreateApplication close={handleClick} />}
 
 
       <div className="w-full h-[100vh]">
         <NavBar />
-
+        {modalOpen && <CreateApplication close={handleNew} />}
         <div className="relative h-[90%] w-full bg-custom-backLight dark:bg-custom-backDark flex flex-col">
 
           <div className="absolute top-6 left-4 bg-red-900 p-3 w-[95%] flex justify-between items-center rounded-lg">
@@ -64,48 +67,18 @@ export default function Applications() {
 
               <button
                 className="bg-white text-black dark:bg-black dark:text-white pl-14"
-                onClick={handleClick}
+                onClick={handleNew}
               >
                 Create new
               </button>
             </div>
           </div>
 
-          <div className="absolute top-40 left-4 flex flex-col max-h-[80%] overflow-y-scroll w-[95%] px-20 pb-5">
-            {!applications.length ? <h1 className="text-white text-lg">Try adding some applications</h1> : (applications.map((app) => {
+          <div className="top-40 left-4 flex flex-col max-h-[80%] overflow-y-scroll w-[95%] px-20 pb-5 mt-20">
+            {(applications?.map((app: Application) => {
+              console.log(app)
               if (app.enabled) return (
-                <div className="bg-custom-appCardsLight p-5 rounded-xl mt-4 mb-4 shadow-lg dark:bg-custom-appCardsDark w-full flex">
-                  <div className="flex flex-col flex-grow">
-                    <div className="flex justify-between border-b-2 mb-4">
-                      <div className="flex flex-row">
-                        <h2>{app.company}</h2>
-                      </div>
-                      <button > edit </button>
-                      <div className="flex flex-row">
-
-                        <h2>{app.status}</h2>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-row justify-between">
-                      <div className="flex flex-row">
-                        <h2> Job: {app.jobName}</h2>
-                      </div>
-                      <div className="flex flex-row">
-                        <h2> Job Type: {app.jobType}</h2>
-                      </div>
-                      <div className="flex flex-row">
-                        <h2>{app.expectedIncome} {app.currency}</h2>
-                      </div>
-                      {/* <div className="flex flex-row">
-                        <h2>{app.feedback}</h2>
-                      </div>
-                      <div className="flex flex-row">
-                        <h2>{app.comments}</h2>
-                      </div> */}
-                    </div>
-                  </div>
-                </div>
+                <App props={app}/>
               );
             }))}
           </div>

@@ -1,11 +1,11 @@
-export interface UserInfo{
+export interface UserInfo {
     id: number,
     email: string,
     name: string,
     token: string
 }
 
-export interface Application{
+export interface Application {
     id: number,
     userId: number,
     jobName: string,
@@ -20,9 +20,10 @@ export interface Application{
     feedback: string,
     comments: string,
     enabled: boolean,
+    link: string
 }
 
-export interface Link{
+export interface Link {
     id?: number,
     userId?: number,
     appId?: number,
@@ -33,7 +34,7 @@ export interface Link{
     isCv?: boolean
 }
 
-export interface Spontaneous{
+export interface Spontaneous {
     id: number,
     userId: number,
     message: string,
@@ -46,7 +47,7 @@ export interface Spontaneous{
 }
 
 
-export interface ApplicationInfo extends Array<Application> {}
+export interface ApplicationInfo extends Array<Application> { }
 
 export interface AppStore {
     user: UserInfo,
@@ -63,8 +64,8 @@ export interface input {
     name?: string,
     email: string,
     password: string,
-  }
-  
+}
+
 export type inputSpontaneous = {
     company: string,/* 
     date: string, */
@@ -74,7 +75,7 @@ export type inputSpontaneous = {
     receiver: string,
     link: string,
     [key: string]: string,
-  };
+};
 
 export type Spont = {
     id?: number,
@@ -87,4 +88,19 @@ export type Spont = {
     receiver?: string,
     link?: string,
     /* links?: Link[] */
-  };
+};
+
+export interface App {
+    id: number,
+    jobName: string,
+    company: string,
+    location?: string,
+    jobType: string,
+    jobModality: string,
+    expectedIncome: number,
+    currency: string,
+    status: string,
+    feedback: string,
+    comments: string,
+    link: string
+}
