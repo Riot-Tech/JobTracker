@@ -44,7 +44,6 @@ export interface Spontaneous{
     date: string,
     enabled: boolean,
     link: string,
-    /* links: Link[] */
 }
 
 export interface SpontaneousState{
@@ -57,11 +56,18 @@ export interface ApplicationsState{
     EmptyCopyApplications: Application[]
 }
 
+export interface FilesState{
+    files: File[],
+    filesCopy: File[]
+}
+
 export interface AppStore {
     user: UserInfo,
     applications: ApplicationsState,
-    spontaneous: SpontaneousState
-    sideBarOpen: boolean
+    spontaneous: SpontaneousState,
+    filesState: FilesState,
+    sideBarOpen: boolean,
+
 }
 
 export interface LoginForm {
@@ -102,7 +108,7 @@ export type inputFile = {
 }
 
 export type fileErrors = {
-    name: string,
+    // name: string,
     file: string,
 }
 
@@ -116,5 +122,4 @@ export type Spont = {
     location?: string,
     receiver?: string,
     link?: string,
-    /* links?: Link[] */
   };

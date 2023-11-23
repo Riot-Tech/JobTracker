@@ -3,12 +3,8 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import routes from '../routes'; 
-import multer from 'multer';
-import { uploadFile } from '../utils/cloudUtils';
 
 const server: Application = express();
-const multerStorage = multer.memoryStorage();
-const upload = multer({storage: multerStorage})
 
 
 // Middlewares
@@ -27,28 +23,7 @@ server.use((req: Request, res: Response, next: NextFunction) => {
   next()
 })
 
-server.post("/upload", upload.single('file'), async (req: Request, res: Response) => {
-  try {
-    console.log("ENTRE AL HANDLER");    
-    console.log("fileeeee", req.file);
-    const file = req.file;
 
-    if (!file) {
-      return res.status(400).send("No file received (at handler)");
-    };
-
-    uploadFile(file)
-      .then(() => {
-        return res.status(200).send(`${file.originalname} uploaded successfully`);
-      });
-      
-
-      
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Internal server error");
-  };
-});
 server.use('/', routes);
 
 

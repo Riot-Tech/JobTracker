@@ -11,11 +11,13 @@ import { URL } from "../utils/url";
 import GoogleButton from "../components/GoogleButton";
 import { hasErrors } from "../utils/utilities";
 import ErrorModalLogIn from "../modals/ErrorModalLogIn";
+import { IoEye, IoEyeOff } from "react-icons/io5";
 
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
+  const [passwordClear, setPasswordClear] = useState(false)
   const [signUpModal, setSignUpModal] = useState(false)
   const [errorModal, setErrorModal] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
@@ -45,7 +47,7 @@ export default function Login() {
       let response = await axios.post(`${URL}/login`, input);
       if (response.status === 200 && Object.values(errors).length) {
         dispatch(createUser(response.data.user));
-        navigate(`/${PrivateRoutes.HOME}`, { replace: true });
+        navigate(`/${PrivateRoutes.PROFILE}`, { replace: true });
       }
     } catch (error: any) {
       setErrorModal(true)
@@ -59,6 +61,9 @@ export default function Login() {
     setErrorMessage('')
   }
   
+  const handlePassword = () => {
+    setPasswordClear(!passwordClear)
+  }
 
   return (
     <div className={`flex min-w-full w-auto h-[100vh] z-0`}>
@@ -70,7 +75,7 @@ export default function Login() {
         />
       </div>
       <div className="w-[50%] h-full text-white bg-black p-36 px-30 flex flex-col justify-evenly">
-        <h1 className="font-bold">Welcome Back! 👋</h1>
+        <h1 className="font-bold">Welcome! 👋</h1>
 
         <GoogleButton />
 
@@ -82,17 +87,20 @@ export default function Login() {
             onChange={handleChange}
             type="email"
             />
-          <p className="text-red-500 h-1">{errors.email}</p>
+          <p className="text-red-500 h-3">{errors.email}</p>
         </div>
-        <div className="flex flex-col">
+        <div className="relative flex flex-col">
           <label className="w-[10%] font-semibold mb-1">Password</label>
-          <input
-            className={`p-2 rounded-lg text-black ${errors.password? 'bg-red-300':''}`}
-            name="password"
-            onChange={handleChange}
-            type="password"
-            />
-          <p className="text-red-500 h-1">{errors.password}</p>
+          <div className="flex justify-between items-center">
+            <input
+              className={`p-2 rounded-lg text-black w-full ${errors.password? 'bg-red-300':''}`}
+              name="password"
+              onChange={handleChange}
+              type={`${passwordClear? "text": 'password'}`}
+              />
+            { !passwordClear ?  <IoEyeOff onClick={ handlePassword } className="absolute text-2xl text-black right-2 hover:cursor-pointer" /> : <IoEye onClick={ handlePassword } className="absolute text-2xl text-black right-2 hover:cursor-pointer" /> }
+          </div>
+            <p className="text-red-500 h-3">{errors.password}</p>
         </div>
         <button
           disabled={ hasErrors(errors) }
