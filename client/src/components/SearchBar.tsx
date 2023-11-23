@@ -4,6 +4,7 @@ import { ChangeEvent } from "react"
 import { searchSpontaneous } from "../redux/slices/spontaneous.slice"
 import { useDispatch } from "react-redux"
 import { searchApplication } from "../redux/slices/applications.slice"
+import { searchFiles } from "../redux/slices/files.slice"
 
 function SearchBar() {
   const location = useLocation()
@@ -20,6 +21,9 @@ function SearchBar() {
       dispatch(searchApplication(event.target.value))
     }
 
+    if(location.pathname === '/files'){
+      dispatch(searchFiles(event.target.value))
+    }
   }
 
   return (

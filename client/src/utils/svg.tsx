@@ -166,4 +166,27 @@ export const SearchIcon = () =>{
 }
 
 
+export const OtherFileIcon = () => {
+    return(
+        <svg xmlns="http://www.w3.org/2000/svg" width="131" height="144" viewBox="0 0 131 144" fill="none">
+            <path d="M31.7999 112.8H55.5999H79.3999" stroke="#BEBEBE" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M31.7999 85.6H35.1999H38.5999" stroke="#BEBEBE" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M31.7999 58.4H41.9999H52.1999" stroke="#BEBEBE" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M31.7999 4H96.3999L127 34.6V119.6" stroke="#BEBEBE" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4.59998 129.8V34.6C4.59998 28.9666 9.16665 24.4 14.8 24.4H81.1102C82.1921 24.4 83.2297 24.8298 83.9947 25.595L105.405 47.0049C106.17 47.7701 106.6 48.8079 106.6 49.89V129.8C106.6 135.433 102.033 140 96.4 140H14.8C9.16665 140 4.59998 135.433 4.59998 129.8Z" stroke="#BEBEBE" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M79.4 24.4V47.52C79.4 49.7733 81.2265 51.6 83.48 51.6H106.6" stroke="#BEBEBE" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    )
+}
+
+export const CvFileIcon = () => {
+    return(
+        <svg xmlns="http://www.w3.org/2000/svg" width="117" height="136" viewBox="0 0 117 136" fill="none">
+            <path d="M106.341 67.4999V27.8031C106.341 26.7927 105.94 25.8236 105.226 25.109L85.2319 5.11595C84.5176 4.40138 83.5486 4 82.5383 4H8.55133C6.44713 4 4.74133 5.7058 4.74133 7.81V127.19C4.74133 129.294 6.44713 131 8.55133 131H49.1913" stroke="#BEBEBE" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M30.1414 54.7999H80.9413M30.1414 29.4H55.5413M30.1414 80.1999H49.1913" stroke="#BEBEBE" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M82.8817 99.9693L88.6545 87.7284C89.3955 86.1568 91.5367 86.1568 92.2778 87.7284L98.0506 99.9693L110.961 101.944C112.617 102.198 113.277 104.329 112.078 105.551L102.738 115.072L104.942 128.523C105.225 130.251 103.493 131.568 102.011 130.752L90.4661 124.398L78.9212 130.752C77.4391 131.568 75.7068 130.251 75.9901 128.523L78.1941 115.072L68.8539 105.551C67.6551 104.329 68.3148 102.198 69.9715 101.944L82.8817 99.9693Z" stroke="#BEBEBE" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M80.9413 4V25.59C80.9413 27.6942 82.6469 29.4 84.7513 29.4H106.341" stroke="#BEBEBE" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    )
+}
 

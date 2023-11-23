@@ -57,12 +57,17 @@ export interface ApplicationsState{
     EmptyCopyApplications: Application[]
 }
 
+export interface FilesState{
+    files: File[],
+    filesCopy: File[]
+}
+
 export interface AppStore {
     user: UserInfo,
     applications: ApplicationsState,
     spontaneous: SpontaneousState,
+    filesState: FilesState,
     sideBarOpen: boolean,
-    file: File[]
 
 }
 

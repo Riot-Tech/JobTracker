@@ -14,7 +14,7 @@ export const store = configureStore<AppStore>({
         applications: applicationsSlice.reducer,
         spontaneous: spontaneousSlice.reducer,
         sideBarOpen : sideBarSlice.reducer,
-        file: fileSlice.reducer
+        filesState: fileSlice.reducer,
     }
 })
 
