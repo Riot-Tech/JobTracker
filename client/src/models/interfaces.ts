@@ -1,4 +1,4 @@
-export interface UserInfo{
+export interface UserInfo {
     id: number,
     email: string,
     name: string,
@@ -9,7 +9,7 @@ export interface UserInfo{
     profilePicture: string
 }
 
-export interface Application{
+export interface Application {
     id: number,
     userId: number,
     jobName: string,
@@ -24,18 +24,21 @@ export interface Application{
     feedback: string,
     comments: string,
     enabled: boolean,
+    link: string
 }
 
-export interface File{
-    id: number,
-    userId: number,
-    name: string,
-    url: string,
-    enabled: boolean,
-    isCv: boolean
+export interface Link {
+    id?: number,
+    userId?: number,
+    appId?: number,
+    spontId?: number,
+    name?: string,
+    url?: string,
+    enabled?: boolean,
+    isCv?: boolean
 }
 
-export interface Spontaneous{
+export interface Spontaneous {
     id: number,
     userId: number,
     message: string,
@@ -51,6 +54,7 @@ export interface SpontaneousState{
     EmptyCopySpontaneous: Spontaneous[]
 }
 
+export interface ApplicationInfo extends Array<Application> { }
 export interface ApplicationsState{
     EmptyApplications: Application[],
     EmptyCopyApplications: Application[]
