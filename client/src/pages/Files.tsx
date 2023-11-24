@@ -21,6 +21,25 @@ function Files() {
     setModalOpen(!modalOpen);
   };
 
+  const handleDownload = async(filename: string) => {
+    await axios(`${URL}/file/download/${activeUser.id}?filename=${filename}`);
+  };
+
+  const handleView = async(filename: string) => {
+    try {
+      const { data }  = await axios(`${URL}/file/view/${activeUser.id}?filename=${filename}`);
+
+      if (!data || typeof(data) !== 'string') {
+        return console.log('Invalid signed URL received from server');
+      };
+      return window.open(data, '_blank');
+
+    } catch (error) {
+      console.error(error);
+    };
+  };
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -83,6 +102,8 @@ function Files() {
                           <h1 className="text-black">{file.name}</h1>
                           <a href={`${file.url}`} target="_blank">
                             <LuDownload className='text-4xl text-black' />
+                            <button onClick={() => handleDownload(file.name)}>Download</button>
+                            <button onClick={() => handleView(file.name)}>View file</button>
                           </a>
                         </div>
                         <div>
@@ -104,6 +125,8 @@ function Files() {
                           <a href={`${file.url}`} target="_blank">
                             <LuDownload className='text-4xl text-black' />
                           </a>
+                          <button onClick={() => handleDownload(file.name)}>Download</button>
+                          <button onClick={() => handleView(file.name)}>View file</button>
                         </div>
                         <div>
                           <OtherFileIcon/>

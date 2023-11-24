@@ -3,7 +3,9 @@ import {
     getFilesHandler,
     postFileHandler,
     disableFileHandler,
-    updateFileHandler
+    updateFileHandler,
+    downloadFileHandler,
+    viewFileHandler,
 } from "../handlers";
 import multer from 'multer';
 
@@ -17,6 +19,8 @@ fileRouter.get("/", getFilesHandler);
 fileRouter.post("/", upload.single('file'), postFileHandler);
 fileRouter.patch("/", updateFileHandler);
 fileRouter.patch("/:id", disableFileHandler);
+fileRouter.get('/download/:id', downloadFileHandler);
+fileRouter.get('/view/:id', viewFileHandler);
 
 
 export default fileRouter;
