@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SideBar from "../components/SideBar";
 import NavBar from "../components/NavBar";
-import { NewFileIcon, OtherFileIcon } from "../utils/svg";
+import { NewFileIcon } from "../utils/svg";
 import CreateFile from "../modals/CreateFile";
 import axios from "axios";
 import { addFile } from "../redux/slices/files.slice";
@@ -9,8 +9,6 @@ import { useSelector } from "react-redux";
 import { AppStore } from "../models/interfaces";
 import { useDispatch } from "react-redux";
 import { URL } from "../utils/url";
-import { LuDownload } from "react-icons/lu";
-import { BsTrash } from "react-icons/bs";
 import EachFile from "../components/EachFile";
 
 function Files() {
@@ -18,7 +16,7 @@ function Files() {
   const {files} = useSelector((store: AppStore) => store.filesState);
   const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  console.log(files)
+
   const handleClick = () => {
     setModalOpen(!modalOpen);
   };
@@ -39,24 +37,6 @@ function Files() {
     };
     fetchData();
   }, []);
-
-  const handleDelete = async (id: number)=> {
-    try {
-      console.log(id)
-      let response = await axios.patch(`${URL}/file/${id}`)
-
-      if(response.status === 200){
-        let { data } = await axios.get(`${URL}/file/?id=${activeUser.id}`);
-        if (data.length) {
-          dispatch(addFile(data)); //lleno el estado global de spontaneous, que ahora que lo pienso podria no ser global, y luego me lo traigo y las renderizo
-          return;
-        }
-        dispatch(addFile(data)) //si borro todas las spontaneas mando un arreglo vacio [] para que este sea el arreglo global
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   return (
     <div className="flex">

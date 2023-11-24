@@ -1,4 +1,3 @@
-import React from "react";
 import { AppStore, File } from "../models/interfaces";
 import { BsTrash } from "react-icons/bs";
 import { CvFileIcon, OtherFileIcon } from "../utils/svg";
@@ -10,9 +9,7 @@ import { useDispatch } from "react-redux";
 import { LuDownload } from "react-icons/lu";
 
 function EachFile({ props }: { props: File }) {
-  console.log(props);
-  
-  const { id, name, url, enabled, isCv } = props;
+  const { id, name, url, isCv } = props;
   const activeUser = useSelector((store: AppStore) => store.user);
   const dispatch = useDispatch();
 
@@ -24,10 +21,10 @@ function EachFile({ props }: { props: File }) {
       if (response.status === 200) {
         let { data } = await axios.get(`${URL}/file/?id=${activeUser.id}`);
         if (data.length) {
-          dispatch(addFile(data)); //lleno el estado global de spontaneous, que ahora que lo pienso podria no ser global, y luego me lo traigo y las renderizo
+          dispatch(addFile(data));
           return;
         }
-        dispatch(addFile(data)); //si borro todas las spontaneas mando un arreglo vacio [] para que este sea el arreglo global
+        dispatch(addFile(data));
       }
     } catch (error) {
       console.log(error);
