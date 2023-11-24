@@ -71,9 +71,9 @@ function Files() {
             </div>
           </div>
 
-          <div className="absolute top-52 flex justify-evenly w-full">
+          <div className="absolute top-52 flex justify-evenly w-full h-[60vh] p-5">
             
-              <div className="w-1/2 flex flex-col max-h-[80%] overflow-y-scroll px-20 py-5 mb-5">
+              <div className="w-1/2 flex flex-col overflow-y-scroll px-20 py-5 mb-5">
                 {files?.map((file) => {
                   if (file.enabled && file.isCv) {
                     return (
@@ -83,7 +83,7 @@ function Files() {
                 })}
               </div>
             
-              <div className="w-1/2 flex flex-col max-h-[80%] overflow-y-scroll px-20 py-5 mb-5">
+              <div className="w-1/2 flex flex-col overflow-y-scroll px-20 py-5 mb-5">
                 {files?.map((file) => {
                   if (file.enabled && !file.isCv) {
                     return (
@@ -93,7 +93,7 @@ function Files() {
                 })}
               </div>
 
-            </div>
+          </div>
 
           </div>
 

@@ -4,7 +4,7 @@ import { AiOutlineClose } from 'react-icons/ai'
 import { IoAlertCircle } from "react-icons/io5";
 import { validateCreateSpontaneous } from '../utils/validateCreateSpontaneous';
 import { AppStore } from '../models/interfaces';
-import { hasErrorsSpontaneous } from '../utils/utilities';
+import { hasErrorsSpontaneous, isInputEmpty } from '../utils/utilities';
 import { URL } from '../utils/url';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
@@ -52,7 +52,7 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
 
     const handleSubmit = async ()=>{
         try {
-            if(!hasErrorsSpontaneous(errors)){
+            if(!hasErrorsSpontaneous(errors) && !isInputEmpty(input)){
                 let response = await axios.post(`${URL}/spontaneous`, {...input, userId: activeUser.id})
                 
                 if(response.status === 200){ //una vez que se guardo en la bdd, modal de confirmacion, se deberia mostrar la espontanea cuando cerramos el modal
