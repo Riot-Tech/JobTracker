@@ -113,14 +113,14 @@ function EditSpontaneous({ close,  props }: { close: CloseFunction, props: Spont
                     </div>
                     
                 </div>
-                <div className='w-[50%] flex flex-col'>
+                <div className='w-[50%] flex flex-col '>
                     <div className='flex justify-between m-1'>
                         <div className='flex items-center'>
                             <FeedbackIcon/>
                             <h2 className='ml-1'>Feedback</h2>
                         </div>
                     </div>
-                    <textarea value={input.feedback} onChange={handleChange} name='feedback' className={`w-full h-[80%] p-2 ${errors.feedback.length && 'bg-red-300 border-2 border-red-700 rounded-md'}`}/>
+                    <textarea value={input.feedback} onChange={handleChange} name='feedback' className={`w-full h-[80%] p-2 dark:text-black ${errors.feedback.length && 'bg-red-300 border-2 border-red-700 rounded-md'}`}/>
                 </div>
             </div>
             <div className='h-[30%] mt-5'>
@@ -130,7 +130,7 @@ function EditSpontaneous({ close,  props }: { close: CloseFunction, props: Spont
                         <h2 className='ml-5'>Message</h2>
                     </div>
                 </div>
-                <textarea value={input.message} onChange={handleChange} name='message' className={`w-full h-[70%] p-2 ${errors.message.length && 'bg-red-300 border-2 border-red-700 rounded-md'}`}/>
+                <textarea value={input.message} onChange={handleChange} name='message' className={`w-full h-[70%] p-2 dark:text-black ${errors.message.length && 'bg-red-300 border-2 border-red-700 rounded-md'}`}/>
             </div>
         </div>
     </div>

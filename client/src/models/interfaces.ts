@@ -9,6 +9,15 @@ export interface UserInfo {
     profilePicture: string
 }
 
+export interface File {
+    id: number,
+    userId:number,
+    name:string,
+    url:string,
+    enabled: boolean,
+    isCv:boolean,
+}
+
 export interface Application {
     id: number,
     userId: number,
