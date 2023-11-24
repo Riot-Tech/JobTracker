@@ -10,12 +10,13 @@ const cloudStorage = new Storage({
     projectId: "jobtracker-404413"
 });
 
+// Este codigo funiona como plantilla para generar nombres de buckets en GCS
 const uniqueCode = 'ljnro1je8kfp23yvwmaq5khzn-user-id-';
 
 
 
-// Funcion para codificar los caracteres para que los lea Google
 function encodeFileName(filename: string): string {
+  // Funcion para codificar los caracteres para que los lea Google
   const charactersToEncode = ['!', '#', '$', '&', '\'', '(', ')', '*', '+', ',', '/', ':', ';', '=', '?', '@', '[', ']', ' '];
 
   // Codifico cada caracter y lo devuelvo

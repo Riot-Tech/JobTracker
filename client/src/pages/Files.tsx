@@ -21,24 +21,6 @@ function Files() {
     setModalOpen(!modalOpen);
   };
 
-  const handleDownload = async(filename: string) => {
-    await axios(`${URL}/file/download/${activeUser.id}?filename=${filename}`);
-  };
-
-  const handleView = async(filename: string) => {
-    try {
-      const { data }  = await axios(`${URL}/file/view/${activeUser.id}?filename=${filename}`);
-
-      if (!data || typeof(data) !== 'string') {
-        return console.log('Invalid signed URL received from server');
-      };
-      return window.open(data, '_blank');
-
-    } catch (error) {
-      console.error(error);
-    };
-  };
-
 
   useEffect(() => {
     const fetchData = async () => {

@@ -13,6 +13,26 @@ function EachFile({ props }: { props: File }) {
   const activeUser = useSelector((store: AppStore) => store.user);
   const dispatch = useDispatch();
 
+
+  const handleDownload = async(filename: string) => {
+    await axios(`${URL}/file/download/${activeUser.id}?filename=${filename}`);
+  };
+
+  const handleView = async(filename: string) => {
+    try {
+      const { data }  = await axios(`${URL}/file/view/${activeUser.id}?filename=${filename}`);
+
+      if (!data || typeof(data) !== 'string') {
+        return console.log('Invalid signed URL received from server');
+      };
+      return window.open(data, '_blank');
+
+    } catch (error) {
+      console.error(error);
+    };
+  };
+
+
   const handleDelete = async (id: number) => {
     try {
       console.log(id);
@@ -38,6 +58,8 @@ function EachFile({ props }: { props: File }) {
         <a href={`${url}`} target="_blank">
           <LuDownload className="text-4xl text-black" />
         </a>
+        <button onClick={() => handleDownload(name)}>Download</button>
+        <button onClick={() => handleView(name)}>View file</button>
       </div>
       <div className="relative">
         <BsTrash
@@ -54,6 +76,8 @@ function EachFile({ props }: { props: File }) {
         <a href={`${url}`} target="_blank">
           <LuDownload className="text-4xl text-black" />
         </a>
+        <button onClick={() => handleDownload(name)}>Download</button>
+        <button onClick={() => handleView(name)}>View file</button>
       </div>
       <div className="relative">
         <BsTrash
