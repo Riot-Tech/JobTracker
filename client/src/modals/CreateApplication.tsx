@@ -287,7 +287,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             type="submit"
                             disabled={hasErrors || Object.values(errors).some((error) => error !== '')}
                             onClick={handleSubmit}
-                            // className={`flex items-center ${confirmed ? 'bg-green-400 ring ring-green-400' : 'bg-red-500'}`}
+                            className={`flex items-center ${confirmed ? 'bg-green-400 ring ring-green-400' : 'bg-red-500'}`}
                             >
                             {<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
                                 <path d="M11.375 15.125L17 20.75L32 5.75" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
