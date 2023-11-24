@@ -5,6 +5,7 @@ import { Application, jobModality, jobType } from "@prisma/client"
 
 export const updateApplicationController = async (application: Application) => {
 
+
     if (typeof application.id !== 'number') throw new Error('Wrong id type');
     // if (typeof application.userId !== 'number') throw new Error('Wrong userId type');
     if (application.jobName !== undefined && typeof application.jobName !== 'string') throw new Error('Wrong jobName type');

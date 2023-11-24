@@ -4,7 +4,7 @@ import SideBar from "../components/SideBar";
 import axios from "axios";
 import { getApplications } from "../redux/slices/applications.slice";
 import { useEffect, useState } from "react";
-import { AppStore, Application } from "../models/interfaces";
+import { AppStore} from "../models/interfaces";
 import { URL } from "../utils/url";
 import { useDispatch } from "react-redux";
 import CreateApplication from "../modals/CreateApplication";
@@ -75,9 +75,9 @@ export default function Applications() {
           </div>
 
           <div className="absolute top-40 left-4 flex flex-col max-h-[80%] overflow-y-scroll w-[95%] px-20 pb-5">
-            {!applications.EmptyApplications.length ? <h1 className="text-white text-lg">Try adding some applications</h1> : (applications.EmptyApplications.map((app) => {
+            {!applications.EmptyApplications.length ? <h1 className="text-white text-lg">Try adding some applications</h1> : (applications.EmptyApplications.map((app, index) => {
               if (app.enabled) return (
-                <App props={app}/>
+                <App props={app} key={index}/>
               );
             }))}
           </div>

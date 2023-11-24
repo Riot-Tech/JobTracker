@@ -5,32 +5,31 @@ import { URL } from "../utils/url";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { AppStore, Application } from "../models/interfaces";
-import Applications from "../pages/Applications";
-import { createApplication } from "../redux/slices/applications.slice";
+import { getApplications } from "../redux/slices/applications.slice";
 import { AiOutlineClose } from "react-icons/ai";
 
 type CloseFunction = () => void;
 
 export default function EditApplication({ close, props }: { close: CloseFunction, props: Application }) {
     const activeUser = useSelector((store: AppStore) => store.user);
-    const [ confirmed, setConfirmed ]= useState(false)
+    const [confirmed, setConfirmed] = useState(false)
 
     const dispatch = useDispatch();
 
     const { company, location, status, jobName, expectedIncome, currency, jobType, id, link, feedback, comments, jobModality } = props;
 
     const [form, setForm] = useState({
-        jobName: '',
-        company: '',
-        jobType: '',
-        jobModality: '',
-        location: '',
-        expectedIncome: 0,
-        currency: '',
-        status: '',
-        feedback: '',
-        comments: '',
-        link: ''
+        jobName: jobName,
+        company: company,
+        jobType: jobType,
+        jobModality: jobModality,
+        location: location,
+        expectedIncome: expectedIncome,
+        currency: currency,
+        status: status,
+        feedback: feedback,
+        comments: comments,
+        link: link
     });
 
     const [errors, setErrors] = useState({
@@ -76,24 +75,30 @@ export default function EditApplication({ close, props }: { close: CloseFunction
         }
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
+        console.log(form, id)
         try {
-            let { data } = await axios.patch(`${URL}/application`, {...form, id: id});
-            if (data.length) {
-                
-                dispatch(createApplication(data));
-                return;
+            let response = await axios.patch(`${URL}/application`, { ...form, id: id });
+            if (response.status === 200) {
+                let { data } = await axios.get(`${URL}/application//?id=${activeUser.id}`);
+
+                if (data.length) {
+                    setConfirmed(true);
+
+                    dispatch(getApplications(data)); //lleno el estado global de aplications, que ahora que lo pienso podria no ser global, y luego me lo traigo y las renderizo
+                    return;
+                }
             }
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 
     return (
         <form className="fixed inset-0 z-20 flex backdrop-brightness-90 flex-col items-center justify-center backdrop-blur-sm">
             <AiOutlineClose onClick={close} className='text-4xl bg-black rounded-2xl p-1 mb-4 hover: cursor-pointer hover:bg-gray-600' />
-            <div className="h-[80vh] w-[80vw] bg-custom-modalSpontaneousLight rounded-xl text-black flex p-10 dark:text-white">
+            <div className="h-[80vh] w-[80vw] bg-custom-modalLight rounded-xl text-black flex p-10 dark:text-white">
                 <div className="w-[50%] flex flex-col justify-between">
                     <div className="h-[30%] bg-red divide-black mt-20">
                         <div className="flex items-center divide-black">
@@ -281,8 +286,9 @@ export default function EditApplication({ close, props }: { close: CloseFunction
                 <div className="w-[50%] flex flex-col mt-5">
                     <div className="pr-0 ">
                         <button
-                            onSubmit={handleSubmit} 
-                            className=" flex items-center justify-around w-40 h-52px  bg-red-800"
+                            type="submit"
+                            onClick={handleSubmit}
+                            className={` flex items-center justify-around w-40 h-52px ${confirmed ? 'bg-green-400 ring ring-green-400' : 'bg-red-500'}`}
                         >
                             {<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
                                 <path d="M11.375 15.125L17 20.75L32 5.75" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />

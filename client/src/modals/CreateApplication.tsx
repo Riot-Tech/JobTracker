@@ -5,7 +5,7 @@ import { URL } from "../utils/url";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { AppStore } from "../models/interfaces";
-import { createApplication } from "../redux/slices/applications.slice";
+import { getApplications } from "../redux/slices/applications.slice";
 import { AiOutlineClose } from "react-icons/ai";
 
 type CloseFunction = () => void;
@@ -81,7 +81,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                 let  { data }  = await axios.get(`${URL}/application/?id=${activeUser.id}`);
                 if (data.length) {
                     setConfirmed(true);
-                    dispatch(createApplication(data));
+                    dispatch(getApplications(data));
                     return;
                 }
             }
@@ -96,7 +96,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
     return (
         <form className="fixed inset-0 z-20 flex backdrop-brightness-90 flex-col items-center justify-center backdrop-blur-sm">
             <AiOutlineClose onClick={close} className='text-4xl bg-black rounded-2xl p-1 mb-4 hover: cursor-pointer hover:bg-gray-600' />
-            <div className="h-[80vh] w-[80vw] bg-custom-modalSpontaneousLight rounded-xl text-black flex p-10 dark:text-white">
+            <div className="h-[80vh] w-[80vw] bg-custom-modalLight rounded-xl text-black flex p-10 dark:text-white">
                 <div className="w-[50%] flex flex-col justify-between">
                     <div className="h-[30%] bg-red divide-black mt-20">
                         <div className="flex items-center divide-black">
