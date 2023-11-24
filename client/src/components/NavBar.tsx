@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import SearchBar from "./SearchBar"
 import { AppStore } from "../models/interfaces"
 import { BsLightbulb, BsFillLightbulbFill, BsFillPersonFill } from 'react-icons/bs'
-import { useState, useEffect, ChangeEvent } from "react";
+import { useState, useEffect } from "react";
 
 function NavBar() {
   const activeUser = useSelector((store: AppStore)=> store.user)
@@ -28,8 +28,10 @@ function NavBar() {
   }
   
   return (
-    <div className="flex h-[10%] w-[full]">
-        <SearchBar/>
+    <div className="flex items-center h-[10vh] w-[full] bg-gray-200 dark:bg-gray-500">
+        <div className="w-[70%]">
+          <SearchBar/>
+        </div>
         <div className="flex justify-evenly items-center w-[30%] bg-gray-200 p-10 dark:bg-gray-500">
           <div className="flex">
             <BsFillPersonFill className='text-2xl text-gray-700 mr-1 dark:text-black' />

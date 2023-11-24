@@ -42,7 +42,7 @@ function EachFile({ props }: { props: File }) {
       <div className="relative">
         <BsTrash
           onClick={() => handleDelete(id)} // Wrap the function in an arrow function
-          className="absolute left-32 -top-8 p-1 rounded-[50%] text-4xl  hover:cursor-pointer text-red-700"
+          className="absolute left-32 -top-8 p-1 rounded-[50%] text-4xl  hover:cursor-pointer text-red-900"
         />
         <CvFileIcon />
       </div>
@@ -58,7 +58,7 @@ function EachFile({ props }: { props: File }) {
       <div className="relative">
         <BsTrash
           onClick={() => handleDelete(id)} // Wrap the function in an arrow function
-          className="absolute left-32 -top-8 p-1 rounded-[50%] text-4xl  hover:cursor-pointer text-red-700"
+          className="absolute left-32 -top-8 p-1 rounded-[50%] text-4xl  hover:cursor-pointer text-red-900 dark:bg-red-200"
         />
         <OtherFileIcon />
       </div>
