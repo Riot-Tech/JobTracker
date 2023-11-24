@@ -4,30 +4,32 @@ import { useDispatch } from "react-redux";
 import { URL } from "../utils/url";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { AppStore } from "../models/interfaces";
+import { AppStore, Application } from "../models/interfaces";
 import { getApplications } from "../redux/slices/applications.slice";
 import { AiOutlineClose } from "react-icons/ai";
 
 type CloseFunction = () => void;
 
-export default function CreateApplication({ close }: { close: CloseFunction }) {
+export default function EditApplication({ close, props }: { close: CloseFunction, props: Application }) {
     const activeUser = useSelector((store: AppStore) => store.user);
-    const [ confirmed, setConfirmed ]= useState(false)
+    const [confirmed, setConfirmed] = useState(false)
 
     const dispatch = useDispatch();
 
+    const { company, location, status, jobName, expectedIncome, currency, jobType, id, link, feedback, comments, jobModality } = props;
+
     const [form, setForm] = useState({
-        jobName: '',
-        company: '',
-        jobType: '',
-        jobModality: '',
-        location: '',
-        expectedIncome: 0,
-        currency: '',
-        status: '',
-        feedback: '',
-        comments: '',
-        link: ''
+        jobName: jobName,
+        company: company,
+        jobType: jobType,
+        jobModality: jobModality,
+        location: location,
+        expectedIncome: expectedIncome,
+        currency: currency,
+        status: status,
+        feedback: feedback,
+        comments: comments,
+        link: link
     });
 
     const [errors, setErrors] = useState({
@@ -73,25 +75,25 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
         }
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
+        console.log(form, id)
         try {
-            let  response = await axios.post(`${URL}/application`, (activeUser.id, form));
-            if(response.status === 200){
-                let  { data }  = await axios.get(`${URL}/application/?id=${activeUser.id}`);
+            let response = await axios.patch(`${URL}/application`, { ...form, id: id });
+            if (response.status === 200) {
+                let { data } = await axios.get(`${URL}/application//?id=${activeUser.id}`);
+
                 if (data.length) {
                     setConfirmed(true);
-                    dispatch(getApplications(data));
+
+                    dispatch(getApplications(data)); //lleno el estado global de aplications, que ahora que lo pienso podria no ser global, y luego me lo traigo y las renderizo
                     return;
                 }
             }
-            return;
         } catch (error) {
             console.log(error);
         }
     }
-    const hasErrors = Object.values(errors).some((error) => !!error);
-    
 
     return (
         <form className="fixed inset-0 z-20 flex backdrop-brightness-90 flex-col items-center justify-center backdrop-blur-sm">
@@ -104,7 +106,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                                 className="w-[45%] h-[95px] p-2 border text-3xl font-semibold rounded mr-4 text-black"
                                 name="company"
                                 type="text"
-                                placeholder="Company Name"
+                                placeholder={company}
                                 value={form.company}
                                 onChange={handleChange}
                             />
@@ -119,7 +121,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                                 className="w-[30%] h-[75px] p-2 border rounded mr-4 text-black"
                                 name="jobName"
                                 type="text"
-                                placeholder="Job Name"
+                                placeholder={jobName}
                                 value={form.jobName}
                                 onChange={handleChange}
                             />
@@ -161,7 +163,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                                 onChange={handleChange}
                             >
                                 <optgroup label="Job Type">
-                                    <option> Job Type </option>
+                                    <option> {jobType} </option>
                                     <option> FULLTIME </option>
                                     <option> PART_TIME </option>
                                     <option> FREELANCE </option>
@@ -184,7 +186,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                                 onChange={handleChange}
                             >
                                 <optgroup label="Job Modality">
-                                    <option> Job Modality </option>
+                                    <option> {jobModality} </option>
                                     <option> REMOTE </option>
                                     <option> ONSITE </option>
                                     <option> HYBRID </option>
@@ -201,7 +203,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                                 name="location"
                                 className="w-[30%] h-[45px] p-2 border rounded ml-4 text-black"
                                 type="text"
-                                placeholder="Location"
+                                placeholder={location}
                                 value={form.location}
                                 onChange={handleChange}
                             />
@@ -220,7 +222,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                                 name="link"
                                 className="w-[50%] p-2 h-[45px] border rounded ml-4 text-black"
                                 type="text"
-                                placeholder="Link"
+                                placeholder={link}
                                 value={form.link}
                                 onChange={handleChange}
                             />
@@ -234,7 +236,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                                 name="currency"
                                 className="w-[30%] p-2 h-[45px] border rounded ml-4 text-black"
                                 type="text"
-                                placeholder="Currency"
+                                placeholder={currency}
                                 value={form.currency}
                                 onChange={handleChange}
                             />
@@ -250,7 +252,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                                 name="expectedIncome"
                                 className="w-[30%] h-[45px] flex flex-col p-2 border rounded ml-4 text-black"
                                 type="number"
-                                placeholder="Expected Income"
+                                placeholder={String(expectedIncome)}
                                 value={form.expectedIncome}
                                 onChange={handleChange}
                             />
@@ -271,7 +273,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                                 onChange={handleChange}
                             >
                                 <optgroup label="Status">
-                                    <option> Status </option>
+                                    <option> {status} </option>
                                     <option> PENDING </option>
                                     <option> SUBMITTED </option>
                                     <option> INTERVIEW_SCHEDULED </option>
@@ -285,10 +287,9 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                     <div className="pr-0 ">
                         <button
                             type="submit"
-                            disabled={hasErrors || Object.values(errors).some((error) => error !== '')}
                             onClick={handleSubmit}
-                            className={`flex items-center ${confirmed ? 'bg-green-400 ring ring-green-400' : 'bg-red-500'}`}
-                            >
+                            className={` flex items-center justify-around w-40 h-52px ${confirmed ? 'bg-green-400 ring ring-green-400' : 'bg-red-500'}`}
+                        >
                             {<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
                                 <path d="M11.375 15.125L17 20.75L32 5.75" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                                 <path d="M32 17C32 25.2843 25.2843 32 17 32C8.71572 32 2 25.2843 2 17C2 8.71572 8.71572 2 17 2C18.7762 2 20.4802 2.3087 22.0614 2.87536" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
@@ -309,7 +310,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                         value={form.feedback}
                         className=" h-[180px] mt-3 text-black p-2"
                         onChange={handleChange}
-                        placeholder="Any feedback from the company (e.g., interview experience, comments, or follow-up notes)"
+                        placeholder={feedback}
                     />
                     <div className="flex flex-col mt-5">
                         <div className="flex items-center">
@@ -326,7 +327,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             value={form.comments}
                             className=" h-[180px] mt-3 text-black p-2"
                             onChange={handleChange}
-                            placeholder="Feel free to write any comments you'd like here."
+                            placeholder={comments}
                         />
                     </div>
                 </div>

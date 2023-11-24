@@ -4,7 +4,7 @@ import { AiOutlineClose } from 'react-icons/ai'
 import { IoAlertCircle } from "react-icons/io5";
 import { validateCreateSpontaneous } from '../utils/validateCreateSpontaneous';
 import { AppStore } from '../models/interfaces';
-import { hasErrorsSpontaneous } from '../utils/utilities';
+import { hasErrorsSpontaneous, isInputEmpty } from '../utils/utilities';
 import { URL } from '../utils/url';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
@@ -52,7 +52,7 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
 
     const handleSubmit = async ()=>{
         try {
-            if(!hasErrorsSpontaneous(errors)){
+            if(!hasErrorsSpontaneous(errors) && !isInputEmpty(input)){
                 let response = await axios.post(`${URL}/spontaneous`, {...input, userId: activeUser.id})
                 
                 if(response.status === 200){ //una vez que se guardo en la bdd, modal de confirmacion, se deberia mostrar la espontanea cuando cerramos el modal
@@ -109,24 +109,24 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
                     </div>
                     
                 </div>
-                <div className='w-[50%] flex flex-col dark:text-white'>
+                <div className='w-[50%] flex flex-col '>
                     <div className='flex justify-between m-1'>
                         <div className='flex items-center'>
                             <FeedbackIcon/>
                             <h2 className='ml-1'>Feedback</h2>
                         </div>
                     </div>
-                    <textarea onChange={handleChange} name='feedback' className={`w-full h-[80%] p-2 ${errors.feedback.length && 'bg-red-300 border-2 border-red-700 rounded-md'}`}/>
+                    <textarea onChange={handleChange} name='feedback' className={`w-full h-[80%] p-2 dark:text-black ${errors.feedback.length && 'bg-red-300 border-2 border-red-700 rounded-md'}`}/>
                 </div>
             </div>
-            <div className='h-[30%] mt-5 dark:text-white'>
+            <div className='h-[30%] mt-5'>
                 <div className='flex justify-between m-2 items-center'>
                     <div className='flex'>
                         <MessageIcon/>
                         <h2 className='ml-5'>Message</h2>
                     </div>
                 </div>
-                <textarea onChange={handleChange} name='message' className={`w-full h-[70%] p-2 ${errors.message.length && 'bg-red-300 border-2 border-red-700 rounded-md'}`}/>
+                <textarea onChange={handleChange} name='message' className={`w-full h-[70%] p-2 dark:text-black ${errors.message.length && 'bg-red-300 border-2 border-red-700 rounded-md'}`}/>
             </div>
         </div>
     </div>

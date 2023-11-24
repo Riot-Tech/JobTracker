@@ -5,6 +5,10 @@ export const hasErrors = (errors: input | inputLogin)=>{
    return Object.values(errors).some((value)=> value.length>0)
 }
 
+export const isInputEmpty = (input: inputSpontaneous) =>{
+   return !Object.values(input).some((value)=> value.length)
+}
+
 export const hasErrorsSpontaneous = (errors: inputSpontaneous) =>{
    return Object.values(errors).some((value)=> value.length>0)
 }

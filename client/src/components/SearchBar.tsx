@@ -12,8 +12,6 @@ function SearchBar() {
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     if(location.pathname === '/spontaneous'){
-      //quiero hacer la busqueda en el front, sin tener que ir al back
-      //voy a modificar el estado global de las spontaneous a traves de una action
       dispatch(searchSpontaneous(event.target.value))
     }
 
@@ -27,8 +25,8 @@ function SearchBar() {
   }
 
   return (
-    <div className="flex items-center p-10 bg-gray-200 w-[70%] dark:bg-gray-500">
-        <input onChange={handleSearch} placeholder="Search" className="w-[350px] p-3 text-black border-1 border-solid border-slate-200"/>
+    <div className="flex items-center p-10">
+        <input onChange={handleSearch} placeholder="Search..." className="w-[350px] p-3 text-black border-1 border-solid border-slate-200"/>
         <div className="relative right-10 hover: cursor-pointer border-l-2 border-gray-400 p-1">
             <SearchIcon/>
         </div>
