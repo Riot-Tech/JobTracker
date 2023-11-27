@@ -19,6 +19,7 @@ export const applicationsSlice = createSlice({
        createApplication: (state, action) => {
         const newApplication = action.payload;
         state.EmptyApplications.unshift(newApplication); 
+        return state
        },
        searchApplication: (state, action) => {
         let coincidence = action.payload;

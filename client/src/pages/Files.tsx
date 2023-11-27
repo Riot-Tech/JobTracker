@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SideBar from "../components/SideBar";
 import NavBar from "../components/NavBar";
-import { CvFileIcon, NewFileIcon, OtherFileIcon } from "../utils/svg";
+import { NewFileIcon } from "../utils/svg";
 import CreateFile from "../modals/CreateFile";
 import axios from "axios";
 import { addFile } from "../redux/slices/files.slice";
@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { AppStore } from "../models/interfaces";
 import { useDispatch } from "react-redux";
 import { URL } from "../utils/url";
-import { LuDownload } from "react-icons/lu";
+import EachFile from "../components/EachFile";
 
 function Files() {
   const activeUser = useSelector((store: AppStore) => store.user);
@@ -21,6 +21,7 @@ function Files() {
     setModalOpen(!modalOpen);
   };
 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,7 +31,6 @@ function Files() {
           dispatch(addFile(data));
           return;
         }
-
         return;
       } catch (error) {
         console.log(error);
@@ -72,49 +72,29 @@ function Files() {
             </div>
           </div>
 
-          <div className="absolute top-52 flex justify-evenly w-full">
+          <div className="absolute top-52 flex justify-evenly w-full h-[60vh] p-5">
             
-              <div className="w-1/2 flex flex-col max-h-[80%] overflow-y-scroll px-20 py-5 mb-5">
+              <div className="w-1/2 flex flex-col overflow-y-scroll px-20 py-5 mb-5">
                 {files?.map((file) => {
                   if (file.enabled && file.isCv) {
                     return (
-                      <div className="flex justify-between items-center bg-gray-200 p-5 rounded-lg drop-shadow-xl dark:drop-shadow-white my-4 mx-1">
-                        <div className="flex gap-5 items-center">
-                          <h1 className="text-black">{file.name}</h1>
-                          <a href={`${file.url}`} target="_blank">
-                            <LuDownload className='text-4xl text-black' />
-                          </a>
-                        </div>
-                        <div>
-                          <CvFileIcon/>
-                        </div>
-                      </div>
+                      <EachFile key={file.id} props={file} />
                     );
                   }
                 })}
               </div>
             
-              <div className="w-1/2 flex flex-col max-h-[80%] overflow-y-scroll px-20 pb-5">
+              <div className="w-1/2 flex flex-col overflow-y-scroll px-20 py-5 mb-5">
                 {files?.map((file) => {
                   if (file.enabled && !file.isCv) {
                     return (
-                      <div className="flex justify-between items-center bg-gray-200 p-5 rounded-lg dark:border-white my-4 mx-1">
-                        <div className="flex gap-5 items-center">
-                          <h1 className="text-black">{file.name}</h1>
-                          <a href={`${file.url}`} target="_blank">
-                            <LuDownload className='text-4xl text-black' />
-                          </a>
-                        </div>
-                        <div>
-                          <OtherFileIcon/>
-                        </div>
-                      </div>
+                      <EachFile key={file.id} props={file} />
                     );
                   }
                 })}
               </div>
 
-            </div>
+          </div>
 
           </div>
 
