@@ -29,7 +29,8 @@ export { getFilesHandler } from './FileHandlers/getFilesHandler'
 export { postFileHandler } from './FileHandlers/postFileHandler';
 export { disableFileHandler } from './FileHandlers/disableFileHandler';
 export { updateFileHandler } from './FileHandlers/updateFileHandler';
-
+export { downloadFileHandler } from './FileHandlers/downloadFileHandler';
+export { viewFileHandler } from './FileHandlers/viewFileHandler';
 
 
 

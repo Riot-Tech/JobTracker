@@ -23,6 +23,8 @@ export { getFilesController } from './FileControllers/getFilesController';
 export { postFileController } from './FileControllers/postFileController';
 export { disableFileController } from './FileControllers/disableFileController';
 export { updateFileController } from './FileControllers/updateFileController';
+export { downloadFileController } from './FileControllers/downloadFileController';
+export { viewFileController } from './FileControllers/viewFileController';
 
 
 
