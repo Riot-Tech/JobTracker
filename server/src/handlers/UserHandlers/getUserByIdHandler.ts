@@ -5,7 +5,7 @@ import { getUserByIdController } from "../../controllers";
 
 export const getUserByIdHandler = async (req: Request, res: Response) => { //seteamos de tipo any de forma provisoria
     try {
-        const id = +req.params;
+        const id = +req.params.id;
         if(id){
             const user = await getUserByIdController(id);
             return res.status(200).json(user);
