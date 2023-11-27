@@ -4,7 +4,6 @@ export const PublicRoutes = {
 
 export const PrivateRoutes = {
     PRIVATE: 'private',
-    HOME:'home',
     SPONTANEOUS:'spontaneous',
     PROFILE:'profile',
     APPLICATIONS:'applications',

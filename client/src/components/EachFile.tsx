@@ -35,7 +35,6 @@ function EachFile({ props }: { props: File }) {
 
   const handleDelete = async (id: number) => {
     try {
-      console.log(id);
       let response = await axios.patch(`${URL}/file/${id}`);
 
       if (response.status === 200) {
@@ -55,11 +54,10 @@ function EachFile({ props }: { props: File }) {
     <div className="flex justify-between items-center bg-gray-200 p-5 rounded-lg drop-shadow-xl my-4 mx-1">
       <div className="flex gap-5 items-center">
         <h2 className="text-black">{name}</h2>
-        <a href={`${url}`} target="_blank">
-          <LuDownload className="text-4xl text-black" />
-        </a>
-        <button onClick={() => handleDownload(name)}>Download</button>
-        <button onClick={() => handleView(name)}>View file</button>
+          <LuDownload onClick={() => handleView(name)} className="text-4xl text-black hover:cursor-pointer" />
+        
+        {/* <button onClick={() => handleDownload(name)}>Download</button>
+        <button onClick={() => handleView(name)}>View file</button> */}
       </div>
       <div className="relative">
         <BsTrash
@@ -73,11 +71,9 @@ function EachFile({ props }: { props: File }) {
     <div className="relative flex justify-between items-center bg-gray-200 p-5 drop-shadow-xl rounded-lg my-4 mx-1">
       <div className="flex gap-5 items-center">
         <h2 className="text-black">{name}</h2>
-        <a href={`${url}`} target="_blank">
-          <LuDownload className="text-4xl text-black" />
-        </a>
-        <button onClick={() => handleDownload(name)}>Download</button>
-        <button onClick={() => handleView(name)}>View file</button>
+          <LuDownload onClick={() => handleView(name)} className="text-4xl text-black hover:cursor-pointer" />
+        {/* <button onClick={() => handleDownload(name)}>Download</button>
+        <button onClick={() => handleView(name)}>View file</button> */}
       </div>
       <div className="relative">
         <BsTrash
