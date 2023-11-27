@@ -8,12 +8,12 @@ export const validateCreateSpontaneous = (input: inputSpontaneous) => {
     company: z
       .string()
       .min(1,"Company name required"),
-    message: z.string().min(1,'Message Required').max(500),
+    message: z.string().min(1,'Message Required').max(1500),
     link: z.string().min(1,'Link required'),
     /* date: z
       .string()
       .refine((date)=> new Date(date).toString() !== 'Invalid Date',{message: 'Date required'}), */
-    feedback: z.string().max(500),
+    feedback: z.string().max(1500),
     location: z.string().min(1,'At least one character'),
     receiver: z.string().min(1,'At least one character')
   });

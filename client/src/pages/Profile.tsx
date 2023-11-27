@@ -1,20 +1,15 @@
+import axios from "axios";
 import NavBar from "../components/NavBar";
 import SideBar from "../components/SideBar";
 import { useDispatch, useSelector } from 'react-redux';
 import { AppStore } from "../models/interfaces";
 import hexagon from "../assets/hexagon.png";
-// import { Link } from "react-router-dom";
 import { URL } from "../utils/url";
-
-// import { EditIcon } from '../utils/svg';
-
-// import { validateSignUpForm } from "../utils/validateSignUpForm";
 import { useState, ChangeEvent, useEffect } from "react";
-// import { hasErrors } from "../utils/utilities";
-import axios from "axios";
 import { updateUser } from "../redux/slices/auth.slice";
 import { EditIcon, LinkedInIcon, TickIcon, GitHubIcon, PortfolioIcon } from '../utils/svg';
 import { validateLink } from '../utils/validateProfileLinks';
+import { hasErrors } from "../utils/utilities";
 
 
 export default function Profile() {
@@ -26,12 +21,33 @@ export default function Profile() {
     const spontaneous = useSelector((store: AppStore) => store.spontaneous);
     const files = useSelector((store: AppStore) => store.filesState);
 
+    const [edition, setEdition] = useState(false);
+
+    const [input, setInput] = useState({
+        id: activeUser.id,
+        name: activeUser.name ,
+        email:activeUser.email,
+        linkedIn: activeUser.linkedIn || '',
+        gitHub: activeUser.gitHub || '',
+        portfolio: activeUser.portfolio || '',
+        profilePicture: '',
+        enabled: true
+    })
+
+    const [errors, setErrors] = useState({
+        linkedIn:'',
+        gitHub:'',
+        portfolio:''
+    })
+
+    
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
                 let { data } = await axios.get(`${URL}/user/${activeUser.id}`);
                 console.log(data)
-                console.log(data.id)
+                dispatch(updateUser(data))
                 return;
             } catch (error) {
                 console.log(error);
@@ -41,56 +57,31 @@ export default function Profile() {
     }, []);
 
 
-    const [input, setInput] = useState({
-        id: activeUser.id,
-        name: activeUser.name ,
-        email:activeUser.email,
-        password: '',
-        linkedIn: activeUser.linkedIn || '',
-        gitHub: activeUser.gitHub || '',
-        portfolio: activeUser.portfolio || '',
-        profilePicture: null,
-        enabled: true,
-        token: activeUser.token
-    })
+    const handleChange = async(event: ChangeEvent<HTMLInputElement>| ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLSelectElement>) => {
 
-    // const [errors, setErrors] = useState({ name: "", email: "", password: "", linkedIn: "", gitHub: "", portfolio: "" })
-
-    const [edition, setEdition] = useState(false);
-
-
-    console.log('activeUser', activeUser)
-
-    console.log(input)
-
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-
-        const newLink = event.target.value;
-        console.log(newLink)
-        if (validateLink(newLink) === true) {
-            console.log('entre')
-            setInput({
+        setInput({
+            ...input,
+            [event.target.name] : event.target.value
+        })
+        setErrors(validateLink(
+            {
                 ...input,
-                [event.target.name]: event.target.value,
-            });
-            console.log(input)
-        } else {
-            console.log('Invalid link')
-        }
+              [event.target.name]: event.target.value
+            }
+        ))
     };
 
 
     const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
 
-        const { token, ...user } = activeUser;
-
         try {
-            const res = await axios.patch(`${URL}/user/`, user);
-            if (res.status === 200) {
-                dispatch(updateUser(input));
-
-                setEdition(false);
+            if(!hasErrors(errors)){
+                const res = await axios.patch(`${URL}/user/`, input);
+                if (res.status === 200) {
+                    dispatch(updateUser(input));
+                    setEdition(false);
+                }
             }
         } catch (error) {
             console.log(error);
@@ -125,24 +116,17 @@ export default function Profile() {
                             <div className="flex flex-row items-center justify-center">
                                 <div className='flex items-center mt-10 space-x-4 justify-center'>
                                     {/* linkedin */}
-                                    
-                                        <a href={activeUser.linkedIn} target="_blank" >
+                                        <a href={input.linkedIn} target="_blank" >
                                             <LinkedInIcon />
                                         </a>
-                                    
                                     {/* github */}
-                                    
-                                        <a href={activeUser.gitHub} target="_blank">
+                                        <a href={input.gitHub} target="_blank">
                                             <GitHubIcon />
                                         </a>
-                                 
                                     {/* portfolio */}
-                                    
-                                        <a href={activeUser.portfolio} target="_blank" >
+                                        <a href={input.portfolio} target="_blank" >
                                             <PortfolioIcon />
                                         </a>
-                                   
-
                                 </div>
                                 <div className='absolute ml-80 items-center justify-center'>
                                     {/* edit button */}
@@ -165,7 +149,7 @@ export default function Profile() {
                                                 className={` p-2 rounded-lg  bg-white dark:text-white`}
                                                 type="text"
                                                 name="linkedIn"
-                                                value={activeUser.linkedIn}
+                                                value={input.linkedIn}
                                                 onChange={handleChange}
                                                 placeholder="LinkedIn"
                                             />
@@ -179,7 +163,7 @@ export default function Profile() {
                                                 className={` p-2 rounded-lg bg-white `}
                                                 type="text"
                                                 name="gitHub"
-                                                value={activeUser.gitHub}
+                                                value={input.gitHub}
                                                 onChange={handleChange}
                                                 placeholder="Git Hub"
                                             />
@@ -193,7 +177,7 @@ export default function Profile() {
                                                 className={` p-2 rounded-lg bg-white`}
                                                 type="text"
                                                 name="portfolio"
-                                                value={activeUser.portfolio}
+                                                value={input.portfolio}
                                                 onChange={handleChange}
                                                 placeholder="Portfolio"
                                             />

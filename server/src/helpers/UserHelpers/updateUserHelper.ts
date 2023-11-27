@@ -11,6 +11,7 @@ export const updateUserHelper = async (user: User) => {
     });
     await prisma.$disconnect();
     if (res){
+        console.log(res)
         return res;
     };
 
