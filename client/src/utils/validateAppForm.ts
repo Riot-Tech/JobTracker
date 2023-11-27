@@ -25,6 +25,9 @@ export const validateApplicationForm = (form: Pick<Application,
     } else{
         updatedErrors.company = ''
     }
+    if(form.jobType === '' || undefined){
+        updatedErrors.jobType = 'Debe seleccionar un tipo'
+    }
     if (form.location && !/^[a-zA-Z0-9\s]+$/.test(form.location)) {
         updatedErrors.location = 'Sólo puede contener letras y/o números'
     } else {
