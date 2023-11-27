@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { createUser } from "../redux/slices/auth.slice";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +19,7 @@ function GoogleButton() {
       let backResponse = await axios.post(`${URL}/login`, response.profileObj);
       if (backResponse.status === 200) {
         dispatch(createUser(backResponse.data));
-        navigate(`/${PrivateRoutes.HOME}`, { replace: true });
+        navigate(`/${PrivateRoutes.PROFILE}`, { replace: true });
       }
     } catch (error) {
       console.log(error);
