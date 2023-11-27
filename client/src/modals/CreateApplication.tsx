@@ -108,11 +108,11 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                                 value={form.company}
                                 onChange={handleChange}
                             />
-                            {errors.company && <span className="text-red" > {errors.company}</span>}
                             <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
                                 <path d="M2 27H14.5H27" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                                 <path d="M14.8081 5.92838L18.7366 2L25.6111 8.87465L21.6828 12.803M14.8081 5.92838L7.02117 13.7153C6.76071 13.9758 6.61438 14.3291 6.61438 14.6974V20.9967H12.9138C13.2821 20.9967 13.6353 20.8505 13.8959 20.5899L21.6828 12.803M14.8081 5.92838L21.6828 12.803" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
+                            {errors.company && <span className="text-red-800" > {errors.company}</span>}
                         </div>
                         <div className="flex items-center">
                             <input
@@ -123,11 +123,11 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                                 value={form.jobName}
                                 onChange={handleChange}
                             />
-                            {errors.jobName && <span className="text-red" > {errors.jobName}</span>}
                             <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
                                 <path d="M2 27H14.5H27" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                                 <path d="M14.8081 5.92838L18.7366 2L25.6111 8.87465L21.6828 12.803M14.8081 5.92838L7.02117 13.7153C6.76071 13.9758 6.61438 14.3291 6.61438 14.6974V20.9967H12.9138C13.2821 20.9967 13.6353 20.8505 13.8959 20.5899L21.6828 12.803M14.8081 5.92838L21.6828 12.803" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
+                            {errors.jobName && <span className="text-red-800" > {errors.jobName}</span>}
                         </div>
                     </div>
                     <div className="flex flex-col gap-4 h-[70%]">
@@ -167,6 +167,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                                     <option> FREELANCE </option>
                                     <option> UNSPECIFIED </option>
                                 </optgroup>
+                                { errors.jobType && <span className='items-center text-3xl text-red-600 ml-1'> {errors.jobType}</span>}
                             </select>
                         </div>
                         <div className="flex items-center">
@@ -238,7 +239,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                                 value={form.currency}
                                 onChange={handleChange}
                             />
-                            {errors.currency && <span className="text-red" > {errors.currency}</span>}
+                            {errors.currency && <span className="text-red-800" > {errors.currency}</span>}
                         </div>
                         <div className="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="34" height="31" viewBox="0 0 34 31" fill="none">

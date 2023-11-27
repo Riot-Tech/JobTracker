@@ -11,7 +11,8 @@ export default {
           backLight: "#FFFF",
           modalLight: '#ECD7D7',
           modalDark: '#5C5470',
-          spontLight: '#F5F7F8'
+          spontLight: '#F5F7F8',
+          red: '#ff0000',
         },
       },
     },
