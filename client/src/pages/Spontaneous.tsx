@@ -42,7 +42,7 @@ export default function Spontaneous() {
     return (
         <div className="flex">
           <SideBar />
-          <div>
+          <div className="w-full h-[100vh]">
             <NavBar />
             { modalOpen && <CreateSpontaneous close={handleClick}/> }
             <div className="relative flex flex-col h-[90%] w-full bg-custom-backLight dark:bg-custom-backDark">
