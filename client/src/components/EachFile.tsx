@@ -56,8 +56,8 @@ function EachFile({ props }: { props: File }) {
         <h2 className="text-black">{name}</h2>
           <LuDownload onClick={() => handleView(name)} className="text-4xl text-black hover:cursor-pointer" />
         
-        {/* <button onClick={() => handleDownload(name)}>Download</button>
-        <button onClick={() => handleView(name)}>View file</button> */}
+        <button onClick={() => handleDownload(name)}>Download</button>
+        <button onClick={() => handleView(name)}>View file</button>
       </div>
       <div className="relative">
         <BsTrash
