@@ -21,12 +21,12 @@ export default function Profile() {
     const spontaneous = useSelector((store: AppStore) => store.spontaneous);
     const files = useSelector((store: AppStore) => store.filesState);
 
-    const [edition, setEdition] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
 
     const [input, setInput] = useState({
         id: activeUser.id,
-        name: activeUser.name ,
-        email:activeUser.email,
+        name: activeUser.name,
+        email: activeUser.email,
         linkedIn: activeUser.linkedIn || '',
         gitHub: activeUser.gitHub || '',
         portfolio: activeUser.portfolio || '',
@@ -35,13 +35,13 @@ export default function Profile() {
     })
 
     const [errors, setErrors] = useState({
-        linkedIn:'',
-        gitHub:'',
-        portfolio:''
+        linkedIn: '',
+        gitHub: '',
+        portfolio: ''
     })
 
-    
-    
+
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -57,16 +57,16 @@ export default function Profile() {
     }, []);
 
 
-    const handleChange = async(event: ChangeEvent<HTMLInputElement>| ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLSelectElement>) => {
+    const handleChange = async (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLSelectElement>) => {
 
         setInput({
             ...input,
-            [event.target.name] : event.target.value
+            [event.target.name]: event.target.value
         })
         setErrors(validateLink(
             {
                 ...input,
-              [event.target.name]: event.target.value
+                [event.target.name]: event.target.value
             }
         ))
     };
@@ -76,11 +76,11 @@ export default function Profile() {
         event.preventDefault();
 
         try {
-            if(!hasErrors(errors)){
+            if (!hasErrors(errors)) {
                 const res = await axios.patch(`${URL}/user/`, input);
                 if (res.status === 200) {
                     dispatch(updateUser(input));
-                    setEdition(false);
+                    setIsEditing(false);
                 }
             }
         } catch (error) {
@@ -89,7 +89,7 @@ export default function Profile() {
     }
 
     const handleEdit = () => {
-        setEdition(true);
+        setIsEditing(true);
     };
 
     // falta mostrar el boton para cerrar el panel de links
@@ -107,30 +107,30 @@ export default function Profile() {
                     <div className="absolute top-6 left-4 bg-red-900 p-3 w-[95%] h-[8%] flex justify-between items-center rounded-lg">
                         <h3 className="text-white text-2xl font-bold">Profile</h3>
                     </div>
-                    <div className=' rounded-[42px] flex h-[35%] w-[60%] ml-[17%] mt-[9%] items-center space-x-8 shadow-lg  bg-custom-modalLight text-black dark:text-white dark:bg-custom-modalDark drop-shadow-lg'>
+                    <div className='flex rounded-[42px] h-[35%] w-[65%] ml-[15%] mt-[9%] items-center justify-center  text-black dark:text-white'>
 
                         {/* User and links icos */}
 
                         <div className='flex flex-col  justify-between w-1/2 px-8 drop-shadow-lg'>
-                            <h1 className="flex items-center justify-center">{activeUser.name}</h1>
+                            <h1 className="flex text-6xl items-center mb-4 justify-center drop-shadow-xl">{activeUser.name}</h1>
                             <div className="flex flex-row items-center justify-center">
-                                <div className='flex items-center mt-10 space-x-4 justify-center'>
+                                <div className='flex items-center mt-10 space-x-4 justify-center bg-gray-100 p-3 pl-6 pr-6 rounded-3xl drop-shadow-xl hover:scale-110 transition-transform shadow-xl dark:bg-gray-200'>
                                     {/* linkedin */}
-                                        <a href={input.linkedIn} target="_blank" >
-                                            <LinkedInIcon />
-                                        </a>
+                                    <a href={input.linkedIn} target="_blank" >
+                                        <LinkedInIcon />
+                                    </a>
                                     {/* github */}
-                                        <a href={input.gitHub} target="_blank">
-                                            <GitHubIcon />
-                                        </a>
+                                    <a href={input.gitHub} target="_blank" className="dark:text-white">
+                                        <GitHubIcon />
+                                    </a>
                                     {/* portfolio */}
-                                        <a href={input.portfolio} target="_blank" >
-                                            <PortfolioIcon />
-                                        </a>
+                                    <a href={input.portfolio} target="_blank" >
+                                        <PortfolioIcon />
+                                    </a>
                                 </div>
                                 <div className='absolute ml-80 items-center justify-center'>
                                     {/* edit button */}
-                                    {edition === false && (
+                                    {isEditing === false && (
                                         <button onClick={handleEdit} className='flex items-center justify-center bg-transparent mt-10 hover:scale-110 transition-transform border-none'>
                                             <h2><EditIcon /></h2>
                                         </button>
@@ -139,109 +139,108 @@ export default function Profile() {
                             </div>
                         </div>
                         {/* los inputs para agregar links */}
-                        {edition === true && (
-                            <div className="flex w-[38%] bg-gray-200 shadow-xl drop-shadow-lg p-6 rounded-xl">
-                                <div className="flex flex-col space-y-5 items-start">
-                                    {/* input linkedIn */}
-                                    {edition === true && (
-                                        <div className="flex flex-row">
-                                            <input
-                                                className={` p-2 rounded-lg  bg-white dark:text-white`}
-                                                type="text"
-                                                name="linkedIn"
-                                                value={input.linkedIn}
-                                                onChange={handleChange}
-                                                placeholder="LinkedIn"
-                                            />
-                                            <p className="text-red-500 h-1 my-2"></p>
-                                        </div>
-                                    )}
-                                    {/* input gitHub */}
-                                    {edition === true && (
-                                        <div className="flex flex-row">
-                                            <input
-                                                className={` p-2 rounded-lg bg-white `}
-                                                type="text"
-                                                name="gitHub"
-                                                value={input.gitHub}
-                                                onChange={handleChange}
-                                                placeholder="Git Hub"
-                                            />
-                                            <p className="text-red-500 h-1 my-2"></p>
-                                        </div>
-                                    )}
-                                    {/* input portfolio */}
-                                    {edition === true && (
-                                        <div className="flex flex-row">
-                                            <input
-                                                className={` p-2 rounded-lg bg-white`}
-                                                type="text"
-                                                name="portfolio"
-                                                value={input.portfolio}
-                                                onChange={handleChange}
-                                                placeholder="Portfolio"
-                                            />
-                                            <p className="text-red-500 h-1 my-2"></p>
-                                        </div>
-                                    )}
-                                </div>
-                                {/* confirm buttons */}
-                                <div className='flex justify-center items-center ml-5'>
-                                    {edition === true && (
-                                        <button onClick={handleSubmit} className='flex items-center justify-center  bg-red-900'>
-                                            <TickIcon />
-                                            <h2 className='ml-2 text-white '>Confirm</h2>
-                                        </button>
-                                    )}
-                                </div>
+                        {isEditing === true && (            
+                        <div className="flex flex-row bg-custom-modalLight shadow-xl drop-shadow-lg p-6  space-x-8 rounded-xl dark:bg-gray-500">
+                            <div className="flex flex-col space-y-5 items-start">
+                                {/* input linkedIn */}
+                                    <div className="flex flex-row ">
+                                        <input
+                                            className={` p-2 rounded-lg  bg-white dark:text-gray-700`}
+                                            type="text"
+                                            name="linkedIn"
+                                            value={input.linkedIn}
+                                            onChange={handleChange}
+                                            placeholder="LinkedIn"
+                                        />
+                                        <p className="text-red-500 h-1 my-2"></p>
+                                    </div>
+                             
+                                {/* input gitHub */}
+                               
+                                    <div className="flex flex-row">
+                                        <input
+                                            className={` p-2 rounded-lg dark:text-gray-700 `}
+                                            type="text"
+                                            name="gitHub"
+                                            value={input.gitHub}
+                                            onChange={handleChange}
+                                            placeholder="Git Hub"
+                                        />
+                                        <p className="text-red-500 h-1 my-2"></p>
+                                    </div>
+                               
+                                {/* input portfolio */}
+                               
+                                    <div className="flex flex-row">
+                                        <input
+                                            className={` p-2 rounded-lg dark:text-gray-700`}
+                                            type="text"
+                                            name="portfolio"
+                                            value={input.portfolio}
+                                            onChange={handleChange}
+                                            placeholder="Portfolio"
+                                        />
+                                        <p className="text-red-500 h-1 my-2"></p>
+                                    </div>
+                             
                             </div>
+                            {/* confirm buttons */}
+                            <div className='flex justify-center items-center '>
+                                
+                                    <button onClick={handleSubmit} className='flex items-center justify-center hover:scale-110 transition-transform bg-red-900'>
+                                        <TickIcon />
+                                        <h2 className='ml-2 text-white '>Confirm</h2>
+                                    </button>
+                               
+                            </div>
+                        </div>
                         )}
                     </div>
                 </div>
                 {/* stats */}
-                <div className='absolute bottom-9 left-[13%] h-[40%] w-[72%] flex justify-center items-center'>
+                <div className='absolute bottom-9 left-[14%] h-[40%] w-[72%] justify-center items-center'>
                     <div className='relative  mt-12 justify-center flex'>
                         <div className='flex justify-center'>
 
-                            <div className="relative w-[15%] mr-[10%]">
+                            <div className="relative w-[15%] mr-[10%] hover:scale-105 transition-transform ">
+                                <img
+                                    src={hexagon}
+                                    alt="Descripción de la imagen"
+                                    className="w-full h-auto "
+                                />
+                                <div className="absolute inset-0 flex items-center justify-center z-10">
+                                    <p className="text-9xl font-bold absolute transform -translate-y-1/2 top-[38%] drop-shadow-lg text-shadow-l">{files.filesCopy.length}</p>
+                                </div>
+                                <div className='flex justify-center'>
+                                    <h1 className='font-bold text-4xl mt-4 dark:text-white drop-shadow-xl tracking-wide'>Files</h1>
+                                </div>
+                            </div>
+
+                            <div className="relative w-[15%] mr-[10%] hover:scale-105 transition-transform">
                                 <img
                                     src={hexagon}
                                     alt="Descripción de la imagen"
                                     className="w-full h-auto"
                                 />
                                 <div className="absolute inset-0 flex items-center justify-center z-10">
-                                    <p className="text-8xl font-bold absolute transform -translate-y-1/2 top-[36%]">{files.filesCopy.length}</p>
+                                    <p className="text-9xl font-bold absolute transform -translate-y-1/2 top-[38%]">{applications.EmptyCopyApplications.length}</p>
                                 </div>
                                 <div className='flex justify-center'>
-                                    <h1 className='font-bold text-4xl mt-4 dark:text-white'>Files</h1>
+                                    <h1 className='font-bold text-4xl mt-4 dark:text-white tracking-wide'>Applications</h1>
                                 </div>
                             </div>
 
-                            <div className="relative w-[15%] mr-[10%]">
-                                <img
-                                    src={hexagon}
-                                    alt="Descripción de la imagen"
-                                    className="w-full h-auto"
-                                />
-                                <div className="absolute inset-0 flex items-center justify-center z-10">
-                                    <p className="text-8xl font-bold absolute transform -translate-y-1/2 top-[36%]">{applications.EmptyCopyApplications.length}</p>
-                                </div>
-                                <div className='flex justify-center'>
-                                    <h1 className='font-bold text-4xl mt-4 dark:text-white'>Applications</h1>
-                                </div>
-                            </div>
-
-                            <div className="relative w-[15%]">
+                            <div className="relative w-[15%] hover:scale-105 transition-transform">
                                 <img
                                     src={hexagon}
                                     alt="Descripción de la imagen"
                                     className="w-full h-auto"
                                 />
                                 <div className="absolute inset-0 flex justify-center z-10">
-                                    <p className="text-8xl font-bold absolute transform -translate-y-1/2 top-[36%]">{spontaneous.EmptyCopySpontaneous.length}</p>
+                                    <p className="text-9xl font-bold absolute transform -translate-y-1/2 top-[38%]">{spontaneous.EmptyCopySpontaneous.length}</p>
                                 </div>
                                 <div className='flex justify-center'>
-                                    <h1 className='font-bold text-4xl mt-4 dark:text-white'>Spontaneous</h1>
+                                    <h1 className='font-bold text-4xl mt-4 dark:text-white tracking-wide '>Spontaneous</h1>
                                 </div>
                             </div>
                         </div>
