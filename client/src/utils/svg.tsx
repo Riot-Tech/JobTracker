@@ -219,3 +219,55 @@ export const PortfolioIcon = () => {
         </svg>
     )
 }
+
+export const JobTypeIcon = () => {
+    return(
+        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="37" viewBox="0 0 34 37" fill="none">
+            <path d="M25.3333 20.3332H17V11.9999" stroke="#0F0F0F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M5.33325 4.5L8.66659 2" stroke="#0F0F0F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M28.6666 4.5L25.3333 2" stroke="#0F0F0F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M17 35.3333C25.2843 35.3333 32 28.6176 32 20.3333C32 12.049 25.2843 5.33325 17 5.33325C8.71573 5.33325 2 12.049 2 20.3333C2 28.6176 8.71573 35.3333 17 35.3333Z" stroke="#0F0F0F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    )
+}
+
+export const JobModalityIcon = () => {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
+                                <path d="M17 32C25.2842 32 32 25.2842 32 17C32 8.71572 25.2842 2 17 2C8.71572 2 2 8.71572 2 17C2 25.2842 8.71572 32 17 32Z" stroke="#0F0F0F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M2.75 17.75L11 20.75L9.5 26L11 30.5" stroke="#0F0F0F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M24.5 29.75L23.75 26L20 24.5V19.25L24.5 17.75L31.25 18.5" stroke="#0F0F0F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M27.5 7.25L26.75 9.5L21.5 10.25V14.75L25.25 13.25H28.25L31.25 14.75" stroke="#0F0F0F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M2.75 14.75L6.5 11.75L10.25 11L13.25 6.5L11.75 3.5" stroke="#0F0F0F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+    )
+}
+
+export const MoneyIcon = () => {
+    return(
+        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
+        <path d="M17 32C25.2842 32 32 25.2842 32 17C32 8.71572 25.2842 2 17 2C8.71572 2 2 8.71572 2 17C2 25.2842 8.71572 32 17 32Z" stroke="#0F0F0F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M21.5 11.75C20.4725 10.7225 18.6631 10.0078 17 9.96308M17 9.96308C15.0213 9.90983 13.25 10.805 13.25 13.25C13.25 17.75 21.5 15.5 21.5 20C21.5 22.5665 19.3043 23.6693 17 23.5865M17 9.96308V7.25M12.5 21.5C13.4667 22.7889 15.2642 23.5241 17 23.5865M17 23.5865V26.75" stroke="#0F0F0F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    )
+}
+
+export const WalletIcon = () => {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="31" viewBox="0 0 34 31" fill="none">
+                                <path d="M28.6667 29.3298H5.33333C3.49238 29.3298 2 27.8374 2 25.9964V10.9964C2 9.15547 3.49238 7.66309 5.33333 7.66309H28.6667C30.5077 7.66309 32 9.15547 32 10.9964V25.9964C32 27.8374 30.5077 29.3298 28.6667 29.3298Z" stroke="#0F0F0F" stroke-width="3" />
+                                <path d="M24.5 19.3298C24.0399 19.3298 23.6667 18.9566 23.6667 18.4964C23.6667 18.0363 24.0399 17.6631 24.5 17.6631C24.9602 17.6631 25.3334 18.0363 25.3334 18.4964C25.3334 18.9566 24.9602 19.3298 24.5 19.3298Z" fill="#0F0F0F" stroke="#0F0F0F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M27 7.66312V5.33515C27 3.14505 24.924 1.55007 22.8078 2.11437L4.47445 7.00327C3.01528 7.39239 2 8.71389 2 10.2241V10.9965" stroke="#0F0F0F" stroke-width="3" />
+                            </svg>
+    )
+}
+
+export const CommentIcon = () =>{
+    return(
+        <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39" fill="none">
+                                <path d="M12.5 16H19.5H26.5" stroke="#0F0F0F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M12.5 23H16H19.5" stroke="#0F0F0F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M19.5 37C29.1649 37 37 29.1649 37 19.5C37 9.83501 29.1649 2 19.5 2C9.83501 2 2 9.83501 2 19.5C2 22.6875 2.8522 25.6759 4.34119 28.25L2.875 36.125L10.75 34.6589C13.324 36.1478 16.3125 37 19.5 37Z" stroke="#0F0F0F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+    )
+}
