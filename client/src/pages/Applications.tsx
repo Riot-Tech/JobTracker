@@ -22,25 +22,6 @@ export default function Applications() {
     setModalOpen(!modalOpen)
   }
   
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        let { data } = await axios.get(`${URL}/application//?id=${activeUser.id}`);
-
-        if (data.length) {
-          dispatch(getApplications(data)); //lleno el estado global de aplications, que ahora que lo pienso podria no ser global, y luego me lo traigo y las renderizo
-          return;
-        }
-
-        return;
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
-  
   return (
     <div className="flex">
       <SideBar />

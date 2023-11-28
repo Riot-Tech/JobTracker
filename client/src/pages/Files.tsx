@@ -21,24 +21,6 @@ function Files() {
     setModalOpen(!modalOpen);
   };
 
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        let { data } = await axios.get(`${URL}/file/?id=${activeUser.id}`);
-
-        if (data.length) {
-          dispatch(addFile(data));
-          return;
-        }
-        return;
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
-
   return (
     <div className="flex">
       <SideBar />
