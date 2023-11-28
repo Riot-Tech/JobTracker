@@ -2,11 +2,12 @@ export interface UserInfo {
     id: number,
     email: string,
     name: string,
-    token: string,
+    token?: string,
     linkedIn: string,
     portfolio: string,
     gitHub: string,
-    profilePicture: string
+    profilePicture: string,
+    enabled?: boolean
 }
 
 export interface File {
@@ -72,7 +73,7 @@ export interface ApplicationsState{
 export interface FilesState{
     files: File[],
     filesCopy: File[]
-}
+} 
 
 export interface AppStore {
     user: UserInfo,
@@ -80,7 +81,6 @@ export interface AppStore {
     spontaneous: SpontaneousState,
     filesState: FilesState,
     sideBarOpen: boolean,
-
 }
 
 export interface LoginForm {
@@ -96,7 +96,7 @@ export interface input {
     gitHub: string,
     portfolio: string,
     [key: string]: string,
-  }
+}
 
 export interface inputLogin {
     email: string,
@@ -135,4 +135,11 @@ export type Spont = {
     location?: string,
     receiver?: string,
     link?: string,
-  };
+};
+
+export type Links = {
+    linkedIn: string,
+    gitHub: string,
+    portfolio: string,
+    [key: string]:string
+}
