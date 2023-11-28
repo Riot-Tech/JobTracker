@@ -14,30 +14,11 @@ export default function Spontaneous() {
     const [ modalOpen, setModalOpen]= useState<boolean>(false)
     const activeUser = useSelector((store: AppStore) => store.user);
     const spontaneous = useSelector((store: AppStore) => store.spontaneous);
-
     const dispatch = useDispatch()
     
     const handleClick = () => {
       setModalOpen(!modalOpen)
     }
-    
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          let { data } = await axios.get(`${URL}/spontaneous/?id=${activeUser.id}`);
-
-          if (data.length) {
-            dispatch(addSpontaneous(data)); //lleno el estado global de spontaneous, que ahora que lo pienso podria no ser global, y luego me lo traigo y las renderizo
-            return;
-          }
-  
-          return;
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      fetchData();
-    }, []);
 
     return (
         <div className="flex">
