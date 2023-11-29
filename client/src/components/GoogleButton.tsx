@@ -7,18 +7,20 @@ import { PrivateRoutes } from "../models/routes";
 import { gapi } from "gapi-script";
 import GoogleLogin from "react-google-login";
 import { URL } from "../utils/url";
-  
+import { setGlobalStates } from "../utils/utilities";
+
 function GoogleButton() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const clientID: string =
-    "551984613021-dc5t6e98fs62qfli3o8fa16vuujchb25.apps.googleusercontent.com";
+
+  const clientID = import.meta.env.VITE_GOOGLE_CLIENT_ID || "";
 
   const onSuccess = async (response: any) => {
     try {
       let backResponse = await axios.post(`${URL}/login`, response.profileObj);
       if (backResponse.status === 200) {
         dispatch(createUser(backResponse.data));
+        setGlobalStates(dispatch, backResponse.data)
         navigate(`/${PrivateRoutes.PROFILE}`, { replace: true });
       }
     } catch (error) {
@@ -26,7 +28,7 @@ function GoogleButton() {
     }
   };
 
-  const onFailure = (response: any) => {
+  const onFailure = () => {
     console.log("Something went wrong");
   };
 
