@@ -7,12 +7,13 @@ import { PrivateRoutes } from "../models/routes";
 import { gapi } from "gapi-script";
 import GoogleLogin from "react-google-login";
 import { URL } from "../utils/url";
-  
+
 function GoogleButton() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const clientID: string =
-    "551984613021-dc5t6e98fs62qfli3o8fa16vuujchb25.apps.googleusercontent.com";
+  
+
+  const clientID = import.meta.env.VITE_GOOGLE_CLIENT_ID || "";
 
   const onSuccess = async (response: any) => {
     try {
