@@ -97,12 +97,12 @@ export default function EditApplication({ close, props }: { close: CloseFunction
     }
 
     return (
-        <form className="fixed inset-0 z-20 flex backdrop-brightness-90 flex-col items-center justify-center backdrop-blur-sm">
+        <form className="fixed inset-0 z-20 flex flex-col items-center justify-center backdrop-brightness-90 backdrop-blur-sm">
             <AiOutlineClose onClick={close} className='text-4xl text-white bg-black rounded-2xl p-1 mb-4 hover: cursor-pointer hover:bg-gray-600 dark:bg-white dark:text-black dark:hover:bg-gray-400'/>
-            <div className="h-[80vh] w-[80vw] bg-custom-modalLight rounded-xl text-black flex p-10 dark:text-white dark:bg-custom-modalDark">
-                <div className="w-[50%] flex flex-col justify-between p-5">
-                    <div className="h-[30%] bg-red divide-black ">
-                        <div className="flex items-center divide-black p-5">
+            <div className="flex h-[80vh] w-[80vw] rounded-xl text-black bg-custom-modalLight dark:text-white dark:bg-custom-modalDark">
+                <div className="flex flex-col justify-between w-[50vw] p-5">
+                    <div>
+                        <div className="flex items-center divide-black pb-5">
                             <input
                                 className={`mr-1 p-1 bg-transparent border-b-2 border-black ${errors.company.length && 'bg-black border-2 border-red-700 rounded-md'}`}
                                 name="company"
@@ -112,7 +112,7 @@ export default function EditApplication({ close, props }: { close: CloseFunction
                                 onChange={handleChange}
                             />
                         </div>
-                        <div className="flex items-center p-5">
+                        <div className="flex items-center pb-5">
                             <input
                                 className={`mr-1 p-1 bg-transparent border-b-2 border-black ${errors.jobName.length && 'bg-black border-2 border-red-700 rounded-md'}`}
                                 name="jobName"
@@ -123,12 +123,12 @@ export default function EditApplication({ close, props }: { close: CloseFunction
                             />
                         </div>
                     </div>
-                    <div className="flex flex-col gap-4 h-[70%]">
+                    <div className="flex flex-col gap-4">
                         <div className="flex items-center">
                             <JobTypeIcon />
                             <select
                                 name="jobType"
-                                className="text-gray-600 h-[45px] w-[30%] ml-4"
+                                className="text-gray-600 p-2 ml-4 rounded-xl"
                                 value={form.jobType}
                                 onChange={handleChange}
                             >
@@ -145,7 +145,7 @@ export default function EditApplication({ close, props }: { close: CloseFunction
                             <JobModalityIcon />
                             <select
                                 name="jobModality"
-                                className="text-gray-600 h-[45px] w-[30%] ml-4"
+                                className="text-gray-600 p-2 ml-4 rounded-xl" 
                                 value={form.jobModality}
                                 onChange={handleChange}
                             >
@@ -162,7 +162,7 @@ export default function EditApplication({ close, props }: { close: CloseFunction
                             <LocationIcon />
                             <input
                                 name="location"
-                                className="w-[30%] h-[45px] p-2 border rounded ml-4 text-black"
+                                className="p-2 border rounded-xl ml-4 text-black"
                                 type="text"
                                 placeholder={location}
                                 value={form.location}
@@ -174,7 +174,7 @@ export default function EditApplication({ close, props }: { close: CloseFunction
                             <LinkIcon />
                             <input
                                 name="link"
-                                className="w-[50%] p-2 h-[45px] border rounded ml-4 text-black"
+                                className="p-2 border rounded-xl ml-4 text-black"
                                 type="text"
                                 placeholder={link}
                                 value={form.link}
@@ -185,7 +185,7 @@ export default function EditApplication({ close, props }: { close: CloseFunction
                             <MoneyIcon />
                             <input
                                 name="currency"
-                                className="w-[30%] p-2 h-[45px] border rounded ml-4 text-black"
+                                className="p-2 border rounded-xl ml-4 text-black"
                                 type="text"
                                 placeholder={currency}
                                 value={form.currency}
@@ -197,7 +197,7 @@ export default function EditApplication({ close, props }: { close: CloseFunction
                             <WalletIcon />
                             <input
                                 name="expectedIncome"
-                                className="w-[30%] h-[45px] flex flex-col p-2 border rounded ml-4 text-black"
+                                className="flex flex-col p-2 border rounded-xl ml-4 text-black"
                                 type="number"
                                 placeholder={String(expectedIncome)}
                                 value={form.expectedIncome}
@@ -209,7 +209,7 @@ export default function EditApplication({ close, props }: { close: CloseFunction
                             <JobModalityIcon/>
                             <select
                                 name="status"
-                                className="text-gray-600 h-[45px] w-[30%] ml-4"
+                                className="text-gray-600 p-2 ml-4 rounded-xl"
                                 value={form.status}
                                 onChange={handleChange}
                             >
@@ -224,7 +224,7 @@ export default function EditApplication({ close, props }: { close: CloseFunction
                         </div>
                     </div>
                 </div>
-                <div className="w-[50%] flex flex-col mt-5">
+                <div className="w-[50%] flex flex-col p-5">
                     <div className="flex justify-end ">
                         <button
                             type="submit"

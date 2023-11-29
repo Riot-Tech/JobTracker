@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { AppStore, Application } from '../models/interfaces';
-
 import EditApplication from '../modals/EditApplication';
 import axios from 'axios';
 import { URL } from '../utils/url';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { BsTrash } from 'react-icons/bs';
-import { createApplication, getApplications } from '../redux/slices/applications.slice';
+import {  getApplications } from '../redux/slices/applications.slice';
+import { EditIcon } from '../utils/svg';
 
 export default function App({ props }: { props: Application }) {
   const [editOpen, setEditOpen] = useState<boolean>(false)
@@ -38,30 +38,26 @@ export default function App({ props }: { props: Application }) {
   }
 
   return (
-    <div className="p-5 rounded-xl my-4 mt-4 mb-4 bg-white shadow-lg dark:bg-gray-400 w-full flex flex-col justify-between">
-      <div className="flex flex-row items-center ">
+    <div className="p-5 rounded-xl my-4 mt-4 mb-4 bg-white dark:bg-gray-400 w-full flex flex-col justify-between shadow-xl border-2">
+      <div className="flex flex-row items-center justify-between">
         <h2 className=" text-xl  w-[50%]">{company}</h2>
-        <h2 className=" mr-80 ">{status}</h2>
+        <h2>{status}</h2>
         <div className='relative flex justify-between'>
-          <div className='flex gap-2 items-center ml-80'>
+          <div className='flex gap-2 items-center'>
             <button
               className="h-10 bg-transparent mb-2 border-none"
               value={id}
               onClick={handleEdit}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
-                <path d="M2 27H14.5H27" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M14.8081 5.92838L18.7366 2L25.6111 8.87465L21.6828 12.803M14.8081 5.92838L7.02117 13.7153C6.76071 13.9758 6.61438 14.3291 6.61438 14.6974V20.9967H12.9138C13.2821 20.9967 13.6353 20.8505 13.8959 20.5899L21.6828 12.803M14.8081 5.92838L21.6828 12.803" stroke="#4C4C4C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
+              <EditIcon />
             </button>
+            <BsTrash onClick={handleDelete} className='p-1 rounded-[50%] text-4xl left-28 bottom-9 hover:cursor-pointer text-red-700' />
+            
             {editOpen && <EditApplication props={props} close={() => { setEditOpen(!editOpen) }} />}
           </div>
         </div>
-        <div className='flex flex-col'>
-          <BsTrash onClick={handleDelete} className='p-1 rounded-[50%] text-4xl left-28 bottom-9 hover:cursor-pointer text-red-700' />
-        </div>
       </div>
-      <div className="flex flex-row flex-grow rounded-xl h-10 bg-gray-500 justify-between items-center p-2">
+      <div className="flex flex-row flex-grow rounded-lg h-10 bg-gray-300 justify-between items-center p-5">
         <div className="flex flex-row">
           <h2> Job: {jobName}</h2>
         </div>
@@ -74,12 +70,6 @@ export default function App({ props }: { props: Application }) {
         <div className="flex flex-row">
           <h2>{expectedIncome} {currency}</h2>
         </div>
-        {/* <div className="flex flex-row">
-                        <h2>{feedback}</h2>
-                      </div>
-                      <div className="flex flex-row">
-                        <h2>{comments}</h2>
-                      </div> */}
       </div>
 
     </div>
