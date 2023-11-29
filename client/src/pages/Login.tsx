@@ -9,19 +9,22 @@ import { validateLoginForm } from "../utils/validateLoginForm";
 import SignUp from "../components/SignUp";
 import { URL } from "../utils/url";
 import GoogleButton from "../components/GoogleButton";
-import { hasErrors } from "../utils/utilities";
+import { hasErrors, setGlobalStates } from "../utils/utilities";
 import ErrorModalLogIn from "../modals/ErrorModalLogIn";
 import { IoEye, IoEyeOff } from "react-icons/io5";
+import { ring } from 'ldrs'
 
+ring.register()
+
+// Default values shown
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const [passwordClear, setPasswordClear] = useState(false)
   const [signUpModal, setSignUpModal] = useState(false)
   const [errorModal, setErrorModal] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-  
   const [input, setInput] = useState({email: "", password: ""});
   const [errors, setErrors] = useState({email:'', password:''})
   
@@ -47,6 +50,7 @@ export default function Login() {
       let response = await axios.post(`${URL}/login`, input);
       if (response.status === 200 && Object.values(errors).length) {
         dispatch(createUser(response.data.user));
+        setGlobalStates(dispatch, response.data.user)
         navigate(`/${PrivateRoutes.PROFILE}`, { replace: true });
       }
     } catch (error: any) {
@@ -104,7 +108,7 @@ export default function Login() {
         </div>
         <button
           disabled={ hasErrors(errors) }
-          type="submit"
+          type="button"
           onClick={handleSubmit}
           className={`bg-red-700 rounded-lg ${ hasErrors(errors) ? 'cursor-not-allowed' :''}`}
           >

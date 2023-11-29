@@ -5,6 +5,7 @@ import { PublicRoutes } from "../models/routes";
 import { BiLogOut } from 'react-icons/bi'
 import { addSpontaneous } from "../redux/slices/spontaneous.slice";
 import { createApplication } from "../redux/slices/applications.slice";
+import { addFile } from "../redux/slices/files.slice";
 
 function Logout() {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ function Logout() {
     // limpiar todos las applications, spontaneous, files etc
     dispatch(addSpontaneous([]))
     dispatch(createApplication([]))
+    dispatch(addFile([]))
   };
   return (
     <div>
