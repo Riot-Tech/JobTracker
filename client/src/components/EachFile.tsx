@@ -35,7 +35,7 @@ function EachFile({ props }: { props: File }) {
 
   const handleDelete = async (id: number) => {
     try {
-      let response = await axios.patch(`${URL}/file/${id}`);
+      let response = await axios.delete(`${URL}/file/${id}`);
 
       if (response.status === 200) {
         let { data } = await axios.get(`${URL}/file/?id=${activeUser.id}`);
