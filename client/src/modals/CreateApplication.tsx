@@ -96,12 +96,12 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
     
 
     return (
-        <form className="fixed inset-0 z-20 flex backdrop-brightness-90 flex-col items-center justify-center backdrop-blur-sm p-8">
+        <form className="fixed inset-0 z-20 flex backdrop-brightness-90 flex-col items-center justify-center backdrop-blur-sm">
             <AiOutlineClose onClick={close} className='text-4xl text-white bg-black rounded-2xl p-1 mb-4 hover: cursor-pointer hover:bg-gray-600 dark:bg-white dark:text-black dark:hover:bg-gray-400'/>
-            <div className="h-[80vh] w-[80vw] bg-custom-modalLight rounded-xl text-black flex p-10 dark:text-white dark:bg-custom-modalDark">
-                <div className="w-[50%] flex flex-col justify-between p-5">
-                    <div className="h-[30%] bg-red divide-black ">
-                        <div className="flex items-center divide-black p-5">
+            <div className="flex h-[80vh] w-[80vw] rounded-xl text-black bg-custom-modalLight dark:text-white dark:bg-custom-modalDark">
+                <div className="flex flex-col justify-between w-[50vw] p-5">
+                    <div className="h-[50vh] bg-red divide-black ">
+                        <div className="flex items-center divide-black pb-5">
                             <input
                                 className={`mr-1 p-1 bg-transparent border-b-2 border-black ${errors.company.length && 'bg-black border-2 border-red-700 rounded-md'}`}
                                 name="company"
@@ -112,7 +112,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             />
                             {/* {errors.company && <span className="text-red-800" > {errors.company}</span>} */}
                         </div>
-                        <div className="flex items-center p-5">
+                        <div className="flex items-center pb-5">
                             <input
                                 className={`mr-1 p-1 bg-transparent border-b-2 border-black ${errors.jobName.length && 'bg-black border-2 border-red-700 rounded-md'}`}
                                 name="jobName"
@@ -123,12 +123,12 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             />
                         </div>
                     </div>
-                    <div className="flex flex-col gap-4 h-[70%]">
+                    <div className="flex flex-col gap-4">
                         <div className="flex items-center">
                             <JobTypeIcon />
                             <select
                                 name="jobType"
-                                className="text-gray-600 h-[45px] w-[30%] ml-2 rounded-lg p-3  "
+                                className="text-gray-600 h-[45px] w-[30%] ml-2 rounded-xl p-3  "
                                 value={form.jobType}
                                 onChange={handleChange}
                             >
@@ -146,7 +146,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             <JobModalityIcon />
                             <select
                                 name="jobModality"
-                                className="text-gray-600 h-[45px] w-[30%] ml-2 rounded-lg p-3"
+                                className="text-gray-600 h-[45px] w-[30%] ml-2 rounded-xl p-3"
                                 value={form.jobModality}
                                 onChange={handleChange}
                             >
@@ -163,7 +163,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             <LocationIcon />
                             <input
                                 name="location"
-                                className="w-[30%] h-[45px] border ml-2 rounded-lg p-3 text-black"
+                                className="w-[30%] h-[45px] border ml-2 rounded-xl p-3 text-black"
                                 type="text"
                                 placeholder="Location"
                                 value={form.location}
@@ -175,7 +175,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             <LinkIcon />
                             <input
                                 name="link"
-                                className="w-[50%] ml-2 rounded-lg p-3 h-[45px] border text-black"
+                                className="w-[50%] ml-2 rounded-xl p-3 h-[45px] border text-black"
                                 type="text"
                                 placeholder="Link"
                                 value={form.link}
@@ -186,7 +186,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             <MoneyIcon />
                             <input
                                 name="currency"
-                                className="w-[30%] h-[45px] border ml-2 rounded-lg p-3 text-black"
+                                className="w-[30%] h-[45px] border ml-2 rounded-xl p-3 text-black"
                                 type="text"
                                 placeholder="Currency"
                                 value={form.currency}
@@ -198,7 +198,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             <WalletIcon />
                             <input
                                 name="expectedIncome"
-                                className="w-[30%] h-[45px] flex flex-col ml-2 rounded-lg p-3 border text-black"
+                                className="w-[30%] h-[45px] flex flex-col ml-2 rounded-xl p-3 border text-black"
                                 type="number"
                                 placeholder="Expected Income"
                                 value={form.expectedIncome}
@@ -210,7 +210,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             <JobModalityIcon/>
                             <select
                                 name="status"
-                                className="text-gray-600 h-[45px] w-[30%] ml-2 rounded-lg p-3"
+                                className="text-gray-600 p-3 ml-2 rounded-xl"
                                 value={form.status}
                                 onChange={handleChange}
                             >
@@ -226,7 +226,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                         </div>
                     </div>
                 </div>
-                <div className="w-[50%] flex flex-col mt-5">
+                <div className="w-[50%] flex flex-col p-5">
                     <div className="flex justify-end">
                         <button
                             type="submit"

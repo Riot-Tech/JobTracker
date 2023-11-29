@@ -7,7 +7,7 @@ import { PrivateRoutes } from "../models/routes";
 import { gapi } from "gapi-script";
 import GoogleLogin from "react-google-login";
 import { URL } from "../utils/url";
-
+  
 function GoogleButton() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
