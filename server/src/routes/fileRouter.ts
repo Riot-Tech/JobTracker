@@ -18,7 +18,7 @@ const upload = multer({ storage: multerStorage });
 fileRouter.get("/", getFilesHandler);
 fileRouter.post("/", upload.single('file'), postFileHandler);
 fileRouter.patch("/", updateFileHandler);
-fileRouter.patch("/:id", disableFileHandler);
+fileRouter.delete("/:id", disableFileHandler);
 fileRouter.get('/download/:id', downloadFileHandler);
 fileRouter.get('/view/:id', viewFileHandler);
 

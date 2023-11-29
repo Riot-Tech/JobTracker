@@ -13,7 +13,7 @@ import EachFile from "../components/EachFile";
 
 function Files() {
   const activeUser = useSelector((store: AppStore) => store.user);
-  const {files} = useSelector((store: AppStore) => store.filesState);
+  const { files } = useSelector((store: AppStore) => store.filesState);
   const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
@@ -37,53 +37,47 @@ function Files() {
               </div>
 
               <button
-                className="bg-white text-black dark:bg-black dark:text-white pl-14"
+                className="bg-gray-100 text-black shadow-xl  dark:text-black pl-14"
                 onClick={handleClick}
               >
                 Add new file
               </button>
             </div>
           </div>
-
-          <div className="absolute top-28 flex items-start w-full justify-evenly">
-            <div className="bg-red-900 px-7 py-2 rounded-xl text-white text-4xl dark:text-black m-2">
-                  <h2 className="w-18 text-center font-bold">CV files</h2>
+          <div className="absolute top-32 flex space-x-[18%] items-start w-full justify-evenly">
+            <div className="bg-gray-500 px-8 py-2 rounded-xl shadow-xl text-white text-2xl m-2">
+              <h2 className="w-18 text-center font-bold">CV files</h2>
             </div>
-            <div className="bg-red-900 px-7 py-2 rounded-xl text-white text-4xl dark:text-black m-2">
-                  <h2 className="w-18 text-center font-bold">Other files</h2>
+            <div className="bg-gray-500 m-2 px-8 py-2 rounded-xl shadow-xl text-white text-2xl dark:">
+              <h2 className="w-18 text-center font-bold">Other files</h2>
             </div>
           </div>
 
           <div className="absolute top-52 flex justify-evenly w-full h-[60vh] p-5">
-            
-              <div className="w-1/2 flex flex-col overflow-y-scroll px-20 py-5 mb-5">
-                {files?.map((file) => {
-                  if (file.enabled && file.isCv) {
-                    return (
-                      <EachFile key={file.id} props={file} />
-                    );
-                  }
-                })}
-              </div>
-            
-              <div className="w-1/2 flex flex-col overflow-y-scroll px-20 py-5 mb-5">
-                {files?.map((file) => {
-                  if (file.enabled && !file.isCv) {
-                    return (
-                      <EachFile key={file.id} props={file} />
-                    );
-                  }
-                })}
-              </div>
 
+            <div className="w-1/2 flex flex-col overflow-y-scroll px-20 py-5 mb-5">
+              {files?.map((file) => {
+                if (file.enabled && file.isCv) {
+                  return (
+                    <EachFile key={file.id} props={file} />
+                  );
+                }
+              })}
+            </div>
+
+            <div className="w-1/2 flex flex-col overflow-y-scroll px-20 py-5 mb-5">
+              {files?.map((file) => {
+                if (file.enabled && !file.isCv) {
+                  return (
+                    <EachFile key={file.id} props={file} />
+                  );
+                }
+              })}
+            </div>
           </div>
-
-          </div>
-
         </div>
-            
-          
       </div>
+    </div>
   );
 }
 
