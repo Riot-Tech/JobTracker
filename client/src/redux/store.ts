@@ -5,6 +5,7 @@ import { applicationsSlice } from "./slices/applications.slice";
 import { spontaneousSlice } from "./slices/spontaneous.slice";
 import { sideBarSlice } from "./slices/sideBar.slice";
 import { fileSlice } from "./slices/files.slice";
+import { darkModeSlice } from "./slices/darkMode.slice";
 
 
 
@@ -15,6 +16,7 @@ export const store = configureStore<AppStore>({
         spontaneous: spontaneousSlice.reducer,
         sideBarOpen : sideBarSlice.reducer,
         filesState: fileSlice.reducer,
+        darkMode: darkModeSlice.reducer,
     }
 })
 

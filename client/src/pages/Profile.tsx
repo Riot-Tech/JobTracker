@@ -24,7 +24,8 @@ export default function Profile() {
   const applications = useSelector((store: AppStore) => store.applications);
   const spontaneous = useSelector((store: AppStore) => store.spontaneous);
   const files = useSelector((store: AppStore) => store.filesState);
-
+  const darkMode = useSelector((store: AppStore) => store.darkMode);
+  
   const [isEditing, setIsEditing] = useState(false);
 
   const [input, setInput] = useState({
@@ -144,7 +145,7 @@ export default function Profile() {
                       className="flex items-center justify-center bg-transparent mt-10 hover:scale-110 transition-transform border-none"
                     >
                       <h2>
-                        <EditIcon />
+                        <EditIcon dark={darkMode} />
                       </h2>
                     </button>
                   )}
