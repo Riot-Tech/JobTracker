@@ -105,17 +105,17 @@ export default function Profile() {
   return (
     <div className="flex">
       <SideBar />
-      <div className="w-full h-[100vh]">
+      <div className="flex flex-col h-screen w-screen">
         <NavBar />
-        <div className="relative h-[90%] w-full bg-custom-backLight dark:bg-custom-backDark flex flex-col">
-          <div className="absolute top-6 left-4 bg-red-900 p-3 w-[95%] h-[8%] flex justify-between items-center rounded-lg">
+        <div className="relative w-screen h-screen bg-custom-backLight dark:bg-custom-backDark flex flex-col items-center">
+          <div className="absolute top-6 left-4 bg-red-900 p-3 w-[90vw] h-[8%] flex justify-between items-center rounded-lg">
             <h3 className="text-white text-2xl font-bold">Profile</h3>
           </div>
           <div className="flex rounded-[42px] mt-28 items-center justify-center margin-auto  text-black dark:text-white">
             {/* User and links icons */}
 
-            <div className="flex flex-col  justify-between w-1/2 px-8 drop-shadow-lg">
-              <h1 className="flex text-6xl items-center justify-center drop-shadow-xl">
+            <div className="flex flex-col items-center drop-shadow-lg w-full">
+              <h1 className="text-6xl drop-shadow-xl">
                 {activeUser.name}
               </h1>
               <div className="flex flex-row items-center justify-center py-2">
@@ -137,9 +137,8 @@ export default function Profile() {
                     <PortfolioIcon />
                   </a>
                 </div>
-                <div className="absolute ml-80 items-center justify-center">
                   {/* edit button */}
-                  {isEditing === false && (
+                  { !isEditing && (
                     <button
                       onClick={handleEdit}
                       className="flex items-center justify-center bg-transparent mt-10 hover:scale-110 transition-transform border-none"
@@ -149,12 +148,11 @@ export default function Profile() {
                       </h2>
                     </button>
                   )}
-                </div>
               </div>
             </div>
             {/* los inputs para agregar links */}
-            {isEditing === true && (
-              <div className="flex flex-row bg-custom-modalLight shadow-xl drop-shadow-lg p-6  space-x-8 rounded-xl dark:bg-gray-500">
+            {isEditing && (
+              <div className="flex flex-row bg-custom-modalLight shadow-xl drop-shadow-lg p-6 m-2 space-x-8 rounded-xl dark:bg-gray-500">
                 <div className="flex flex-col space-y-5 items-start">
                   {/* input linkedIn */}
                   <div className="flex flex-row ">
@@ -210,11 +208,17 @@ export default function Profile() {
               </div>
             )}
           </div>
-          {/* stats */}
+
+          {/* HEXAGONOS */}
+
             <div className="flex justify-center items-center gap-32 mt-8">
                 <div className="flex flex-col justify-center items-center hover:scale-105 transition-transform">
                     <div className="relative">
-                        <img className="w-40" src={hexagon} alt="Descripción de la imagen" />
+                        <img 
+                          className="w-40 max-w-xl" 
+                          src={hexagon} 
+                          alt="Descripción de la imagen" 
+                        />
                         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-7xl font-bold">
                             {files.filesCopy.length}
                         </div>
@@ -229,7 +233,7 @@ export default function Profile() {
                 <div className="flex flex-col justify-center items-center hover:scale-105 transition-transform">
                     <div className="relative">
                         <img
-                        className="w-40"
+                            className="w-40 max-w-full"
                             src={hexagon}
                             alt="Descripción de la imagen"
                         />
@@ -249,7 +253,7 @@ export default function Profile() {
                         <img
                             src={hexagon}
                             alt="Descripción de la imagen"
-                            className="w-40"
+                            className="w-40 max-w-full"
                         />
                         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-7xl font-bold">
                             {spontaneous.EmptyCopySpontaneous.length}
