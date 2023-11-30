@@ -26,8 +26,8 @@ function SideBar() {
   };
   
   return (
-    <div className={`${sideBarOpen ? "w-44" : 'w-18'} min-h-[100%] flex flex-col bg-gray-300 dark:bg-gray-600`}>
-      <div className={`h-[15%] mt-8`}>
+    <div className={`${sideBarOpen ? "w-[10vw]" : 'w-[5vw]'} min-h-[100vh] flex flex-col bg-gray-300 dark:bg-gray-600`}>
+      <div className={`h-[15%] mt-4 p-2`}>
         <div className="flex flex-col items-center">
           <button
             className={`mb-4 bg-transparent ${!sideBarOpen && "text-xs w-auto"}`}

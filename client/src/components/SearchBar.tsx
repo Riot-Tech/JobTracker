@@ -26,7 +26,7 @@ function SearchBar() {
 
   return (
     <div className="flex items-center p-10">
-        <input onChange={handleSearch} placeholder="Search..." className="w-[350px] p-3 text-black border-1 border-solid border-slate-200"/>
+        <input onChange={handleSearch} placeholder="Search..." className="w-[25vw] p-3 text-black border-1 border-solid border-slate-200"/>
         <div className="relative right-10 hover: cursor-pointer border-l-2 border-gray-400 p-1">
             <SearchIcon/>
         </div>
