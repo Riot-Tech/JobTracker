@@ -1,8 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import { Storage } from "@google-cloud/storage";
+import { deleteFileFromStorage } from "../../utils/cloudUtils";
 
 const prisma = new PrismaClient();
-const storage = new Storage();
 
 export const disableFileHelper = async (id: number) => {
     
@@ -13,21 +13,16 @@ export const disableFileHelper = async (id: number) => {
     })
 
     await prisma.$disconnect();
+    
     if (res){
-        console.log(res)
+        let { userId, name } = res;
+        
+        await deleteFileFromStorage(userId, name)
         return res;
     };
-
+    
     throw new Error('Error deleting file')
-}
+};
 
-// export const deleteFileFromStorage = async (storagePath: string) => {
-//     try {
 
-//       // Elimina el archivo del almacenamiento de Google Cloud Storage
-//       await storage.bucket(bucketName).file(storagePath).delete();
-//     } catch (error) {
-//       console.error('Error deleting file from storage', error);
-//       throw new Error('Error deleting file from storage');
-//     }
-//   };
+

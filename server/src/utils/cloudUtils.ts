@@ -34,7 +34,8 @@ async function findBucket(userId: number) {
     const bucketName = `${uniqueCode}${userId}`;
     const [allBuckets] = await cloudStorage.getBuckets();
     const bucketExists = allBuckets.some((bucket: Bucket) => bucket.id === bucketName);
-
+    
+    console.log(bucketExists)
     return bucketExists;
 
   } catch(error) {
@@ -219,4 +220,28 @@ export async function viewFile(filename: string, userId: number) {
     console.error(error);
     throw error;
   };
+};
+
+
+
+const storage = new Storage();
+
+
+export const deleteFileFromStorage = async (userId: number, filename: string) => {
+  try {
+    
+    const bucketName = `${uniqueCode}${userId}`;
+    const bucket = await findOrCreateBucket(userId);
+
+    if(bucket){
+      // Elimina el archivo del almacenamiento de Google Cloud Storage
+      await bucket.file(filename).delete();
+    
+      return ('File deleted in storage')
+    }
+
+  } catch (error) {
+    console.error('Error deleting file from storage', error);
+    throw new Error('Error deleting file from storage');
+  }
 };
