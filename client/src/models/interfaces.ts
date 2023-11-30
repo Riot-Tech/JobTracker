@@ -81,6 +81,7 @@ export interface AppStore {
     spontaneous: SpontaneousState,
     filesState: FilesState,
     sideBarOpen: boolean,
+    darkMode: boolean
 }
 
 export interface LoginForm {

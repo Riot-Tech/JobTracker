@@ -209,7 +209,7 @@ export async function viewFile(filename: string, userId: number) {
     // Genero una URL firmada (signed URL) para dar permiso al usuario para ver el archivo  en GCS
     const signDuration = moment.duration(2, 'hours').asSeconds();
     const signedUrl = await file.getSignedUrl({
-      action: 'write',
+      action: 'read',
       expires: Date.now() + signDuration * 1000,
     });
 

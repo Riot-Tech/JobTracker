@@ -3,8 +3,11 @@ import SearchBar from "./SearchBar"
 import { AppStore } from "../models/interfaces"
 import { BsLightbulb, BsFillLightbulbFill, BsFillPersonFill } from 'react-icons/bs'
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { handleDarkMode } from "../redux/slices/darkMode.slice";
 
 function NavBar() {
+  const dispatch = useDispatch()
   const activeUser = useSelector((store: AppStore)=> store.user)
   const [darkTheme, setDarkTheme] = useState(()=>{ //Persistencia del tema al apretar F5
     if(localStorage.getItem('theme')){
@@ -17,9 +20,11 @@ function NavBar() {
     if(darkTheme){
       document.querySelector('html')?.classList.add('dark')
       localStorage.setItem('theme', JSON.stringify(true))
+      dispatch(handleDarkMode(darkTheme))
     }else{
       document.querySelector('html')?.classList.remove('dark')
       localStorage.removeItem('theme')
+      dispatch(handleDarkMode(darkTheme))
     }
   },[darkTheme])
 

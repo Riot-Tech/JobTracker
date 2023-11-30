@@ -38,7 +38,7 @@ export default function App({ props }: { props: Application }) {
   }
 
   return (
-    <div className="p-5 rounded-xl my-4 mt-4 mb-4 bg-white dark:bg-gray-400 w-full flex flex-col justify-between shadow-xl border-2">
+    <div className="p-5 rounded-xl my-4 mt-4 mb-4 bg-white w-full flex flex-col justify-between shadow-xl border-2 dark:bg-gray-400">
       <div className="flex flex-row items-center justify-between">
         <h2 className=" text-xl  w-[50%]">{company}</h2>
         <h2>{status}</h2>
@@ -49,9 +49,9 @@ export default function App({ props }: { props: Application }) {
               value={id}
               onClick={handleEdit}
             >
-              <EditIcon />
+              <EditIcon dark={false}/>
             </button>
-            <BsTrash onClick={handleDelete} className='p-1 rounded-[50%] text-4xl left-28 bottom-9 hover:cursor-pointer text-red-700' />
+            <BsTrash onClick={handleDelete} className='p-1 rounded-[50%] text-4xl hover:cursor-pointer text-red-700' />
             
             {editOpen && <EditApplication props={props} close={() => { setEditOpen(!editOpen) }} />}
           </div>

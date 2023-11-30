@@ -16,6 +16,7 @@ function Spont({props}:{props: Spont}) {
     const [ modalOpen, setModalOpen]= useState<boolean>(false)
     const [ viewMore, setViewMore ] = useState(false)
     const activeUser = useSelector((store: AppStore) => store.user);
+    const darkMode = useSelector((store: AppStore) => store.darkMode);
     const dispatch = useDispatch()
 
     const {company, message, receiver, location, date, feedback, id, link} = props
@@ -38,19 +39,19 @@ function Spont({props}:{props: Spont}) {
     }
 
   return (
-    <div className="flex flex-col my-4 p-5 rounded-xl h-100 w-full shadow-lg hover:shadow-2xl border-2 bg-white dark:bg-gray-400 dark:border-gray-400" >
+    <div className="flex flex-col my-4 p-5 rounded-xl h-100 w-full shadow-lg hover:shadow-2xl border-2 border-white bg-white dark:bg-gray-400" >
       <div className="relative flex justify-between my-2">
         <h1 className="text-black text-xl">{company}</h1>
         <div className='relative flex justify-between'>
           <div className='flex gap-2 items-center right-2'>
             <div className='hover:cursor-pointer' onClick={()=>{setModalOpen(!modalOpen)}} >
-              <EditIcon/>
+              <EditIcon dark={false}/>
             </div>
             { modalOpen && <EditSpontaneous props={props} close={()=>{setModalOpen(!modalOpen)}}/> }
             <h2 onClick={()=>{setViewMore(!viewMore)}}className="text-black hover:cursor-pointer hover: text-underline">{viewMore? 'View less' : 'View more'}</h2>
           </div>
           <div>
-            <BsTrash onClick={handleDelete} className='absolute p-1 rounded-[50%] text-4xl left-28 bottom-9 hover:cursor-pointer text-red-700'/>
+            <BsTrash onClick={handleDelete} className='p-1 rounded-[50%] text-4xl hover:cursor-pointer text-red-700'/>
           </div>
         </div>  
       </div>
