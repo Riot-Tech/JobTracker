@@ -56,8 +56,8 @@ function EachFile({ props }: { props: File }) {
         <h2 className="text-black text-xl">{name}</h2>
         {/* <LuDownload onClick={() => handleView(name)} className="text-4xl text-black hover:cursor-pointer" /> */}
         <div className="space-x-6 mt-5">
-          <button className=" shadow-md border-none hover:bg-red-900 hover:text-white" onClick={() => handleDownload(name)}>Download</button>
-          <button className="shadow-md border-none hover:bg-red-900 hover:text-white" onClick={() => handleView(name)}>View file</button>
+          <button className=" shadow-md border-none bg-white hover:bg-red-900 hover:text-white" onClick={() => handleDownload(name)}>Download</button>
+          <button className="shadow-md border-none bg-white hover:bg-red-900 hover:text-white" onClick={() => handleView(name)}>View file</button>
         </div>
       </div>
       <div className="relative">
@@ -76,8 +76,8 @@ function EachFile({ props }: { props: File }) {
         {/* <button onClick={() => handleDownload(name)}>Download</button>
         <button onClick={() => handleView(name)}>View file</button> */}
         <div className="space-x-6 mt-5">
-          <button className=" shadow-md border-none hover:bg-red-900 hover:text-white" onClick={() => handleDownload(name)}>Download</button>
-          <button className="shadow-md border-none hover:bg-red-900 hover:text-white" onClick={() => handleView(name)}>View file</button>
+          <button className=" shadow-md border-none bg-white hover:bg-red-900 hover:text-white" onClick={() => handleDownload(name)}>Download</button>
+          <button className="shadow-md border-none bg-white hover:bg-red-900 hover:text-white" onClick={() => handleView(name)}>View file</button>
         </div>
       </div>
       <div className="relative">

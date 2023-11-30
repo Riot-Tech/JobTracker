@@ -16,9 +16,10 @@ export const disableFileHelper = async (id: number) => {
     
     if (res){
         let { userId, name } = res;
-        
-        await deleteFileFromStorage(userId, name)
-        return res;
+        if(userId && name){
+            await deleteFileFromStorage(userId, name)
+            return res;
+        }
     };
     
     throw new Error('Error deleting file')
