@@ -6,16 +6,24 @@ import { addFile } from "../redux/slices/files.slice";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { LuDownload } from "react-icons/lu";
+// import { LuDownload } from "react-icons/lu";
 
 function EachFile({ props }: { props: File }) {
+
   const { id, name, url, isCv } = props;
+
   const activeUser = useSelector((store: AppStore) => store.user);
+
   const dispatch = useDispatch();
 
 
   const handleDownload = async (filename: string) => {
-    await axios(`${URL}/file/download/${activeUser.id}?filename=${filename}`);
+    const res = await axios(`${URL}/file/download/${activeUser.id}?filename=${filename}`);
+
+    if(res){
+      window.alert(`File ${filename} downloaded`)
+      return res
+    }
   };
 
   const handleView = async (filename: string) => {
