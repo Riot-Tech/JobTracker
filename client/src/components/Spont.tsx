@@ -16,7 +16,6 @@ function Spont({props}:{props: Spont}) {
     const [ modalOpen, setModalOpen]= useState<boolean>(false)
     const [ viewMore, setViewMore ] = useState(false)
     const activeUser = useSelector((store: AppStore) => store.user);
-    const darkMode = useSelector((store: AppStore) => store.darkMode);
     const dispatch = useDispatch()
 
     const {company, message, receiver, location, date, feedback, id, link} = props

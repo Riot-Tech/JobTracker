@@ -29,9 +29,9 @@ function Files() {
   };
 
   return (
-    <div className="flex">
+    <div className="flex h-screen w-screen overflow-hidden">
       <SideBar />
-      <div className="w-full h-[100vh]">
+      <div className="flex flex-col justify-between h-full w-full">
         <NavBar />
         {modalOpen && <CreateFile close={handleClick} />}
         <div className="relative h-[90%] w-full bg-custom-backLight dark:bg-custom-backDark flex flex-col">

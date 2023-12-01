@@ -5,6 +5,7 @@ export const darkModeSlice = createSlice({
     initialState: JSON.parse(localStorage.getItem('theme') ?? 'false'),
     reducers:{
        handleDarkMode: (state, action)=>{
+            console.log(state)
             return action.payload
        },
     }

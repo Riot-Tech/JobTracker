@@ -1,21 +1,14 @@
 import { useSelector } from "react-redux";
 import NavBar from "../components/NavBar";
 import SideBar from "../components/SideBar";
-import axios from "axios";
-import { getApplications } from "../redux/slices/applications.slice";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AppStore} from "../models/interfaces";
-import { URL } from "../utils/url";
-import { useDispatch } from "react-redux";
 import CreateApplication from "../modals/CreateApplication";
 import App from "../components/App";
 
 
 export default function Applications() {
-  const dispatch = useDispatch()
   const [modalOpen, setModalOpen] = useState<boolean>(false)
-
-  const activeUser = useSelector((store: AppStore) => store.user);
   const applications = useSelector((store: AppStore) => store.applications)
 
   const handleNew = () => {
@@ -23,11 +16,11 @@ export default function Applications() {
   }
   
   return (
-    <div className="flex">
+    <div className="flex h-screen w-screen overflow-hidden">
       <SideBar />
 
 
-      <div className="w-full h-[100vh]">
+      <div className="flex flex-col justify-between h-full w-full">
         <NavBar />
         {modalOpen && <CreateApplication close={handleNew} />}
         <div className="relative h-[90%] w-full bg-custom-backLight dark:bg-custom-backDark flex flex-col">

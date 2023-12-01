@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import SearchBar from "./SearchBar"
 import { AppStore } from "../models/interfaces"
-import { BsLightbulb, BsFillLightbulbFill, BsFillPersonFill } from 'react-icons/bs'
+import { BsFillPersonFill } from 'react-icons/bs'
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { handleDarkMode } from "../redux/slices/darkMode.slice";

@@ -27,7 +27,7 @@ function SideBar() {
   };
   
   return (
-    <div className={` w-auto max-w-[20%] h-full flex flex-col bg-gray-300 dark:bg-gray-600 ${style.sideBar}`}>
+    <div className={`w-auto max-w-[20%] h-full flex flex-col bg-gray-300 dark:bg-gray-600 ${style.sideBar} overflow-y-auto overflow-x-hidden`}>
       <div className={`h-full ${!sideBarOpen && 'flex flex-col justify-evenly'}`}>
       
       {/* logo hamburguesa y logo JT */}
@@ -123,12 +123,11 @@ function SideBar() {
         )}
       </div>
 
-      <div className="flex justify-center m-5 h-[10%]">
-        <div className="flex items-center gap-2">
+  
+        <div className="flex justify-center items-center gap-2 mb-5">
           { sideBarOpen ? <h2 className="font-bold dark:text-white">Log Out</h2> : null}
           <Logout />
         </div>
-      </div>
     </div>
   );
 }

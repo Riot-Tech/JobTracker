@@ -1,4 +1,4 @@
-import { AppStore, EachFileProps, File } from "../models/interfaces";
+import { AppStore, EachFileProps } from "../models/interfaces";
 import { BsTrash } from "react-icons/bs";
 import { CvFileIcon, OtherFileIcon } from "../utils/svg";
 import { URL } from "../utils/url";
@@ -6,8 +6,6 @@ import { addFile } from "../redux/slices/files.slice";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
-// import { LuDownload } from "react-icons/lu";
 
 function EachFile({ file, openDownloadModal }: EachFileProps) {
 
