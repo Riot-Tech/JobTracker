@@ -74,7 +74,9 @@ function EachFile({ file, openDownloadModal }: EachFileProps) {
           onClick={() => handleDelete(id)} // Wrap the function in an arrow function
           className="absolute left-44 top-14 p-1 rounded-[50%] text-4xl  hover:cursor-pointer text-red-900 dark:text-white"
         />
-        <CvFileIcon />
+        <div className="p-1">
+          <CvFileIcon />
+        </div>
       </div>
     </div>
   ) : (

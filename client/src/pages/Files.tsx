@@ -1,14 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SideBar from "../components/SideBar";
 import NavBar from "../components/NavBar";
 import { NewFileIcon } from "../utils/svg";
 import CreateFile from "../modals/CreateFile";
-import axios from "axios";
-import { addFile } from "../redux/slices/files.slice";
 import { useSelector } from "react-redux";
 import { AppStore } from "../models/interfaces";
-import { useDispatch } from "react-redux";
-import { URL } from "../utils/url";
 import EachFile from "../components/EachFile";
 import DownloadFileSuccess from "../modals/DownloadFileSuccess";
 
@@ -87,9 +83,7 @@ function Files() {
             </div>
             {/* Modal */}
             {downloadModal && (
-              <div className="transition-trasform">
                 <DownloadFileSuccess/>
-              </div>
             )}
           </div>
         </div>
