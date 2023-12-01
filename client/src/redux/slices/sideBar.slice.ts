@@ -5,6 +5,7 @@ export const sideBarSlice = createSlice({
     initialState: false,
     reducers:{
        handleSideBar: (state, action)=>{
+            console.log(state)
             return action.payload
        },
     }

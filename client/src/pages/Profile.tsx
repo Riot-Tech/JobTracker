@@ -16,6 +16,7 @@ import {
 } from "../utils/svg";
 import { validateLink } from "../utils/validateProfileLinks";
 import { hasErrors } from "../utils/utilities";
+import SideBarMobile from "../components/SideBarMobile";
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -45,18 +46,29 @@ export default function Profile() {
     portfolio: "",
   });
 
+  const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 800);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+   
     const fetchData = async () => {
       try {
         let { data } = await axios.get(`${URL}/user/${activeUser.id}`);
-        console.log(data);
         dispatch(updateUser(data));
-        return;
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const handleChange = async (
@@ -97,178 +109,176 @@ export default function Profile() {
     setIsEditing(true);
   };
 
-  // falta mostrar el boton para cerrar el panel de links
-  // const handleClose = () => {
-  //     setEdition(false)
-  // }
-
   return (
-    <div className="flex">
-      <SideBar />
-      <div className="flex flex-col h-screen w-screen">
+    <div className="flex h-screen w-screen overflow-hidden">
+      {!isMobile ? <SideBar /> : null}
+      <div className="flex flex-col justify-between h-full w-full">
         <NavBar />
-        <div className="relative w-screen h-screen bg-custom-backLight dark:bg-custom-backDark flex flex-col items-center">
-          <div className="absolute top-6 left-4 bg-red-900 p-3 w-[90vw] h-[8%] flex justify-between items-center rounded-lg">
-            <h3 className="text-white text-2xl font-bold">Profile</h3>
-          </div>
-          <div className="flex rounded-[42px] mt-28 items-center justify-center margin-auto  text-black dark:text-white">
-            {/* User and links icons */}
+        <div className={`relative flex flex-col w-full h-auto ${isMobile ? '' : 'min-h-[90%]'} items-center bg-custom-backLight dark:bg-custom-backDark overflow-y-auto`}>
+            <div className="absolute top-6 left-4 bg-red-900 p-3 w-[90%] flex justify-between items-center rounded-lg">
+              <h3 className="text-white text-2xl font-bold">Profile</h3>
+            </div>
 
-            <div className="flex flex-col items-center drop-shadow-lg w-full">
-              <h1 className="text-6xl drop-shadow-xl">
-                {activeUser.name}
-              </h1>
-              <div className="flex flex-row items-center justify-center py-2">
-                <div className="flex items-center mt-10 space-x-4 justify-center bg-gray-100 p-3 pl-6 pr-6 rounded-3xl drop-shadow-xl hover:scale-110 transition-transform shadow-xl dark:bg-gray-200">
-                  {/* linkedin */}
-                  <a href={input.linkedIn} target="_blank">
-                    <LinkedInIcon />
-                  </a>
-                  {/* github */}
-                  <a
-                    href={input.gitHub}
-                    target="_blank"
-                    className="dark:text-white"
-                  >
-                    <GitHubIcon />
-                  </a>
-                  {/* portfolio */}
-                  <a href={input.portfolio} target="_blank">
-                    <PortfolioIcon />
-                  </a>
-                </div>
-                  {/* edit button */}
-                  { !isEditing && (
-                    <button
-                      onClick={handleEdit}
-                      className="flex items-center justify-center bg-transparent mt-10 hover:scale-110 transition-transform border-none"
+            <div className="flex rounded-xl mt-28 items-center justify-center margin-auto text-black dark:text-white">
+              {/* User and links icons */}
+
+              <div className="flex flex-col items-center drop-shadow-lg w-full">
+                <h1 className={`${isMobile ? 'text-4xl' : 'text-6xl'} drop-shadow-xl`}>
+                  {activeUser.name}
+                </h1>
+                <div className="flex flex-row items-center justify-center py-2">
+                  <div className="flex items-center mt-10 space-x-4 justify-center bg-gray-100 p-3 pl-6 pr-6 rounded-3xl drop-shadow-xl hover:scale-110 transition-transform shadow-xl dark:bg-gray-200">
+                    {/* linkedin */}
+                    <a href={input.linkedIn} target="_blank">
+                      <LinkedInIcon />
+                    </a>
+                    {/* github */}
+                    <a
+                      href={input.gitHub}
+                      target="_blank"
+                      className="dark:text-white"
                     >
-                      <h2>
-                        <EditIcon dark={darkMode} />
-                      </h2>
+                      <GitHubIcon />
+                    </a>
+                    {/* portfolio */}
+                    <a href={input.portfolio} target="_blank">
+                      <PortfolioIcon />
+                    </a>
+                  </div>
+                    {/* edit button */}
+                    { !isEditing && (
+                      <button
+                        onClick={handleEdit}
+                        className="flex items-center justify-center bg-transparent mt-10 hover:scale-110 transition-transform border-none"
+                      >
+                        <h2>
+                          <EditIcon dark={darkMode} />
+                        </h2>
+                      </button>
+                    )}
+                </div>
+              </div>
+
+              {/* los inputs para agregar links */}
+              {isEditing && (
+                <div className="flex flex-row bg-custom-modalLight shadow-xl drop-shadow-lg p-6 m-2 space-x-8 rounded-xl dark:bg-gray-500">
+                  <div className="flex flex-col space-y-5 items-start">
+                    {/* input linkedIn */}
+                    <div className="flex flex-row ">
+                      <input
+                        className={` p-2 rounded-lg  bg-white dark:text-gray-700`}
+                        type="text"
+                        name="linkedIn"
+                        value={input.linkedIn}
+                        onChange={handleChange}
+                        placeholder="LinkedIn"
+                      />
+                      <p className="text-red-500 h-1 my-2"></p>
+                    </div>
+
+                    {/* input gitHub */}
+
+                    <div className="flex flex-row">
+                      <input
+                        className={` p-2 rounded-lg dark:text-gray-700 `}
+                        type="text"
+                        name="gitHub"
+                        value={input.gitHub}
+                        onChange={handleChange}
+                        placeholder="Git Hub"
+                      />
+                      <p className="text-red-500 h-1 my-2"></p>
+                    </div>
+
+                    {/* input portfolio */}
+
+                    <div className="flex flex-row">
+                      <input
+                        className={` p-2 rounded-lg dark:text-gray-700`}
+                        type="text"
+                        name="portfolio"
+                        value={input.portfolio}
+                        onChange={handleChange}
+                        placeholder="Portfolio"
+                      />
+                      <p className="text-red-500 h-1 my-2"></p>
+                    </div>
+                  </div>
+                  {/* confirm buttons */}
+                  <div className="flex justify-center items-center ">
+                    <button
+                      onClick={handleSubmit}
+                      className="flex items-center justify-center hover:scale-110 transition-transform bg-red-900"
+                    >
+                      <TickIcon />
+                      <h2 className="ml-2 text-white ">Confirm</h2>
                     </button>
-                  )}
-              </div>
-            </div>
-            {/* los inputs para agregar links */}
-            {isEditing && (
-              <div className="flex flex-row bg-custom-modalLight shadow-xl drop-shadow-lg p-6 m-2 space-x-8 rounded-xl dark:bg-gray-500">
-                <div className="flex flex-col space-y-5 items-start">
-                  {/* input linkedIn */}
-                  <div className="flex flex-row ">
-                    <input
-                      className={` p-2 rounded-lg  bg-white dark:text-gray-700`}
-                      type="text"
-                      name="linkedIn"
-                      value={input.linkedIn}
-                      onChange={handleChange}
-                      placeholder="LinkedIn"
-                    />
-                    <p className="text-red-500 h-1 my-2"></p>
-                  </div>
-
-                  {/* input gitHub */}
-
-                  <div className="flex flex-row">
-                    <input
-                      className={` p-2 rounded-lg dark:text-gray-700 `}
-                      type="text"
-                      name="gitHub"
-                      value={input.gitHub}
-                      onChange={handleChange}
-                      placeholder="Git Hub"
-                    />
-                    <p className="text-red-500 h-1 my-2"></p>
-                  </div>
-
-                  {/* input portfolio */}
-
-                  <div className="flex flex-row">
-                    <input
-                      className={` p-2 rounded-lg dark:text-gray-700`}
-                      type="text"
-                      name="portfolio"
-                      value={input.portfolio}
-                      onChange={handleChange}
-                      placeholder="Portfolio"
-                    />
-                    <p className="text-red-500 h-1 my-2"></p>
                   </div>
                 </div>
-                {/* confirm buttons */}
-                <div className="flex justify-center items-center ">
-                  <button
-                    onClick={handleSubmit}
-                    className="flex items-center justify-center hover:scale-110 transition-transform bg-red-900"
-                  >
-                    <TickIcon />
-                    <h2 className="ml-2 text-white ">Confirm</h2>
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* HEXAGONOS */}
-
-            <div className="flex justify-center items-center gap-32 mt-8">
-                <div className="flex flex-col justify-center items-center hover:scale-105 transition-transform">
-                    <div className="relative">
-                        <img 
-                          className="w-40 max-w-xl" 
-                          src={hexagon} 
-                          alt="Descripción de la imagen" 
-                        />
-                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-7xl font-bold">
-                            {files.filesCopy.length}
-                        </div>
-                    </div>
-                    <div className="flex justify-center">
-                        <h1 className="font-bold text-4xl mt-4 dark:text-white drop-shadow-xl tracking-wide">
-                        Files
-                        </h1>
-                    </div>
-                </div>
-
-                <div className="flex flex-col justify-center items-center hover:scale-105 transition-transform">
-                    <div className="relative">
-                        <img
-                            className="w-40 max-w-full"
-                            src={hexagon}
-                            alt="Descripción de la imagen"
-                        />
-                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-7xl font-bold">
-                            {applications.EmptyCopyApplications.length}
-                        </div>
-                    </div>
-                    <div className="flex justify-center">
-                        <h1 className="font-bold text-4xl mt-4 dark:text-white tracking-wide">
-                        Applications
-                        </h1>
-                    </div>
-                </div>
-
-                <div className="flex flex-col justify-center items-center hover:scale-105 transition-transform">
-                    <div className="relative">
-                        <img
-                            src={hexagon}
-                            alt="Descripción de la imagen"
-                            className="w-40 max-w-full"
-                        />
-                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-7xl font-bold">
-                            {spontaneous.EmptyCopySpontaneous.length}
-                        </div>
-                    </div>
-                        <div className="flex justify-center">
-                            <h1 className="font-bold text-4xl mt-4 dark:text-white tracking-wide ">
-                            Spontaneous
-                            </h1>
-                        </div>
-                    
-                </div>
+              )}
             </div>
 
+            {/* HEXAGONOS */}
+
+              <div className={`flex justify-between items-center ${isMobile ? 'w-[90%]' :'w-[70%]'} margin-auto mt-2`}>
+                  
+                  <div className="flex flex-col justify-between items-center hover:scale-105 transition-transform">
+                      <div className="relative">
+                          <img 
+                            className={`${isMobile ? 'w-20' :'w-40 '}`} 
+                            src={hexagon} 
+                            alt="Descripción de la imagen" 
+                          />
+                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-7xl font-bold">
+                              {files.filesCopy.length}
+                          </div>
+                      </div>
+                      <div className="flex justify-center">
+                          <h2 className={`font-bold text-[20px] mt-4 dark:text-white drop-shadow-xl tracking-wide`}>
+                          Files
+                          </h2>
+                      </div>
+                  </div>
+
+                  <div className="flex flex-col justify-center items-center hover:scale-105 transition-transform">
+                      <div className="relative">
+                          <img
+                              className={` ${isMobile ? 'w-20' :'w-40'}`}
+                              src={hexagon}
+                              alt="Descripción de la imagen"
+                          />
+                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-7xl font-bold">
+                              {applications.EmptyCopyApplications.length}
+                          </div>
+                      </div>
+                      <div className="flex justify-center">
+                          <h2 className="font-bold text-[20px] mt-4 dark:text-white tracking-wide">
+                          Applications
+                          </h2>
+                      </div>
+                  </div>
+
+                  <div className="flex flex-col justify-center items-center hover:scale-105 transition-transform">
+                      <div className="relative">
+                          <img
+                              className={`${isMobile ? 'w-20' :'w-40'}`}
+                              src={hexagon}
+                              alt="Descripción de la imagen"
+                          />
+                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-7xl font-bold">
+                              {spontaneous.EmptyCopySpontaneous.length}
+                          </div>
+                      </div>
+                          <div className="flex justify-center">
+                              <h2 className="font-bold text-[20px] mt-4 dark:text-white tracking-wide ">
+                              Spontaneous
+                              </h2>
+                          </div>
+                  </div>
+
+            </div>    
         </div>
+          {isMobile ? <SideBarMobile/> : null}
       </div>
     </div>
   );

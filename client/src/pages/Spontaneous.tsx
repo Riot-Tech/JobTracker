@@ -1,29 +1,24 @@
 import NavBar from "../components/NavBar";
 import SideBar from "../components/SideBar";
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import CreateSpontaneous from "../modals/CreateSpontaneous";
 import { CreateNewIcon } from "../utils/svg";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import { URL } from "../utils/url";
+import { useSelector } from "react-redux";
 import { AppStore, Spontaneous } from "../models/interfaces";
-import { addSpontaneous } from "../redux/slices/spontaneous.slice";
 import Spont from "../components/Spont";
 
 export default function Spontaneous() {
     const [ modalOpen, setModalOpen]= useState<boolean>(false)
-    const activeUser = useSelector((store: AppStore) => store.user);
     const spontaneous = useSelector((store: AppStore) => store.spontaneous);
-    const dispatch = useDispatch()
     
     const handleClick = () => {
       setModalOpen(!modalOpen)
     }
 
     return (
-        <div className="flex">
+        <div className="flex h-screen w-screen overflow-hidden">
           <SideBar />
-          <div className="w-full h-[100vh]">
+          <div className="flex flex-col justify-between h-full w-full">
             <NavBar />
             { modalOpen && <CreateSpontaneous close={handleClick}/> }
             <div className="relative flex flex-col h-[90%] w-full bg-custom-backLight dark:bg-custom-backDark">

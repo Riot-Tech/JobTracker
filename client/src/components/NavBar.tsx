@@ -1,10 +1,12 @@
 import { useSelector } from "react-redux"
 import SearchBar from "./SearchBar"
 import { AppStore } from "../models/interfaces"
-import { BsLightbulb, BsFillLightbulbFill, BsFillPersonFill } from 'react-icons/bs'
+import { BsFillPersonFill } from 'react-icons/bs'
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { handleDarkMode } from "../redux/slices/darkMode.slice";
+import { MdNightlightRound, MdOutlineLightMode } from "react-icons/md";
+import style from './NavBar.module.css'
 
 function NavBar() {
   const dispatch = useDispatch()
@@ -33,16 +35,16 @@ function NavBar() {
   }
   
   return (
-    <div className="flex items-center h-[10vh] w-full bg-gray-200 dark:bg-gray-500">
-        <div className="w-[70vw]">
+    <div className={`flex items-center justify-evenly ${style.navBar} bg-gray-200 dark:bg-gray-500`}>
+        <div className="h-full flex justify-start ml-6 items-center w-[50%]">
           <SearchBar/>
         </div>
-        <div className="flex justify-evenly items-center w-[30%] bg-gray-200 p-10 dark:bg-gray-500">
-          <div className="flex">
-            <BsFillPersonFill className='text-2xl text-gray-700 mr-1 dark:text-black' />
-            <h2 className="text-gray-800">{activeUser.name}</h2>
+        <div className="flex justify-end gap-12 items-center h-full w-[50%] mr-5 bg-gray-200 py-2 mx-2 dark:bg-gray-500">
+          <div className="flex items-center">
+            <BsFillPersonFill className='text-[40px] text-gray-700 mr-1 dark:text-black' />
+            <h2 className={`text-gray-800 font-semibold ${style.name}`}>{activeUser.name}</h2>
           </div>
-            {darkTheme ? <BsLightbulb onClick={handleTheme} className='text-4xl text-black hover: cursor-pointer'/> : <BsFillLightbulbFill onClick={handleTheme} className='text-4xl text-black hover: cursor-pointer' />}
+            {darkTheme ? <MdOutlineLightMode onClick={handleTheme} className='text-4xl text-white hover: cursor-pointer'/> : <MdNightlightRound onClick={handleTheme} className='text-4xl text-black hover: cursor-pointer' />}
         </div>
     </div>
   )

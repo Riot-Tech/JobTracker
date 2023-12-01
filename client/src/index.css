@@ -24,7 +24,7 @@
   background: #555;
 }
 
-:root {
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 600;
@@ -39,11 +39,9 @@
 
   margin: 0px;
   padding: 0px;
+} */
 
-  overflow-x: hidden;
-}
-
-a {
+/* a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
@@ -55,7 +53,7 @@ a:hover {
 
 body {
   margin: 0;
-}
+} */
 
 h1 {
   font-size: 3.2em;
@@ -72,7 +70,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
 }
-
+/* 
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -84,4 +82,4 @@ button {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
