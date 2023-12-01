@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import { handleSideBar } from "../redux/slices/sideBar.slice";
 import { useSelector } from "react-redux";
 import { AppStore } from "../models/interfaces";
+import style from './SideBar.module.css'
 
 function SideBar() {
   const location = useLocation();
@@ -26,9 +27,12 @@ function SideBar() {
   };
   
   return (
-    <div className={`${sideBarOpen ? "w-[10vw]" : 'w-[5vw]'} min-h-[100vh] flex flex-col bg-gray-300 dark:bg-gray-600`}>
-      <div className={`h-[15%] mt-4 p-2`}>
-        <div className="flex flex-col items-center">
+    <div className={` w-auto max-w-[20%] h-full flex flex-col bg-gray-300 dark:bg-gray-600 ${style.sideBar}`}>
+      <div className={`h-full ${!sideBarOpen && 'flex flex-col justify-evenly'}`}>
+      
+      {/* logo hamburguesa y logo JT */}
+
+      <div className={`flex flex-col items-center`}>
           <button
             className={`mb-4 bg-transparent ${!sideBarOpen && "text-xs w-auto"}`}
             onClick={handleClick}
@@ -36,9 +40,11 @@ function SideBar() {
             { !sideBarOpen? 
           <VscMenu className='text-black text-2xl dark:text-white' /> : <GrClose style={darkMode && {color: 'white'}} className={`text-2xl dark:text-white`} />}
           </button>
+      </div>
+        <div className="flex justify-center items-center">
           <JobTrackerLogo />
         </div>
-      </div>
+          
 
       {sideBarOpen && (
         <h2 className="m-2 font-semibold text-gray-500 border-b-2 border-gray-600 dark:text-gray-300 dark:border-white">
@@ -46,12 +52,12 @@ function SideBar() {
         </h2>
       )}
 
-      <div className={`h-[55%] ${!sideBarOpen && 'flex flex-col justify-evenly'}`}>
+      {/* svgs */}
+      
         {sideBarOpen ? (
           <Link to="/profile">
             <div className={`flex items-center my-5 group hover:bg-slate-400 cursor-pointer p-4 ${location.pathname === '/profile' && 'bg-slate-400 border-r-4 border-red-800'}`}>
               <ProfileLogo dark={darkMode}/>
-
               <h2 className="ml-2 text-black group-hover:text-gray-800 dark:text-gray-300">
                 Profile
               </h2>

@@ -1,0 +1,10 @@
+/* .sideBar{
+    background-color: yellow;
+}
+
+@media (max-width: 760px) {
+    .sideBar {
+     display: flex;
+     flex-direction: row;
+    }
+} */
