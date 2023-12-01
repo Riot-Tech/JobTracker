@@ -62,7 +62,7 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
                       dispatch(addSpontaneous(data)); //lleno el estado global de spontaneous, que ahora que lo pienso podria no ser global, y luego me lo traigo y las renderizo
                       return;
                     }
-            
+                
                     return;
                   
                 }

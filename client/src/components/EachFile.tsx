@@ -1,4 +1,4 @@
-import { AppStore, File } from "../models/interfaces";
+import { AppStore, EachFileProps, File } from "../models/interfaces";
 import { BsTrash } from "react-icons/bs";
 import { CvFileIcon, OtherFileIcon } from "../utils/svg";
 import { URL } from "../utils/url";
@@ -6,17 +6,26 @@ import { addFile } from "../redux/slices/files.slice";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { LuDownload } from "react-icons/lu";
+import { useState } from "react";
+// import { LuDownload } from "react-icons/lu";
 
-function EachFile({ props }: { props: File }) {
-  const { id, name, url, isCv } = props;
+function EachFile({ file, openDownloadModal }: EachFileProps) {
+
+  const { id, name, isCv } = file;
+
   const activeUser = useSelector((store: AppStore) => store.user);
+
   const dispatch = useDispatch();
 
 
   const handleDownload = async (filename: string) => {
-    await axios(`${URL}/file/download/${activeUser.id}?filename=${filename}`);
+    const res = await axios(`${URL}/file/download/${activeUser.id}?filename=${filename}`);
+
+    if (res) {
+      openDownloadModal();
+    }
   };
+
 
   const handleView = async (filename: string) => {
     try {
@@ -65,7 +74,9 @@ function EachFile({ props }: { props: File }) {
           onClick={() => handleDelete(id)} // Wrap the function in an arrow function
           className="absolute left-44 top-14 p-1 rounded-[50%] text-4xl  hover:cursor-pointer text-red-900 dark:text-white"
         />
-        <CvFileIcon />
+        <div className="p-1">
+          <CvFileIcon />
+        </div>
       </div>
     </div>
   ) : (
