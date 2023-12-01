@@ -34,7 +34,7 @@ export default function Applications() {
 
           <div className="absolute top-6 left-4 bg-red-900 p-3 w-[95%] flex justify-between items-center rounded-lg">
 
-            <h3 className="text-white text-2xl font-bold">Application</h3>
+            <h3 className="text-white text-2xl font-bold">Applications</h3>
 
             <div className="flex items-center">
               <div className="relative left-10">
@@ -47,7 +47,7 @@ export default function Applications() {
               </div>
 
               <button
-                className="bg-white text-black dark:bg-black dark:text-white pl-14"
+                className="bg-white text-black pl-14 shadow-xl"
                 onClick={handleNew}
               >
                 Create new

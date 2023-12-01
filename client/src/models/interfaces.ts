@@ -144,3 +144,8 @@ export type Links = {
     portfolio: string,
     [key: string]:string
 }
+
+export interface EachFileProps  {
+    file: File;
+    openDownloadModal: () => void;
+}

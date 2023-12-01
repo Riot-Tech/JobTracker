@@ -10,12 +10,23 @@ import { AppStore } from "../models/interfaces";
 import { useDispatch } from "react-redux";
 import { URL } from "../utils/url";
 import EachFile from "../components/EachFile";
+import DownloadFileSuccess from "../modals/DownloadFileSuccess";
 
 function Files() {
-  const activeUser = useSelector((store: AppStore) => store.user);
+
   const { files } = useSelector((store: AppStore) => store.filesState);
-  const dispatch = useDispatch();
+
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+
+  const [downloadModal, setDownloadModal] = useState<boolean>(false);
+
+  const openDownloadModal = () => {
+    setDownloadModal(true);
+
+    setTimeout(() => {
+      setDownloadModal(false);
+    }, 2000);
+  };
 
   const handleClick = () => {
     setModalOpen(!modalOpen);
@@ -59,7 +70,7 @@ function Files() {
               {files?.map((file) => {
                 if (file.enabled && file.isCv) {
                   return (
-                    <EachFile key={file.id} props={file} />
+                    <EachFile key={file.id} file={file} openDownloadModal={openDownloadModal} />
                   );
                 }
               })}
@@ -69,15 +80,21 @@ function Files() {
               {files?.map((file) => {
                 if (file.enabled && !file.isCv) {
                   return (
-                    <EachFile key={file.id} props={file} />
+                    <EachFile key={file.id} file={file} openDownloadModal={openDownloadModal} />
                   );
                 }
               })}
             </div>
+            {/* Modal */}
+            {downloadModal && (
+              <div className="transition-trasform">
+                <DownloadFileSuccess/>
+              </div>
+            )}
           </div>
         </div>
       </div>
-    </div>
+    </div>  
   );
 }
 

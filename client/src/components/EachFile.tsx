@@ -1,4 +1,4 @@
-import { AppStore, File } from "../models/interfaces";
+import { AppStore, EachFileProps, File } from "../models/interfaces";
 import { BsTrash } from "react-icons/bs";
 import { CvFileIcon, OtherFileIcon } from "../utils/svg";
 import { URL } from "../utils/url";
@@ -6,11 +6,12 @@ import { addFile } from "../redux/slices/files.slice";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 // import { LuDownload } from "react-icons/lu";
 
-function EachFile({ props }: { props: File }) {
+function EachFile({ file, openDownloadModal }: EachFileProps) {
 
-  const { id, name, url, isCv } = props;
+  const { id, name, isCv } = file;
 
   const activeUser = useSelector((store: AppStore) => store.user);
 
@@ -20,11 +21,11 @@ function EachFile({ props }: { props: File }) {
   const handleDownload = async (filename: string) => {
     const res = await axios(`${URL}/file/download/${activeUser.id}?filename=${filename}`);
 
-    if(res){
-      window.alert(`File ${filename} downloaded`)
-      return res
+    if (res) {
+      openDownloadModal();
     }
   };
+
 
   const handleView = async (filename: string) => {
     try {

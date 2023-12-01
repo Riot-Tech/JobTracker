@@ -12,16 +12,17 @@ import ErrorModalSignUp from "../modals/ErrorModalSignUp";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 
 function SignUp({ close }: { close: (value: boolean) => void }) {
+  
   const [passwordClear, setPasswordClear] = useState(false)
 
-  const [input, setInput] = useState({name:"", email: "", password: "", linkedIn:"", gitHub:"", portfolio:""})
-  const [errors, setErrors] = useState({name:"", email: "", password: "", linkedIn:"", gitHub:"", portfolio:""})
+  const [input, setInput] = useState({ name: "", email: "", password: "", linkedIn: "", gitHub: "", portfolio: "" })
+  const [errors, setErrors] = useState({ name: "", email: "", password: "", linkedIn: "", gitHub: "", portfolio: "" })
 
   const [errorModal, setErrorModal] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  
+
   useEffect(() => {
     if (modalIsOpen) {
       const timeoutId = setTimeout(() => {
@@ -38,34 +39,34 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
       ...input,
       [event.target.name]: event.target.value,
     });
-    
+
     setErrors(validateSignUpForm(
       {
-      ...input,
-      [event.target.name]: event.target.value,
+        ...input,
+        [event.target.name]: event.target.value,
       }
     ));
 
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>)=>{
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    
+
     try {
-      if(!hasErrors(errors)){
+      if (!hasErrors(errors)) {
         const response = await axios.post(`${URL}/signUp`, input)
-        if(response.status === 200){
+        if (response.status === 200) {
           setModalIsOpen(true)
-          setInput({name:"", email: "", password: "", linkedIn:"", gitHub:"", portfolio:""})
-          setErrors({name:"", email: "", password: "", linkedIn:"", gitHub:"", portfolio:""})
-        } 
+          setInput({ name: "", email: "", password: "", linkedIn: "", gitHub: "", portfolio: "" })
+          setErrors({ name: "", email: "", password: "", linkedIn: "", gitHub: "", portfolio: "" })
+        }
       }
     } catch (error: any) {
       setErrorModal(true)
       setErrorMessage(error.response.data.message)
     }
   }
-  
+
   const closeModal = (value: boolean) => {
     setErrorModal(value)
     setErrorMessage('')
@@ -77,58 +78,58 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
 
   return (
     <>
-      {errorModal && <ErrorModalSignUp close={ closeModal } error={ errorMessage } />}
+      {errorModal && <ErrorModalSignUp close={closeModal} error={errorMessage} />}
       {modalIsOpen && <SignUpSuccess />}
-    <div className="absolute top-[-500px] w-[400px] h-[600px] z-10 bg-slate-200 p-4 rounded-lg text-black shadow-lg backdrop-blur-lg">
-      <div className='flex justify-between mb-2'>
-        <h1 className='font-semibold'>SIGN UP</h1>
-        <AiOutlineClose className='flex justify-items-start text-2xl hover: cursor-pointer' onClick={()=> close(false)} />
-      </div>
+      <div className="absolute top-[-500px] w-[400px] h-[600px] z-10 bg-slate-200 p-4 rounded-lg text-black shadow-lg backdrop-blur-lg">
+        <div className='flex justify-between mb-2'>
+          <h1 className='font-semibold'>SIGN UP</h1>
+          <AiOutlineClose className='flex justify-items-start text-2xl hover: cursor-pointer' onClick={() => close(false)} />
+        </div>
         <h2 className='text-lg font-semibold border-b-2'>It's easy</h2>
-      <form onSubmit={handleSubmit} className='mt-4'>
-      <GoogleButton/>
-      <h1 className="flex justify-center">----- o -----</h1>
-      <div className="flex w-full gap-2 p-2">
-        <div className="w-1/2">
-          <div className="flex flex-col my-4">
-            <input
-              className={`shadow-xl p-2 rounded-lg ${errors.name? 'bg-red-300':''}`}
-              name="name"
-              onChange={handleChange}
-              placeholder="Full Name"
-            />
-            <p className="text-red-500 h-1 my-2">{errors.name}</p>
-          </div>
-          <div className="flex flex-col my-4">
-            <input
-              className={`shadow-xl p-2 rounded-lg ${errors.email? 'bg-red-300':''}`}
-              name="email"
-              onChange={handleChange}
-              type="email"
-              placeholder="Email adress"
-            />
-            <p className="text-red-500 h-1 my-2">{errors.email}</p>
-          </div>
-
-          <div className="relative flex flex-col my-4">
-            <div className="flex justify-between items-center">
-              <input
-                className={`shadow-xl p-2 rounded-lg w-full ${errors.password? 'bg-red-300':''}`}
-                type={`${passwordClear? "text": 'password'}`}
-                name="password"
-                onChange={handleChange}
-                placeholder="Password"
-              />
-              { !passwordClear ?  <IoEyeOff onClick={ handlePassword } className="absolute text-2xl text-black right-2 hover:cursor-pointer" /> : <IoEye onClick={ handlePassword } className="absolute text-2xl text-black right-2 hover:cursor-pointer" /> }
-            </div>
-            <p className="text-red-500 h-1 my-2">{errors.password}</p>
-          </div>
-          </div>
-      
-          <div className="w-1/2">
+        <form onSubmit={handleSubmit} className='mt-4'>
+          <GoogleButton />
+          <h1 className="flex justify-center">----- o -----</h1>
+          <div className="flex w-full gap-2 p-2">
+            <div className="w-1/2">
               <div className="flex flex-col my-4">
                 <input
-                  className={`shadow-xl p-2 rounded-lg ${errors.linkedIn? 'bg-red-300':''}`}
+                  className={`shadow-xl p-2 rounded-lg ${errors.name ? 'bg-red-300' : ''}`}
+                  name="name"
+                  onChange={handleChange}
+                  placeholder="Full Name"
+                />
+                <p className="text-red-500 h-1 my-2">{errors.name}</p>
+              </div>
+              <div className="flex flex-col my-4">
+                <input
+                  className={`shadow-xl p-2 rounded-lg ${errors.email ? 'bg-red-300' : ''}`}
+                  name="email"
+                  onChange={handleChange}
+                  type="email"
+                  placeholder="Email adress"
+                />
+                <p className="text-red-500 h-1 my-2">{errors.email}</p>
+              </div>
+
+              <div className="relative flex flex-col my-4">
+                <div className="flex justify-between items-center">
+                  <input
+                    className={`shadow-xl p-2 rounded-lg w-full ${errors.password ? 'bg-red-300' : ''}`}
+                    type={`${passwordClear ? "text" : 'password'}`}
+                    name="password"
+                    onChange={handleChange}
+                    placeholder="Password"
+                  />
+                  {!passwordClear ? <IoEyeOff onClick={handlePassword} className="absolute text-2xl text-black right-2 hover:cursor-pointer" /> : <IoEye onClick={handlePassword} className="absolute text-2xl text-black right-2 hover:cursor-pointer" />}
+                </div>
+                <p className="text-red-500 h-1 my-2">{errors.password}</p>
+              </div>
+            </div>
+
+            {/* <div className="w-1/2">
+              <div className="flex flex-col my-4">
+                <input
+                  className={`shadow-xl p-2 rounded-lg ${errors.linkedIn ? 'bg-red-300' : ''}`}
                   type="text"
                   name="linkedIn"
                   onChange={handleChange}
@@ -138,7 +139,7 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
               </div>
               <div className="flex flex-col my-4">
                 <input
-                  className={`shadow-xl p-2 rounded-lg ${errors.gitHub? 'bg-red-300':''}`}
+                  className={`shadow-xl p-2 rounded-lg ${errors.gitHub ? 'bg-red-300' : ''}`}
                   type="text"
                   name="gitHub"
                   onChange={handleChange}
@@ -148,7 +149,7 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
               </div>
               <div className="flex flex-col my-4">
                 <input
-                  className={`shadow-xl p-2 rounded-lg ${errors.portfolio? 'bg-red-300':''}`}
+                  className={`shadow-xl p-2 rounded-lg ${errors.portfolio ? 'bg-red-300' : ''}`}
                   type="text"
                   name="portfolio"
                   onChange={handleChange}
@@ -156,16 +157,16 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
                 />
                 <p className="text-red-500 h-1 my-2">{errors.portfolio}</p>
               </div>
+            </div> */}
           </div>
-      </div>
 
-        
-        <div className='flex justify-center mt-4'>
-          <button disabled={hasErrors(errors)} type='submit' className={`items-center bg-red-700 rounded-lg text-white ${ hasErrors(errors) ? 'cursor-not-allowed' :''}`}>Create Account</button>
-        </div>
-      </form>
-    </div>
-  </>
+
+          <div className='flex justify-center mt-4'>
+            <button disabled={hasErrors(errors)} type='submit' className={`items-center bg-red-700 rounded-lg text-white ${hasErrors(errors) ? 'cursor-not-allowed' : ''}`}>Create Account</button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 }
 
