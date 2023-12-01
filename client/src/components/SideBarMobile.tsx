@@ -1,7 +1,5 @@
 import Logout from "./Logout";
 import { Link } from "react-router-dom";
-import { VscMenu } from "react-icons/vsc";
-import { GrClose } from "react-icons/gr";
 import {
   ApplicationsLogo,
   CvFilesLogo,
@@ -10,31 +8,25 @@ import {
   SpontaneousLogo,
 } from "../utils/svg";
 import { useLocation } from 'react-router-dom';
-import { useDispatch } from "react-redux";
-import { handleSideBar } from "../redux/slices/sideBar.slice";
 import { useSelector } from "react-redux";
 import { AppStore } from "../models/interfaces";
 import style from './SideBar.module.css'
 
 function SideBarMobile() {
   const location = useLocation();
-  const dispatch = useDispatch()
-  const sideBarOpen = useSelector((store: AppStore)=> store.sideBarOpen)
   const darkMode = useSelector((store: AppStore) => store.darkMode);
 
-  const handleClick = () => {
-    dispatch(handleSideBar(!sideBarOpen));
-  };
-  
   return (
-    <div className={`flex fixed bottom-0 h-auto w-full justify-between bg-gray-300 dark:bg-gray-600 ${style.sideBar}`}>
-      <div className={`h-full flex justify-around items-center`}>
-      
+    <div className={`flex sticky bottom-0 max-h-40 w-full justify-evenly bg-gray-300 dark:bg-gray-600 ${style.sideBar}`}>
         {/* logo JT */}
-
-            <div className="flex justify-center items-center">
+        
+        <div className="flex justify-center items-center">
             <JobTrackerLogo />
-            </div>
+        </div>
+         <div className={`h-full flex justify-evenly gap-8 items-center`}>
+      
+        
+
             
         {/* svgs */}
         
