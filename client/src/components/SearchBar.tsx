@@ -1,10 +1,11 @@
 import { useLocation } from "react-router-dom"
-import { SearchIcon } from "../utils/svg"
+import { CiSearch } from "react-icons/ci";
 import { ChangeEvent } from "react"
 import { searchSpontaneous } from "../redux/slices/spontaneous.slice"
 import { useDispatch } from "react-redux"
 import { searchApplication } from "../redux/slices/applications.slice"
 import { searchFiles } from "../redux/slices/files.slice"
+import style from './SearchBar.module.css'
 
 function SearchBar() {
   const location = useLocation()
@@ -25,11 +26,9 @@ function SearchBar() {
   }
 
   return (
-    <div className="flex items-center">
-        <input onChange={handleSearch} placeholder="Search..." className="w-[25vw] margin-auto rounded-md shadow-lg p-2 text-black border-1 border-solid border-slate-200"/>
-        <div className="relative right-10 p-1 border-l-2 border-gray-400 hover: cursor-pointer">
-            <SearchIcon/>
-        </div>
+    <div className={`flex items-center h-full w-[50%] p-2 ml-10 ${style.searchBar}`}>
+        <input onChange={handleSearch} placeholder="Search..." className={`relative ${style.input} margin-auto rounded-s-md shadow-lg text-black  border-slate-200`}/>
+        <CiSearch className={`${style.searchIcon} relative right-10 p-1 border-l-2 border-gray-400 hover: cursor-pointer`} />
     </div>
   )
 }

@@ -36,9 +36,7 @@ function NavBar() {
   
   return (
     <div className={`flex items-center justify-evenly ${style.navBar} bg-gray-200 dark:bg-gray-500`}>
-        <div className="h-full flex justify-start ml-6 items-center w-[50%]">
-          <SearchBar/>
-        </div>
+        <SearchBar/>
         <div className="flex justify-end gap-12 items-center h-full w-[50%] mr-5 bg-gray-200 py-2 mx-2 dark:bg-gray-500">
           <div className="flex items-center">
             <BsFillPersonFill className='text-[25px] text-gray-700 mr-2 dark:text-black' />

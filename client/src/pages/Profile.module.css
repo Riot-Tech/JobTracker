@@ -1,0 +1,6 @@
+@media (max-width: 800px) {
+    .profileBar {
+     padding:  0.5rem;
+     top: 0.5rem;
+    }
+}

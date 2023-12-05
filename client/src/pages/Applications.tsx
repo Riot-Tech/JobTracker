@@ -1,29 +1,43 @@
 import { useSelector } from "react-redux";
 import NavBar from "../components/NavBar";
 import SideBar from "../components/SideBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AppStore} from "../models/interfaces";
 import CreateApplication from "../modals/CreateApplication";
 import App from "../components/App";
+import style from './Applications.module.css'
+import SideBarMobile from "../components/SideBarMobile";
 
 
 export default function Applications() {
   const [modalOpen, setModalOpen] = useState<boolean>(false)
   const applications = useSelector((store: AppStore) => store.applications)
 
+  const [isMobile, setIsMobile] = useState(false);
   const handleNew = () => {
     setModalOpen(!modalOpen)
   }
   
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 800);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div className="flex h-screen w-screen overflow-hidden">
-      <SideBar />
-
-
+      { !isMobile ? <SideBar /> : null }
       <div className="flex flex-col justify-between h-full w-full">
         <NavBar />
         {modalOpen && <CreateApplication close={handleNew} />}
-        <div className="relative h-[90%] w-full bg-custom-backLight dark:bg-custom-backDark flex flex-col">
+        <div className="relative h-full w-full bg-custom-backLight dark:bg-custom-backDark flex flex-col overflow-y-auto">
 
           <div className="absolute top-6 left-4 bg-red-900 p-3 w-[95%] flex justify-between items-center rounded-lg">
 
@@ -57,7 +71,7 @@ export default function Applications() {
           </div>
 
         </div>
-
+        { isMobile ? <SideBarMobile /> : null }
       </div>
     </div>
   );

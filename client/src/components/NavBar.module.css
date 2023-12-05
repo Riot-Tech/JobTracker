@@ -1,14 +1,16 @@
 .navBar {
-    height: auto;
     min-height: 10%;
-   }
+    /* height: auto; */
+    height: 100px;
+}
+
 .name{
     font-size: 20px;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 800px) {
     .navBar {
-     height: 50%;
+     min-height: 20%;
     }
     .name{
         font-size: 10px;

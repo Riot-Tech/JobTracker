@@ -14,7 +14,6 @@ import { useDispatch } from "react-redux";
 import { handleSideBar } from "../redux/slices/sideBar.slice";
 import { useSelector } from "react-redux";
 import { AppStore } from "../models/interfaces";
-import style from './SideBar.module.css'
 
 function SideBar() {
   const location = useLocation();
@@ -27,7 +26,7 @@ function SideBar() {
   };
   
   return (
-    <div className={`w-auto max-w-[20%] h-full flex flex-col bg-gray-300 dark:bg-gray-600 ${style.sideBar} overflow-y-auto overflow-x-hidden`}>
+    <div className={`w-auto h-full flex flex-col bg-gray-300 dark:bg-gray-600 overflow-y-auto overflow-x-hidden`}>
       <div className={`h-full ${!sideBarOpen && 'flex flex-col justify-evenly'}`}>
       
       {/* logo hamburguesa y logo JT */}
@@ -38,7 +37,7 @@ function SideBar() {
             onClick={handleClick}
           >
             { !sideBarOpen? 
-          <VscMenu className='text-black text-2xl dark:text-white' /> : <GrClose style={darkMode && {color: 'white'}} className={`text-2xl dark:text-white`} />}
+          <VscMenu className='text-black text-2xl dark:text-white' /> : <GrClose className={`text-2xl dark:text-white`} />}
           </button>
       </div>
         <div className="flex justify-center items-center">
@@ -121,13 +120,13 @@ function SideBar() {
             </div>
           </Link>
         )}
-      </div>
-
-  
         <div className="flex justify-center items-center gap-2 mb-5">
           { sideBarOpen ? <h2 className="font-bold dark:text-white">Log Out</h2> : null}
           <Logout />
         </div>
+      </div>
+
+  
     </div>
   );
 }
