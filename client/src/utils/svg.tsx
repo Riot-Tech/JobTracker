@@ -96,8 +96,8 @@ export const EditIcon = ({dark}:{dark: boolean}) => {
     return (
         <div className="text-black dark:text-white">
             <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 27H14.5H27" stroke={strokeColor} stroke-width="3" stroke-linecap="round" strokeLinejoin="round" />
-                <path d="M14.8081 5.92838L18.7366 2L25.6111 8.87465L21.6828 12.803M14.8081 5.92838L7.02117 13.7153C6.76071 13.9758 6.61438 14.3291 6.61438 14.6974V20.9967H12.9138C13.2821 20.9967 13.6353 20.8505 13.8959 20.5899L21.6828 12.803M14.8081 5.92838L21.6828 12.803" stroke={strokeColor} stroke-width="3" stroke-linecap="round" strokeLinejoin="round" />
+                <path d="M2 27H14.5H27" stroke={strokeColor} stroke-width="2" stroke-linecap="round" strokeLinejoin="round" />
+                <path d="M14.8081 5.92838L18.7366 2L25.6111 8.87465L21.6828 12.803M14.8081 5.92838L7.02117 13.7153C6.76071 13.9758 6.61438 14.3291 6.61438 14.6974V20.9967H12.9138C13.2821 20.9967 13.6353 20.8505 13.8959 20.5899L21.6828 12.803M14.8081 5.92838L21.6828 12.803" stroke={strokeColor} stroke-width="2" stroke-linecap="round" strokeLinejoin="round" />
             </svg>
         </div>
     )

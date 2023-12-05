@@ -38,7 +38,7 @@ function Spont({props}:{props: Spont}) {
     }
 
   return (
-    <div className="flex flex-col my-4 p-5 rounded-xl h-100 w-full shadow-lg border-2 bg-gray-300 dark:bg-gray-400 hover:scale-105 transition-transform" >
+    <div className="flex flex-col my-4 p-5 rounded-xl h-100 w-full shadow-lg border-2 bg-gray-400 dark:bg-gray-400" >
       <div className="relative flex justify-between my-2">
         <h1 className="text-black text-xl">{company}</h1>
         <div className='relative flex justify-between'>
@@ -54,7 +54,7 @@ function Spont({props}:{props: Spont}) {
           </div>
         </div>  
       </div>
-      <div className="bg-white p-2 rounded-lg max-h-auto dark:bg-gray-500">
+      <div className="bg-gray-200 p-2 rounded-lg max-h-auto dark:bg-white">
         { viewMore && 
         <div className='flex justify-between px-2 border-b-2 border-gray-500'>
           <div className='flex items-center justify-evenly'>
@@ -72,14 +72,14 @@ function Spont({props}:{props: Spont}) {
         </div>
         }
         <div className='p-2'>
-          <h2 className='mx-5 mb-2 border-b-2 border-gray-500 w-16'>Message</h2>
+          <h2 className='mx-5 mb-2  w-16'>Message</h2>
           <p className={`text-black px-5 ${ viewMore ? '' : 'overflow-hidden'}`}>
             " {message} "
           </p>
         </div>
         {(viewMore && feedback != '') && (
           <div className='p-2'>
-            <h2 className='mx-5 mb-2 border-b-2 border-gray-500 w-20'>Feedback</h2>
+            <h2 className='mx-5 mb-2  w-20'>Feedback</h2>
             <p className='px-5 text-black'>" {feedback} "</p>
           </div>
         )}
