@@ -1,10 +1,12 @@
 .spontsContainer{
     top: 9rem;
+    padding: 5rem;
 }
 
 @media(max-width: 800px){
     .spontsContainer{
-        top: 7rem;
+        top: 8rem;
+        padding: 1rem;
     }
     
 }

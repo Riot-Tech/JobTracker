@@ -1,0 +1,9 @@
+.appContainer{
+    padding: 1.25rem;
+}
+
+@media(max-width: 800px){
+    /* .appContainer{
+        padding: 0.25rem;
+    } */
+}
