@@ -39,7 +39,7 @@ export default function App({ props }: { props: Application }) {
   }
 
   return (
-    <div className={`rounded-xl my-4 mt-4 mb-4 bg-gray-300 w-full flex flex-col justify-between shadow-xl border-2 dark:bg-gray-400 hover:scale-105 transition-transform ${style.appContainer}`}>
+    <div className={`rounded-xl my-4 mt-4 mb-4 bg-gray-400 w-full flex flex-col justify-between shadow-xl border-2 ${style.appContainer}`}>
       <div className="flex flex-row items-center justify-between">
         <h2 className=" text-xl  w-[50%]">{company}</h2>
         <h2>{status}</h2>
@@ -58,8 +58,8 @@ export default function App({ props }: { props: Application }) {
           </div>
         </div>
       </div>
-      <div className="flex flex-row flex-grow rounded-lg h-10 bg-white justify-between items-center p-5">
-        <div className="flex flex-row">
+      <div className="flex flex-row flex-grow rounded-lg h-10   bg-white justify-between items-center p-5">
+        <div className="flex flex-row ">
           <h2> Job: {jobName}</h2>
         </div>
         <div className="flex flex-row">
