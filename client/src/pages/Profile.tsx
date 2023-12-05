@@ -17,6 +17,7 @@ import {
 import { validateLink } from "../utils/validateProfileLinks";
 import { hasErrors } from "../utils/utilities";
 import SideBarMobile from "../components/SideBarMobile";
+import style from './Profile.module.css'
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ export default function Profile() {
   const darkMode = useSelector((store: AppStore) => store.darkMode);
   
   const [isEditing, setIsEditing] = useState(false);
-
+  const [isMobile, setIsMobile] = useState(false);
   const [input, setInput] = useState({
     id: activeUser.id,
     name: activeUser.name,
@@ -46,7 +47,7 @@ export default function Profile() {
     portfolio: "",
   });
 
-  const [isMobile, setIsMobile] = useState(false);
+  
 
   useEffect(() => {
     const handleResize = () => {
@@ -111,11 +112,11 @@ export default function Profile() {
 
   return (
     <div className="flex h-screen w-screen overflow-hidden">
-      {!isMobile ? <SideBar /> : null}
+      { !isMobile ? <SideBar /> : null }
       <div className="flex flex-col justify-between h-full w-full">
         <NavBar />
-        <div className={`relative flex flex-col w-full h-auto ${isMobile ? '' : 'min-h-[90%]'} items-center bg-custom-backLight dark:bg-custom-backDark overflow-y-auto`}>
-            <div className="absolute top-6 left-4 bg-red-900 p-3 w-[90%] flex justify-between items-center rounded-lg">
+        <div className={`relative flex flex-col w-full h-full items-center bg-custom-backLight dark:bg-custom-backDark overflow-y-auto`}>
+            <div className={`absolute top-6 left-4 bg-red-900 p-4 w-[95%] flex justify-between items-center rounded-lg ${style.profileBar}`}>
               <h3 className="text-white text-2xl font-bold">Profile</h3>
             </div>
 
@@ -220,7 +221,7 @@ export default function Profile() {
 
             {/* HEXAGONOS */}
 
-              <div className={`flex justify-between items-center ${isMobile ? 'w-[90%]' :'w-[70%]'} margin-auto mt-2`}>
+              <div className={`flex justify-between items-center ${isMobile ? 'w-[90%] flex-col' :'w-[70%]'} margin-auto mt-2`}>
                   
                   <div className="flex flex-col justify-between items-center hover:scale-105 transition-transform">
                       <div className="relative">
@@ -278,7 +279,7 @@ export default function Profile() {
 
             </div>    
         </div>
-          {isMobile ? <SideBarMobile/> : null}
+          { isMobile ? <SideBarMobile/> : null }
       </div>
     </div>
   );

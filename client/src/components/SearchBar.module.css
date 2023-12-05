@@ -1,0 +1,22 @@
+.input{
+    padding: 1rem;
+    width: 60%;
+}
+
+.searchIcon{
+    font-size: 2rem;
+    line-height: 2rem;
+    padding: 1rem;
+}
+
+@media(max-width: 800px){
+    .input{
+        padding: 0.3rem;
+        width: 100%;
+    }
+
+    .searchIcon{
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+    }
+}

@@ -1,0 +1,10 @@
+.spontsContainer{
+    top: 9rem;
+}
+
+@media(max-width: 800px){
+    .spontsContainer{
+        top: 7rem;
+    }
+    
+}
