@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import { AppStore} from "../models/interfaces";
 import CreateApplication from "../modals/CreateApplication";
 import App from "../components/App";
-import style from './Applications.module.css'
 import SideBarMobile from "../components/SideBarMobile";
+import style from './Applications.module.css'
 
 
 export default function Applications() {
@@ -62,7 +62,7 @@ export default function Applications() {
             </div>
           </div>
 
-          <div className="absolute top-40 left-4 flex flex-col max-h-[80%] overflow-y-scroll w-[95%] px-20 pb-5">
+          <div className={`absolute top-40 left-4 flex flex-col max-h-[80%] overflow-y-scroll w-[95%] pb-5 ${style.appsContainer}`}>
             {!applications.EmptyApplications.length ? <h1 className="text-white text-lg">Try adding some applications</h1> : (applications.EmptyApplications.map((app, index) => {
               if (app.enabled) return (
                 <App props={app} key={index}/>
