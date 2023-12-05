@@ -39,10 +39,10 @@ function NavBar() {
         <SearchBar/>
         <div className="flex justify-end gap-12 items-center h-full w-[50%] mr-5 bg-gray-200 py-2 mx-2 dark:bg-gray-500">
           <div className="flex items-center">
-            <BsFillPersonFill className='text-[40px] text-gray-700 mr-1 dark:text-black' />
+            <BsFillPersonFill className='text-[25px] text-gray-700 mr-2 dark:text-black' />
             <h2 className={`text-gray-800 font-semibold ${style.name}`}>{activeUser.name}</h2>
           </div>
-            {darkTheme ? <MdOutlineLightMode onClick={handleTheme} className='text-4xl text-white hover: cursor-pointer'/> : <MdNightlightRound onClick={handleTheme} className='text-4xl text-black hover: cursor-pointer' />}
+            {darkTheme ? <MdOutlineLightMode onClick={handleTheme} className='text-3xl text-white hover: cursor-pointer mr-5 hover:scale-110 transition-transform'/> : <MdNightlightRound onClick={handleTheme} className='text-3xl mr-5 text-black hover: cursor-pointer hover:scale-110 transition-transform' />}
         </div>
     </div>
   )
