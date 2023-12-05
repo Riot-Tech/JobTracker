@@ -39,7 +39,7 @@ export default function App({ props }: { props: Application }) {
   }
 
   return (
-    <div className={`rounded-xl my-4 mt-4 mb-4 bg-gray-400 w-full flex flex-col justify-between shadow-xl border-2 ${style.appContainer}`}>
+    <div className={`rounded-xl my-4 mt-4 mb-4 bg-gray-300 w-full flex flex-col justify-between shadow-xl border-2 dark:bg-gray-400 ${style.appContainer}`}>
       <div className="flex flex-row items-center justify-between">
         <h2 className=" text-xl  w-[50%]">{company}</h2>
         <h2>{status}</h2>
