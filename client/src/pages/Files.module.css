@@ -1,0 +1,39 @@
+.grayBox{
+    font-size: 2.5rem;
+}
+
+.file{
+    width: 50%;
+}
+
+.grayBoxesDiv{
+    display: flex;
+}
+
+.filesConteiner{
+    display: flex;
+    flex-direction: row;
+    top: 13rem
+}
+
+@media (max-width: 800px) {
+    .filesBar {
+     padding:  0.5rem;
+     top: 0.5rem;
+    }
+    .grayBoxesDiv{
+        display: none;
+    }
+    .grayBox{
+        font-size: 1.5rem;
+    }
+
+    .filesConteiner{
+        display: flex;
+        flex-direction: column;
+        top: 8rem
+    }
+    .file{
+        width: 100%;
+    }
+}
