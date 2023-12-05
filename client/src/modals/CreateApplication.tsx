@@ -9,6 +9,14 @@ import { getApplications } from "../redux/slices/applications.slice";
 import { AiOutlineClose } from "react-icons/ai";
 import { CommentIcon, FeedbackIcon, JobModalityIcon, JobTypeIcon, LinkIcon, LocationIcon, MoneyIcon, TickIcon, WalletIcon } from "../utils/svg";
 import { IoAlertCircle } from "react-icons/io5";
+import { MdOutlineWatchLater } from "react-icons/md";
+import { FaHome, FaRegCommentDots } from "react-icons/fa";
+import { FaCommentDots, FaLocationDot } from "react-icons/fa6";
+import { CiLink } from "react-icons/ci";
+import { RiArrowGoBackFill, RiMoneyDollarCircleLine } from "react-icons/ri";
+import { IoWalletOutline } from "react-icons/io5";
+import { MdOutlinePendingActions } from "react-icons/md";
+import style from './CreateApp.module.css'
 
 type CloseFunction = () => void;
 
@@ -96,14 +104,16 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
     
 
     return (
-        <form className="fixed inset-0 z-20 flex backdrop-brightness-90 flex-col items-center justify-center backdrop-blur-sm">
+        <form className="fixed inset-0 flex flex-col items-center justify-center z-20 backdrop-brightness-90 backdrop-blur-sm">
             <AiOutlineClose onClick={close} className='text-4xl text-white bg-black rounded-2xl p-1 mb-4 hover: cursor-pointer hover:bg-gray-600 dark:bg-white dark:text-black dark:hover:bg-gray-400'/>
-            <div className="flex h-[80vh] w-[80vw] rounded-xl text-black bg-custom-modalLight dark:text-white dark:bg-custom-modalDark">
-                <div className="flex flex-col justify-between w-[50vw] p-5">
-                    <div className="h-[50vh] bg-red divide-black ">
-                        <div className="flex items-center divide-black pb-5">
+            <div className="flex h-[80%] w-[80%] rounded-xl text-black bg-custom-modalLight dark:text-white dark:bg-custom-modalDark overflow-y-auto">
+                
+                <div className="flex flex-col p-5 w-1/2">
+                    
+                    <div className=" bg-red divide-black w-full">
+                        <div className="flex items-center pb-5">
                             <input
-                                className={`mr-1 p-1 bg-transparent border-b-2 border-black ${errors.company.length && 'bg-black border-2 border-red-700 rounded-md'}`}
+                                className={`w-[60%] mr-1 p-1 bg-transparent border-b-2 border-black ${errors.company.length && 'bg-black border-2 border-red-700 rounded-md'}`}
                                 name="company"
                                 type="text"
                                 placeholder="Company Name"
@@ -114,7 +124,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                         </div>
                         <div className="flex items-center pb-5">
                             <input
-                                className={`mr-1 p-1 bg-transparent border-b-2 border-black ${errors.jobName.length && 'bg-black border-2 border-red-700 rounded-md'}`}
+                                className={`w-[60%] mr-1 p-1 bg-transparent border-b-2 border-black ${errors.jobName.length && 'bg-black border-2 border-red-700 rounded-md'}`}
                                 name="jobName"
                                 type="text"
                                 placeholder="Job Name"
@@ -123,12 +133,13 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             />
                         </div>
                     </div>
-                    <div className="flex flex-col gap-4">
-                        <div className="flex items-center">
-                            <JobTypeIcon />
+
+                    <div className="flex flex-col gap-[1em]">
+                        <div className={`flex items-center ${style.inputContainer}`}>
+                            <MdOutlineWatchLater className='' />
                             <select
                                 name="jobType"
-                                className="text-gray-600 h-[45px] w-[30%] ml-2 rounded-xl p-3  "
+                                className="w-1/2 text-gray-600 ml-2 rounded-xl p-3  "
                                 value={form.jobType}
                                 onChange={handleChange}
                             >
@@ -142,11 +153,11 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                                 { errors.jobType && <IoAlertCircle className='items-center text-3xl text-red-600 ml-1' />}
                             </select>
                         </div>
-                        <div className="flex items-center">
-                            <JobModalityIcon />
+                        <div className={`flex items-center ${style.inputContainer}`}>
+                            <FaHome />
                             <select
                                 name="jobModality"
-                                className="text-gray-600 h-[45px] w-[30%] ml-2 rounded-xl p-3"
+                                className="w-1/2 text-gray-600 ml-2 rounded-xl p-3"
                                 value={form.jobModality}
                                 onChange={handleChange}
                             >
@@ -159,11 +170,11 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                                 </optgroup>
                             </select>
                         </div>
-                        <div className="flex items-center">
-                            <LocationIcon />
+                        <div className={`flex items-center ${style.inputContainer}`}>
+                            <FaLocationDot />
                             <input
                                 name="location"
-                                className="w-[30%] h-[45px] border ml-2 rounded-xl p-3 text-black"
+                                className="w-1/2 ml-2 rounded-xl p-3 text-black"
                                 type="text"
                                 placeholder="Location"
                                 value={form.location}
@@ -171,22 +182,22 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             />
                             {errors.location && <IoAlertCircle className='items-center text-3xl text-red-600 ml-1' />}
                         </div>
-                        <div className="flex items-center">
-                            <LinkIcon />
+                        <div className={`flex items-center ${style.inputContainer}`}>
+                            <CiLink />
                             <input
                                 name="link"
-                                className="w-[50%] ml-2 rounded-xl p-3 h-[45px] border text-black"
+                                className="w-1/2 ml-2 rounded-xl p-3 border text-black"
                                 type="text"
                                 placeholder="Link"
                                 value={form.link}
                                 onChange={handleChange}
                             />
                         </div>
-                        <div className="flex items-center">
-                            <MoneyIcon />
+                        <div className={`flex items-center ${style.inputContainer}`}>
+                        <RiMoneyDollarCircleLine />
                             <input
                                 name="currency"
-                                className="w-[30%] h-[45px] border ml-2 rounded-xl p-3 text-black"
+                                className="w-1/2 ml-2 rounded-xl p-3 text-black"
                                 type="text"
                                 placeholder="Currency"
                                 value={form.currency}
@@ -194,11 +205,11 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             />
                             {errors.currency && <IoAlertCircle className='items-center text-3xl text-red-600 ml-1' />}
                         </div>
-                        <div className="flex items-center">
-                            <WalletIcon />
+                        <div className={`flex items-center ${style.inputContainer}`}>
+                            <IoWalletOutline />
                             <input
                                 name="expectedIncome"
-                                className="w-[30%] h-[45px] flex flex-col ml-2 rounded-xl p-3 border text-black"
+                                className="w-1/2 ml-2 rounded-xl p-3 text-black"
                                 type="number"
                                 placeholder="Expected Income"
                                 value={form.expectedIncome}
@@ -206,11 +217,11 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             />
                             {errors.expectedIncome && <IoAlertCircle className='items-center text-3xl text-red-600 ml-1' />}
                         </div>
-                        <div className="flex items-center">
-                            <JobModalityIcon/>
+                        <div className={`flex items-center ${style.inputContainer}`}>
+                            <MdOutlinePendingActions />
                             <select
                                 name="status"
-                                className="text-gray-600 p-3 ml-2 rounded-xl"
+                                className="w-1/2 text-gray-600 p-3 ml-2 rounded-xl"
                                 value={form.status}
                                 onChange={handleChange}
                             >
@@ -226,7 +237,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                         </div>
                     </div>
                 </div>
-                <div className="w-[50%] flex flex-col p-5">
+                <div className="w-[50%] flex flex-col p-5 pl-0 h-full">
                     <div className="flex justify-end">
                         <button
                             type="submit"
@@ -238,27 +249,31 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             <h2 className='ml-1 text-white'>Confirm</h2>
                         </button>
                     </div>
-                    <div className="flex items-center mt-5">
-                        <FeedbackIcon />
-                        <label className="ml-4"> Feedback </label>
-                    </div>
-                    <textarea
-                        name="feedback"
-                        value={form.feedback}
-                        className=" h-[180px] mt-3 text-black p-2"
-                        onChange={handleChange}
-                        placeholder="Any feedback from the company (e.g., interview experience, comments, or follow-up notes)"
-                    />
-                    <div className="flex flex-col mt-5">
+
+                    <div className="flex flex-col mt-5 p-1 h-full"> 
                         <div className="flex items-center">
-                            <CommentIcon />
+                            <RiArrowGoBackFill className='text-2xl' />
+                            <label className="ml-4"> Feedback </label>
+                        </div>
+                        <textarea
+                            name="feedback"
+                            value={form.feedback}
+                            className="h-full text-black p-2 mt-3"
+                            onChange={handleChange}
+                            placeholder="Any feedback from the company (e.g., interview experience, comments, or follow-up notes)"
+                        />
+                    </div>
+
+                    <div className="flex flex-col mt-5 p-1 h-full">
+                        <div className="flex items-center">
+                            <FaRegCommentDots className='text-2xl' />
                             <label className="ml-4"> Comments </label>
                         </div>
 
                         <textarea
                             name="comments"
                             value={form.comments}
-                            className=" h-[180px] mt-3 text-black p-2"
+                            className="h-full text-black p-2 mt-3"
                             onChange={handleChange}
                             placeholder="Feel free to write any comments you'd like here."
                         />

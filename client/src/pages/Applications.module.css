@@ -1,10 +1,12 @@
-.buttons{
-    font-size: 0.9rem;
+.appsContainer {
+    padding-left: 5rem;
+    padding-right: 5rem;
 }
 
 @media(max-width: 800px){
-    .buttons{
-        font-size: 0.5rem;
+    .appsContainer{
+        padding-left: 0.6rem;
+        padding-right: 0.6rem;
     }
     
 }

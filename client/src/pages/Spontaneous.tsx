@@ -53,7 +53,7 @@ export default function Spontaneous() {
                   </button>
                 </div>
               </div>
-              <div className={`absolute left-4 flex flex-col max-h-[70%] overflow-y-scroll w-[95%] p-20 pt-0 py-0 ${style.spontsContainer}`}>
+              <div className={`absolute left-4 flex flex-col max-h-[70%] overflow-y-scroll w-[95%] pt-0 py-0 ${style.spontsContainer}`}>
                 { spontaneous.EmptyCopySpontaneous.map((spont)=>{
                   if(spont.enabled){
                     return(

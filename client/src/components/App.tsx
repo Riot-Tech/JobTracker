@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { BsTrash } from 'react-icons/bs';
 import {  getApplications } from '../redux/slices/applications.slice';
 import { EditIcon } from '../utils/svg';
+import style from './App.module.css'
 
 export default function App({ props }: { props: Application }) {
   const [editOpen, setEditOpen] = useState<boolean>(false)
@@ -38,7 +39,7 @@ export default function App({ props }: { props: Application }) {
   }
 
   return (
-    <div className="p-5 rounded-xl my-4 mt-4 mb-4 bg-gray-400 w-full flex flex-col justify-between shadow-xl border-2 dark:bg-gray-400">
+    <div className={`rounded-xl my-4 mt-4 mb-4 bg-gray-300 w-full flex flex-col justify-between shadow-xl border-2 dark:bg-gray-400 ${style.appContainer}`}>
       <div className="flex flex-row items-center justify-between">
         <h2 className=" text-xl  w-[50%]">{company}</h2>
         <h2>{status}</h2>
