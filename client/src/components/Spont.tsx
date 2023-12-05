@@ -12,6 +12,10 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { addSpontaneous } from '../redux/slices/spontaneous.slice';
 import style from './Spont.module.css'
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
+
+
 
 function Spont({props}:{props: Spont}) {
     const [ modalOpen, setModalOpen]= useState<boolean>(false)
@@ -40,7 +44,7 @@ function Spont({props}:{props: Spont}) {
 
   return (
 
-    <div className={`flex flex-col my-4 rounded-xl h-100 w-full shadow-lg border-2 bg-gray-300 dark:bg-gray-400 hover:scale-105 transition-transform ${style.spontContainer}`} >
+    <div className={`flex flex-col my-4 rounded-xl h-100 w-full shadow-lg border-2 bg-gray-300 dark:bg-gray-400 ${style.spontContainer}`} >
       <div className="relative flex justify-between my-2">
         <h1 className="text-black text-xl">{company}</h1>
         <div className='relative flex justify-between'>
@@ -49,7 +53,7 @@ function Spont({props}:{props: Spont}) {
               <EditIcon dark={false}/>
             </div>
             { modalOpen && <EditSpontaneous props={props} close={()=>{setModalOpen(!modalOpen)}}/> }
-            <h2 onClick={()=>{setViewMore(!viewMore)}}className="text-black hover:cursor-pointer hover: text-underline">{viewMore? 'View less' : 'View more'}</h2>
+            <div onClick={()=>{setViewMore(!viewMore)}} className="p-1 rounded-[50%] text-2xl hover:cursor-pointer">{viewMore? <FaEyeSlash /> : <FaEye />}</div>
           </div>
           <div>
             <BsTrash onClick={handleDelete} className='p-1 rounded-[50%] text-4xl hover:cursor-pointer text-red-700'/>

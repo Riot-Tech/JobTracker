@@ -60,38 +60,40 @@ function EachFile({ file, openDownloadModal }: EachFileProps) {
   };
 
   return isCv ? (
-    <div className={`flex justify-between items-center w-[90%] bg-gray-200 drop-shadow-lg shadow-mg rounded-lg ${style.file}`}>
+    <div className={`flex justify-between items-center w-[90%] bg-gray-200 drop-shadow-lg shadow-mg rounded-lg mb-5 ${style.file}`}>
       <div className="flex flex-col">
         <h2 className={`text-black ${style.fileName}`}>{name}</h2>
         {/* <LuDownload onClick={() => handleView(name)} className="text-4xl text-black hover:cursor-pointer" /> */}
-        <div className="flex items-center justify-between gap-5 py-2">
+        <div className="flex items-center gap-5 py-2 mt-5">
           <button className={`text-md shadow-md bg-white hover:bg-red-900 hover:text-white ${style.buttons}`} onClick={() => handleDownload(name)}>Download</button>
           <button className={`text-md shadow-md bg-white hover:bg-red-900 hover:text-white ${style.buttons}`} onClick={() => handleView(name)}>View file</button>
+          <BsTrash
+            onClick={() => handleDelete(id)}
+            className=" text-3xl ml-5  text-gray-600 hover:cursor-pointer hover:text-red-600  dark:hover:text-red-600"
+          />
         </div>
       </div>
       <div className="relative flex justify-end items-center m-1">
           <img src={cvFileIcon} alt="cvFileIcon" />
-          <BsTrash
-            onClick={() => handleDelete(id)}
-            className="absolute left-[130%] rounded-[50%] text-4xl  hover:cursor-pointer text-red-900 dark:text-white"
-          />
+          
       </div>
     </div>
   ) : (
-    <div className={`flex justify-between items-center w-[90%] bg-gray-200 drop-shadow-lg shadow-mg rounded-lg ${style.file}`}>
+    <div className={`flex justify-between items-center w-[90%] bg-gray-200 drop-shadow-lg shadow-mg rounded-lg mb-5 ${style.file}`}>
       <div className="flex flex-col">
         <h2 className={`text-black ${style.fileName}`}>{name}</h2>
-        <div className="flex items-center justify-between gap-5 py-2">
+        <div className="flex items-center gap-5 py-2 mt-5">
           <button className={`text-md shadow-md bg-white hover:bg-red-900 hover:text-white ${style.buttons}`} onClick={() => handleDownload(name)}>Download</button>
           <button className={`text-md shadow-md bg-white hover:bg-red-900 hover:text-white ${style.buttons}`} onClick={() => handleView(name)}>View file</button>
+          <BsTrash
+            onClick={() => handleDelete(id)}
+            className=" text-3xl ml-5  text-gray-600 hover:cursor-pointer hover:text-red-600  dark:hover:text-red-600"
+          />
         </div>
       </div>
       <div className="relative flex justify-end items-center m-1">
         <img src={regularFileIcon} alt='fileIcon'/>
-        <BsTrash
-          onClick={() => handleDelete(id)} // Wrap the function in an arrow function
-          className="absolute left-[130%] rounded-[50%] text-4xl  hover:cursor-pointer text-red-900 dark:text-white"
-        />
+        
       </div>
     </div>
   );

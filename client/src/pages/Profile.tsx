@@ -47,7 +47,7 @@ export default function Profile() {
     portfolio: "",
   });
 
-  
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -112,7 +112,7 @@ export default function Profile() {
 
   return (
     <div className="flex h-screen w-screen overflow-hidden">
-      { !isMobile ? <SideBar /> : null }
+      {!isMobile ? <SideBar /> : null}
       <div className="flex flex-col justify-between h-full w-full">
         <NavBar />
 
@@ -229,26 +229,7 @@ export default function Profile() {
           {/* HEXAGONOS */}
 
 
-              <div className={`flex justify-between items-center ${isMobile ? 'w-[90%] flex-col' :'w-[70%]'} margin-auto mt-2`}>
-                  
-                  <div className="flex flex-col justify-between items-center hover:scale-105 transition-transform">
-                      <div className="relative">
-                          <img 
-                            className={`${isMobile ? 'w-20' :'w-40 '}`} 
-                            src={hexagon} 
-                            alt="Descripción de la imagen" 
-                          />
-                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-7xl font-bold">
-                              {files.filesCopy.length}
-                          </div>
-                      </div>
-                      <div className="flex justify-center">
-                          <h2 className={`font-bold text-[20px] mt-4 dark:text-white drop-shadow-xl tracking-wide`}>
-                          Files
-                          </h2>
-                      </div>
-                  </div>
-
+          <div className={`flex justify-between items-center ${isMobile ? 'w-[90%] flex-col' : 'w-[70%]'} margin-auto mt-2`}>
 
             <div className="flex flex-col justify-between items-center hover:scale-105 transition-transform">
               <div className="relative">
@@ -307,7 +288,7 @@ export default function Profile() {
           </div>
         </div>
 
-          { isMobile ? <SideBarMobile/> : null }
+        {isMobile ? <SideBarMobile /> : null}
 
       </div>
     </div>
