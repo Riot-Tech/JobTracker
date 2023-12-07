@@ -5,8 +5,10 @@ import { BsFillPersonFill } from 'react-icons/bs'
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { handleDarkMode } from "../redux/slices/darkMode.slice";
-import { MdNightlightRound, MdOutlineLightMode } from "react-icons/md";
-import style from './NavBar.module.css'
+import style from './NavBar.module.css';
+import { IoMdMoon  } from "react-icons/io";
+import { IoSunny } from "react-icons/io5";
+
 
 function NavBar() {
   const dispatch = useDispatch()
@@ -42,7 +44,7 @@ function NavBar() {
             <BsFillPersonFill className='text-[25px] text-gray-700 mr-2 dark:text-black' />
             <h2 className={`text-gray-800 font-semibold ${style.name}`}>{activeUser.name}</h2>
           </div>
-            {darkTheme ? <MdOutlineLightMode onClick={handleTheme} className='text-3xl text-white hover: cursor-pointer mr-5 hover:scale-110 transition-transform'/> : <MdNightlightRound onClick={handleTheme} className='text-3xl mr-5 text-black hover: cursor-pointer hover:scale-110 transition-transform' />}
+            {darkTheme ? <IoSunny onClick={handleTheme} className='text-3xl text-white hover: cursor-pointer mr-5 hover:scale-110 transition-transform'/> : <IoMdMoon  onClick={handleTheme} className='text-3xl mr-5 text-black hover: cursor-pointer hover:scale-110 transition-transform' />}
         </div>
     </div>
   )

@@ -75,7 +75,7 @@ function SideBar() {
             <div className={`flex items-center my-5 group hover:bg-slate-400 cursor-pointer p-4 ${location.pathname === '/files' && 'bg-slate-400 border-r-4 border-red-800'}`}>
               <CvFilesLogo dark={darkMode} />
               <h2 className={`ml-2 text-black group-hover:text-gray-800 dark:text-gray-300`}>
-                CV Files
+              Files
               </h2>
             </div>
           </Link>
