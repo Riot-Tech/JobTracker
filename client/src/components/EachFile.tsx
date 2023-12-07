@@ -60,11 +60,11 @@ function EachFile({ file, openDownloadModal }: EachFileProps) {
   };
 
   return isCv ? (
-    <div className={`flex justify-between items-center w-[90%] bg-gray-200 drop-shadow-lg shadow-mg rounded-lg mb-5 ${style.file}`}>
+    <div className={`flex justify-between items-center w-[80%] h-[40%] bg-gray-200 drop-shadow-lg shadow-mg rounded-lg mb-5 ${style.file}`}>
       <div className="flex flex-col">
-        <h2 className={`text-black ${style.fileName}`}>{name}</h2>
+        <h2 className={`font-bold text-gray-700 ${style.fileName}`}>{name}</h2>
         {/* <LuDownload onClick={() => handleView(name)} className="text-4xl text-black hover:cursor-pointer" /> */}
-        <div className="flex items-center gap-5 py-2 mt-5">
+        <div className="flex items-center gap-5 py-2 mt-10">
           <button className={`text-md shadow-md bg-white hover:bg-red-900 hover:text-white ${style.buttons}`} onClick={() => handleDownload(name)}>Download</button>
           <button className={`text-md shadow-md bg-white hover:bg-red-900 hover:text-white ${style.buttons}`} onClick={() => handleView(name)}>View file</button>
           <BsTrash
@@ -79,10 +79,10 @@ function EachFile({ file, openDownloadModal }: EachFileProps) {
       </div>
     </div>
   ) : (
-    <div className={`flex justify-between items-center w-[90%] bg-gray-200 drop-shadow-lg shadow-mg rounded-lg mb-5 ${style.file}`}>
+    <div className={`flex justify-between items-center w-[80%] h-[40%] bg-gray-200 drop-shadow-lg shadow-mg rounded-lg mb-8 ${style.file}`}>
       <div className="flex flex-col">
-        <h2 className={`text-black ${style.fileName}`}>{name}</h2>
-        <div className="flex items-center gap-5 py-2 mt-5">
+        <h2 className={`font-bold text-gray-700 ${style.fileName}`}>{name}</h2>
+        <div className="flex items-center gap-5 py-2 mt-10">
           <button className={`text-md shadow-md bg-white hover:bg-red-900 hover:text-white ${style.buttons}`} onClick={() => handleDownload(name)}>Download</button>
           <button className={`text-md shadow-md bg-white hover:bg-red-900 hover:text-white ${style.buttons}`} onClick={() => handleView(name)}>View file</button>
           <BsTrash

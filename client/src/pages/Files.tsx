@@ -67,12 +67,12 @@ function Files() {
             </div>
           </div>
 
-          <div className={`absolute top-32 space-x-[18%] items-start w-full justify-evenly ${style.grayBoxesDiv}`}>
-            <div className="bg-gray-500 px-8 py-2 rounded-xl shadow-xl text-white text-2xl m-2">
-              <h2 className="w-18 text-center font-bold">CV files</h2>
+          <div className={`grid grid-cols-2 top-36 absolute w-full ${style.grayBoxesDiv}`}>
+            <div className="flex justify-center w-[15%] ml-32 text-gray-600  drop-shadow-lg dark:text-white">
+              <h2 className="text-center text-3xl font-bold">CV files</h2>
             </div>
-            <div className={`bg-gray-500 px-8 py-2 rounded-xl shadow-xl text-white text-2xl m-2`}>
-              <h2 className="w-18 text-center font-bold">Other files</h2>
+            <div className="flex justify-center w-[18%] ml-24 text-gray-600 text-3xl drop-shadow-lg dark:text-white">
+              <h2 className="text-center font-bold">Other files</h2>
             </div>
           </div>
 
