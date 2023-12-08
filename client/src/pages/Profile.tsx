@@ -26,7 +26,6 @@ export default function Profile() {
   const applications = useSelector((store: AppStore) => store.applications);
   const spontaneous = useSelector((store: AppStore) => store.spontaneous);
   const files = useSelector((store: AppStore) => store.filesState);
-  const darkMode = useSelector((store: AppStore) => store.darkMode);
 
   const [isEditing, setIsEditing] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -229,7 +228,7 @@ export default function Profile() {
           {/* HEXAGONOS */}
 
 
-          <div className={`flex justify-between items-center ${isMobile ? 'w-[90%] flex-col' : 'w-[70%]'} margin-auto mt-2`}>
+          <div className={`flex justify-between items-center mt-12 ${isMobile ? 'w-[90%] flex-col' : 'w-[70%]'} margin-auto mt-2`}>
 
             <div className="flex flex-col justify-between items-center hover:scale-105 transition-transform">
               <div className="relative">

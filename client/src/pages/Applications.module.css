@@ -1,12 +1,14 @@
 .appsContainer {
     padding-left: 5rem;
     padding-right: 5rem;
+    top: 10rem;
 }
 
 @media(max-width: 800px){
     .appsContainer{
         padding-left: 0.6rem;
         padding-right: 0.6rem;
+        top: 8rem;
     }
     
 }
