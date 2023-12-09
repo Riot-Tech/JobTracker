@@ -5,6 +5,11 @@
 .modal{
     display: flex;
 }
+
+.messageContainer{
+    display: flex;
+}
+
 @media(max-width: 1100px){
     .inputContainer{
         font-size: 1rem;
@@ -17,5 +22,8 @@
     .modal{
         display: flex;
         flex-direction: column;
+    }
+    .messageContainer{
+        top:40px
     }
 }

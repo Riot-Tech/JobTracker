@@ -44,7 +44,7 @@ function Spont({props}:{props: Spont}) {
 
   return (
 
-    <div className={`flex flex-col my-4 rounded-xl h-100 w-full shadow-lg drop-shadow-md border-2 bg-gray-300 dark:bg-gray-400 ${style.spontContainer}`} >
+    <div className={`flex flex-col my-4 rounded-xl h-100 w-full shadow-lg  border-2 bg-gray-300 dark:bg-gray-400 ${style.spontContainer}`} >
       <div className="relative flex justify-between my-2">
         <h1 className="text-black text-xl font-bold ">{company}</h1>
         <div className='relative flex justify-between'>
