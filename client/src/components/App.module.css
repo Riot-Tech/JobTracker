@@ -1,9 +1,22 @@
 .appContainer{
     padding: 1.25rem;
 }
+.titles{
+    font-size: 1.25rem;
+}
+
+.whiteContainer{
+    padding: 1.25rem;
+}
 
 @media(max-width: 800px){
-    /* .appContainer{
-        padding: 0.25rem;
-    } */
+    .appContainer{
+        padding: 0.6rem;
+    }
+    .titles{
+        font-size: 0.8rem;
+    }
+    .whiteContainer{
+        padding: 0.8rem;
+    }
 }

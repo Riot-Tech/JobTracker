@@ -39,10 +39,10 @@ export default function App({ props }: { props: Application }) {
   }
 
   return (
-    <div className={`rounded-xl my-4 mt-4 mb-4 bg-gray-300 w-full flex flex-col justify-between shadow-xl drop-shadow-md border-2 dark:bg-gray-400 ${style.appContainer}`}>
-      <div className="flex flex-row items-center justify-between">
-        <h2 className=" text-xl font-bold w-[50%]">{company}</h2>
-        <h2 className="font-bold mr-20">{status}</h2>
+    <div className={`rounded-xl my-4 mt-4 mb-4 bg-gray-300 w-full flex flex-col justify-between shadow-xl border-2 dark:bg-gray-400 ${style.appContainer}`}>
+      <div className="flex items-center justify-between w-full">
+        <h2 className={`font-bold ${style.titles}`}>{company}</h2>
+        <h2 className={`font-bold ${style.titles}`}>{status}</h2>
         <div className='relative flex justify-between'>
           <div className='flex gap-2 items-center'>
             <button
@@ -58,18 +58,18 @@ export default function App({ props }: { props: Application }) {
           </div>
         </div>
       </div>
-      <div className="flex flex-row flex-grow rounded-lg h-10 drop-shadow-md bg-white justify-between items-center p-5">
-        <div className="flex flex-row ">
-          <h2 className='font-bold mr-2'>Job:</h2><h2>{jobName}</h2>
+      <div className={`flex justify-between items-center h-20 rounded-lg drop-shadow-md bg-white ${style.whiteContainer}`}>
+        <div className="flex">
+          <h2 className='font-bold mr-2'>Job: {jobName}</h2>
         </div>
-        <div className="flex flex-row">
-          <h2 className='font-bold mr-2'>Job Type:</h2><h2>{jobType}</h2>
+        <div className="flex">
+          <h2 className='font-bold mr-2'>Job Type: {jobType}</h2>
         </div>
-        <div className="flex flex-row">
-          <h2 className='font-bold mr-2'>Location:</h2><h2>{location}</h2>
+        <div className="flex">
+          <h2 className='font-bold mr-2'>Location: {location}</h2>
         </div>
-        <div className="flex flex-row">
-          <h2 className='font-bold'>{expectedIncome} {currency}</h2>
+        <div className="flex">
+          <h2 className='font-bold'>$: {expectedIncome} {currency}</h2>
         </div>
       </div>
 
