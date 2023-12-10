@@ -106,14 +106,14 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
     return (
         <form className="fixed inset-0 flex flex-col items-center justify-center z-20 backdrop-brightness-90 backdrop-blur-sm drop-shadow-lg">
             <AiOutlineClose onClick={close} className='text-4xl text-white bg-black rounded-2xl p-1 mb-4 hover: cursor-pointer hover:bg-gray-600 dark:bg-white dark:text-black dark:hover:bg-gray-400'/>
-            <div className="flex h-[80%] w-[80%] rounded-xl text-black bg-custom-modalLight dark:text-white dark:bg-custom-modalDark overflow-y-auto">
+            <div className={`flex h-[80%] w-[80%] rounded-xl text-black bg-custom-modalLight dark:text-white dark:bg-custom-modalDark overflow-y-auto  ${style.modal}`}>
                 
-                <div className="flex flex-col p-10 w-1/2">
+                <div className={`flex flex-col p-10 md:w-1/2 ${style.modal}`}>
                     
                     <div className=" bg-red divide-black w-full drop-shadow-lg">
                         <div className="flex items-center pb-5">
                             <input
-                                className={`w-[60%] mr-1 p-1 bg-transparent text-3xl border-b-2 border-black ${errors.company.length && 'bg-black border-2 border-red-700 rounded-md'}`}
+                                className={`w-full md:w-[60%] mr-1 p-1 bg-transparent text-3xl border-b-2 border-black ${errors.company.length && 'bg-black border-2 border-red-700 rounded-md'}`}
                                 name="company"
                                 type="text"
                                 placeholder="Company Name"
@@ -124,7 +124,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                         </div>
                         <div className="flex items-center pb-5">
                             <input
-                                className={`w-[60%] mr-1 p-1 bg-transparent text-2xl border-b-2 border-black ${errors.jobName.length && 'bg-black border-2 border-red-700 rounded-md'}`}
+                                className={` w-full md:w-[60%] mr-1 p-1 bg-transparent text-2xl border-b-2 border-black ${errors.jobName.length && 'bg-black border-2 border-red-700 rounded-md'}`}
                                 name="jobName"
                                 type="text"
                                 placeholder="Job Name"
@@ -139,7 +139,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             <MdOutlineWatchLater className='text-4xl' />
                             <select
                                 name="jobType"
-                                className="w-1/2 text-gray-600 ml-6 rounded-lg p-2"
+                                className="w-full md:w-1/2 text-gray-600 ml-6 rounded-lg p-2"
                                 value={form.jobType}
                                 onChange={handleChange}
                             >
@@ -157,7 +157,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             <FaHome className='text-4xl'/>
                             <select
                                 name="jobModality"
-                                className="w-1/2 text-gray-600 ml-6 rounded-lg p-2"
+                                className="w-full md:w-1/2 text-gray-600 ml-6 rounded-lg p-2"
                                 value={form.jobModality}
                                 onChange={handleChange}
                             >
@@ -174,7 +174,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             <FaLocationDot className='text-4xl'/>
                             <input
                                 name="location"
-                                className="w-1/2 text-gray-600 ml-6 rounded-lg p-2"
+                                className="w-full md:w-1/2 text-gray-600 ml-6 rounded-lg p-2"
                                 type="text"
                                 placeholder="Location"
                                 value={form.location}
@@ -186,7 +186,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             <CiLink className='text-4xl'/>
                             <input
                                 name="link"
-                                className="w-1/2 text-gray-600 ml-6 rounded-lg p-2"
+                                className="w-full md:w-1/2 text-gray-600 ml-6 rounded-lg p-2"
                                 type="text"
                                 placeholder="Link"
                                 value={form.link}
@@ -197,7 +197,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                         <RiMoneyDollarCircleLine className='text-4xl'/>
                             <input
                                 name="currency"
-                                className="w-1/2 text-gray-600 ml-6 rounded-lg p-2"
+                                className="w-full md:w-1/2 text-gray-600 ml-6 rounded-lg p-2"
                                 type="text"
                                 placeholder="Currency"
                                 value={form.currency}
@@ -209,7 +209,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             <IoWalletOutline className='text-4xl'/>
                             <input
                                 name="expectedIncome"
-                                className="w-1/2 text-gray-600 ml-6 rounded-lg p-2"
+                                className="w-full md:w-1/2 text-gray-600 ml-6 rounded-lg p-2"
                                 type="number"
                                 placeholder="Expected Income"
                                 value={form.expectedIncome}
@@ -221,7 +221,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             <MdOutlinePendingActions className='text-4xl'/>
                             <select
                                 name="status"
-                                className="w-1/2 text-gray-600 ml-6 rounded-lg p-2"
+                                className="w-full md:w-1/2 text-gray-600 ml-6 rounded-lg p-2"
                                 value={form.status}
                                 onChange={handleChange}
                             >
@@ -237,7 +237,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                         </div>
                     </div>
                 </div>
-                <div className="w-[50%] flex flex-col p-10 pl-0 h-full drop-shadow-lg">
+                <div className={`w-full md:w-[50%] flex flex-col p-10 h-full drop-shadow-lg ${style.modal}`}>
                     <div className="flex justify-end ">
                         <button
                             type="submit"
@@ -250,7 +250,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                         </button>
                     </div>
 
-                    <div className="flex flex-col mt-5 p-1 h-full"> 
+                    <div className="flex flex-col mt-5 p-1 h-full "> 
                         <div className="flex items-center">
                             <RiArrowGoBackFill className='text-2xl' />
                             <label className="ml-4 text-xl"> Feedback </label>
