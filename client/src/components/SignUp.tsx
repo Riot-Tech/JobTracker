@@ -15,8 +15,8 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
   
   const [passwordClear, setPasswordClear] = useState(false)
 
-  const [input, setInput] = useState({ name: "", email: "", password: "", linkedIn: "", gitHub: "", portfolio: "" })
-  const [errors, setErrors] = useState({ name: "", email: "", password: "", linkedIn: "", gitHub: "", portfolio: "" })
+  const [input, setInput] = useState({ name: "", email: "", password: ""})
+  const [errors, setErrors] = useState({ name: "", email: "", password: ""})
 
   const [errorModal, setErrorModal] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
@@ -57,8 +57,8 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
         const response = await axios.post(`${URL}/signUp`, input)
         if (response.status === 200) {
           setModalIsOpen(true)
-          setInput({ name: "", email: "", password: "", linkedIn: "", gitHub: "", portfolio: "" })
-          setErrors({ name: "", email: "", password: "", linkedIn: "", gitHub: "", portfolio: "" })
+          setInput({ name: "", email: "", password: ""})
+          setErrors({ name: "", email: "", password: ""})
         }
       }
     } catch (error: any) {
