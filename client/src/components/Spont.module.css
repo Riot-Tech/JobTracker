@@ -1,0 +1,10 @@
+.spontContainer{
+    padding: 1.25rem;
+}
+
+@media(max-width: 800px){
+    .spontContainer{
+        padding: 0.6rem;
+    }
+    
+}

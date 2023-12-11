@@ -11,6 +11,11 @@ import { URL } from '../utils/url';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { addSpontaneous } from '../redux/slices/spontaneous.slice';
+import style from './Spont.module.css'
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
+
+
 
 function Spont({props}:{props: Spont}) {
     const [ modalOpen, setModalOpen]= useState<boolean>(false)
@@ -38,23 +43,24 @@ function Spont({props}:{props: Spont}) {
     }
 
   return (
-    <div className="flex flex-col my-4 p-5 rounded-xl h-100 w-full shadow-lg border-2 bg-gray-300 dark:bg-gray-400 hover:scale-105 transition-transform" >
+
+    <div className={`flex flex-col my-4 rounded-xl h-100 w-full shadow-lg  border-2 bg-gray-300 dark:bg-gray-400 ${style.spontContainer}`} >
       <div className="relative flex justify-between my-2">
-        <h1 className="text-black text-xl">{company}</h1>
+        <h1 className="text-black text-xl font-bold ">{company}</h1>
         <div className='relative flex justify-between'>
           <div className='flex gap-2 items-center right-2'>
             <div className='hover:cursor-pointer' onClick={()=>{setModalOpen(!modalOpen)}} >
               <EditIcon dark={false}/>
             </div>
             { modalOpen && <EditSpontaneous props={props} close={()=>{setModalOpen(!modalOpen)}}/> }
-            <h2 onClick={()=>{setViewMore(!viewMore)}}className="text-black hover:cursor-pointer hover: text-underline">{viewMore? 'View less' : 'View more'}</h2>
+            <div onClick={()=>{setViewMore(!viewMore)}} className="p-1 rounded-[50%] text-2xl hover:cursor-pointer">{viewMore? <FaEyeSlash /> : <FaEye />}</div>
           </div>
           <div>
             <BsTrash onClick={handleDelete} className='p-1 rounded-[50%] text-4xl hover:cursor-pointer text-red-700'/>
           </div>
         </div>  
       </div>
-      <div className="bg-white p-2 rounded-lg max-h-auto dark:bg-gray-500">
+      <div className="bg-white p-2 rounded-lg max-h-auto drop-shadow-md">
         { viewMore && 
         <div className='flex justify-between px-2 border-b-2 border-gray-500'>
           <div className='flex items-center justify-evenly'>
@@ -72,14 +78,14 @@ function Spont({props}:{props: Spont}) {
         </div>
         }
         <div className='p-2'>
-          <h2 className='mx-5 mb-2 border-b-2 border-gray-500 w-16'>Message</h2>
+          <h2 className='mx-5 mb-2 font-bold w-16'>Message:</h2>
           <p className={`text-black px-5 ${ viewMore ? '' : 'overflow-hidden'}`}>
             " {message} "
           </p>
         </div>
         {(viewMore && feedback != '') && (
           <div className='p-2'>
-            <h2 className='mx-5 mb-2 border-b-2 border-gray-500 w-20'>Feedback</h2>
+            <h2 className='mx-5 mb-2 font-bold w-20'>Feedback:</h2>
             <p className='px-5 text-black'>" {feedback} "</p>
           </div>
         )}

@@ -1,11 +1,13 @@
 import { AppStore, EachFileProps } from "../models/interfaces";
 import { BsTrash } from "react-icons/bs";
-import { CvFileIcon, OtherFileIcon } from "../utils/svg";
 import { URL } from "../utils/url";
 import { addFile } from "../redux/slices/files.slice";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import cvFileIcon from '../assets/light-icon-page-star.png'
+import regularFileIcon from '../assets/light-icon-multiple-pages.png'
+import style from './EachFile.module.css'
 
 function EachFile({ file, openDownloadModal }: EachFileProps) {
 
@@ -58,43 +60,38 @@ function EachFile({ file, openDownloadModal }: EachFileProps) {
   };
 
   return isCv ? (
-    <div className=" flex justify-between items-center bg-gray-200 p-5 drop-shadow-lg shadow-mg rounded-lg my-4 mx-7">
-      <div className="flex flex-col gap-5 ml-5">
-        <h2 className="text-black text-xl">{name}</h2>
-        {/* <LuDownload onClick={() => handleView(name)} className="text-4xl text-black hover:cursor-pointer" /> */}
-        <div className="space-x-6 mt-5">
-          <button className=" shadow-md border-none bg-white hover:bg-red-900 hover:text-white" onClick={() => handleDownload(name)}>Download</button>
-          <button className="shadow-md border-none bg-white hover:bg-red-900 hover:text-white" onClick={() => handleView(name)}>View file</button>
+    <div className={`flex gap-2 items-center w-[80%] h-44 bg-gray-200 drop-shadow-lg shadow-mg rounded-lg mb-5 ${style.file}`}>
+      <div className="flex flex-col w-full">
+        <h2 className={`font-bold text-gray-700 ${style.fileName}`}>{name}</h2>
+        <div className="flex items-center justify-start gap-5 py-2 mt-10">
+          <button className={`shadow-md bg-white hover:bg-red-900 hover:text-white ${style.buttons}`} onClick={() => handleDownload(name)}>Download</button>
+          <button className={`shadow-md bg-white hover:bg-red-900 hover:text-white ${style.buttons}`} onClick={() => handleView(name)}>View file</button>
+          <BsTrash
+            onClick={() => handleDelete(id)}
+            className=" text-3xl ml-5 text-gray-600 hover:cursor-pointer hover:text-red-600  dark:hover:text-red-600"
+          />
         </div>
       </div>
-      <div className="relative">
-        <BsTrash
-          onClick={() => handleDelete(id)} // Wrap the function in an arrow function
-          className="absolute left-44 top-14 p-1 rounded-[50%] text-4xl  hover:cursor-pointer text-red-900 dark:text-white"
-        />
-        <div className="p-1">
-          <CvFileIcon />
-        </div>
+      <div>
+        <img src={cvFileIcon} alt="cvFileIcon"/>
       </div>
+
     </div>
   ) : (
-    <div className=" flex justify-between items-center bg-gray-200 p-5 drop-shadow-lg shadow-mg rounded-lg my-4 mx-7 ">
-      <div className="flex flex-col gap-5 ml-5">
-        <h2 className="text-black text-xl">{name}</h2>
-        {/* <LuDownload onClick={() => handleView(name)} className="text-4xl text-black hover:cursor-pointer" /> */}
-        {/* <button onClick={() => handleDownload(name)}>Download</button>
-        <button onClick={() => handleView(name)}>View file</button> */}
-        <div className="space-x-6 mt-5">
-          <button className=" shadow-md border-none bg-white hover:bg-red-900 hover:text-white" onClick={() => handleDownload(name)}>Download</button>
-          <button className="shadow-md border-none bg-white hover:bg-red-900 hover:text-white" onClick={() => handleView(name)}>View file</button>
+    <div className={`flex gap-2 items-center w-[80%] h-44 bg-gray-200 drop-shadow-lg shadow-mg rounded-lg mb-5 ${style.file}`}>
+      <div className="flex flex-col w-full">
+        <h2 className={`font-bold text-gray-700 ${style.fileName}`}>{name}</h2>
+        <div className="flex items-center justify-start gap-5 py-2 mt-10">
+          <button className={`shadow-md bg-white hover:bg-red-900 hover:text-white ${style.buttons}`} onClick={() => handleDownload(name)}>Download</button>
+          <button className={`shadow-md bg-white hover:bg-red-900 hover:text-white ${style.buttons}`} onClick={() => handleView(name)}>View file</button>
+          <BsTrash
+            onClick={() => handleDelete(id)}
+            className=" text-3xl ml-5  text-gray-600 hover:cursor-pointer hover:text-red-600  dark:hover:text-red-600"
+          />
         </div>
       </div>
-      <div className="relative">
-        <BsTrash
-          onClick={() => handleDelete(id)} // Wrap the function in an arrow function
-          className="absolute left-48 top-14 p-1 rounded-[50%] text-4xl  hover:cursor-pointer text-red-900 hover:text-red-600 dark:text-white "
-        />
-        <OtherFileIcon />
+      <div>
+        <img src={regularFileIcon} alt='fileIcon'/>
       </div>
     </div>
   );

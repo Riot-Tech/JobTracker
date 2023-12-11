@@ -1,0 +1,21 @@
+.inputContainer{
+    font-size: 1.5rem;
+}
+
+.modal{
+    display: flex;
+}
+@media(max-width: 1100px){
+    .inputContainer{
+        font-size: 1rem;
+    }
+}
+@media(max-width: 760px){
+    .inputContainer{
+        font-size: 0.8rem;
+    }
+    .modal{
+        display: flex;
+        flex-direction: column;
+    }
+}

@@ -96,8 +96,8 @@ export const EditIcon = ({dark}:{dark: boolean}) => {
     return (
         <div className="text-black dark:text-white">
             <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 27H14.5H27" stroke={strokeColor} stroke-width="3" stroke-linecap="round" strokeLinejoin="round" />
-                <path d="M14.8081 5.92838L18.7366 2L25.6111 8.87465L21.6828 12.803M14.8081 5.92838L7.02117 13.7153C6.76071 13.9758 6.61438 14.3291 6.61438 14.6974V20.9967H12.9138C13.2821 20.9967 13.6353 20.8505 13.8959 20.5899L21.6828 12.803M14.8081 5.92838L21.6828 12.803" stroke={strokeColor} stroke-width="3" stroke-linecap="round" strokeLinejoin="round" />
+                <path d="M2 27H14.5H27" stroke={strokeColor} stroke-width="2" stroke-linecap="round" strokeLinejoin="round" />
+                <path d="M14.8081 5.92838L18.7366 2L25.6111 8.87465L21.6828 12.803M14.8081 5.92838L7.02117 13.7153C6.76071 13.9758 6.61438 14.3291 6.61438 14.6974V20.9967H12.9138C13.2821 20.9967 13.6353 20.8505 13.8959 20.5899L21.6828 12.803M14.8081 5.92838L21.6828 12.803" stroke={strokeColor} stroke-width="2" stroke-linecap="round" strokeLinejoin="round" />
             </svg>
         </div>
     )
@@ -195,7 +195,7 @@ export const OtherFileIcon = () => {
 
 export const CvFileIcon = () => {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="117" height="136" viewBox="0 0 117 136" fill="none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 117 136" fill="none">
             <path d="M106.341 67.4999V27.8031C106.341 26.7927 105.94 25.8236 105.226 25.109L85.2319 5.11595C84.5176 4.40138 83.5486 4 82.5383 4H8.55133C6.44713 4 4.74133 5.7058 4.74133 7.81V127.19C4.74133 129.294 6.44713 131 8.55133 131H49.1913" stroke="#BEBEBE" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
             <path d="M30.1414 54.7999H80.9413M30.1414 29.4H55.5413M30.1414 80.1999H49.1913" stroke="#BEBEBE" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
             <path d="M82.8817 99.9693L88.6545 87.7284C89.3955 86.1568 91.5367 86.1568 92.2778 87.7284L98.0506 99.9693L110.961 101.944C112.617 102.198 113.277 104.329 112.078 105.551L102.738 115.072L104.942 128.523C105.225 130.251 103.493 131.568 102.011 130.752L90.4661 124.398L78.9212 130.752C77.4391 131.568 75.7068 130.251 75.9901 128.523L78.1941 115.072L68.8539 105.551C67.6551 104.329 68.3148 102.198 69.9715 101.944L82.8817 99.9693Z" stroke="#BEBEBE" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
