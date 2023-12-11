@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addFile } from '../redux/slices/files.slice';
 import  { validateFile } from '../utils/validateCreateFile';
 import { hasErrorsFile } from '../utils/utilities';
+import { TiTick } from "react-icons/ti";
+import style from './CreateFile.module.css'
 
 type CloseFunction = () => void;
 
@@ -74,21 +76,22 @@ function CreateFile({ close }: { close: CloseFunction }) {
 
 
     return (
-        <div className='fixed inset-0 z-20 flex backdrop-brightness-90 flex-col items-center justify-center backdrop-blur-sm'>
-            <AiOutlineClose onClick={close} className='text-4xl text-white bg-black rounded-2xl p-1 mb-4 hover: cursor-pointer hover:bg-gray-600 dark:bg-white dark:text-black dark:hover:bg-gray-400'/>
-            <div className='h-[40vh] w-[17vw] bg-custom-modalLight rounded-xl text-black flex flex-col p-20 justify-between items-center text-center dark:text-white dark:bg-custom-modalDark'>
+        <div className='fixed inset-0 z-20 flex flex-col items-center justify-center backdrop-brightness-90 backdrop-blur-md overflow-auto'>
+            
+            <AiOutlineClose onClick={close} className={`${style.cross} text-white bg-black rounded-2xl p-1 mb-4 hover: cursor-pointer hover:bg-gray-600 dark:bg-white dark:text-black dark:hover:bg-gray-400`}/>
 
-                <input id="fileInput" type="file" onChange={handleFileChange} className="hidden"/>
-                <label htmlFor="fileInput" className={`py-2 px-4 bg-red-500 text-white rounded-md cursor-pointer border-transparent border-2 hover:border-2 hover:border-blue-400 ${file ?  'bg-green-500 ring ring-green-400' : 'bg-red-500'}`}>Choose file</label>
-                <label className='w-60 h-15 overflow-hidden'>{(file && file.name) || (errors.file && errors.file) || 'Please select a file to upload'}</label>
+            <div className={`flex flex-col items-center gap-2 text-center max-h-[60%] ${style.mainContainer} bg-custom-modalLight rounded-xl text-black dark:text-white dark:bg-custom-modalDark`}>
+                
+                <label>{(file && file.name) || (errors.file && errors.file) || 'Please select a file to upload'}</label>
+                <label htmlFor="fileInput" className={`flex ${style.chooseFile} bg-red-500 text-white rounded-md cursor-pointer border-transparent border-2 hover:border-2 hover:border-blue-400 ${file ?  'bg-green-500 ring ring-green-400' : 'bg-red-500'}`}>Choose file</label>
 
-                <label>
+                <div className='flex items-center'>
                     <input type='checkbox' name='isCv' onChange={handleChange}/>
                     Mark file as CV
-                </label>
+                </div>
 
-                <button onClick={handleSubmit} className={`flex items-center ${confirmed ? 'bg-green-500 ring ring-green-500' : 'bg-red-500'}`}>
-                    <TickIcon/>
+                <button onClick={handleSubmit} className={`flex items-center ${style.chooseFile} ${confirmed ? 'bg-green-500 ring ring-green-500' : 'bg-red-500'}`}>
+                    <TiTick className='text-white' />
                     <h2 className='ml-1 text-white'>Confirm</h2>
                 </button>
             </div>
