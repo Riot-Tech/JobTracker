@@ -12,7 +12,7 @@ import { IoAlertCircle } from "react-icons/io5";
 import { MdOutlineWatchLater } from "react-icons/md";
 import { FaHome, FaRegCommentDots } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
-import { CiLink } from "react-icons/ci";
+import { FaLink } from "react-icons/fa6";
 import { RiArrowGoBackFill, RiMoneyDollarCircleLine } from "react-icons/ri";
 import { IoWalletOutline } from "react-icons/io5";
 import { MdOutlinePendingActions } from "react-icons/md";
@@ -136,7 +136,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
 
                     <div className="flex flex-col gap-[1.5em] mt-10 drop-shadow-lg">
                         <div className={`flex items-center ${style.inputContainer}`}>
-                            <MdOutlineWatchLater className='text-4xl' />
+                            <MdOutlineWatchLater className='text-black text-4xl' />
                             <select
                                 name="jobType"
                                 className="w-full md:w-1/2 text-gray-600 ml-6 rounded-lg p-2"
@@ -154,7 +154,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             </select>
                         </div>
                         <div className={`flex items-center ${style.inputContainer}`}>
-                            <FaHome className='text-4xl'/>
+                            <FaHome className='text-black text-4xl'/>
                             <select
                                 name="jobModality"
                                 className="w-full md:w-1/2 text-gray-600 ml-6 rounded-lg p-2"
@@ -171,7 +171,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             </select>
                         </div>
                         <div className={`flex items-center ${style.inputContainer}`}>
-                            <FaLocationDot className='text-4xl'/>
+                            <FaLocationDot className='text-black text-4xl'/>
                             <input
                                 name="location"
                                 className="w-full md:w-1/2 text-gray-600 ml-6 rounded-lg p-2"
@@ -183,7 +183,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             {errors.location && <IoAlertCircle className='items-center text-3xl text-red-600 ml-1' />}
                         </div>
                         <div className={`flex items-center ${style.inputContainer}`}>
-                            <CiLink className='text-4xl'/>
+                            <FaLink className='text-black text-4xl'/>
                             <input
                                 name="link"
                                 className="w-full md:w-1/2 text-gray-600 ml-6 rounded-lg p-2"
@@ -194,7 +194,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             />
                         </div>
                         <div className={`flex items-center ${style.inputContainer}`}>
-                        <RiMoneyDollarCircleLine className='text-4xl'/>
+                        <RiMoneyDollarCircleLine className='text-black text-4xl'/>
                             <input
                                 name="currency"
                                 className="w-full md:w-1/2 text-gray-600 ml-6 rounded-lg p-2"
@@ -206,7 +206,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             {errors.currency && <IoAlertCircle className='items-center text-3xl text-red-600 ml-1' />}
                         </div>
                         <div className={`flex items-center ${style.inputContainer}`}>
-                            <IoWalletOutline className='text-4xl'/>
+                            <IoWalletOutline className='text-black text-4xl'/>
                             <input
                                 name="expectedIncome"
                                 className="w-full md:w-1/2 text-gray-600 ml-6 rounded-lg p-2"
@@ -218,7 +218,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             {errors.expectedIncome && <IoAlertCircle className='items-center text-3xl text-red-600 ml-1' />}
                         </div>
                         <div className={`flex items-center ${style.inputContainer}`}>
-                            <MdOutlinePendingActions className='text-4xl'/>
+                            <MdOutlinePendingActions className='text-black text-4xl'/>
                             <select
                                 name="status"
                                 className="w-full md:w-1/2 text-gray-600 ml-6 rounded-lg p-2"
@@ -252,7 +252,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
 
                     <div className="flex flex-col mt-5 p-1 h-full "> 
                         <div className="flex items-center">
-                            <RiArrowGoBackFill className='text-2xl' />
+                            <RiArrowGoBackFill className='text-black text-2xl' />
                             <label className="ml-4 text-xl"> Feedback </label>
                         </div>
                         <textarea
@@ -266,7 +266,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
 
                     <div className="flex flex-col mt-5 p-1 h-full">
                         <div className="flex items-center">
-                            <FaRegCommentDots className='text-2xl' />
+                            <FaRegCommentDots className='text-black text-2xl' />
                             <label className="ml-4 text-xl"> Comments </label>
                         </div>
 
