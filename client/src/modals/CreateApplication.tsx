@@ -134,7 +134,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                         </div>
                     </div>
 
-                    <div className="flex flex-col gap-[1.5em] mt-10 drop-shadow-lg">
+                    <div className="flex flex-col gap-[1.5em] mt-10 drop-shadow-lg pb-2">
                         <div className={`flex items-center ${style.inputContainer}`}>
                             <MdOutlineWatchLater className='text-black text-4xl' />
                             <select
@@ -237,8 +237,8 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                         </div>
                     </div>
                 </div>
-                <div className={`w-full md:w-[50%] flex flex-col p-10 h-full drop-shadow-lg ${style.modal}`}>
-                    <div className="flex justify-end ">
+                <div className={`md:w-1/2 p-10 drop-shadow-lg ${style.secondHalf}`}>
+                    <div className="flex justify-center md:justify-end">
                         <button
                             type="submit"
                             disabled={hasErrors || Object.values(errors).some((error) => error !== '')}

@@ -1,0 +1,33 @@
+.mainContainer{
+    padding: 2rem;
+    font-size: 1.25rem;
+}
+
+.cross{
+    font-size: 2rem;
+}
+
+.chooseFile{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+@media(max-width:800px){
+    .mainContainer{
+        padding: 0.8rem;
+        font-size: 0.6rem;
+    }
+
+    .cross{
+        font-size: 1rem;
+    }
+
+    .chooseFile{
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        padding-bottom: 0.25rem;
+        padding-top: 0.25rem;
+    }
+}
