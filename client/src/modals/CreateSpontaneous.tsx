@@ -1,5 +1,5 @@
 import { useState, ChangeEvent } from 'react'
-import { LinkIcon, LocationIcon, MessageIcon, RecieverIcon, TickIcon } from '../utils/svg'
+import { RecieverIcon, TickIcon } from '../utils/svg'
 import { AiOutlineClose } from 'react-icons/ai'
 import { IoAlertCircle } from "react-icons/io5";
 import { validateCreateSpontaneous } from '../utils/validateCreateSpontaneous';
@@ -12,6 +12,8 @@ import { useSelector } from 'react-redux';
 import { addSpontaneous } from '../redux/slices/spontaneous.slice';
 import { RiArrowGoBackFill } from 'react-icons/ri';
 import style from './CreateSpont.module.css'
+import { FaLink, FaLocationDot } from 'react-icons/fa6';
+import { MdOutlineMessage } from "react-icons/md";
 
 
 type CloseFunction = () => void;
@@ -82,9 +84,9 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
 
             <div className={`flex flex-col h-[80%] w-[80%] rounded-xl text-black bg-custom-modalLight dark:text-white dark:bg-custom-modalDark overflow-y-auto ${style.modal}`}>
 
-                <div className={`flex h-1/2 ${style.modal}`}>
+                <div className={`flex h-full md:h-1/2 ${style.modal}`}>
 
-                    <div className={`flex flex-col p-10 md:w-full ${style.modal}`}>
+                    <div className={`flex flex-col pl-10 pr-10 pt-10 md:pl-10 md:pt-10 md:w-full ${style.modal}`}>
 
                         <div className='bg-red divide-black drop-shadow-lg'>
                             <div className='flex items-center pb-5'>
@@ -104,25 +106,26 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
                                     <input
                                         onChange={handleChange}
                                         name='receiver'
-                                        className={`w-full md:w-full ml-2 p-2 bg-transparent border-b-2 border-black ${errors.receiver.length && 'bg-black border-2 border-red-700 rounded-md'}`} placeholder='receiver'
+                                        className={`w-full md:w-full ml-6 p-2 bg-transparent border-b-2 border-black ${errors.receiver.length && 'bg-black border-2 border-red-700 rounded-md'}`} 
+                                        placeholder='receiver'
                                     />
                                 </div>
                                 <div className='flex items-center my-3'>
-                                    <LinkIcon />
+                                    <FaLink className='text-black text-4xl'/>
                                     <input
                                         type='url'
                                         onChange={handleChange}
                                         name='link'
-                                        className={`w-full md:w-full ml-2 p-2 bg-transparent border-b-2 border-black ${errors.link.length && 'bg-black border-2 border-red-700 rounded-md'}`}
+                                        className={`w-full md:w-full ml-6 p-2 bg-transparent border-b-2 border-black ${errors.link.length && 'bg-black border-2 border-red-700 rounded-md'}`}
                                         placeholder='link'
                                     />
                                 </div>
                                 <div className='flex my-5 items-center text-black'>
-                                    <LocationIcon />
+                                    <FaLocationDot className='text-black text-4xl'/>
                                     <select
                                         name='location'
                                         onChange={handleChange}
-                                        className='w-full md:w-full ml-2 rounded-lg p-3'>
+                                        className='w-full md:w-full ml-6 rounded-lg p-3'>
                                         <option>USA</option>
                                         <option>LATAM</option>
                                         <option>EUROPE</option>
@@ -148,8 +151,8 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
                         </div> */}
 
                     </div>
-                    <div className={`md:w-full flex flex-col p-10 h-full drop-shadow-lg ${style.modal}`}>
-                        <div className="flex justify-end ">
+                    <div className={`md:w-full flex flex-col pr-8 pl-8 md:pt-10 md:pr-10 h-full drop-shadow-lg ${style.modal}`}>
+                        <div className={`flex justify-center md:justify-end order-last md:order-first ${style.buttonConfirm}`}>
                             <button
                                 type="submit"
                                 onClick={handleSubmit}
@@ -160,9 +163,9 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
                             </button>
                         </div>
 
-                        <div className="flex flex-col mt-5 p-1 h-full">
+                        <div className={`flex flex-col mt-2 h-full ${style.inputContainer}`}>
                             <div className='flex items-center'>
-                                <RiArrowGoBackFill className='text-2xl' />
+                                <RiArrowGoBackFill className='text-black text-2xl' />
                                 <h2 className='ml-4 text-xl'>Feedback</h2>
                             </div>
                             <textarea
@@ -175,10 +178,10 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
                     </div>
                 </div>
 
-                <div className={`flex md:h-[50%] w-full p-10  ${style.messageContainer}`}>
-                    <div className="flex flex-col mt-5 p-1 w-full">
+                <div className={`flex md:h-[50%] w-full pr-8 pl-8 pb-8 md:pt-10 md:pr-10 md:pb-10 ${style.messageContainer}`}>
+                    <div className={`flex flex-col mt-5 p-1 w-full ${style.inputContainer}`}>
                         <div className='flex'>
-                            <MessageIcon />
+                            <MdOutlineMessage className='text-black text-3xl'/>
                             <h2 className='ml-4 text-xl'>Message</h2>
                         </div>
 

@@ -8,7 +8,7 @@ import { AppStore, Application } from "../models/interfaces";
 import { getApplications } from "../redux/slices/applications.slice";
 import { AiOutlineClose } from "react-icons/ai";
 import { TickIcon } from "../utils/svg";
-import { FaLocationDot, FaRegCommentDots } from "react-icons/fa6";
+import { FaLink, FaLocationDot, FaRegCommentDots } from "react-icons/fa6";
 import { RiArrowGoBackFill, RiMoneyDollarCircleLine } from "react-icons/ri";
 import { MdOutlinePendingActions, MdOutlineWatchLater } from "react-icons/md";
 import { IoAlertCircle, IoWalletOutline } from "react-icons/io5";
@@ -107,181 +107,181 @@ export default function EditApplication({ close, props }: { close: CloseFunction
 
     return (
         <form className="fixed inset-0 flex flex-col items-center justify-center z-20 backdrop-brightness-90 backdrop-blur-sm drop-shadow-lg">
-        <AiOutlineClose onClick={close} className='text-4xl text-white bg-black rounded-2xl p-1 mb-4 hover: cursor-pointer hover:bg-gray-600 dark:bg-white dark:text-black dark:hover:bg-gray-400'/>
-        <div className="flex h-[80%] w-[80%] rounded-xl text-black bg-custom-modalLight dark:text-white dark:bg-custom-modalDark overflow-y-auto">
-            
-            <div className="flex flex-col p-10 w-1/2">
-                
-                <div className=" bg-red divide-black w-full drop-shadow-lg">
-                    <div className="flex items-center pb-5">
-                        <input
-                            className={`w-[60%] mr-1 p-1 bg-transparent text-3xl border-b-2 border-black ${errors.company.length && 'bg-black border-2 border-red-700 rounded-md'}`}
-                            name="company"
-                            type="text"
-                            placeholder="Company Name"
-                            value={form.company}
-                            onChange={handleChange}
-                        />
-                        {/* {errors.company && <span className="text-red-800" > {errors.company}</span>} */}
+            <AiOutlineClose onClick={close} className='text-4xl text-white bg-black rounded-2xl p-1 mb-4 hover: cursor-pointer hover:bg-gray-600 dark:bg-white dark:text-black dark:hover:bg-gray-400' />
+            <div className={`flex h-[80%] w-[80%] rounded-xl text-black bg-custom-modalLight dark:text-white dark:bg-custom-modalDark overflow-y-auto  ${style.modal}`}>
+
+                <div className={`flex flex-col p-10 md:w-1/2 ${style.modal}`}>
+
+                    <div className=" bg-red divide-black w-full drop-shadow-lg">
+                        <div className="flex items-center pb-5">
+                            <input
+                                className={`w-full md:w-[60%] mr-1 p-1 bg-transparent text-3xl border-b-2 border-black ${errors.company.length && 'bg-black border-2 border-red-700 rounded-md'}`}
+                                name="company"
+                                type="text"
+                                placeholder="Company Name"
+                                value={form.company}
+                                onChange={handleChange}
+                            />
+                            {/* {errors.company && <span className="text-red-800" > {errors.company}</span>} */}
+                        </div>
+                        <div className="flex items-center pb-5">
+                            <input
+                                className={` w-full md:w-[60%] mr-1 p-1 bg-transparent text-2xl border-b-2 border-black ${errors.jobName.length && 'bg-black border-2 border-red-700 rounded-md'}`}
+                                name="jobName"
+                                type="text"
+                                placeholder="Job Name"
+                                value={form.jobName}
+                                onChange={handleChange}
+                            />
+                        </div>
                     </div>
-                    <div className="flex items-center pb-5">
-                        <input
-                            className={`w-[60%] mr-1 p-1 bg-transparent text-2xl border-b-2 border-black ${errors.jobName.length && 'bg-black border-2 border-red-700 rounded-md'}`}
-                            name="jobName"
-                            type="text"
-                            placeholder="Job Name"
-                            value={form.jobName}
-                            onChange={handleChange}
-                        />
+
+                    <div className="flex flex-col gap-[1.5em] mt-10 drop-shadow-lg">
+                        <div className={`flex items-center ${style.inputContainer}`}>
+                            <MdOutlineWatchLater className='text-black text-4xl' />
+                            <select
+                                name="jobType"
+                                className="w-full md:w-1/2 text-gray-600 ml-6 rounded-lg p-2"
+                                value={form.jobType}
+                                onChange={handleChange}
+                            >
+                                <optgroup label="Choose type">
+                                    <option> Job Type </option>
+                                    <option> FULLTIME </option>
+                                    <option> PART_TIME </option>
+                                    <option> FREELANCE </option>
+                                    <option> UNSPECIFIED </option>
+                                </optgroup>
+                                {errors.jobType && <IoAlertCircle className='items-center text-3xl text-red-600 ml-1' />}
+                            </select>
+                        </div>
+                        <div className={`flex items-center ${style.inputContainer}`}>
+                            <FaHome className='text-black text-4xl' />
+                            <select
+                                name="jobModality"
+                                className="w-full md:w-1/2 text-gray-600 ml-6 rounded-lg p-2"
+                                value={form.jobModality}
+                                onChange={handleChange}
+                            >
+                                <optgroup label="Choose modality">
+                                    <option> Job Modality </option>
+                                    <option> REMOTE </option>
+                                    <option> ONSITE </option>
+                                    <option> HYBRID </option>
+                                    <option> UNSPECIFIED </option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div className={`flex items-center ${style.inputContainer}`}>
+                            <FaLocationDot className='text-black text-4xl' />
+                            <input
+                                name="location"
+                                className="w-full md:w-1/2 text-gray-600 ml-6 rounded-lg p-2"
+                                type="text"
+                                placeholder="Location"
+                                value={form.location}
+                                onChange={handleChange}
+                            />
+                            {errors.location && <IoAlertCircle className='items-center text-3xl text-red-600 ml-1' />}
+                        </div>
+                        <div className={`flex items-center ${style.inputContainer}`}>
+                            <FaLink className='text-black text-4xl' />
+                            <input
+                                name="link"
+                                className="w-full md:w-1/2 text-gray-600 ml-6 rounded-lg p-2"
+                                type="text"
+                                placeholder="Link"
+                                value={form.link}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className={`flex items-center ${style.inputContainer}`}>
+                            <RiMoneyDollarCircleLine className='text-black text-4xl' />
+                            <input
+                                name="currency"
+                                className="w-full md:w-1/2 text-gray-600 ml-6 rounded-lg p-2"
+                                type="text"
+                                placeholder="Currency"
+                                value={form.currency}
+                                onChange={handleChange}
+                            />
+                            {errors.currency && <IoAlertCircle className='items-center text-3xl text-red-600 ml-1' />}
+                        </div>
+                        <div className={`flex items-center ${style.inputContainer}`}>
+                            <IoWalletOutline className='text-black text-4xl' />
+                            <input
+                                name="expectedIncome"
+                                className="w-full md:w-1/2 text-gray-600 ml-6 rounded-lg p-2"
+                                type="number"
+                                placeholder="Expected Income"
+                                value={form.expectedIncome}
+                                onChange={handleChange}
+                            />
+                            {errors.expectedIncome && <IoAlertCircle className='items-center text-3xl text-red-600 ml-1' />}
+                        </div>
+                        <div className={`flex items-center ${style.inputContainer}`}>
+                            <MdOutlinePendingActions className='text-black text-4xl' />
+                            <select
+                                name="status"
+                                className="w-full md:w-1/2 text-gray-600 ml-6 rounded-lg p-2"
+                                value={form.status}
+                                onChange={handleChange}
+                            >
+                                <optgroup label="Status">
+                                    <option> Status </option>
+                                    <option> PENDING </option>
+                                    <option> SUBMITTED </option>
+                                    <option> INTERVIEW_SCHEDULED </option>
+                                    <option> REJECTED </option>
+                                </optgroup>
+                            </select>
+                            {errors.status && <IoAlertCircle className='items-center text-3xl text-red-600 ml-1' />}
+                        </div>
                     </div>
                 </div>
+                <div className={`w-full md:w-[50%] flex flex-col p-10 h-full drop-shadow-lg ${style.modal}`}>
+                    <div className="flex justify-end ">
+                        <button
+                            type="submit"
+                            disabled={hasErrors || Object.values(errors).some((error) => error !== '')}
+                            onClick={handleSubmit}
+                            className={`flex items-center ${confirmed ? 'bg-green-400 ring ring-green-400' : 'bg-red-500 hover:scale-110 transition-transform'}`}
+                        >
+                            {<TickIcon />}
+                            <h2 className='ml-1 text-white'>Confirm</h2>
+                        </button>
+                    </div>
 
-                <div className="flex flex-col gap-[1.5em] mt-10 drop-shadow-lg">
-                    <div className={`flex items-center ${style.inputContainer}`}>
-                        <MdOutlineWatchLater className='text-4xl' />
-                        <select
-                            name="jobType"
-                            className="w-1/2 text-gray-600 ml-6 rounded-lg p-2"
-                            value={form.jobType}
+                    <div className="flex flex-col mt-5 p-1 h-full ">
+                        <div className="flex items-center">
+                            <RiArrowGoBackFill className='text-black text-2xl' />
+                            <label className="ml-4 text-xl"> Feedback </label>
+                        </div>
+                        <textarea
+                            name="feedback"
+                            value={form.feedback}
+                            className="h-full text-black p-2 mt-3 rounded-lg"
                             onChange={handleChange}
-                        >
-                            <optgroup label="Choose type">
-                                <option> Job Type </option>
-                                <option> FULLTIME </option>
-                                <option> PART_TIME </option>
-                                <option> FREELANCE </option>
-                                <option> UNSPECIFIED </option>
-                            </optgroup>
-                            { errors.jobType && <IoAlertCircle className='items-center text-3xl text-red-600 ml-1' />}
-                        </select>
-                    </div>
-                    <div className={`flex items-center ${style.inputContainer}`}>
-                        <FaHome className='text-4xl'/>
-                        <select
-                            name="jobModality"
-                            className="w-1/2 text-gray-600 ml-6 rounded-lg p-2"
-                            value={form.jobModality}
-                            onChange={handleChange}
-                        >
-                            <optgroup label="Choose modality">
-                                <option> Job Modality </option>
-                                <option> REMOTE </option>
-                                <option> ONSITE </option>
-                                <option> HYBRID </option>
-                                <option> UNSPECIFIED </option>
-                            </optgroup>
-                        </select>
-                    </div>
-                    <div className={`flex items-center ${style.inputContainer}`}>
-                        <FaLocationDot className='text-4xl'/>
-                        <input
-                            name="location"
-                            className="w-1/2 text-gray-600 ml-6 rounded-lg p-2"
-                            type="text"
-                            placeholder="Location"
-                            value={form.location}
-                            onChange={handleChange}
-                        />
-                        {errors.location && <IoAlertCircle className='items-center text-3xl text-red-600 ml-1' />}
-                    </div>
-                    <div className={`flex items-center ${style.inputContainer}`}>
-                        <CiLink className='text-4xl'/>
-                        <input
-                            name="link"
-                            className="w-1/2 text-gray-600 ml-6 rounded-lg p-2"
-                            type="text"
-                            placeholder="Link"
-                            value={form.link}
-                            onChange={handleChange}
+                            placeholder="Any feedback from the company (e.g., interview experience, comments, or follow-up notes)"
                         />
                     </div>
-                    <div className={`flex items-center ${style.inputContainer}`}>
-                    <RiMoneyDollarCircleLine className='text-4xl'/>
-                        <input
-                            name="currency"
-                            className="w-1/2 text-gray-600 ml-6 rounded-lg p-2"
-                            type="text"
-                            placeholder="Currency"
-                            value={form.currency}
+
+                    <div className="flex flex-col mt-5 p-1 h-full">
+                        <div className="flex items-center">
+                            <FaRegCommentDots className='text-black text-2xl' />
+                            <label className="ml-4 text-xl"> Comments </label>
+                        </div>
+
+                        <textarea
+                            name="comments"
+                            value={form.comments}
+                            className="h-full text-black p-2 mt-3 rounded-lg"
                             onChange={handleChange}
+                            placeholder="Feel free to write any comments you'd like here."
                         />
-                        {errors.currency && <IoAlertCircle className='items-center text-3xl text-red-600 ml-1' />}
-                    </div>
-                    <div className={`flex items-center ${style.inputContainer}`}>
-                        <IoWalletOutline className='text-4xl'/>
-                        <input
-                            name="expectedIncome"
-                            className="w-1/2 text-gray-600 ml-6 rounded-lg p-2"
-                            type="number"
-                            placeholder="Expected Income"
-                            value={form.expectedIncome}
-                            onChange={handleChange}
-                        />
-                        {errors.expectedIncome && <IoAlertCircle className='items-center text-3xl text-red-600 ml-1' />}
-                    </div>
-                    <div className={`flex items-center ${style.inputContainer}`}>
-                        <MdOutlinePendingActions className='text-4xl'/>
-                        <select
-                            name="status"
-                            className="w-1/2 text-gray-600 ml-6 rounded-lg p-2"
-                            value={form.status}
-                            onChange={handleChange}
-                        >
-                            <optgroup label="Status">
-                                <option> Status </option>
-                                <option> PENDING </option>
-                                <option> SUBMITTED </option>
-                                <option> INTERVIEW_SCHEDULED </option>
-                                <option> REJECTED </option>
-                            </optgroup>
-                        </select>
-                        {errors.status && <IoAlertCircle className='items-center text-3xl text-red-600 ml-1' />}
                     </div>
                 </div>
             </div>
-            <div className="w-[50%] flex flex-col p-10 pl-0 h-full drop-shadow-lg">
-                <div className="flex justify-end ">
-                    <button
-                        type="submit"
-                        disabled={hasErrors || Object.values(errors).some((error) => error !== '')}
-                        onClick={handleSubmit}
-                        className={`flex items-center ${confirmed ? 'bg-green-400 ring ring-green-400' : 'bg-red-500 hover:scale-110 transition-transform'}`}
-                        >
-                        {<TickIcon/>}
-                        <h2 className='ml-1 text-white'>Confirm</h2>
-                    </button>
-                </div>
-
-                <div className="flex flex-col mt-5 p-1 h-full"> 
-                    <div className="flex items-center">
-                        <RiArrowGoBackFill className='text-2xl' />
-                        <label className="ml-4 text-xl"> Feedback </label>
-                    </div>
-                    <textarea
-                        name="feedback"
-                        value={form.feedback}
-                        className="h-full text-black p-2 mt-3 rounded-lg"
-                        onChange={handleChange}
-                        placeholder="Any feedback from the company (e.g., interview experience, comments, or follow-up notes)"
-                    />
-                </div>
-
-                <div className="flex flex-col mt-5 p-1 h-full">
-                    <div className="flex items-center">
-                        <FaRegCommentDots className='text-2xl' />
-                        <label className="ml-4 text-xl"> Comments </label>
-                    </div>
-
-                    <textarea
-                        name="comments"
-                        value={form.comments}
-                        className="h-full text-black p-2 mt-3 rounded-lg"
-                        onChange={handleChange}
-                        placeholder="Feel free to write any comments you'd like here."
-                    />
-                </div>
-            </div>
-        </div>
-    </form>
+        </form>
     )
 }
