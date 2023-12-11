@@ -93,9 +93,6 @@ export interface input {
     name: string,
     email: string,
     password: string,
-    linkedIn: string,
-    gitHub: string,
-    portfolio: string,
     [key: string]: string,
 }
 
