@@ -2,15 +2,15 @@ import confirmation from '../assets/Icon Confirmation.gif'
 
 function SignUpSuccess() {
   return (
-    <div className='fixed top-4 z-50 right-4 h-[100px] w-[300px]'>
-        <div className='flex'>
-            <div className='flex justify-center items-center bg-white w-[60%] p-5 text-lg text-black font-bold'>
-                User created!
-            </div>
-            <div className='w-[50%]'>
-                <img src={confirmation} className='' />
-            </div>
+    <div className='fixed bg-white h-25 right-10 z-10 justify-center bottom-10 rounded-xl drop-shadow-xl shadow-xl overflow-hidden'>
+      <div className='flex flex-row justify-center items-center'>
+        <div className='flex   text-xl text-black font-bold rounded-xl pl-10'>
+          <p>User created!</p>
         </div>
+        <div className='w-40 rounded-xl'>
+          <img src={confirmation} className='' />
+        </div>
+      </div>
     </div>
   )
 }
