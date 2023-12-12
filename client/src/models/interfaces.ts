@@ -93,9 +93,6 @@ export interface input {
     name: string,
     email: string,
     password: string,
-    linkedIn: string,
-    gitHub: string,
-    portfolio: string,
     [key: string]: string,
 }
 
@@ -106,8 +103,8 @@ export interface inputLogin {
 }
   
 export type inputSpontaneous = {
-    company: string,/* 
-    date: string, */
+    company: string,
+    /* date: string, */
     message: string,
     feedback: string,
     location: string,

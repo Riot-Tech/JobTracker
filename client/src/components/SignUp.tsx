@@ -15,8 +15,8 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
   
   const [passwordClear, setPasswordClear] = useState(false)
 
-  const [input, setInput] = useState({ name: "", email: "", password: "", linkedIn: "", gitHub: "", portfolio: "" })
-  const [errors, setErrors] = useState({ name: "", email: "", password: "", linkedIn: "", gitHub: "", portfolio: "" })
+  const [input, setInput] = useState({ name: "", email: "", password: ""})
+  const [errors, setErrors] = useState({ name: "", email: "", password: ""})
 
   const [errorModal, setErrorModal] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
@@ -27,7 +27,7 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
     if (modalIsOpen) {
       const timeoutId = setTimeout(() => {
         setModalIsOpen(false);
-      }, 1200); // Ocultar el modal después de 5 segundos (5000 ms)
+      }, 2000); // Ocultar el modal después de 5 segundos (5000 ms)
 
       // Limpia el temporizador si el componente se desmonta antes de que se oculte el modal
       return () => clearTimeout(timeoutId);
@@ -57,8 +57,8 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
         const response = await axios.post(`${URL}/signUp`, input)
         if (response.status === 200) {
           setModalIsOpen(true)
-          setInput({ name: "", email: "", password: "", linkedIn: "", gitHub: "", portfolio: "" })
-          setErrors({ name: "", email: "", password: "", linkedIn: "", gitHub: "", portfolio: "" })
+          setInput({ name: "", email: "", password: "" })
+          setErrors({ name: "", email: "", password: "" })
         }
       }
     } catch (error: any) {
@@ -87,10 +87,10 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
         </div>
         <h2 className='text-lg font-semibold border-b-2'>It's easy</h2>
         <form onSubmit={handleSubmit} className='mt-4'>
-          <GoogleButton />
-          <h1 className="flex justify-center">----- o -----</h1>
+          <GoogleButton/>
+          <h1 className="flex justify-center text-2xl m-2">----- o -----</h1>
           <div className="flex w-full gap-2 p-2">
-            <div className="w-1/2">
+            <div className="w-full">
               <div className="flex flex-col my-4">
                 <input
                   className={`shadow-xl p-2 rounded-lg ${errors.name ? 'bg-red-300' : ''}`}
@@ -125,39 +125,6 @@ function SignUp({ close }: { close: (value: boolean) => void }) {
                 <p className="text-red-500 h-1 my-2">{errors.password}</p>
               </div>
             </div>
-
-            {/* <div className="w-1/2">
-              <div className="flex flex-col my-4">
-                <input
-                  className={`shadow-xl p-2 rounded-lg ${errors.linkedIn ? 'bg-red-300' : ''}`}
-                  type="text"
-                  name="linkedIn"
-                  onChange={handleChange}
-                  placeholder="LinkedIn"
-                />
-                <p className="text-red-500 h-1 my-2">{errors.linkedIn}</p>
-              </div>
-              <div className="flex flex-col my-4">
-                <input
-                  className={`shadow-xl p-2 rounded-lg ${errors.gitHub ? 'bg-red-300' : ''}`}
-                  type="text"
-                  name="gitHub"
-                  onChange={handleChange}
-                  placeholder="Git Hub"
-                />
-                <p className="text-red-500 h-1 my-2">{errors.gitHub}</p>
-              </div>
-              <div className="flex flex-col my-4">
-                <input
-                  className={`shadow-xl p-2 rounded-lg ${errors.portfolio ? 'bg-red-300' : ''}`}
-                  type="text"
-                  name="portfolio"
-                  onChange={handleChange}
-                  placeholder="Portfolio"
-                />
-                <p className="text-red-500 h-1 my-2">{errors.portfolio}</p>
-              </div>
-            </div> */}
           </div>
 
 

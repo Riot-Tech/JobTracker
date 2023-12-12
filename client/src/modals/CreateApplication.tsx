@@ -21,6 +21,7 @@ import style from './CreateApp.module.css'
 type CloseFunction = () => void;
 
 export default function CreateApplication({ close }: { close: CloseFunction }) {
+
     const activeUser = useSelector((store: AppStore) => store.user);
     const [ confirmed, setConfirmed ]= useState(false)
 
@@ -92,6 +93,12 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                 if (data.length) {
                     setConfirmed(true);
                     dispatch(getApplications(data));
+                    
+                    // Agrega un retraso de 1000 milisegundos (1 segundo)
+                    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+                    // Después del retraso, cierra el modal
+                    close();
                     return;
                 }
             }
@@ -243,7 +250,7 @@ export default function CreateApplication({ close }: { close: CloseFunction }) {
                             type="submit"
                             disabled={hasErrors || Object.values(errors).some((error) => error !== '')}
                             onClick={handleSubmit}
-                            className={`flex items-center mt-4 md:mt-0 ${confirmed ? 'bg-green-400 ring ring-green-400' : 'bg-red-500 hover:scale-110 transition-transform'}`}
+                            className={`flex items-center mt-4 md:mt-0 ${confirmed ? 'bg-green-400 ring ring-green-400'  : 'bg-red-500 hover:scale-110 transition-transform'}`}
                             >
                             {<TickIcon/>}
                             <h2 className='ml-1 text-white'>Confirm</h2>
