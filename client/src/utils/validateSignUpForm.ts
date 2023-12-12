@@ -13,7 +13,11 @@ export const validateSignUpForm = (input: input) =>{
         schema.parse({
           name,
           email,
+<<<<<<< HEAD
           password,
+=======
+          password
+>>>>>>> 29bf00ac3bc53bdbbf2f2487687064818e4aac81
         });
         return {name:"", email: "", password: ""}; // No hay errores
       } catch (error: unknown) {

@@ -9,7 +9,7 @@ const key = process.env.RESEND_KEY
 const prisma = new PrismaClient();
 
 export const signUpHandler = async (req: Request, res: Response) => {
-  const { name, email, password, linkedIn, gitHub, portfolio } = req.body;
+  const { name, email, password } = req.body;
   try {
     // Hashea la contraseña
     let salt = bcrypt.genSaltSync(10);
@@ -22,25 +22,21 @@ export const signUpHandler = async (req: Request, res: Response) => {
           name: name,
           email: email,
           password: hash,
-          linkedIn: linkedIn,
-          gitHub: gitHub,
-          portfolio: portfolio
         },
       });
       
-      await transporter.sendMail({
-        from: '"JobTracker 👻" <JobTracker@gmail.com>',
-        to: email,
-        subject: "Account created",
-        html: "<b>Congratulations! Your account was successfully created.</b>",
-      });
+      // await transporter.sendMail({
+      //   from: '"JobTracker 👻" <JobTracker@gmail.com>',
+      //   to: email,
+      //   subject: "Account created",
+      //   html: "<b>Congratulations! Your account was successfully created.</b>",
+      // });
 
       return res.status(200).json(newUser);
     }
     return res.status(400).json({ message: "User already exists" })
   } catch (error) {
-    return res
-      .status(400)
-      .json({ message: "Error during sign up, try again later" });
+    console.error("Error during sign up:", error);
+    return res.status(400).json({ message: "Error during sign up, check server logs" });
   }
 };
