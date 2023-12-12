@@ -1,5 +1,5 @@
 .inputContainer{
-    font-size: 1.5rem;
+    font-size: 1.1rem;
 }
 
 .modal{
@@ -17,7 +17,7 @@
 }
 @media(max-width: 760px){
     .inputContainer{
-        font-size: 0.8rem;
+        font-size: 0.6rem;
     }
     .modal{
         display: flex;

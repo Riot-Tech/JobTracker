@@ -103,8 +103,8 @@ export interface inputLogin {
 }
   
 export type inputSpontaneous = {
-    company: string,/* 
-    date: string, */
+    company: string,
+    /* date: string, */
     message: string,
     feedback: string,
     location: string,

@@ -11,14 +11,15 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { addSpontaneous } from '../redux/slices/spontaneous.slice';
 import { RiArrowGoBackFill } from 'react-icons/ri';
-import style from './CreateSpont.module.css'
+import style from './CreateSpont.module.css';
 import { FaLink, FaLocationDot } from 'react-icons/fa6';
-import { MdOutlineMessage } from "react-icons/md";
+import { MdContactMail, MdOutlineMessage } from "react-icons/md";
 
 
 type CloseFunction = () => void;
 
 function CreateSpontaneous({ close }: { close: CloseFunction }) {
+
     const activeUser = useSelector((store: AppStore) => store.user);
     const [confirmed, setConfirmed] = useState(false)
 
@@ -55,16 +56,25 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
         ))
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        console.log(input)
         try {
             if (!hasErrorsSpontaneous(errors) && !isInputEmpty(input)) {
                 let response = await axios.post(`${URL}/spontaneous`, { ...input, userId: activeUser.id })
 
                 if (response.status === 200) { //una vez que se guardo en la bdd, modal de confirmacion, se deberia mostrar la espontanea cuando cerramos el modal
+                    
                     let { data } = await axios.get(`${URL}/spontaneous/?id=${activeUser.id}`);
                     if (data.length) {
-                        setConfirmed(true)
+                        setConfirmed(true);
                         dispatch(addSpontaneous(data)); //lleno el estado global de spontaneous, que ahora que lo pienso podria no ser global, y luego me lo traigo y las renderizo
+
+                        // Agrega un retraso de 1000 milisegundos (1 segundo)
+                        await new Promise((resolve) => setTimeout(resolve, 1000));
+
+                        // Después del retraso, cierra el modal
+                        close();
                         return;
                     }
 
@@ -102,16 +112,16 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
                         <div className={`w-full flex py-4 ${style.modal}`}>
                             <div className='flex flex-col items-start'>
                                 <div className='flex items-center my-3'>
-                                    <RecieverIcon />
+                                    <MdContactMail className='text-black text-4xl'/>
                                     <input
                                         onChange={handleChange}
                                         name='receiver'
-                                        className={`w-full md:w-full ml-6 p-2 bg-transparent border-b-2 border-black ${errors.receiver.length && 'bg-black border-2 border-red-700 rounded-md'}`} 
+                                        className={`w-full md:w-full ml-6 p-2 bg-transparent border-b-2 border-black ${errors.receiver.length && 'bg-black border-2 border-red-700 rounded-md'}`}
                                         placeholder='receiver'
                                     />
                                 </div>
                                 <div className='flex items-center my-3'>
-                                    <FaLink className='text-black text-4xl'/>
+                                    <FaLink className='text-black text-4xl' />
                                     <input
                                         type='url'
                                         onChange={handleChange}
@@ -121,7 +131,7 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
                                     />
                                 </div>
                                 <div className='flex my-5 items-center text-black'>
-                                    <FaLocationDot className='text-black text-4xl'/>
+                                    <FaLocationDot className='text-black text-4xl' />
                                     <select
                                         name='location'
                                         onChange={handleChange}
@@ -136,19 +146,6 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
                                 </div>
                             </div>
                         </div>
-                        {/* <div className='w-[50%] flex flex-col '>
-                            <div className='flex justify-between m-1'>
-                                <div className='flex items-center'>
-                                    <FeedbackIcon />
-                                    <h2 className='ml-4 text-xl'>Feedback</h2>
-                                </div>
-                            </div>
-                            <textarea
-                                onChange={handleChange}
-                                name='feedback'
-                                className={`w-full h-[80%] p-2 dark:text-black ${errors.feedback.length && 'bg-red-300 border-2 border-red-700 rounded-md'}`}
-                            />
-                        </div> */}
 
                     </div>
                     <div className={`md:w-full flex flex-col pr-8 pl-8 md:pt-10 md:pr-10 h-full drop-shadow-lg ${style.modal}`}>
@@ -181,12 +178,12 @@ function CreateSpontaneous({ close }: { close: CloseFunction }) {
                 <div className={`flex md:h-[50%] w-full pr-8 pl-8 pb-8 md:pt-10 md:pr-10 md:pb-10 ${style.messageContainer}`}>
                     <div className={`flex flex-col mt-5 p-1 w-full ${style.inputContainer}`}>
                         <div className='flex'>
-                            <MdOutlineMessage className='text-black text-3xl'/>
+                            <MdOutlineMessage className='text-black text-3xl' />
                             <h2 className='ml-4 text-xl'>Message</h2>
                         </div>
 
                         <textarea
-                            name="comments"
+                            name="message"
                             className="h-full text-black p-2 mt-3 rounded-lg"
                             onChange={handleChange}
                             placeholder="Feel free to write any comments you'd like here."

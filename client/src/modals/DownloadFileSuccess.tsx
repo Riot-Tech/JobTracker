@@ -11,9 +11,6 @@ function DownloadFileSuccess() {
               <img src={confirmation} className='' />
             </div>
         </div>
-        {/* <div className='flex justify-center h-12 text-xl '>
-              <p><a id="downloadLink" href='' target="_blank">Open file</a></p>
-        </div> */}
     </div>
   )
 }
